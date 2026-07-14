@@ -18,7 +18,7 @@ namespace AssignmentBasics.Services
         /// <returns>
         /// Return the selected option
         /// </returns>
-        public int MenuInfo()
+        public string MenuInfo()
         {
             Console.WriteLine(" ");
             Console.WriteLine("Select one of the below options: ");
@@ -30,8 +30,8 @@ namespace AssignmentBasics.Services
             Console.WriteLine("[6] - Quit");
             Console.WriteLine(" ");
 
-            int option = int.Parse(Console.ReadLine());
-
+            string? option = Console.ReadLine();
+            Console.Clear();
             return option;
         }
 

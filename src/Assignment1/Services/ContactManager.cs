@@ -18,39 +18,41 @@ namespace AssignmentBasics.Services
         private static ContactRepository contactRepository = new ContactRepository();
         ConsoleInputs consoleInputs = new ConsoleInputs();
         Validation validation = new Validation();
+
         /// <summary>
         /// Main menu
         /// </summary>
         public void Menu()
         {
-            int option = consoleInputs.MenuInfo();
+            string option = consoleInputs.MenuInfo();
 
             switch (option)
             {
-                case 1:
-                    Console.WriteLine("View Contact");
+                case "1":
+                    Console.WriteLine("View Contact\n");
                     ViewContact();
                     break;
-                case 2:
-                    Console.WriteLine("Add Contact");
+                case "2":
+                    Console.WriteLine("Add Contact\n");
                     AddContact();
                     break;
-                case 3:
-                    Console.WriteLine("Search Contact");
+                case "3":
+                    Console.WriteLine("Search Contact\n");
                     SearchContact();
                     break;
-                case 4:
-                    Console.WriteLine("Edit Contact");
+                case "4":
+                    Console.WriteLine("Edit Contact\n");
                     EditContact();
                     break;
-                case 5:
-                    Console.WriteLine("Delete Contact");
+                case "5":
+                    Console.WriteLine("Delete Contact\n");
                     DeleteContact();
                     break;
-                case 6:
-                    Console.WriteLine("Process Ended");
+                case "6":
+                    Console.WriteLine("Process Ended\n");
                     return;
                 default:
+                    Console.Clear();
                     Console.WriteLine("Please Enter a Valid Option");
                     this.Menu();
                     break;
@@ -78,6 +80,9 @@ namespace AssignmentBasics.Services
             {
                 contactInfo.Id = Guid.NewGuid();
                 contactRepository.AddContact(contactInfo);
+                Console.Clear();
+                Console.WriteLine("Contact Added Successfully");
+                consoleInputs.DisplayDetails(contactInfo);
                 this.Menu();
             }
         }
@@ -87,7 +92,16 @@ namespace AssignmentBasics.Services
         /// </summary>
         public void SearchContact()
         {
-            contactRepository.SearchContact(consoleInputs.FieldDetail());
+            int indexOfContact = contactRepository.IndexOfContact(consoleInputs.FieldDetail());
+            if (indexOfContact != -1)
+            {
+                contactRepository.SearchContact(indexOfContact);
+            }
+            else
+            {
+                Console.WriteLine("Contact Not Found");
+            }
+
             this.Menu();
         }
 
@@ -101,6 +115,9 @@ namespace AssignmentBasics.Services
             {
                 int fieldOfContact = consoleInputs.DisplayFields();
                 contactRepository.EditContact(indexOfContact, fieldOfContact, consoleInputs.EditDetail());
+                Console.Clear();
+                Console.WriteLine("Contact Edited Successfully");
+                contactRepository.SearchContact(indexOfContact);
             }
             else
             {
@@ -115,7 +132,17 @@ namespace AssignmentBasics.Services
         /// </summary>
         public void DeleteContact()
         {
-            contactRepository.DeleteContact(consoleInputs.FieldDetail());
+            int indexOfContact = contactRepository.IndexOfContact(consoleInputs.FieldDetail());
+            if (indexOfContact != -1)
+            {
+                contactRepository.DeleteContact(indexOfContact);
+                Console.Clear();
+                Console.WriteLine("Contact Deleted Successfully");
+            }
+            else
+            {
+                Console.WriteLine("Contact Not Found");
+            }
             this.Menu();
         }
     }

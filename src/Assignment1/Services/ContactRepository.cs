@@ -43,44 +43,23 @@ namespace AssignmentBasics.Repository
         /// <summary>
         /// Search the contact
         /// </summary>
-        /// <param name="searchWord">
+        /// <param name="indexOfContact">
         /// Word to be searched
         /// </param>
-        public void SearchContact(string searchWord)
+        public void SearchContact(int indexOfContact)
         {
-            int flag = 0;
-            foreach (ContactInfo contact in Contacts)
-            {
-                if (contact.Name == searchWord || contact.PhoneNumber == searchWord)
-                {
-                    concoleInputs.DisplayDetails(contact);
-                    flag = 1;
-                }
-            }
-
-            if (flag == 0)
-            {
-                Console.WriteLine("No Contact Found!!");
-            }
+            concoleInputs.DisplayDetails(Contacts[indexOfContact]);
         }
 
         /// <summary>
         /// Delete the contact
         /// </summary>
-        /// <param name="deleteWord">
+        /// <param name="indexOfContact">
         /// word to be deleted
         /// </param>
-        public void DeleteContact(string deleteWord)
+        public void DeleteContact(int indexOfContact)
         {
-            int indexOfContact = IndexOfContact(deleteWord);
-            if (indexOfContact != -1)
-            {
-                Contacts.RemoveAt(indexOfContact);
-            }
-            else
-            {
-                Console.WriteLine("No Contact Found!!");
-            }
+            Contacts.RemoveAt(indexOfContact);
         }
 
         /// <summary>
