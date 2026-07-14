@@ -117,6 +117,7 @@
             {
                 if (contact[1] == phoneNumber)
                 {
+                    Console.Clear();
                     Console.WriteLine("Phone Number already exist!!");
                     flag = 0;
                     PrintOptions(listOfContacts);
@@ -234,6 +235,7 @@
 
             if (choice == "1")
             {
+                Console.Clear();
                 Console.WriteLine("Enter the Name: ");
                 var name = Console.ReadLine();
                 foreach (string[] contact in listOfContacts)
@@ -241,7 +243,6 @@
                     if (contact[0] == name)
                     {
                         indexOfContact = listOfContacts.IndexOf(contact);
-                        Console.Clear();
                         Console.WriteLine("Contact Details: ");
                         Console.WriteLine("1. Name: " + listOfContacts[indexOfContact][0]);
                         Console.WriteLine("2. Phone Number: " + listOfContacts[indexOfContact][1]);
@@ -252,6 +253,7 @@
             }
             else if (choice == "2")
             {
+                Console.Clear();
                 Console.WriteLine("Enter the Phone Number: ");
                 var phoneNumber = Console.ReadLine();
                 foreach (string[] contact in listOfContacts)
@@ -259,7 +261,6 @@
                     if (contact[1] == phoneNumber)
                     {
                         indexOfContact = listOfContacts.IndexOf(contact);
-                        Console.Clear();
                         Console.WriteLine("Contact Details: ");
                         Console.WriteLine("1. Name: " + listOfContacts[indexOfContact][0]);
                         Console.WriteLine("2. Phone Number: " + listOfContacts[indexOfContact][1]);
