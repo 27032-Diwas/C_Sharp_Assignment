@@ -123,6 +123,7 @@
                     PrintOptions(listOfContacts);
                 }
             }
+
             if (flag == 1)
             {
                 if (name == "" && phoneNumber == "" && emailAddress == "" && description == "")
@@ -203,6 +204,7 @@
             {
                 Console.WriteLine("Enter a vaild option");
             }
+
             PrintOptions(listOfContacts);
         }
 
@@ -220,6 +222,7 @@
                 Console.Clear();
                 Console.WriteLine("No contact found");
             }
+
             PrintOptions(listOfContacts);
         }
 
