@@ -1,6 +1,4 @@
-﻿using System.Xml.Linq;
-
-namespace Assignments
+﻿namespace Assignments
 {
     /// <summary>
     /// Assignment Folder
@@ -8,28 +6,36 @@ namespace Assignments
     internal class Program
     {
         /// <summary>
-        /// print the main menu
+        /// Check for empty list of contacts
         /// </summary>
         /// <param name="listOfContacts">
-        /// hit
+        /// main list
         /// </param>
-        public static void EmptyList(List<string[]> listOfContacts)
+        /// <returns>
+        /// isEmpty or not
+        /// </returns>
+        public static bool EmptyList(List<string[]> listOfContacts)
         {
             if (listOfContacts.Count == 0)
             {
+                Console.Clear();
                 Console.WriteLine("There is no contact in our memory.");
+                PrintOptions(listOfContacts);
+                return true;
             }
 
+            return false;
         }
 
         /// <summary>
         /// print the main menu
         /// </summary>
         /// <param name="listOfContacts">
-        /// hit
+        /// main list
         /// </param>
         public static void PrintOptions(List<string[]> listOfContacts)
         {
+            Console.WriteLine(" ");
             Console.WriteLine("Select one of the below options: ");
             Console.WriteLine("[1] - View contacts");
             Console.WriteLine("[2] - Add new contact");
@@ -37,14 +43,17 @@ namespace Assignments
             Console.WriteLine("[4] - Edit contact");
             Console.WriteLine("[5] - Delete contact");
             Console.WriteLine("[6] - Quit");
+            Console.WriteLine(" ");
 
             var selectedOption = Console.ReadLine();
 
             if (selectedOption == "1")
             {
-                EmptyList(listOfContacts);
-                Console.WriteLine("View Contacts");
-                ViewContacts(listOfContacts);
+                if (!EmptyList(listOfContacts))
+                {
+                    Console.WriteLine("View Contacts");
+                    ViewContacts(listOfContacts);
+                }
             }
             else if (selectedOption == "2")
             {
@@ -53,21 +62,27 @@ namespace Assignments
             }
             else if (selectedOption == "3")
             {
-                EmptyList(listOfContacts);
-                Console.WriteLine("Search Contact");
-                SearchContact(listOfContacts);
+                if (!EmptyList(listOfContacts))
+                {
+                    Console.WriteLine("Search Contact");
+                    SearchContact(listOfContacts);
+                }
             }
             else if (selectedOption == "4")
             {
-                EmptyList(listOfContacts);
-                Console.WriteLine("Edit Contact");
-                EditContact(listOfContacts);
+                if (!EmptyList(listOfContacts))
+                {
+                    Console.WriteLine("Edit Contact");
+                    EditContact(listOfContacts);
+                }
             }
             else if (selectedOption == "5")
             {
-                EmptyList(listOfContacts);
-                Console.WriteLine("Delete Contact");
-                DeleteContact(listOfContacts);
+                if (!EmptyList(listOfContacts))
+                {
+                    Console.WriteLine("Delete Contact");
+                    DeleteContact(listOfContacts);
+                }
             }
             else if (selectedOption == "6")
             {
@@ -84,10 +99,11 @@ namespace Assignments
         /// Add contact to the list
         /// </summary>
         /// /// <param name="listOfContacts">
-        /// hit
+        /// main list
         /// </param>
         public static void AddContact(List<string[]> listOfContacts)
         {
+            Console.WriteLine(" ");
             Console.WriteLine("Name: ");
             var name = Console.ReadLine();
             Console.WriteLine("Phone Number: ");
@@ -96,22 +112,36 @@ namespace Assignments
             var emailAddress = Console.ReadLine();
             Console.WriteLine("Description: ");
             var description = Console.ReadLine();
-
-            listOfContacts.Add(new string[] { name, phoneNumber, emailAddress, description });
-
-            Console.WriteLine("Contact Added Successfully!!");
-            PrintOptions(listOfContacts);
+            int flag = 1;
+            foreach (string[] contact in listOfContacts)
+            {
+                if (contact[1] == phoneNumber)
+                {
+                    Console.WriteLine("Phone Number already exist!!");
+                    flag = 0;
+                    PrintOptions(listOfContacts);
+                }
+            }
+            if (flag == 1)
+            {
+                listOfContacts.Add(new string[] { name, phoneNumber, emailAddress, description });
+                Console.Clear();
+                Console.WriteLine("Contact Added Successfully!!");
+                PrintOptions(listOfContacts);
+            }
         }
 
         /// <summary>
         /// View all contacts
         /// </summary>
         /// /// <param name="listOfContacts">
-        /// hit
+        /// main list
         /// </param>
         public static void ViewContacts(List<string[]> listOfContacts)
         {
-            foreach (string[] contact in listOfContacts)
+            var sorted = listOfContacts.OrderBy(arr => arr[0]).ToList();
+            Console.Clear();
+            foreach (string[] contact in sorted)
             {
                 Console.WriteLine("Name: " + contact[0] + "           Phone Number: " + contact[1]);
             }
@@ -123,12 +153,13 @@ namespace Assignments
         /// Delete contacts
         /// </summary>
         /// /// <param name="listOfContacts">
-        /// hit
+        /// main list
         /// </param>
         public static void DeleteContact(List<string[]> listOfContacts)
         {
             int indexOfContect = IndexOfContact(listOfContacts);
             listOfContacts.RemoveAt(indexOfContect);
+            Console.Clear();
             Console.WriteLine("Contact Deleted Successfully!!!");
             PrintOptions(listOfContacts);
         }
@@ -137,7 +168,7 @@ namespace Assignments
         /// Edit contacts
         /// </summary>
         /// /// <param name="listOfContacts">
-        /// hit
+        /// main list
         /// </param>
         public static void EditContact(List<string[]> listOfContacts)
         {
@@ -153,8 +184,9 @@ namespace Assignments
             {
                 int option = int.Parse(choise);
                 Console.WriteLine("Enter the detail to update: ");
-                string newDetail = Console.ReadLine();
+                string? newDetail = Console.ReadLine();
                 listOfContacts[indexOfContect][option - 1] = newDetail;
+                Console.Clear();
                 Console.WriteLine("Contact Edited Successfully!!!");
             }
             else
@@ -168,30 +200,31 @@ namespace Assignments
         /// Search contacts
         /// </summary>
         /// /// <param name="listOfContacts">
-        /// hit
+        /// main list
         /// </param>
         public static void SearchContact(List<string[]> listOfContacts)
         {
             int indexOfContect = IndexOfContact(listOfContacts);
-            Console.WriteLine("Contact Details: ");
-            Console.WriteLine("1. Name: " + listOfContacts[indexOfContect][0]);
-            Console.WriteLine("2. Phone Number: " + listOfContacts[indexOfContect][1]);
-            Console.WriteLine("3. Email Address: " + listOfContacts[indexOfContect][2]);
-            Console.WriteLine("4. Descripiton: " + listOfContacts[indexOfContect][3]);
+            if (indexOfContect == -1)
+            {
+                Console.Clear();
+                Console.WriteLine("No contact found");
+            }
             PrintOptions(listOfContacts);
         }
 
         /// <summary>
-        /// Search contacts
+        /// to find index of contact
         /// </summary>
         /// /// <param name="listOfContacts">
-        /// hit
+        /// main list
         /// </param>
         /// <returns>
         /// returns the index of element
         /// </returns>
         public static int IndexOfContact(List<string[]> listOfContacts)
         {
+            Console.Clear();
             Console.WriteLine("Search By: ");
             Console.WriteLine("[1] - Name");
             Console.WriteLine("[2] - Phone Number");
@@ -208,6 +241,12 @@ namespace Assignments
                     if (contact[0] == name)
                     {
                         indexOfContact = listOfContacts.IndexOf(contact);
+                        Console.Clear();
+                        Console.WriteLine("Contact Details: ");
+                        Console.WriteLine("1. Name: " + listOfContacts[indexOfContact][0]);
+                        Console.WriteLine("2. Phone Number: " + listOfContacts[indexOfContact][1]);
+                        Console.WriteLine("3. Email Address: " + listOfContacts[indexOfContact][2]);
+                        Console.WriteLine("4. Descripiton: " + listOfContacts[indexOfContact][3]);
                     }
                 }
             }
@@ -220,6 +259,13 @@ namespace Assignments
                     if (contact[1] == phoneNumber)
                     {
                         indexOfContact = listOfContacts.IndexOf(contact);
+                        Console.Clear();
+                        Console.WriteLine("Contact Details: ");
+                        Console.WriteLine("1. Name: " + listOfContacts[indexOfContact][0]);
+                        Console.WriteLine("2. Phone Number: " + listOfContacts[indexOfContact][1]);
+                        Console.WriteLine("3. Email Address: " + listOfContacts[indexOfContact][2]);
+                        Console.WriteLine("4. Descripiton: " + listOfContacts[indexOfContact][3]);
+                        break;
                     }
                 }
             }
