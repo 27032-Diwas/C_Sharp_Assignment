@@ -125,9 +125,18 @@
             }
             if (flag == 1)
             {
-                listOfContacts.Add(new string[] { name, phoneNumber, emailAddress, description });
-                Console.Clear();
-                Console.WriteLine("Contact Added Successfully!!");
+                if (name == "" && phoneNumber == "" && emailAddress == "" && description == "")
+                {
+                    Console.Clear();
+                    Console.WriteLine("Enter detials to add contact.");
+                }
+                else
+                {
+                    listOfContacts.Add(new string[] { name, phoneNumber, emailAddress, description });
+                    Console.Clear();
+                    Console.WriteLine("Contact Added Successfully!!");
+                }
+
                 PrintOptions(listOfContacts);
             }
         }
