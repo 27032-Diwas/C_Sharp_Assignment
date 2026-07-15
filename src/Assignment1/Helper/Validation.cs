@@ -14,20 +14,21 @@ namespace AssignmentBasics.Helper
     /// </summary>
     public class Validation
     {
-        ContactRepository contactRepository = new ContactRepository();
-
         /// <summary>
         /// Validate data
         /// </summary>
         /// <param name="contactInfo"> object </param>
         /// <returns> isCorrect</returns>
-        public bool DataValidation(ContactInfo contactInfo)
+        public bool IsNumberExist(ContactInfo contactInfo)
         {
-            if (contactRepository.IndexOfContact(contactInfo.PhoneNumber) != -1)
-            {
-                Console.WriteLine("Mobile Number Already Exist");
-                return false;
-            }
+            //List<ContactInfo> contacts = _manager.ViewContact();
+            //foreach (ContactInfo contact in contacts)
+            //{
+            //    if (contact.PhoneNumber == contactInfo.PhoneNumber)
+            //    {
+            //        return false;
+            //    }
+            //}
 
             return true;
         }

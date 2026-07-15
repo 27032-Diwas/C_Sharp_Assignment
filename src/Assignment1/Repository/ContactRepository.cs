@@ -13,10 +13,16 @@ namespace Assignment1.Repository
     /// </summary>
     public class ContactRepository
     {
-        // object
-        ConsoleInputs concoleInputs = new ConsoleInputs();
-
         private static List<ContactInfo> Contacts = new List<ContactInfo>();
+
+        /// <summary>
+        /// Views the contact
+        /// </summary>
+        /// <returns> return the list of contact </returns>
+        public List<ContactInfo> ViewContact()
+        {
+            return Contacts.OrderBy(x=>x.Name).ToList();
+        }
 
         /// <summary>
         /// Adds the Contact to lilst
@@ -30,82 +36,76 @@ namespace Assignment1.Repository
         }
 
         /// <summary>
-        /// Views the contact
-        /// </summary>
-        public void ViewContact()
-        {
-            foreach (ContactInfo contact in Contacts)
-            {
-                concoleInputs.DisplayDetails(contact);
-            }
-        }
-
-        /// <summary>
         /// Search the contact
         /// </summary>
-        /// <param name="indexOfContact">
+        /// <param name="searchWord">
         /// Word to be searched
         /// </param>
-        public void SearchContact(int indexOfContact)
+        /// <returns> the list of contact matched</returns>
+        public List<ContactInfo> SearchContact(string searchWord)
         {
-            concoleInputs.DisplayDetails(Contacts[indexOfContact]);
+            List<ContactInfo> searchMatch = new List<ContactInfo>();
+            foreach (ContactInfo contact in Contacts)
+            {
+                if(contact.Name == searchWord || contact.PhoneNumber == searchWord || contact.Email == searchWord)
+                {
+                    searchMatch.Add(contact);
+                }
+            }
+            return searchMatch;
         }
 
         /// <summary>
         /// Delete the contact
         /// </summary>
-        /// <param name="indexOfContact">
+        /// <param name="id">
         /// word to be deleted
         /// </param>
-        public void DeleteContact(int indexOfContact)
-        {
-            Contacts.RemoveAt(indexOfContact);
-        }
-
-        /// <summary>
-        /// Search the word and return index
-        /// </summary>
-        /// <param name="searchWord">
-        /// word to be searched
-        /// </param>
-        /// <returns>
-        /// the index
-        /// </returns>
-        public int IndexOfContact(string searchWord)
+        public void DeleteContact(Guid id)
         {
             foreach (ContactInfo contact in Contacts)
             {
-                if (contact.Name == searchWord || contact.PhoneNumber == searchWord)
+                if (contact.Id == id)
                 {
-                    return Contacts.IndexOf(contact);
+                    Contacts.Remove(contact);
+                    break;
                 }
             }
-            return -1;
         }
 
         /// <summary>
         /// Edit the contact
         /// </summary>
-        /// <param name="indexOfContact"> Index </param>
-        /// <param name="fieldOfContact"> Field to edit </param>
-        /// <param name="newDetail"> new data </param>
-        public void EditContact(int indexOfContact, int fieldOfContact, string newDetail)
+        /// <param name="id"> Index </param>
+        /// <param name="field"> Field to edit </param>
+        /// <param name="fieldValue"> new data </param>
+        /// <returns> Updated contact </returns>
+        public ContactInfo EditContact(Guid id, int field, string fieldValue)
         {
-            switch (fieldOfContact)
+            ContactInfo contactInfo = new ContactInfo();
+            foreach (ContactInfo contact in Contacts)
             {
-                case 1:
-                    Contacts[indexOfContact].Name = newDetail;
-                    break;
-                case 2:
-                    Contacts[indexOfContact].PhoneNumber = newDetail;
-                    break;
-                case 3:
-                    Contacts[indexOfContact].Email = newDetail;
-                    break;
-                case 4:
-                    Contacts[indexOfContact].Notes = newDetail;
-                    break;
+                if (contact.Id == id)
+                {
+                    contactInfo = contact;
+                    switch (field)
+                    {
+                        case 1:
+                            contact.Name = fieldValue;
+                            break;
+                        case 2:
+                            contact.PhoneNumber = fieldValue;
+                            break;
+                        case 3:
+                            contact.Email = fieldValue;
+                            break;
+                        case 4:
+                            contact.Notes = fieldValue;
+                            break;
+                    }
+                }
             }
+            return contactInfo;
         }
     }
 }

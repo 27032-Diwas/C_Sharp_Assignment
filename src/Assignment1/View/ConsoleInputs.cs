@@ -1,24 +1,34 @@
 ﻿using AssignmentBasics.Models;
+using AssignmentBasics.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AssignmentBasics.Services
+namespace Assignment1.View
 {
     /// <summary>
     /// Input Class
     /// </summary>
     public class ConsoleInputs
     {
+        private ContactManager _manager;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConsoleInputs"/> class.
+        /// Constructor initialization
+        /// </summary>
+        /// <param name="manager"> servise folder </param>
+        public ConsoleInputs(ContactManager manager)
+        {
+            _manager = manager;
+        }
+
         /// <summary>
         /// Display Main Menu
         /// </summary>
-        /// <returns>
-        /// Return the selected option
-        /// </returns>
-        public string MenuInfo()
+        public void MenuInfo()
         {
             Console.WriteLine(" ");
             Console.WriteLine("Select one of the below options: ");
@@ -32,16 +42,62 @@ namespace AssignmentBasics.Services
 
             string? option = Console.ReadLine();
             Console.Clear();
-            return option;
+
+            switch (option)
+            {
+                case "1":
+                    Console.WriteLine("View Contact\n");
+                    ViewContact();
+                    this.MenuInfo();
+                    break;
+                case "2":
+                    Console.WriteLine("Add Contact\n");
+                    AddContact();
+                    this.MenuInfo();
+                    break;
+                case "3":
+                    Console.WriteLine("Search Contact\n");
+                    SearchContact();
+                    this.MenuInfo();
+                    break;
+                case "4":
+                    Console.WriteLine("Edit Contact\n");
+                    EditContact();
+                    this.MenuInfo();
+                    break;
+                case "5":
+                    Console.WriteLine("Delete Contact\n");
+                    DeleteContact();
+                    this.MenuInfo();
+                    break;
+                case "6":
+                    Console.WriteLine("Process Ended\n");
+                    return;
+                default:
+                    Console.Clear();
+                    Console.WriteLine("Please Enter a Valid Option");
+                    this.MenuInfo();
+                    break;
+            }
         }
 
         /// <summary>
-        /// Get the Details from users
+        /// View Contact
         /// </summary>
-        /// <returns>
-        /// object
-        /// </returns>
-        public ContactInfo DataInput()
+        public void ViewContact()
+        {
+            List <ContactInfo> contactInfos= _manager.ViewContact();
+
+            foreach (ContactInfo contact in contactInfos)
+            {
+                this.DisplayDetails(contact);
+            }
+        }
+
+        /// <summary>
+        /// Add Contact view
+        /// </summary>
+        public void AddContact()
         {
             // object
             ContactInfo contactInfo = new ContactInfo();
@@ -54,7 +110,10 @@ namespace AssignmentBasics.Services
             contactInfo.Email = Console.ReadLine();
             Console.WriteLine("Enter contact Notes: ");
             contactInfo.Notes = Console.ReadLine();
-            return contactInfo;
+
+            Console.Clear();
+            this.DisplayDetails(_manager.AddContact(contactInfo));
+            Console.WriteLine("Contact Added Successfully");
         }
 
         /// <summary>
@@ -76,48 +135,103 @@ namespace AssignmentBasics.Services
         /// <summary>
         /// Getting Data for Search
         /// </summary>
-        /// <returns>
-        /// the data to be searched
-        /// </returns>
-        public string FieldDetail()
+        /// <returns> return the list of contact </returns>
+        public List<ContactInfo> SearchContact()
         {
             Console.WriteLine("Enter Name or PhoneNumber: ");
-            string? field = Console.ReadLine();
+            string? searchWord = Console.ReadLine();
 
-            return field;
+            List<ContactInfo> contactInfos = _manager.SearchContact(searchWord);
+            if (contactInfos.Count == 0)
+            {
+                Console.Clear();
+                Console.WriteLine("No Match Found!!!");
+            }
+            else
+            {
+                foreach (ContactInfo contact in contactInfos)
+                {
+                    this.DisplayDetails(contact);
+                }
+            }
+
+            return contactInfos;
         }
 
         /// <summary>
-        /// Data to be edited
+        /// Delete contact
         /// </summary>
-        /// <returns>
-        /// the data
-        /// </returns>
-        public string EditDetail()
+        public void DeleteContact()
         {
-            Console.WriteLine("Enter New Detail: ");
-            string? field = Console.ReadLine();
+            List<ContactInfo> contactInfos = this.SearchContact();
+            int contactId = 1;
+            if (contactInfos.Count != 0)
+            {
+                if (contactInfos.Count > 1)
+                {
+                    Console.WriteLine("There are multiple contact , choose which contact to delte (ex: 1) :");
 
-            return field;
+                    contactId = int.Parse(Console.ReadLine());
+                }
+
+                Console.Clear();
+                this._manager.DeleteContact(contactInfos[contactId - 1].Id);
+                Console.WriteLine("Contact Deleted Successfully");
+            }
         }
 
         /// <summary>
-        /// Field to be edited
+        /// Options
         /// </summary>
-        /// <returns>
-        /// Field
-        /// </returns>
-        public int DisplayFields()
+        /// <returns> selected option </returns>
+        public void Options()
         {
             Console.WriteLine("Choose field to edit: ");
             Console.WriteLine("[1] - Name");
             Console.WriteLine("[2] - Phone Number");
             Console.WriteLine("[3] - Email address");
             Console.WriteLine("[4] - Description");
+        }
 
-            int option = int.Parse(Console.ReadLine());
+        /// <summary>
+        /// Data to be edited
+        /// </summary>
+        public void EditContact()
+        {
+            List<ContactInfo> contactInfos = this.SearchContact();
+            int contactId = 1;
+            if (contactInfos.Count != 0)
+            {
+                if (contactInfos.Count > 1)
+                {
+                    Console.WriteLine("There are multiple contact , choose which contact to delte (ex: 1) :");
 
-            return option;
+                    contactId = int.Parse(Console.ReadLine());
+                }
+
+                string option = " ";
+                int flag = 0;
+                while (flag == 0)
+                {
+                    Options();
+                    option = Console.ReadLine();
+                    if (option != "1" && option != "2" && option != "3" && option != "4")
+                    {
+                        Console.WriteLine("Enter a Valid Option!!!");
+                    }
+                    else
+                    {
+                        flag = 1;
+                    }
+                }
+                int field = int.Parse(option);
+                Console.WriteLine("Enter New Detail: ");
+                string? fieldValue = Console.ReadLine();
+
+                Console.Clear();
+                this.DisplayDetails(this._manager.EditContact(contactInfos[contactId - 1].Id, field, fieldValue));
+                Console.WriteLine("Contact Edited Successfully");
+            }
         }
     }
 }

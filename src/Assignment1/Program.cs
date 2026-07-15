@@ -1,4 +1,7 @@
-﻿using AssignmentBasics.Services;
+﻿using Assignment1.Repository;
+using Assignment1.View;
+using AssignmentBasics.Helper;
+using AssignmentBasics.Services;
 
 namespace Assignments
 {
@@ -15,9 +18,12 @@ namespace Assignments
         /// </param>
         public static void Main(string[] args)
         {
-            ContactManager contactManager = new ContactManager();
-            Console.WriteLine("Contact Manager");
-            contactManager.Menu();
+            ContactRepository contactRepository = new ContactRepository();
+            Validation validation = new Validation();
+            ContactManager contactManager = new ContactManager(contactRepository, validation);
+            ConsoleInputs consoleInputs = new ConsoleInputs(contactManager);
+
+            consoleInputs.MenuInfo();
         }
     }
 }
