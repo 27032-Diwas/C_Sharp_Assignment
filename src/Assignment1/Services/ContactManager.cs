@@ -1,12 +1,12 @@
-﻿using Assignment1.Repository;
-using Assignment1.View;
-using AssignmentBasics.Helper;
-using AssignmentBasics.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Assignment1.Helper;
+using Assignment1.Repository;
+using Assignment1.View;
+using AssignmentBasics.Models;
 
 namespace AssignmentBasics.Services
 {
@@ -36,7 +36,7 @@ namespace AssignmentBasics.Services
         /// <returns> Return the list of contact </returns>
         public List<ContactInfo> ViewContact()
         {
-            return _contactRepository.ViewContact();
+            return this._contactRepository.ViewContact();
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace AssignmentBasics.Services
         /// <returns> the object </returns>
         public ContactInfo AddContact(ContactInfo contactInfo)
         {
-            List<ContactInfo> contacts = ViewContact();
+            List<ContactInfo> contacts = this.ViewContact();
             foreach (ContactInfo contact in contacts)
             {
                 if (contact.PhoneNumber == contactInfo.PhoneNumber)
@@ -57,25 +57,25 @@ namespace AssignmentBasics.Services
                 }
             }
 
-            if (_validation.IsNameEmpty(contactInfo.Name))
+            if (this._validation.IsNameEmpty(contactInfo.Name))
             {
                 contactInfo.Name = "Error Found";
                 contactInfo.Notes = "Name is Required";
                 return contactInfo;
             }
-            else if (_validation.IsNumberEmpty(contactInfo.PhoneNumber))
+            else if (this._validation.IsNumberEmpty(contactInfo.PhoneNumber))
             {
                 contactInfo.Name = "Error Found";
                 contactInfo.Notes = "Phone Number is Required";
                 return contactInfo;
             }
-            else if (!_validation.IsNumber(contactInfo.PhoneNumber))
+            else if (!this._validation.IsNumber(contactInfo.PhoneNumber))
             {
                 contactInfo.Name = "Error Found";
                 contactInfo.Notes = "Phone Number should be 10 digit number";
                 return contactInfo;
             }
-            else if (!_validation.IsEmail(contactInfo.Email))
+            else if (!this._validation.IsEmail(contactInfo.Email))
             {
                 contactInfo.Name = "Error Found";
                 contactInfo.Notes = "Enter a valid Email";
@@ -83,7 +83,7 @@ namespace AssignmentBasics.Services
             }
 
             contactInfo.Id = Guid.NewGuid();
-            _contactRepository.AddContact(contactInfo);
+            this._contactRepository.AddContact(contactInfo);
             return contactInfo;
         }
 
@@ -94,7 +94,7 @@ namespace AssignmentBasics.Services
         /// <returns> list of contact </returns>
         public List<ContactInfo> SearchContact(string searchWord)
         {
-            List<ContactInfo> searchMatch = _contactRepository.SearchContact(searchWord);
+            List<ContactInfo> searchMatch = this._contactRepository.SearchContact(searchWord);
             return searchMatch;
         }
 
@@ -108,32 +108,32 @@ namespace AssignmentBasics.Services
         public ContactInfo EditContact(Guid id, int field, string fieldValue)
         {
             ContactInfo contactInfo = new ContactInfo();
-            if (field == 1 && _validation.IsNameEmpty(fieldValue))
+            if (field == 1 && this._validation.IsNameEmpty(fieldValue))
             {
                 contactInfo.Name = "Error Found";
                 contactInfo.Notes = "Name is Required";
                 return contactInfo;
             }
-            else if (field == 2 && _validation.IsNumberEmpty(fieldValue))
+            else if (field == 2 && this._validation.IsNumberEmpty(fieldValue))
             {
                 contactInfo.Name = "Error Found";
                 contactInfo.Notes = "Phone Number is Required";
                 return contactInfo;
             }
-            else if (field == 2 && !_validation.IsNumber(fieldValue))
+            else if (field == 2 && !this._validation.IsNumber(fieldValue))
             {
                 contactInfo.Name = "Error Found";
                 contactInfo.Notes = "Phone Number should be 10 digit number";
                 return contactInfo;
             }
-            else if (field == 3 && !_validation.IsEmail(fieldValue))
+            else if (field == 3 && !this._validation.IsEmail(fieldValue))
             {
                 contactInfo.Name = "Error Found";
                 contactInfo.Notes = "Enter a valid Email";
                 return contactInfo;
             }
 
-            return _contactRepository.EditContact(id, field, fieldValue);
+            return this._contactRepository.EditContact(id, field, fieldValue);
         }
 
         /// <summary>
@@ -142,7 +142,7 @@ namespace AssignmentBasics.Services
         /// <param name="id"> guid </param>
         public void DeleteContact(Guid id)
         {
-            _contactRepository.DeleteContact(id);
-        }  
+            this._contactRepository.DeleteContact(id);
+        }
     }
 }

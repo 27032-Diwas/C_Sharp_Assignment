@@ -1,10 +1,10 @@
-﻿using Assignment1.View;
-using AssignmentBasics.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Assignment1.View;
+using AssignmentBasics.Models;
 
 namespace Assignment1.Repository
 {
@@ -13,7 +13,7 @@ namespace Assignment1.Repository
     /// </summary>
     public class ContactRepository
     {
-        private static List<ContactInfo> contacts = new List<ContactInfo>();
+        private static readonly List<ContactInfo> Contacts = new List<ContactInfo>();
 
         /// <summary>
         /// Views the contact
@@ -21,7 +21,7 @@ namespace Assignment1.Repository
         /// <returns> return the list of contact </returns>
         public List<ContactInfo> ViewContact()
         {
-            return contacts.OrderBy(x=>x.Name).ToList();
+            return Contacts.OrderBy(x => x.Name).ToList();
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace Assignment1.Repository
         /// </param>
         public void AddContact(ContactInfo contactInfo)
         {
-            contacts.Add(contactInfo);
+            Contacts.Add(contactInfo);
         }
 
         /// <summary>
@@ -45,13 +45,14 @@ namespace Assignment1.Repository
         public List<ContactInfo> SearchContact(string searchWord)
         {
             List<ContactInfo> searchMatch = new List<ContactInfo>();
-            foreach (ContactInfo contact in contacts)
+            foreach (ContactInfo contact in Contacts)
             {
-                if(contact.Name == searchWord || contact.PhoneNumber == searchWord || contact.Email == searchWord)
+                if (contact.Name == searchWord || contact.PhoneNumber == searchWord || contact.Email == searchWord)
                 {
                     searchMatch.Add(contact);
                 }
             }
+
             return searchMatch;
         }
 
@@ -63,11 +64,11 @@ namespace Assignment1.Repository
         /// </param>
         public void DeleteContact(Guid id)
         {
-            foreach (ContactInfo contact in contacts)
+            foreach (ContactInfo contact in Contacts)
             {
                 if (contact.Id == id)
                 {
-                    contacts.Remove(contact);
+                    Contacts.Remove(contact);
                     break;
                 }
             }
@@ -83,7 +84,7 @@ namespace Assignment1.Repository
         public ContactInfo EditContact(Guid id, int field, string fieldValue)
         {
             ContactInfo contactInfo = new ContactInfo();
-            foreach (ContactInfo contact in contacts)
+            foreach (ContactInfo contact in Contacts)
             {
                 if (contact.Id == id)
                 {
@@ -105,6 +106,7 @@ namespace Assignment1.Repository
                     }
                 }
             }
+
             return contactInfo;
         }
     }

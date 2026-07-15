@@ -12,27 +12,31 @@ namespace AssignmentBasics.Models
     public class ContactInfo
     {
         /// <summary>
-        /// guid
+        /// Gets or sets guid
         /// </summary>
         /// <value> id for data</value>
         public Guid Id { get; set; }
+
         /// <summary>
-        /// name
+        /// Gets or sets name
         /// </summary>
         /// <value> name for data </value>
         public string? Name { get; set; }
+
         /// <summary>
-        /// phone number
+        /// Gets or sets name
         /// </summary>
         /// <value> number for data </value>
         public string? PhoneNumber { get; set; }
+
         /// <summary>
-        /// email
+        /// Gets or sets name
         /// </summary>
         /// <value> email for data </value>
         public string? Email { get; set; }
+
         /// <summary>
-        /// notes
+        /// Gets or sets name
         /// </summary>
         /// <value> notes for data </value>
         public string? Notes { get; set; }

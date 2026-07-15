@@ -1,13 +1,13 @@
-﻿using Assignment1.Repository;
-using AssignmentBasics.Models;
-using AssignmentBasics.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Assignment1.Repository;
+using AssignmentBasics.Models;
+using AssignmentBasics.Services;
 
-namespace AssignmentBasics.Helper
+namespace Assignment1.Helper
 {
     /// <summary>
     /// Validating all data
@@ -23,8 +23,9 @@ namespace AssignmentBasics.Helper
         {
             return string.IsNullOrWhiteSpace(name);
         }
+
         /// <summary>
-        /// is number empty 
+        /// is number empty
         /// </summary>
         /// <param name="phoneNumber"> number </param>
         /// <returns> true or false </returns>

@@ -1,10 +1,10 @@
-﻿using AssignmentBasics.Models;
-using AssignmentBasics.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AssignmentBasics.Models;
+using AssignmentBasics.Services;
 
 namespace Assignment1.View
 {
@@ -22,7 +22,7 @@ namespace Assignment1.View
         /// <param name="manager"> servise folder </param>
         public ConsoleInputs(ContactManager manager)
         {
-            _manager = manager;
+            this._manager = manager;
         }
 
         /// <summary>
@@ -47,27 +47,27 @@ namespace Assignment1.View
             {
                 case "1":
                     Console.WriteLine("View Contact\n");
-                    ViewContact();
+                    this.ViewContact();
                     this.MenuInfo();
                     break;
                 case "2":
                     Console.WriteLine("Add Contact\n");
-                    AddContact();
+                    this.AddContact();
                     this.MenuInfo();
                     break;
                 case "3":
                     Console.WriteLine("Search Contact\n");
-                    SearchContact();
+                    this.SearchContact();
                     this.MenuInfo();
                     break;
                 case "4":
                     Console.WriteLine("Edit Contact\n");
-                    EditContact();
+                    this.EditContact();
                     this.MenuInfo();
                     break;
                 case "5":
                     Console.WriteLine("Delete Contact\n");
-                    DeleteContact();
+                    this.DeleteContact();
                     this.MenuInfo();
                     break;
                 case "6":
@@ -86,8 +86,7 @@ namespace Assignment1.View
         /// </summary>
         public void ViewContact()
         {
-            List <ContactInfo> contactInfos= _manager.ViewContact();
-            
+            List<ContactInfo> contactInfos = this._manager.ViewContact();
             if (contactInfos.Count == 0)
             {
                 Console.WriteLine("No Contact Found");
@@ -98,7 +97,7 @@ namespace Assignment1.View
                 {
                     this.DisplayDetails(contact);
                 }
-            }  
+            }
         }
 
         /// <summary>
@@ -119,16 +118,16 @@ namespace Assignment1.View
             contactInfo.Notes = Console.ReadLine();
 
             Console.Clear();
-            contactInfo = _manager.AddContact(contactInfo);
+            contactInfo = this._manager.AddContact(contactInfo);
             if (contactInfo.Name == "Error Found")
             {
-                DataValidation(contactInfo);
+                this.DataValidation(contactInfo);
             }
             else
             {
                 this.DisplayDetails(contactInfo);
                 Console.WriteLine("Contact Added Successfully");
-            } 
+            }
         }
 
         /// <summary>
@@ -156,7 +155,7 @@ namespace Assignment1.View
             Console.WriteLine("Enter Name or PhoneNumber: ");
             string? searchWord = Console.ReadLine();
 
-            List<ContactInfo> contactInfos = _manager.SearchContact(searchWord);
+            List<ContactInfo> contactInfos = this._manager.SearchContact(searchWord);
             if (contactInfos.Count == 0)
             {
                 Console.Clear();
@@ -232,6 +231,7 @@ namespace Assignment1.View
                     break;
             }
         }
+
         /// <summary>
         /// Data to be edited
         /// </summary>
@@ -252,7 +252,7 @@ namespace Assignment1.View
                 int flag = 0;
                 while (flag == 0)
                 {
-                    Options();
+                    this.Options();
                     option = Console.ReadLine();
                     if (option != "1" && option != "2" && option != "3" && option != "4")
                     {
@@ -269,7 +269,7 @@ namespace Assignment1.View
                         ContactInfo contactInfo = this._manager.EditContact(contactInfos[contactId - 1].Id, field, fieldValue);
                         if (contactInfo.Name == "Error Found")
                         {
-                            DataValidation(contactInfo);
+                            this.DataValidation(contactInfo);
                         }
                         else
                         {
