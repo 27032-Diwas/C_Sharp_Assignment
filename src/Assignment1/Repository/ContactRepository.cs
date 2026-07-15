@@ -1,12 +1,12 @@
-﻿using AssignmentBasics.Models;
-using AssignmentBasics.Services;
+﻿using Assignment1.View;
+using AssignmentBasics.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AssignmentBasics.Repository
+namespace Assignment1.Repository
 {
     /// <summary>
     /// Deals with all the data

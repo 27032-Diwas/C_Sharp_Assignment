@@ -1,6 +1,7 @@
-﻿using AssignmentBasics.Helper;
+﻿using Assignment1.Repository;
+using Assignment1.View;
+using AssignmentBasics.Helper;
 using AssignmentBasics.Models;
-using AssignmentBasics.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -83,8 +84,8 @@ namespace AssignmentBasics.Services
                 Console.Clear();
                 Console.WriteLine("Contact Added Successfully");
                 consoleInputs.DisplayDetails(contactInfo);
-                this.Menu();
             }
+            this.Menu();
         }
 
         /// <summary>
