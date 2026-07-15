@@ -60,7 +60,7 @@ namespace AssignmentBasics.Services
             if (this._validation.IsNameEmpty(contactInfo.Name))
             {
                 contactInfo.Name = "Error Found";
-                contactInfo.Notes = "Name is Required";
+                contactInfo.Notes = "Proper Name is Required";
                 return contactInfo;
             }
             else if (this._validation.IsNumberEmpty(contactInfo.PhoneNumber))

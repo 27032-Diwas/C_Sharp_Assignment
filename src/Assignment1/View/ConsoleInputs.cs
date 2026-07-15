@@ -90,13 +90,12 @@ namespace Assignment1.View
             if (contactInfos.Count == 0)
             {
                 Console.WriteLine("No Contact Found");
+                return;
             }
-            else
+
+            foreach (ContactInfo contact in contactInfos)
             {
-                foreach (ContactInfo contact in contactInfos)
-                {
-                    this.DisplayDetails(contact);
-                }
+                this.DisplayDetails(contact);
             }
         }
 
@@ -122,12 +121,11 @@ namespace Assignment1.View
             if (contactInfo.Name == "Error Found")
             {
                 this.DataValidation(contactInfo);
+                return;
             }
-            else
-            {
-                this.DisplayDetails(contactInfo);
-                Console.WriteLine("Contact Added Successfully");
-            }
+
+            this.DisplayDetails(contactInfo);
+            Console.WriteLine("Contact Added Successfully");
         }
 
         /// <summary>
@@ -150,9 +148,9 @@ namespace Assignment1.View
         /// Getting Data for Search
         /// </summary>
         /// <returns> return the list of contact </returns>
-        public List<ContactInfo> SearchContact()
+        public List<ContactInfo>? SearchContact()
         {
-            Console.WriteLine("Enter Name or PhoneNumber: ");
+            Console.WriteLine("Enter Name or PhoneNumber or Email: ");
             string? searchWord = Console.ReadLine();
 
             List<ContactInfo> contactInfos = this._manager.SearchContact(searchWord);
@@ -160,13 +158,12 @@ namespace Assignment1.View
             {
                 Console.Clear();
                 Console.WriteLine("No Match Found!!!");
+                return null;
             }
-            else
+
+            foreach (ContactInfo contact in contactInfos)
             {
-                foreach (ContactInfo contact in contactInfos)
-                {
-                    this.DisplayDetails(contact);
-                }
+                this.DisplayDetails(contact);
             }
 
             return contactInfos;
@@ -217,7 +214,7 @@ namespace Assignment1.View
                 case "Phone Number Already Exist":
                     Console.WriteLine(contactInfo.Notes);
                     break;
-                case "Name is Required":
+                case "Proper Name is Required":
                     Console.WriteLine(contactInfo.Notes);
                     break;
                 case "Phone Number is Required":

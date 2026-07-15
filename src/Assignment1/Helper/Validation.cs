@@ -21,7 +21,7 @@ namespace Assignment1.Helper
         /// <returns> isCorrect</returns>
         public bool IsNameEmpty(string name)
         {
-            return string.IsNullOrWhiteSpace(name);
+            return string.IsNullOrWhiteSpace(name) || name == "Error Found";
         }
 
         /// <summary>
