@@ -107,6 +107,32 @@ namespace AssignmentBasics.Services
         /// <returns> contact </returns>
         public ContactInfo EditContact(Guid id, int field, string fieldValue)
         {
+            ContactInfo contactInfo = new ContactInfo();
+            if (field == 1 && _validation.IsNameEmpty(fieldValue))
+            {
+                contactInfo.Name = "Error Found";
+                contactInfo.Notes = "Name is Required";
+                return contactInfo;
+            }
+            else if (field == 2 && _validation.IsNumberEmpty(fieldValue))
+            {
+                contactInfo.Name = "Error Found";
+                contactInfo.Notes = "Phone Number is Required";
+                return contactInfo;
+            }
+            else if (field == 2 && !_validation.IsNumber(fieldValue))
+            {
+                contactInfo.Name = "Error Found";
+                contactInfo.Notes = "Phone Number should be 10 digit number";
+                return contactInfo;
+            }
+            else if (field == 3 && !_validation.IsEmail(fieldValue))
+            {
+                contactInfo.Name = "Error Found";
+                contactInfo.Notes = "Enter a valid Email";
+                return contactInfo;
+            }
+
             return _contactRepository.EditContact(id, field, fieldValue);
         }
 

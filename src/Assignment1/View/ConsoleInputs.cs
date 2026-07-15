@@ -87,11 +87,18 @@ namespace Assignment1.View
         public void ViewContact()
         {
             List <ContactInfo> contactInfos= _manager.ViewContact();
-
-            foreach (ContactInfo contact in contactInfos)
+            
+            if (contactInfos.Count == 0)
             {
-                this.DisplayDetails(contact);
+                Console.WriteLine("No Contact Found");
             }
+            else
+            {
+                foreach (ContactInfo contact in contactInfos)
+                {
+                    this.DisplayDetails(contact);
+                }
+            }  
         }
 
         /// <summary>
@@ -115,24 +122,7 @@ namespace Assignment1.View
             contactInfo = _manager.AddContact(contactInfo);
             if (contactInfo.Name == "Error Found")
             {
-                switch (contactInfo.Notes)
-                {
-                    case "Phone Number Already Exist":
-                        Console.WriteLine(contactInfo.Notes);
-                        break;
-                    case "Name is Required":
-                        Console.WriteLine(contactInfo.Notes);
-                        break;
-                    case "Phone Number is Required":
-                        Console.WriteLine(contactInfo.Notes);
-                        break;
-                    case "Phone Number should be 10 digit number":
-                        Console.WriteLine(contactInfo.Notes);
-                        break;
-                    case "Enter a valid Email":
-                        Console.WriteLine(contactInfo.Notes);
-                        break;
-                }
+                DataValidation(contactInfo);
             }
             else
             {
@@ -218,6 +208,31 @@ namespace Assignment1.View
         }
 
         /// <summary>
+        /// Validation
+        /// </summary>
+        /// <param name="contactInfo"> obj </param>
+        public void DataValidation(ContactInfo contactInfo)
+        {
+            switch (contactInfo.Notes)
+            {
+                case "Phone Number Already Exist":
+                    Console.WriteLine(contactInfo.Notes);
+                    break;
+                case "Name is Required":
+                    Console.WriteLine(contactInfo.Notes);
+                    break;
+                case "Phone Number is Required":
+                    Console.WriteLine(contactInfo.Notes);
+                    break;
+                case "Phone Number should be 10 digit number":
+                    Console.WriteLine(contactInfo.Notes);
+                    break;
+                case "Enter a valid Email":
+                    Console.WriteLine(contactInfo.Notes);
+                    break;
+            }
+        }
+        /// <summary>
         /// Data to be edited
         /// </summary>
         public void EditContact()
@@ -245,16 +260,25 @@ namespace Assignment1.View
                     }
                     else
                     {
-                        flag = 1;
+                        int field = int.Parse(option);
+                        Console.WriteLine("Enter New Detail: ");
+                        string? fieldValue = Console.ReadLine();
+
+                        Console.Clear();
+
+                        ContactInfo contactInfo = this._manager.EditContact(contactInfos[contactId - 1].Id, field, fieldValue);
+                        if (contactInfo.Name == "Error Found")
+                        {
+                            DataValidation(contactInfo);
+                        }
+                        else
+                        {
+                            flag = 1;
+                            this.DisplayDetails(contactInfo);
+                            Console.WriteLine("Contact Edited Successfully");
+                        }
                     }
                 }
-                int field = int.Parse(option);
-                Console.WriteLine("Enter New Detail: ");
-                string? fieldValue = Console.ReadLine();
-
-                Console.Clear();
-                this.DisplayDetails(this._manager.EditContact(contactInfos[contactId - 1].Id, field, fieldValue));
-                Console.WriteLine("Contact Edited Successfully");
             }
         }
     }
