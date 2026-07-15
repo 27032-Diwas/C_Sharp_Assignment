@@ -112,8 +112,33 @@ namespace Assignment1.View
             contactInfo.Notes = Console.ReadLine();
 
             Console.Clear();
-            this.DisplayDetails(_manager.AddContact(contactInfo));
-            Console.WriteLine("Contact Added Successfully");
+            contactInfo = _manager.AddContact(contactInfo);
+            if (contactInfo.Name == "Error Found")
+            {
+                switch (contactInfo.Notes)
+                {
+                    case "Phone Number Already Exist":
+                        Console.WriteLine(contactInfo.Notes);
+                        break;
+                    case "Name is Required":
+                        Console.WriteLine(contactInfo.Notes);
+                        break;
+                    case "Phone Number is Required":
+                        Console.WriteLine(contactInfo.Notes);
+                        break;
+                    case "Phone Number should be 10 digit number":
+                        Console.WriteLine(contactInfo.Notes);
+                        break;
+                    case "Enter a valid Email":
+                        Console.WriteLine(contactInfo.Notes);
+                        break;
+                }
+            }
+            else
+            {
+                this.DisplayDetails(contactInfo);
+                Console.WriteLine("Contact Added Successfully");
+            } 
         }
 
         /// <summary>
@@ -183,7 +208,6 @@ namespace Assignment1.View
         /// <summary>
         /// Options
         /// </summary>
-        /// <returns> selected option </returns>
         public void Options()
         {
             Console.WriteLine("Choose field to edit: ");

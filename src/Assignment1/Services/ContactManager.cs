@@ -46,16 +46,45 @@ namespace AssignmentBasics.Services
         /// <returns> the object </returns>
         public ContactInfo AddContact(ContactInfo contactInfo)
         {
-            bool contactValidation = _validation.IsNumberExist(contactInfo);
-
-            if (contactValidation)
+            List<ContactInfo> contacts = ViewContact();
+            foreach (ContactInfo contact in contacts)
             {
-                contactInfo.Id = Guid.NewGuid();
-                _contactRepository.AddContact(contactInfo);
+                if (contact.PhoneNumber == contactInfo.PhoneNumber)
+                {
+                    contactInfo.Name = "Error Found";
+                    contactInfo.Notes = "Phone Number Already Exist";
+                    return contactInfo;
+                }
+            }
+
+            if (_validation.IsNameEmpty(contactInfo.Name))
+            {
+                contactInfo.Name = "Error Found";
+                contactInfo.Notes = "Name is Required";
+                return contactInfo;
+            }
+            else if (_validation.IsNumberEmpty(contactInfo.PhoneNumber))
+            {
+                contactInfo.Name = "Error Found";
+                contactInfo.Notes = "Phone Number is Required";
+                return contactInfo;
+            }
+            else if (!_validation.IsNumber(contactInfo.PhoneNumber))
+            {
+                contactInfo.Name = "Error Found";
+                contactInfo.Notes = "Phone Number should be 10 digit number";
+                return contactInfo;
+            }
+            else if (!_validation.IsEmail(contactInfo.Email))
+            {
+                contactInfo.Name = "Error Found";
+                contactInfo.Notes = "Enter a valid Email";
                 return contactInfo;
             }
 
-            return new ContactInfo();
+            contactInfo.Id = Guid.NewGuid();
+            _contactRepository.AddContact(contactInfo);
+            return contactInfo;
         }
 
         /// <summary>

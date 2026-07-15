@@ -19,18 +19,22 @@ namespace AssignmentBasics.Helper
         /// </summary>
         /// <param name="contactInfo"> object </param>
         /// <returns> isCorrect</returns>
-        public bool IsNumberExist(ContactInfo contactInfo)
+        public bool IsNameEmpty(string name)
         {
-            //List<ContactInfo> contacts = _manager.ViewContact();
-            //foreach (ContactInfo contact in contacts)
-            //{
-            //    if (contact.PhoneNumber == contactInfo.PhoneNumber)
-            //    {
-            //        return false;
-            //    }
-            //}
+            return string.IsNullOrWhiteSpace(name);
+        }
+        public bool IsNumberEmpty(string phoneNumber)
+        {
+            return string.IsNullOrWhiteSpace(phoneNumber);
+        }
+        public bool IsNumber(string phone)
+        {
+            return phone.Length == 10 && phone.All(char.IsDigit);
+        }
 
-            return true;
+        public bool IsEmail(string email)
+        {
+            return email.Contains('@') && email.Contains('.');
         }
     }
 }
