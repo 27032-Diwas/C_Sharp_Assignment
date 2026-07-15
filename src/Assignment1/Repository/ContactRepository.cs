@@ -13,7 +13,7 @@ namespace Assignment1.Repository
     /// </summary>
     public class ContactRepository
     {
-        private static List<ContactInfo> Contacts = new List<ContactInfo>();
+        private static List<ContactInfo> contacts = new List<ContactInfo>();
 
         /// <summary>
         /// Views the contact
@@ -21,7 +21,7 @@ namespace Assignment1.Repository
         /// <returns> return the list of contact </returns>
         public List<ContactInfo> ViewContact()
         {
-            return Contacts.OrderBy(x=>x.Name).ToList();
+            return contacts.OrderBy(x=>x.Name).ToList();
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace Assignment1.Repository
         /// </param>
         public void AddContact(ContactInfo contactInfo)
         {
-            Contacts.Add(contactInfo);
+            contacts.Add(contactInfo);
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Assignment1.Repository
         public List<ContactInfo> SearchContact(string searchWord)
         {
             List<ContactInfo> searchMatch = new List<ContactInfo>();
-            foreach (ContactInfo contact in Contacts)
+            foreach (ContactInfo contact in contacts)
             {
                 if(contact.Name == searchWord || contact.PhoneNumber == searchWord || contact.Email == searchWord)
                 {
@@ -63,11 +63,11 @@ namespace Assignment1.Repository
         /// </param>
         public void DeleteContact(Guid id)
         {
-            foreach (ContactInfo contact in Contacts)
+            foreach (ContactInfo contact in contacts)
             {
                 if (contact.Id == id)
                 {
-                    Contacts.Remove(contact);
+                    contacts.Remove(contact);
                     break;
                 }
             }
@@ -83,7 +83,7 @@ namespace Assignment1.Repository
         public ContactInfo EditContact(Guid id, int field, string fieldValue)
         {
             ContactInfo contactInfo = new ContactInfo();
-            foreach (ContactInfo contact in Contacts)
+            foreach (ContactInfo contact in contacts)
             {
                 if (contact.Id == id)
                 {

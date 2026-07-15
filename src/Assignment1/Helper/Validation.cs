@@ -17,21 +17,37 @@ namespace AssignmentBasics.Helper
         /// <summary>
         /// Validate data
         /// </summary>
-        /// <param name="contactInfo"> object </param>
+        /// <param name="name"> object </param>
         /// <returns> isCorrect</returns>
         public bool IsNameEmpty(string name)
         {
             return string.IsNullOrWhiteSpace(name);
         }
+        /// <summary>
+        /// is number empty 
+        /// </summary>
+        /// <param name="phoneNumber"> number </param>
+        /// <returns> true or false </returns>
         public bool IsNumberEmpty(string phoneNumber)
         {
             return string.IsNullOrWhiteSpace(phoneNumber);
         }
+
+        /// <summary>
+        /// is number valid
+        /// </summary>
+        /// <param name="phone"> number </param>
+        /// <returns> true of false </returns>
         public bool IsNumber(string phone)
         {
             return phone.Length == 10 && phone.All(char.IsDigit);
         }
 
+        /// <summary>
+        /// is email valide
+        /// </summary>
+        /// <param name="email"> email </param>
+        /// <returns> true or false </returns>
         public bool IsEmail(string email)
         {
             return email.Contains('@') && email.Contains('.');
