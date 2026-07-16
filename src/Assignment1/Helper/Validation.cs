@@ -47,9 +47,13 @@
         /// <returns> true or false </returns>
         public static bool IsEmail(string? email)
         {
-            if (email == null)
+            if (email == string.Empty)
             {
                 return true;
+            }
+            else if (email == null)
+            {
+                return false;
             }
 
             return email.Contains('@') && email.Contains('.');

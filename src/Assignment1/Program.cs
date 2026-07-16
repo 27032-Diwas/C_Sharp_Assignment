@@ -11,7 +11,7 @@ namespace Assignments
     internal class Program
     {
         /// <summary>
-        /// Main Function
+        /// Main Functions
         /// </summary>
         public static void Main()
         {

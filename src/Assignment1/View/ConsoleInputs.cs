@@ -146,6 +146,11 @@ namespace Assignment1.View
         {
             Console.WriteLine("Enter Name or PhoneNumber: ");
             string? searchWord = Console.ReadLine();
+            if (searchWord == string.Empty)
+            {
+                Console.WriteLine("No value entered!!");
+                return null;
+            }
 
             List<ContactInfo> searchResult = this._manager.SearchContact(searchWord);
             if (searchResult.Count == 0)
