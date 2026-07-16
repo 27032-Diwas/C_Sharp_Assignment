@@ -47,7 +47,7 @@ namespace Assignment1.Repository
                 }
             }
 
-            return searchMatch;
+            return searchMatch.OrderBy(x => x.Name).ToList();
         }
 
         /// <summary>

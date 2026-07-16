@@ -239,7 +239,7 @@ namespace Assignment1.View
                 {
                     do
                     {
-                        Console.WriteLine("Found Multiple Contacts: Choose which contact to delete:");
+                        Console.WriteLine("Found Multiple Contacts: Choose which contact to Edit");
                         string? choice = Console.ReadLine();
                         if (choice != null)
                         {
