@@ -1,26 +1,23 @@
 ﻿using Assignment1.Helper;
 using Assignment1.Repository;
+using Assignment1.Services;
 using Assignment1.View;
-using AssignmentBasics.Services;
 
 namespace Assignments
 {
     /// <summary>
-    /// Assignment Folder
+    /// Main class where program starts
     /// </summary>
     internal class Program
     {
         /// <summary>
         /// Main Function
         /// </summary>
-        /// <param name="args">
-        /// hit
-        /// </param>
-        public static void Main(string[] args)
+        public static void Main()
         {
-            ContactRepository contactRepository = new ContactRepository();
-            Validation validation = new Validation();
-            ContactManager contactManager = new ContactManager(contactRepository, validation);
+            ContactRepository contactRepository = new ();
+            Validation validation = new ();
+            ContactManager contactManager = new ContactManager(contactRepository);
             ConsoleInputs consoleInputs = new ConsoleInputs(contactManager);
 
             consoleInputs.MenuInfo();

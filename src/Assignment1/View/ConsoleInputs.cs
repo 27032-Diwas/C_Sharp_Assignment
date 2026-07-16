@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AssignmentBasics.Models;
-using AssignmentBasics.Services;
+using Assignment1.Models;
+using Assignment1.Services;
 
 namespace Assignment1.View
 {
@@ -13,20 +13,19 @@ namespace Assignment1.View
     /// </summary>
     public class ConsoleInputs
     {
-        private ContactManager _manager;
+        private readonly ContactManager _manager;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConsoleInputs"/> class.
-        /// Constructor initialization
         /// </summary>
-        /// <param name="manager"> servise folder </param>
+        /// <param name="manager"> service object </param>
         public ConsoleInputs(ContactManager manager)
         {
             this._manager = manager;
         }
 
         /// <summary>
-        /// Display Main Menu
+        /// Displays Main Menu
         /// </summary>
         public void MenuInfo()
         {
@@ -46,7 +45,7 @@ namespace Assignment1.View
             switch (option)
             {
                 case "1":
-                    Console.WriteLine("View Contact\n");
+                    Console.WriteLine("View Contacts\n");
                     this.ViewContact();
                     this.MenuInfo();
                     break;
@@ -71,7 +70,7 @@ namespace Assignment1.View
                     this.MenuInfo();
                     break;
                 case "6":
-                    Console.WriteLine("Process Ended\n");
+                    Console.WriteLine("End Process\n");
                     return;
                 default:
                     Console.Clear();
@@ -82,30 +81,30 @@ namespace Assignment1.View
         }
 
         /// <summary>
-        /// View Contact
+        /// View Contacts method
         /// </summary>
         public void ViewContact()
         {
-            List<ContactInfo> contactInfos = this._manager.ViewContact();
-            if (contactInfos.Count == 0)
+            List<ContactInfo> contacts = this._manager.ViewContact();
+            if (contacts.Count == 0)
             {
                 Console.WriteLine("No Contact Found");
                 return;
             }
 
-            foreach (ContactInfo contact in contactInfos)
+            foreach (ContactInfo contact in contacts)
             {
                 this.DisplayDetails(contact);
             }
         }
 
         /// <summary>
-        /// Add Contact view
+        /// Add Contact method
         /// </summary>
         public void AddContact()
         {
             // object
-            ContactInfo contactInfo = new ContactInfo();
+            ContactInfo contactInfo = new ();
 
             Console.WriteLine("Enter Contact Name: ");
             contactInfo.Name = Console.ReadLine();
@@ -150,23 +149,23 @@ namespace Assignment1.View
         /// <returns> return the list of contact </returns>
         public List<ContactInfo>? SearchContact()
         {
-            Console.WriteLine("Enter Name or PhoneNumber or Email: ");
+            Console.WriteLine("Enter Name or PhoneNumber: ");
             string? searchWord = Console.ReadLine();
 
-            List<ContactInfo> contactInfos = this._manager.SearchContact(searchWord);
-            if (contactInfos.Count == 0)
+            List<ContactInfo> searchResult = this._manager.SearchContact(searchWord);
+            if (searchResult.Count == 0)
             {
                 Console.Clear();
                 Console.WriteLine("No Match Found!!!");
                 return null;
             }
 
-            foreach (ContactInfo contact in contactInfos)
+            foreach (ContactInfo contact in searchResult)
             {
                 this.DisplayDetails(contact);
             }
 
-            return contactInfos;
+            return searchResult;
         }
 
         /// <summary>
@@ -174,25 +173,28 @@ namespace Assignment1.View
         /// </summary>
         public void DeleteContact()
         {
-            List<ContactInfo> contactInfos = this.SearchContact();
+            List<ContactInfo>? searchResults = this.SearchContact();
             int contactId = 1;
-            if (contactInfos.Count != 0)
+            if (searchResults != null && searchResults.Count != 0)
             {
-                if (contactInfos.Count > 1)
+                if (searchResults.Count > 1)
                 {
-                    Console.WriteLine("There are multiple contact , choose which contact to delte (ex: 1) :");
-
-                    contactId = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Found Multiple Contacts: Choose which contact to delete:");
+                    string? choice = Console.ReadLine();
+                    if (choice != null)
+                    {
+                        contactId = int.Parse(choice);
+                    }
                 }
 
                 Console.Clear();
-                this._manager.DeleteContact(contactInfos[contactId - 1].Id);
+                this._manager.DeleteContact(searchResults[contactId - 1].Id);
                 Console.WriteLine("Contact Deleted Successfully");
             }
         }
 
         /// <summary>
-        /// Options
+        /// Options to edit a field
         /// </summary>
         public void Options()
         {
@@ -200,13 +202,13 @@ namespace Assignment1.View
             Console.WriteLine("[1] - Name");
             Console.WriteLine("[2] - Phone Number");
             Console.WriteLine("[3] - Email address");
-            Console.WriteLine("[4] - Description");
+            Console.WriteLine("[4] - Notes");
         }
 
         /// <summary>
         /// Validation
         /// </summary>
-        /// <param name="contactInfo"> obj </param>
+        /// <param name="contactInfo"> object </param>
         public void DataValidation(ContactInfo contactInfo)
         {
             switch (contactInfo.Notes)
@@ -234,18 +236,25 @@ namespace Assignment1.View
         /// </summary>
         public void EditContact()
         {
-            List<ContactInfo> contactInfos = this.SearchContact();
+            List<ContactInfo>? searchResults = this.SearchContact();
             int contactId = 1;
-            if (contactInfos.Count != 0)
+            if (searchResults != null && searchResults.Count != 0)
             {
-                if (contactInfos.Count > 1)
+                if (searchResults.Count > 1)
                 {
-                    Console.WriteLine("There are multiple contact , choose which contact to delte (ex: 1) :");
-
-                    contactId = int.Parse(Console.ReadLine());
+                    do
+                    {
+                        Console.WriteLine("Found Multiple Contacts: Choose which contact to delete:");
+                        string? choice = Console.ReadLine();
+                        if (choice != null)
+                        {
+                            contactId = int.Parse(choice);
+                        }
+                    }
+                    while (contactId > searchResults.Count);
                 }
 
-                string option = " ";
+                string? option;
                 int flag = 0;
                 while (flag == 0)
                 {
@@ -263,7 +272,7 @@ namespace Assignment1.View
 
                         Console.Clear();
 
-                        ContactInfo contactInfo = this._manager.EditContact(contactInfos[contactId - 1].Id, field, fieldValue);
+                        ContactInfo contactInfo = this._manager.EditContact(searchResults[contactId - 1].Id, field, fieldValue);
                         if (contactInfo.Name == "Error Found")
                         {
                             this.DataValidation(contactInfo);

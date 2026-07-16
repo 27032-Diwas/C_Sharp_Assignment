@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Assignment1.Models;
 using Assignment1.View;
-using AssignmentBasics.Models;
 
 namespace Assignment1.Repository
 {
@@ -13,7 +13,7 @@ namespace Assignment1.Repository
     /// </summary>
     public class ContactRepository
     {
-        private static readonly List<ContactInfo> Contacts = new List<ContactInfo>();
+        private static readonly List<ContactInfo> Contacts = new ();
 
         /// <summary>
         /// Views the contact
@@ -42,12 +42,12 @@ namespace Assignment1.Repository
         /// Word to be searched
         /// </param>
         /// <returns> the list of contact matched</returns>
-        public List<ContactInfo> SearchContact(string searchWord)
+        public List<ContactInfo> SearchContact(string? searchWord)
         {
-            List<ContactInfo> searchMatch = new List<ContactInfo>();
+            List<ContactInfo> searchMatch = new ();
             foreach (ContactInfo contact in Contacts)
             {
-                if (contact.Name == searchWord || contact.PhoneNumber == searchWord || contact.Email == searchWord)
+                if ((searchWord != null && contact.Name != null && contact.PhoneNumber != null) && (contact.Name.ToLower().Contains(searchWord.ToLower()) || contact.PhoneNumber.ToLower().Contains(searchWord.ToLower())))
                 {
                     searchMatch.Add(contact);
                 }
@@ -81,9 +81,9 @@ namespace Assignment1.Repository
         /// <param name="field"> Field to edit </param>
         /// <param name="fieldValue"> new data </param>
         /// <returns> Updated contact </returns>
-        public ContactInfo EditContact(Guid id, int field, string fieldValue)
+        public ContactInfo EditContact(Guid id, int field, string? fieldValue)
         {
-            ContactInfo contactInfo = new ContactInfo();
+            ContactInfo contactInfo = new ();
             foreach (ContactInfo contact in Contacts)
             {
                 if (contact.Id == id)

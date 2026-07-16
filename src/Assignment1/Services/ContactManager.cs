@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Assignment1.Helper;
+using Assignment1.Models;
 using Assignment1.Repository;
 using Assignment1.View;
-using AssignmentBasics.Models;
 
-namespace AssignmentBasics.Services
+namespace Assignment1.Services
 {
     /// <summary>
     /// Has all the logic
@@ -16,22 +16,18 @@ namespace AssignmentBasics.Services
     public class ContactManager
     {
         private readonly ContactRepository _contactRepository;
-        private readonly Validation _validation;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ContactManager"/> class.
-        /// Constructor
         /// </summary>
         /// <param name="contactRepository"> repo link </param>
-        /// <param name="validation"> Validation link </param>
-        public ContactManager(ContactRepository contactRepository, Validation validation)
+        public ContactManager(ContactRepository contactRepository)
         {
             this._contactRepository = contactRepository;
-            this._validation = validation;
         }
 
         /// <summary>
-        /// View Contact
+        /// View Contacts
         /// </summary>
         /// <returns> Return the list of contact </returns>
         public List<ContactInfo> ViewContact()
@@ -46,36 +42,32 @@ namespace AssignmentBasics.Services
         /// <returns> the object </returns>
         public ContactInfo AddContact(ContactInfo contactInfo)
         {
-            List<ContactInfo> contacts = this.ViewContact();
-            foreach (ContactInfo contact in contacts)
+            if (this.IsNumberExist(contactInfo.PhoneNumber))
             {
-                if (contact.PhoneNumber == contactInfo.PhoneNumber)
-                {
-                    contactInfo.Name = "Error Found";
-                    contactInfo.Notes = "Phone Number Already Exist";
-                    return contactInfo;
-                }
+                contactInfo.Name = "Error Found";
+                contactInfo.Notes = "Phone Number Already Exist";
+                return contactInfo;
             }
 
-            if (this._validation.IsNameEmpty(contactInfo.Name))
+            if (Validation.IsNameEmpty(contactInfo.Name))
             {
                 contactInfo.Name = "Error Found";
                 contactInfo.Notes = "Proper Name is Required";
                 return contactInfo;
             }
-            else if (this._validation.IsNumberEmpty(contactInfo.PhoneNumber))
+            else if (Validation.IsNumberEmpty(contactInfo.PhoneNumber))
             {
                 contactInfo.Name = "Error Found";
                 contactInfo.Notes = "Phone Number is Required";
                 return contactInfo;
             }
-            else if (!this._validation.IsNumber(contactInfo.PhoneNumber))
+            else if (!Validation.IsNumber(contactInfo.PhoneNumber))
             {
                 contactInfo.Name = "Error Found";
                 contactInfo.Notes = "Phone Number should be 10 digit number";
                 return contactInfo;
             }
-            else if (!this._validation.IsEmail(contactInfo.Email))
+            else if (!Validation.IsEmail(contactInfo.Email))
             {
                 contactInfo.Name = "Error Found";
                 contactInfo.Notes = "Enter a valid Email";
@@ -92,7 +84,7 @@ namespace AssignmentBasics.Services
         /// </summary>
         /// <param name="searchWord"> word to be searched </param>
         /// <returns> list of contact </returns>
-        public List<ContactInfo> SearchContact(string searchWord)
+        public List<ContactInfo> SearchContact(string? searchWord)
         {
             List<ContactInfo> searchMatch = this._contactRepository.SearchContact(searchWord);
             return searchMatch;
@@ -105,28 +97,35 @@ namespace AssignmentBasics.Services
         /// <param name="field"> field </param>
         /// <param name="fieldValue"> value to update </param>
         /// <returns> contact </returns>
-        public ContactInfo EditContact(Guid id, int field, string fieldValue)
+        public ContactInfo EditContact(Guid id, int field, string? fieldValue)
         {
-            ContactInfo contactInfo = new ContactInfo();
-            if (field == 1 && this._validation.IsNameEmpty(fieldValue))
+            ContactInfo contactInfo = new ();
+            if (field == 2 && this.IsNumberExist(fieldValue))
+            {
+                contactInfo.Name = "Error Found";
+                contactInfo.Notes = "Phone Number Already Exist";
+                return contactInfo;
+            }
+
+            if (field == 1 && Validation.IsNameEmpty(fieldValue))
             {
                 contactInfo.Name = "Error Found";
                 contactInfo.Notes = "Name is Required";
                 return contactInfo;
             }
-            else if (field == 2 && this._validation.IsNumberEmpty(fieldValue))
+            else if (field == 2 && Validation.IsNumberEmpty(fieldValue))
             {
                 contactInfo.Name = "Error Found";
                 contactInfo.Notes = "Phone Number is Required";
                 return contactInfo;
             }
-            else if (field == 2 && !this._validation.IsNumber(fieldValue))
+            else if (field == 2 && !Validation.IsNumber(fieldValue))
             {
                 contactInfo.Name = "Error Found";
                 contactInfo.Notes = "Phone Number should be 10 digit number";
                 return contactInfo;
             }
-            else if (field == 3 && !this._validation.IsEmail(fieldValue))
+            else if (field == 3 && !Validation.IsEmail(fieldValue))
             {
                 contactInfo.Name = "Error Found";
                 contactInfo.Notes = "Enter a valid Email";
@@ -143,6 +142,25 @@ namespace AssignmentBasics.Services
         public void DeleteContact(Guid id)
         {
             this._contactRepository.DeleteContact(id);
+        }
+
+        /// <summary>
+        /// Check if phone number exist or not
+        /// </summary>
+        /// <param name="phoneNumber"> phone number </param>
+        /// <returns> true or false </returns>
+        public bool IsNumberExist(string? phoneNumber)
+        {
+            List<ContactInfo> contacts = this.ViewContact();
+            foreach (ContactInfo contact in contacts)
+            {
+                if (contact.PhoneNumber == phoneNumber)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

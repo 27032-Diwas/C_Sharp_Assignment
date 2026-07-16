@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Assignment1.Models;
 using Assignment1.Repository;
-using AssignmentBasics.Models;
-using AssignmentBasics.Services;
+using Assignment1.Services;
 
 namespace Assignment1.Helper
 {
@@ -19,7 +19,7 @@ namespace Assignment1.Helper
         /// </summary>
         /// <param name="name"> object </param>
         /// <returns> isCorrect</returns>
-        public bool IsNameEmpty(string name)
+        public static bool IsNameEmpty(string? name)
         {
             return string.IsNullOrWhiteSpace(name) || name == "Error Found";
         }
@@ -29,7 +29,7 @@ namespace Assignment1.Helper
         /// </summary>
         /// <param name="phoneNumber"> number </param>
         /// <returns> true or false </returns>
-        public bool IsNumberEmpty(string phoneNumber)
+        public static bool IsNumberEmpty(string? phoneNumber)
         {
             return string.IsNullOrWhiteSpace(phoneNumber);
         }
@@ -39,8 +39,13 @@ namespace Assignment1.Helper
         /// </summary>
         /// <param name="phone"> number </param>
         /// <returns> true of false </returns>
-        public bool IsNumber(string phone)
+        public static bool IsNumber(string? phone)
         {
+            if (phone == null)
+            {
+                return false;
+            }
+
             return phone.Length == 10 && phone.All(char.IsDigit);
         }
 
@@ -49,8 +54,13 @@ namespace Assignment1.Helper
         /// </summary>
         /// <param name="email"> email </param>
         /// <returns> true or false </returns>
-        public bool IsEmail(string email)
+        public static bool IsEmail(string? email)
         {
+            if (email == null)
+            {
+                return true;
+            }
+
             return email.Contains('@') && email.Contains('.');
         }
     }

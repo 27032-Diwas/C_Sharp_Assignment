@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AssignmentBasics.Models
+namespace Assignment1.Models
 {
     /// <summary>
     /// contact info
