@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Assignment1.Helper;
+﻿using Assignment1.Helper;
 using Assignment1.Models;
 using Assignment1.Repository;
-using Assignment1.View;
 
 namespace Assignment1.Services
 {

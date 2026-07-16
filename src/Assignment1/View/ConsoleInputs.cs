@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Assignment1.Models;
+﻿using Assignment1.Models;
 using Assignment1.Services;
 
 namespace Assignment1.View
