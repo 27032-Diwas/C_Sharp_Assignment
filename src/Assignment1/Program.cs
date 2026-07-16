@@ -3,7 +3,7 @@ using Assignment1.Repository;
 using Assignment1.Services;
 using Assignment1.View;
 
-namespace Assignments
+namespace Assignment1
 {
     /// <summary>
     /// Main class where program starts
@@ -16,7 +16,6 @@ namespace Assignments
         public static void Main()
         {
             ContactRepository contactRepository = new ();
-            Validation validation = new ();
             ContactManager contactManager = new ContactManager(contactRepository);
             ConsoleInputs consoleInputs = new ConsoleInputs(contactManager);
 

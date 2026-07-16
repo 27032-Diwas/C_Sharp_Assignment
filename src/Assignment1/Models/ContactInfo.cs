@@ -18,19 +18,19 @@
         public string? Name { get; set; }
 
         /// <summary>
-        /// Gets or sets name
+        /// Gets or sets phone number
         /// </summary>
         /// <value> number for data </value>
         public string? PhoneNumber { get; set; }
 
         /// <summary>
-        /// Gets or sets name
+        /// Gets or sets email address
         /// </summary>
         /// <value> email for data </value>
         public string? Email { get; set; }
 
         /// <summary>
-        /// Gets or sets name
+        /// Gets or sets notes
         /// </summary>
         /// <value> notes for data </value>
         public string? Notes { get; set; }

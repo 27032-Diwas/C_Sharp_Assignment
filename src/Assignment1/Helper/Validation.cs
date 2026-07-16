@@ -6,7 +6,7 @@
     public class Validation
     {
         /// <summary>
-        /// Validate data
+        /// Is name empty
         /// </summary>
         /// <param name="name"> object </param>
         /// <returns> isCorrect</returns>
@@ -16,7 +16,7 @@
         }
 
         /// <summary>
-        /// is number empty
+        /// Is number empty
         /// </summary>
         /// <param name="phoneNumber"> number </param>
         /// <returns> true or false </returns>
@@ -26,7 +26,7 @@
         }
 
         /// <summary>
-        /// is number valid
+        /// Is number valid
         /// </summary>
         /// <param name="phone"> number </param>
         /// <returns> true of false </returns>
@@ -41,7 +41,7 @@
         }
 
         /// <summary>
-        /// is email valide
+        /// Is email valide
         /// </summary>
         /// <param name="email"> email </param>
         /// <returns> true or false </returns>

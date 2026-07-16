@@ -10,7 +10,7 @@ namespace Assignment1.Repository
         private static readonly List<ContactInfo> Contacts = new ();
 
         /// <summary>
-        /// Views the contact
+        /// Views the contacts
         /// </summary>
         /// <returns> return the list of contact </returns>
         public List<ContactInfo> ViewContact()
@@ -19,10 +19,10 @@ namespace Assignment1.Repository
         }
 
         /// <summary>
-        /// Adds the Contact to lilst
+        /// Adds the Contact to list
         /// </summary>
         /// <param name="contactInfo">
-        /// object
+        /// Object - contact to add
         /// </param>
         public void AddContact(ContactInfo contactInfo)
         {
@@ -35,7 +35,7 @@ namespace Assignment1.Repository
         /// <param name="searchWord">
         /// Word to be searched
         /// </param>
-        /// <returns> the list of contact matched</returns>
+        /// <returns> List of contact matched</returns>
         public List<ContactInfo> SearchContact(string? searchWord)
         {
             List<ContactInfo> searchMatch = new ();
@@ -73,7 +73,7 @@ namespace Assignment1.Repository
         /// </summary>
         /// <param name="id"> Index </param>
         /// <param name="field"> Field to edit </param>
-        /// <param name="fieldValue"> new data </param>
+        /// <param name="fieldValue"> New data </param>
         /// <returns> Updated contact </returns>
         public ContactInfo EditContact(Guid id, int field, string? fieldValue)
         {

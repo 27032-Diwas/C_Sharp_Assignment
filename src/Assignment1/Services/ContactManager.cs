@@ -23,7 +23,7 @@ namespace Assignment1.Services
         /// <summary>
         /// View Contacts
         /// </summary>
-        /// <returns> Return the list of contact </returns>
+        /// <returns> Return the list of contacts </returns>
         public List<ContactInfo> ViewContact()
         {
             return this._contactRepository.ViewContact();
@@ -32,8 +32,8 @@ namespace Assignment1.Services
         /// <summary>
         /// Add contact
         /// </summary>
-        /// <param name="contactInfo"> object </param>
-        /// <returns> the object </returns>
+        /// <param name="contactInfo"> Object - contact </param>
+        /// <returns> contact </returns>
         public ContactInfo AddContact(ContactInfo contactInfo)
         {
             if (this.IsNumberExist(contactInfo.PhoneNumber))
@@ -46,7 +46,7 @@ namespace Assignment1.Services
             if (Validation.IsNameEmpty(contactInfo.Name))
             {
                 contactInfo.Name = "Error Found";
-                contactInfo.Notes = "Proper Name is Required";
+                contactInfo.Notes = "Name is Required";
                 return contactInfo;
             }
             else if (Validation.IsNumberEmpty(contactInfo.PhoneNumber))
@@ -74,10 +74,10 @@ namespace Assignment1.Services
         }
 
         /// <summary>
-        /// return the list of contact match
+        /// List of contact matched
         /// </summary>
-        /// <param name="searchWord"> word to be searched </param>
-        /// <returns> list of contact </returns>
+        /// <param name="searchWord"> Word to be searched </param>
+        /// <returns> List of contact </returns>
         public List<ContactInfo> SearchContact(string? searchWord)
         {
             List<ContactInfo> searchMatch = this._contactRepository.SearchContact(searchWord);
@@ -87,10 +87,10 @@ namespace Assignment1.Services
         /// <summary>
         /// Edit Contact
         /// </summary>
-        /// <param name="id"> guid </param>
-        /// <param name="field"> field </param>
-        /// <param name="fieldValue"> value to update </param>
-        /// <returns> contact </returns>
+        /// <param name="id"> Guid </param>
+        /// <param name="field"> Field </param>
+        /// <param name="fieldValue"> Value to update </param>
+        /// <returns> Contact </returns>
         public ContactInfo EditContact(Guid id, int field, string? fieldValue)
         {
             ContactInfo contactInfo = new ();
@@ -132,7 +132,7 @@ namespace Assignment1.Services
         /// <summary>
         /// Delete Contact
         /// </summary>
-        /// <param name="id"> guid </param>
+        /// <param name="id"> Guid </param>
         public void DeleteContact(Guid id)
         {
             this._contactRepository.DeleteContact(id);
@@ -141,7 +141,7 @@ namespace Assignment1.Services
         /// <summary>
         /// Check if phone number exist or not
         /// </summary>
-        /// <param name="phoneNumber"> phone number </param>
+        /// <param name="phoneNumber"> Phone number </param>
         /// <returns> true or false </returns>
         public bool IsNumberExist(string? phoneNumber)
         {
