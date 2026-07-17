@@ -229,8 +229,9 @@ namespace Assignment1.View
                 }
 
                 string? option;
-                int flag = 0;
-                while (flag == 0)
+                bool isOptionValid = false;
+                int property = 0;
+                while (!isOptionValid)
                 {
                     this.Options();
                     option = Console.ReadLine();
@@ -240,21 +241,27 @@ namespace Assignment1.View
                         continue;
                     }
 
-                    int field = int.Parse(option);
+                    property = int.Parse(option);
 
+                    isOptionValid = true;
+                }
+
+                bool isDataValid = false;
+                while (!isDataValid)
+                {
                     Console.WriteLine("Enter New Detail: ");
                     string? fieldValue = Console.ReadLine();
 
                     Console.Clear();
 
-                    string message = this._manager.EditContact(searchResults[contactId - 1].Id, field, fieldValue);
+                    string message = this._manager.EditContact(searchResults[contactId - 1].Id, property, fieldValue);
                     if (message != "Contact Edited Successfully")
                     {
                         Console.WriteLine(message);
                         continue;
                     }
 
-                    flag = 1;
+                    isDataValid = true;
                     Console.WriteLine("Contact Edited Successfully");
                 }
             }
