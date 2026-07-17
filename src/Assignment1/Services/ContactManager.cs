@@ -34,43 +34,33 @@ namespace Assignment1.Services
         /// </summary>
         /// <param name="contactInfo"> Object - contact </param>
         /// <returns> contact </returns>
-        public ContactInfo AddContact(ContactInfo contactInfo)
+        public string AddContact(ContactInfo contactInfo)
         {
             if (this.IsNumberExist(contactInfo.PhoneNumber))
             {
-                contactInfo.Name = "Error Found";
-                contactInfo.Notes = "Phone Number Already Exist";
-                return contactInfo;
+                return "Phone Number Already Exist";
             }
 
             if (Validation.IsNameEmpty(contactInfo.Name))
             {
-                contactInfo.Name = "Error Found";
-                contactInfo.Notes = "Name is Required";
-                return contactInfo;
+                return "Name is Required";
             }
             else if (Validation.IsNumberEmpty(contactInfo.PhoneNumber))
             {
-                contactInfo.Name = "Error Found";
-                contactInfo.Notes = "Phone Number is Required";
-                return contactInfo;
+                return "Phone Number is Required";
             }
             else if (!Validation.IsNumber(contactInfo.PhoneNumber))
             {
-                contactInfo.Name = "Error Found";
-                contactInfo.Notes = "Phone Number should be 10 digit number";
-                return contactInfo;
+                return "Phone Number should be 10 digit number";
             }
             else if (!Validation.IsEmail(contactInfo.Email))
             {
-                contactInfo.Name = "Error Found";
-                contactInfo.Notes = "Enter a valid Email";
-                return contactInfo;
+                return "Enter a valid Email";
             }
 
             contactInfo.Id = Guid.NewGuid();
             this._contactRepository.AddContact(contactInfo);
-            return contactInfo;
+            return "Contact Added Successfully";
         }
 
         /// <summary>
@@ -91,42 +81,34 @@ namespace Assignment1.Services
         /// <param name="field"> Field </param>
         /// <param name="fieldValue"> Value to update </param>
         /// <returns> Contact </returns>
-        public ContactInfo EditContact(Guid id, int field, string? fieldValue)
+        public string EditContact(Guid id, int field, string? fieldValue)
         {
             ContactInfo contactInfo = new ();
             if (field == 2 && this.IsNumberExist(fieldValue))
             {
-                contactInfo.Name = "Error Found";
-                contactInfo.Notes = "Phone Number Already Exist";
-                return contactInfo;
+                return "Phone Number Already Exist";
             }
 
             if (field == 1 && Validation.IsNameEmpty(fieldValue))
             {
-                contactInfo.Name = "Error Found";
-                contactInfo.Notes = "Name is Required";
-                return contactInfo;
+                return "Name is Required";
             }
             else if (field == 2 && Validation.IsNumberEmpty(fieldValue))
             {
-                contactInfo.Name = "Error Found";
-                contactInfo.Notes = "Phone Number is Required";
-                return contactInfo;
+                return "Phone Number is Required";
             }
             else if (field == 2 && !Validation.IsNumber(fieldValue))
             {
-                contactInfo.Name = "Error Found";
-                contactInfo.Notes = "Phone Number should be 10 digit number";
-                return contactInfo;
+                return "Phone Number should be 10 digit number";
             }
             else if (field == 3 && !Validation.IsEmail(fieldValue))
             {
-                contactInfo.Name = "Error Found";
-                contactInfo.Notes = "Enter a valid Email";
-                return contactInfo;
+                return "Enter a valid Email";
             }
 
-            return this._contactRepository.EditContact(id, field, fieldValue);
+            this._contactRepository.EditContact(id, field, fieldValue);
+
+            return "Contact Edited Successfully";
         }
 
         /// <summary>
@@ -141,7 +123,8 @@ namespace Assignment1.Services
         /// <summary>
         /// Check if phone number exist or not
         /// </summary>
-        /// <param name="phoneNumber"> Phone number </param>
+        /// <param name="phoneNumber"> P
+        /// hone number </param>
         /// <returns> true or false </returns>
         public bool IsNumberExist(string? phoneNumber)
         {

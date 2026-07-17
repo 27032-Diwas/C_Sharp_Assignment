@@ -12,7 +12,7 @@
         /// <returns> isCorrect</returns>
         public static bool IsNameEmpty(string? name)
         {
-            return string.IsNullOrWhiteSpace(name) || name == "Error Found";
+            return string.IsNullOrWhiteSpace(name) || name == "Error Found" || name == string.Empty;
         }
 
         /// <summary>
@@ -22,7 +22,7 @@
         /// <returns> true or false </returns>
         public static bool IsNumberEmpty(string? phoneNumber)
         {
-            return string.IsNullOrWhiteSpace(phoneNumber);
+            return string.IsNullOrWhiteSpace(phoneNumber) || phoneNumber == string.Empty;
         }
 
         /// <summary>

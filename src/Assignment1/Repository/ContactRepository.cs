@@ -15,7 +15,19 @@ namespace Assignment1.Repository
         /// <returns> return the list of contact </returns>
         public List<ContactInfo> ViewContact()
         {
-            return Contacts.OrderBy(x => x.Name).ToList();
+            List<ContactInfo> contactsCopy = new ();
+            foreach (ContactInfo contact in Contacts)
+            {
+                ContactInfo contactCopy = new ();
+                contactCopy.Id = contact.Id;
+                contactCopy.Name = contact.Name;
+                contactCopy.PhoneNumber = contact.PhoneNumber;
+                contactCopy.Email = contact.Email;
+                contactCopy.Notes = contact.Notes;
+                contactsCopy.Add(contactCopy);
+            }
+
+            return contactsCopy.OrderBy(x => x.Name).ToList();
         }
 
         /// <summary>
@@ -43,7 +55,13 @@ namespace Assignment1.Repository
             {
                 if ((searchWord != null && contact.Name != null && contact.PhoneNumber != null) && (contact.Name.ToLower().Contains(searchWord.ToLower()) || contact.PhoneNumber.ToLower().Contains(searchWord.ToLower())))
                 {
-                    searchMatch.Add(contact);
+                    ContactInfo contactCopy = new ();
+                    contactCopy.Id = contact.Id;
+                    contactCopy.Name = contact.Name;
+                    contactCopy.PhoneNumber = contact.PhoneNumber;
+                    contactCopy.Email = contact.Email;
+                    contactCopy.Notes = contact.Notes;
+                    searchMatch.Add(contactCopy);
                 }
             }
 
@@ -71,9 +89,9 @@ namespace Assignment1.Repository
         /// <summary>
         /// Edit the contact
         /// </summary>
-        /// <param name="id"> Index </param>
-        /// <param name="field"> Field to edit </param>
-        /// <param name="fieldValue"> New data </param>
+        /// <param name="id"> Contact Id </param>
+        /// <param name="field"> Contact Property </param>
+        /// <param name="fieldValue"> Edit data </param>
         /// <returns> Updated contact </returns>
         public ContactInfo EditContact(Guid id, int field, string? fieldValue)
         {
