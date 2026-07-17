@@ -36,28 +36,6 @@ namespace Assignment1.Services
         /// <returns> Contact </returns>
         public string AddContact(ContactInfo contactInfo)
         {
-            if (this.IsNumberExist(contactInfo.PhoneNumber))
-            {
-                return "Phone Number Already Exist";
-            }
-
-            if (Validation.IsNameEmpty(contactInfo.Name))
-            {
-                return "Name is Required";
-            }
-            else if (Validation.IsNumberEmpty(contactInfo.PhoneNumber))
-            {
-                return "Phone Number is Required";
-            }
-            else if (!Validation.IsNumber(contactInfo.PhoneNumber))
-            {
-                return "Phone Number should be 10 digit number";
-            }
-            else if (!Validation.IsEmail(contactInfo.Email))
-            {
-                return "Enter a valid Email";
-            }
-
             contactInfo.Id = Guid.NewGuid();
             this._contactRepository.AddContact(contactInfo);
             return "Contact Added Successfully";
@@ -83,29 +61,6 @@ namespace Assignment1.Services
         /// <returns> Contact </returns>
         public string EditContact(Guid? id, int field, string? fieldValue)
         {
-            ContactInfo contactInfo = new ();
-            if (field == 2 && this.IsNumberExist(fieldValue))
-            {
-                return "Phone Number Already Exist";
-            }
-
-            if (field == 1 && Validation.IsNameEmpty(fieldValue))
-            {
-                return "Name is Required";
-            }
-            else if (field == 2 && Validation.IsNumberEmpty(fieldValue))
-            {
-                return "Phone Number is Required";
-            }
-            else if (field == 2 && !Validation.IsNumber(fieldValue))
-            {
-                return "Phone Number should be 10 digit number";
-            }
-            else if (field == 3 && !Validation.IsEmail(fieldValue))
-            {
-                return "Enter a valid Email";
-            }
-
             this._contactRepository.EditContact(id, field, fieldValue);
 
             return "Contact Edited Successfully";
@@ -138,6 +93,38 @@ namespace Assignment1.Services
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// Validation of inputs
+        /// </summary>
+        /// <param name="field"> property </param>
+        /// <param name="fieldValue"> value of the property </param>
+        /// <returns> Error message </returns>
+        public string? CheckValidation(int field, string? fieldValue)
+        {
+            if (field == 1 && Validation.IsNameEmpty(fieldValue))
+            {
+                return "Name is Required";
+            }
+            else if (field == 2 && Validation.IsNumberEmpty(fieldValue))
+            {
+                return "Phone Number is Required";
+            }
+            else if (field == 2 && !Validation.IsNumber(fieldValue))
+            {
+                return "Phone Number should be 10 digit number";
+            }
+            else if (field == 2 && this.IsNumberExist(fieldValue))
+            {
+                return "Phone Number Already Exist";
+            }
+            else if (field == 3 && !Validation.IsEmail(fieldValue))
+            {
+                return "Enter a valid Email";
+            }
+
+            return null;
         }
     }
 }

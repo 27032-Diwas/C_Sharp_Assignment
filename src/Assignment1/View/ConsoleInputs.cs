@@ -1,6 +1,5 @@
 ﻿using Assignment1.Models;
 using Assignment1.Services;
-using System.Numerics;
 
 namespace Assignment1.View
 {
@@ -101,18 +100,44 @@ namespace Assignment1.View
         {
             // object
             ContactInfo contactInfo = new ();
+            string? name, phoneNumber, email, message;
+            do
+            {
+                Console.WriteLine("Enter Contact Name: ");
+                name = Console.ReadLine();
+                message = this._manager.CheckValidation(1, name);
+                Console.Clear();
+                Console.WriteLine(message);
+            }
+            while (message != null);
 
-            Console.WriteLine("Enter Contact Name: ");
-            contactInfo.Name = Console.ReadLine();
-            Console.WriteLine("Enter Contact Phone Number: ");
-            contactInfo.PhoneNumber = Console.ReadLine();
-            Console.WriteLine("Enter contact Email: ");
-            contactInfo.Email = Console.ReadLine();
+            contactInfo.Name = name;
+            do
+            {
+                Console.WriteLine("Enter Contact Phone Number: ");
+                phoneNumber = Console.ReadLine();
+                message = this._manager.CheckValidation(2, phoneNumber);
+                Console.Clear();
+                Console.WriteLine(message);
+            }
+            while (message != null);
+
+            contactInfo.PhoneNumber = phoneNumber;
+            do
+            {
+                Console.WriteLine("Enter Contact Email: ");
+                email = Console.ReadLine();
+                message = this._manager.CheckValidation(3, email);
+                Console.Clear();
+                Console.WriteLine(message);
+            }
+            while (message != null);
+            contactInfo.Email = email;
             Console.WriteLine("Enter contact Notes: ");
             contactInfo.Notes = Console.ReadLine();
 
             Console.Clear();
-            string message = this._manager.AddContact(contactInfo);
+            message = this._manager.AddContact(contactInfo);
             if (message != "Contact Added Successfully")
             {
                 Console.WriteLine(message);
@@ -260,6 +285,27 @@ namespace Assignment1.View
         }
 
         /// <summary>
+        /// Get property value
+        /// </summary>
+        /// <param name="property"> Property </param>
+        /// <returns> Property value </returns>
+        public string? GetPropertyValue(int property)
+        {
+            string? propertyValue, message;
+            do
+            {
+                Console.WriteLine("Enter New Detail: ");
+                propertyValue = Console.ReadLine();
+                message = this._manager.CheckValidation(property, propertyValue);
+                Console.Clear();
+                Console.WriteLine(message);
+            }
+            while (message != null);
+
+            return propertyValue;
+        }
+
+        /// <summary>
         /// Edit contact
         /// </summary>
         public void EditContact()
@@ -275,12 +321,11 @@ namespace Assignment1.View
             bool isDataValid = false;
             while (!isDataValid)
             {
-                Console.WriteLine("Enter New Detail: ");
-                string? fieldValue = Console.ReadLine();
+                string? propertyValue = this.GetPropertyValue(property);
 
                 Console.Clear();
 
-                string message = this._manager.EditContact(guid, property, fieldValue);
+                string message = this._manager.EditContact(guid, property, propertyValue);
                 if (message != "Contact Edited Successfully")
                 {
                     Console.WriteLine(message);
