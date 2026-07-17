@@ -4,7 +4,7 @@ using Assignment1.Services;
 namespace Assignment1.View
 {
     /// <summary>
-    /// Input Class
+    /// Deals with all console operations.
     /// </summary>
     public class ConsoleInputs
     {
@@ -20,7 +20,7 @@ namespace Assignment1.View
         }
 
         /// <summary>
-        /// Displays Main Menu
+        /// Displays Main Menu and redirect to selected method.
         /// </summary>
         public void MenuInfo()
         {
@@ -76,7 +76,7 @@ namespace Assignment1.View
         }
 
         /// <summary>
-        /// View Contacts method
+        /// View Contacts method. This method displays full contact details.
         /// </summary>
         public void ViewContact()
         {
@@ -94,7 +94,7 @@ namespace Assignment1.View
         }
 
         /// <summary>
-        /// Add Contact method
+        /// Add Contact method.
         /// </summary>
         public void AddContact()
         {
@@ -123,10 +123,10 @@ namespace Assignment1.View
         }
 
         /// <summary>
-        /// Display Contact info
+        /// Display contact field with its data.
         /// </summary>
         /// <param name="contactInfo">
-        /// Object
+        /// Contact that needs to be displays.
         /// </param>
         public void DisplayDetails(ContactInfo contactInfo)
         {
@@ -139,9 +139,9 @@ namespace Assignment1.View
         }
 
         /// <summary>
-        /// Searching contacts
+        /// Search contact.
         /// </summary>
-        /// <returns> return the list of contact </returns>
+        /// <returns> List of contact that match user input.</returns>
         public List<ContactInfo>? SearchContact()
         {
             Console.WriteLine("Enter Name or PhoneNumber: ");
@@ -169,7 +169,7 @@ namespace Assignment1.View
         }
 
         /// <summary>
-        /// Delete contact
+        /// Delete contact.
         /// </summary>
         public void DeleteContact()
         {
@@ -194,9 +194,9 @@ namespace Assignment1.View
         }
 
         /// <summary>
-        /// Options to edit a field
+        /// Display property.
         /// </summary>
-        public void Options()
+        public void DisplayProperty()
         {
             Console.WriteLine("Choose field to edit: ");
             Console.WriteLine("[1] - Name");
@@ -233,7 +233,7 @@ namespace Assignment1.View
                 int property = 0;
                 while (!isOptionValid)
                 {
-                    this.Options();
+                    this.DisplayProperty();
                     option = Console.ReadLine();
                     if (option != "1" && option != "2" && option != "3" && option != "4")
                     {

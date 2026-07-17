@@ -7,7 +7,7 @@ namespace Assignment1.Repository
     /// </summary>
     public class ContactRepository
     {
-        private static readonly List<ContactInfo> Contacts = new ();
+        private readonly List<ContactInfo> _contacts = new ();
 
         /// <summary>
         /// Views the contacts
@@ -16,7 +16,7 @@ namespace Assignment1.Repository
         public List<ContactInfo> ViewContact()
         {
             List<ContactInfo> contactsCopy = new ();
-            foreach (ContactInfo contact in Contacts)
+            foreach (ContactInfo contact in this._contacts)
             {
                 ContactInfo contactCopy = new ();
                 contactCopy.Id = contact.Id;
@@ -38,7 +38,7 @@ namespace Assignment1.Repository
         /// </param>
         public void AddContact(ContactInfo contactInfo)
         {
-            Contacts.Add(contactInfo);
+            this._contacts.Add(contactInfo);
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Assignment1.Repository
         public List<ContactInfo> SearchContact(string? searchWord)
         {
             List<ContactInfo> searchMatch = new ();
-            foreach (ContactInfo contact in Contacts)
+            foreach (ContactInfo contact in this._contacts)
             {
                 if ((searchWord != null && contact.Name != null && contact.PhoneNumber != null) && (contact.Name.ToLower().Contains(searchWord.ToLower()) || contact.PhoneNumber.ToLower().Contains(searchWord.ToLower())))
                 {
@@ -76,11 +76,11 @@ namespace Assignment1.Repository
         /// </param>
         public void DeleteContact(Guid id)
         {
-            foreach (ContactInfo contact in Contacts)
+            foreach (ContactInfo contact in this._contacts)
             {
                 if (contact.Id == id)
                 {
-                    Contacts.Remove(contact);
+                    this._contacts.Remove(contact);
                     break;
                 }
             }
@@ -96,7 +96,7 @@ namespace Assignment1.Repository
         public ContactInfo EditContact(Guid id, int field, string? fieldValue)
         {
             ContactInfo contactInfo = new ();
-            foreach (ContactInfo contact in Contacts)
+            foreach (ContactInfo contact in this._contacts)
             {
                 if (contact.Id == id)
                 {

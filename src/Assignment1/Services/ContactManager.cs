@@ -5,7 +5,7 @@ using Assignment1.Repository;
 namespace Assignment1.Services
 {
     /// <summary>
-    /// Has all the logic
+    /// Contains all the logical part of contact manager.
     /// </summary>
     public class ContactManager
     {
@@ -14,14 +14,14 @@ namespace Assignment1.Services
         /// <summary>
         /// Initializes a new instance of the <see cref="ContactManager"/> class.
         /// </summary>
-        /// <param name="contactRepository"> repo link </param>
+        /// <param name="contactRepository"> Repo link. </param>
         public ContactManager(ContactRepository contactRepository)
         {
             this._contactRepository = contactRepository;
         }
 
         /// <summary>
-        /// View Contacts
+        /// View Contacts.
         /// </summary>
         /// <returns> Return the list of contacts </returns>
         public List<ContactInfo> ViewContact()
@@ -30,10 +30,10 @@ namespace Assignment1.Services
         }
 
         /// <summary>
-        /// Add contact
+        /// Add contact.
         /// </summary>
         /// <param name="contactInfo"> Object - contact </param>
-        /// <returns> contact </returns>
+        /// <returns> Contact </returns>
         public string AddContact(ContactInfo contactInfo)
         {
             if (this.IsNumberExist(contactInfo.PhoneNumber))
@@ -64,10 +64,10 @@ namespace Assignment1.Services
         }
 
         /// <summary>
-        /// Search for contact match
+        /// Search contact.
         /// </summary>
-        /// <param name="searchWord"> Word to be searched </param>
-        /// <returns> List of contact </returns>
+        /// <param name="searchWord"> Word to be searched. </param>
+        /// <returns> List of contact that macheres the user input. </returns>
         public List<ContactInfo> SearchContact(string? searchWord)
         {
             List<ContactInfo> searchMatch = this._contactRepository.SearchContact(searchWord);
@@ -112,7 +112,7 @@ namespace Assignment1.Services
         }
 
         /// <summary>
-        /// Delete Contact
+        /// Delete Contact.
         /// </summary>
         /// <param name="id"> Guid </param>
         public void DeleteContact(Guid id)
@@ -121,7 +121,7 @@ namespace Assignment1.Services
         }
 
         /// <summary>
-        /// Check if phone number exist or not
+        /// Check if phone number exist or not.
         /// </summary>
         /// <param name="phoneNumber"> P
         /// hone number </param>

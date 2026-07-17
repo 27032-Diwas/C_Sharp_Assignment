@@ -30,7 +30,7 @@
         public string? Email { get; set; }
 
         /// <summary>
-        /// Gets or sets notes
+        /// Gets or sets
         /// </summary>
         /// <value> notes for data </value>
         public string? Notes { get; set; }
