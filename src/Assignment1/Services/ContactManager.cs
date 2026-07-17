@@ -64,7 +64,7 @@ namespace Assignment1.Services
         }
 
         /// <summary>
-        /// List of contact matched
+        /// Search for contact match
         /// </summary>
         /// <param name="searchWord"> Word to be searched </param>
         /// <returns> List of contact </returns>

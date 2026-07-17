@@ -139,7 +139,7 @@ namespace Assignment1.View
         }
 
         /// <summary>
-        /// Getting Data for Search
+        /// Searching contacts
         /// </summary>
         /// <returns> return the list of contact </returns>
         public List<ContactInfo>? SearchContact()
@@ -206,7 +206,7 @@ namespace Assignment1.View
         }
 
         /// <summary>
-        /// Data to be edited
+        /// Edit contact
         /// </summary>
         public void EditContact()
         {
@@ -237,27 +237,25 @@ namespace Assignment1.View
                     if (option != "1" && option != "2" && option != "3" && option != "4")
                     {
                         Console.WriteLine("Enter a Valid Option!!!");
+                        continue;
                     }
-                    else
+
+                    int field = int.Parse(option);
+
+                    Console.WriteLine("Enter New Detail: ");
+                    string? fieldValue = Console.ReadLine();
+
+                    Console.Clear();
+
+                    string message = this._manager.EditContact(searchResults[contactId - 1].Id, field, fieldValue);
+                    if (message != "Contact Edited Successfully")
                     {
-                        int field = int.Parse(option);
-
-                        Console.WriteLine("Enter New Detail: ");
-                        string? fieldValue = Console.ReadLine();
-
-                        Console.Clear();
-
-                        string message = this._manager.EditContact(searchResults[contactId - 1].Id, field, fieldValue);
-                        if (message != "Contact Edited Successfully")
-                        {
-                            Console.WriteLine(message);
-                        }
-                        else
-                        {
-                            flag = 1;
-                            Console.WriteLine("Contact Edited Successfully");
-                        }
+                        Console.WriteLine(message);
+                        continue;
                     }
+
+                    flag = 1;
+                    Console.WriteLine("Contact Edited Successfully");
                 }
             }
         }
