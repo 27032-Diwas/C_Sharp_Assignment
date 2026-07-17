@@ -1,5 +1,6 @@
 ﻿using Assignment1.Models;
 using Assignment1.Services;
+using System.Numerics;
 
 namespace Assignment1.View
 {
@@ -173,24 +174,14 @@ namespace Assignment1.View
         /// </summary>
         public void DeleteContact()
         {
-            List<ContactInfo>? searchResults = this.SearchContact();
-            int contactId = 1;
-            if (searchResults != null && searchResults.Count != 0)
+            Guid? guid = this.SelectContact();
+            if (guid == null)
             {
-                if (searchResults.Count > 1)
-                {
-                    Console.WriteLine("Found Multiple Contacts: Choose which contact to delete:");
-                    string? choice = Console.ReadLine();
-                    if (choice != null)
-                    {
-                        contactId = int.Parse(choice);
-                    }
-                }
-
-                Console.Clear();
-                this._manager.DeleteContact(searchResults[contactId - 1].Id);
-                Console.WriteLine("Contact Deleted Successfully");
+                return;
             }
+
+            this._manager.DeleteContact(guid);
+            Console.WriteLine("Contact Deleted Successfully");
         }
 
         /// <summary>
@@ -206,64 +197,98 @@ namespace Assignment1.View
         }
 
         /// <summary>
-        /// Edit contact
+        /// To get the property that need to be edited.
         /// </summary>
-        public void EditContact()
+        /// <returns> The Property</returns>
+        public int GetProperty()
+        {
+            string? option;
+            bool isOptionValid = false;
+            int property = 0;
+            while (!isOptionValid)
+            {
+                this.DisplayProperty();
+                option = Console.ReadLine();
+                if (option != "1" && option != "2" && option != "3" && option != "4")
+                {
+                    Console.WriteLine("Enter a Valid Option!!!");
+                    continue;
+                }
+
+                property = int.Parse(option);
+
+                isOptionValid = true;
+            }
+
+            return property;
+        }
+
+        /// <summary>
+        /// Guid of the selected contact
+        /// </summary>
+        /// <returns> Guid </returns>
+        public Guid? SelectContact()
         {
             List<ContactInfo>? searchResults = this.SearchContact();
-            int contactId = 1;
+            int contactChoice = 1;
             if (searchResults != null && searchResults.Count != 0)
             {
                 if (searchResults.Count > 1)
                 {
                     do
                     {
-                        Console.WriteLine("Found Multiple Contacts: Choose which contact to Edit");
+                        Console.WriteLine("Found Multiple Contacts - Choose one contact from above [ 1 - " + searchResults.Count + " ]:");
                         string? choice = Console.ReadLine();
-                        if (choice != null)
+                        if (choice == string.Empty)
                         {
-                            contactId = int.Parse(choice);
+                            Console.WriteLine("Enter a valid option !!");
+                            continue;
+                        }
+                        else if (choice != null && choice.All(char.IsDigit))
+                        {
+                            contactChoice = int.Parse(choice);
                         }
                     }
-                    while (contactId > searchResults.Count);
+                    while (contactChoice > searchResults.Count);
+                    return searchResults[contactChoice - 1].Id;
                 }
 
-                string? option;
-                bool isOptionValid = false;
-                int property = 0;
-                while (!isOptionValid)
+                return searchResults[0].Id;
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Edit contact
+        /// </summary>
+        public void EditContact()
+        {
+            Guid? guid = this.SelectContact();
+            if (guid == null)
+            {
+                return;
+            }
+
+            int property = this.GetProperty();
+
+            bool isDataValid = false;
+            while (!isDataValid)
+            {
+                Console.WriteLine("Enter New Detail: ");
+                string? fieldValue = Console.ReadLine();
+
+                Console.Clear();
+
+                string message = this._manager.EditContact(guid, property, fieldValue);
+                if (message != "Contact Edited Successfully")
                 {
-                    this.DisplayProperty();
-                    option = Console.ReadLine();
-                    if (option != "1" && option != "2" && option != "3" && option != "4")
-                    {
-                        Console.WriteLine("Enter a Valid Option!!!");
-                        continue;
-                    }
-
-                    property = int.Parse(option);
-
-                    isOptionValid = true;
+                    Console.WriteLine(message);
+                    continue;
                 }
 
-                bool isDataValid = false;
-                while (!isDataValid)
-                {
-                    Console.WriteLine("Enter New Detail: ");
-                    string? fieldValue = Console.ReadLine();
-
-                    Console.Clear();
-
-                    string message = this._manager.EditContact(searchResults[contactId - 1].Id, property, fieldValue);
-                    if (message != "Contact Edited Successfully")
-                    {
-                        Console.WriteLine(message);
-                        continue;
-                    }
-
-                    isDataValid = true;
-                    Console.WriteLine("Contact Edited Successfully");
-                }
+                isDataValid = true;
+                Console.WriteLine("Contact Edited Successfully");
             }
         }
     }

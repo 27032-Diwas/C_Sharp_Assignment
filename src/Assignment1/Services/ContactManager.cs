@@ -81,7 +81,7 @@ namespace Assignment1.Services
         /// <param name="field"> Field </param>
         /// <param name="fieldValue"> Value to update </param>
         /// <returns> Contact </returns>
-        public string EditContact(Guid id, int field, string? fieldValue)
+        public string EditContact(Guid? id, int field, string? fieldValue)
         {
             ContactInfo contactInfo = new ();
             if (field == 2 && this.IsNumberExist(fieldValue))
@@ -115,7 +115,7 @@ namespace Assignment1.Services
         /// Delete Contact.
         /// </summary>
         /// <param name="id"> Guid </param>
-        public void DeleteContact(Guid id)
+        public void DeleteContact(Guid? id)
         {
             this._contactRepository.DeleteContact(id);
         }

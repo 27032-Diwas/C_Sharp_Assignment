@@ -74,7 +74,7 @@ namespace Assignment1.Repository
         /// <param name="id">
         /// word to be deleted
         /// </param>
-        public void DeleteContact(Guid id)
+        public void DeleteContact(Guid? id)
         {
             foreach (ContactInfo contact in this._contacts)
             {
@@ -93,7 +93,7 @@ namespace Assignment1.Repository
         /// <param name="field"> Contact Property </param>
         /// <param name="fieldValue"> Edit data </param>
         /// <returns> Updated contact </returns>
-        public ContactInfo EditContact(Guid id, int field, string? fieldValue)
+        public ContactInfo EditContact(Guid? id, int field, string? fieldValue)
         {
             ContactInfo contactInfo = new ();
             foreach (ContactInfo contact in this._contacts)
