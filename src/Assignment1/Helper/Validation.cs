@@ -10,20 +10,14 @@
         /// </summary>
         /// <param name="name"> object </param>
         /// <returns> isCorrect</returns>
-        public static bool IsNameEmpty(string? name)
-        {
-            return string.IsNullOrWhiteSpace(name) || name == "Error Found" || name == string.Empty;
-        }
+        public static bool IsNameEmpty(string? name) => string.IsNullOrWhiteSpace(name) || name == "Error Found" || name == string.Empty;
 
         /// <summary>
         /// Is number empty
         /// </summary>
         /// <param name="phoneNumber"> number </param>
         /// <returns> true or false </returns>
-        public static bool IsNumberEmpty(string? phoneNumber)
-        {
-            return string.IsNullOrWhiteSpace(phoneNumber) || phoneNumber == string.Empty;
-        }
+        public static bool IsNumberEmpty(string? phoneNumber) => string.IsNullOrWhiteSpace(phoneNumber) || phoneNumber == string.Empty;
 
         /// <summary>
         /// Is number valid
