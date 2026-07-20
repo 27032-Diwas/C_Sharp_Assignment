@@ -322,24 +322,24 @@ public class ConsoleOperations
             return;
         }
 
-        int property = this.GetContactProperty();
-        if (property == 5)
+        int selectedProperty = this.GetContactProperty();
+        if (selectedProperty == 5)
         {
-            return;
+            return; // Selected Exit option
         }
 
         bool isDataValid = false;
         while (!isDataValid)
         {
-            string? propertyValue = this.GetDetail(property);
+            string? propertyValue = this.GetDetail(selectedProperty);
             Console.Clear();
             if (propertyValue == "E")
             {
-                Console.WriteLine("Process Canceled");
+                Console.WriteLine("Process Canceled"); // Cancelled during edit
                 return;
             }
 
-            string message = this._manager.EditContact(guid, property, propertyValue);
+            string message = this._manager.EditContact(guid, selectedProperty, propertyValue);
             if (message != "Contact Edited Successfully")
             {
                 Console.WriteLine(message);
