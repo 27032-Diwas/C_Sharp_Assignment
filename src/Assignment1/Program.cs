@@ -1,25 +1,24 @@
-﻿using Assignment1.Helper;
-using Assignment1.Repository;
-using Assignment1.Services;
-using Assignment1.View;
+﻿using ContactManager.Helper;
+using ContactManager.Repository;
+using ContactManager.Services;
+using ContactManager.View;
 
-namespace Assignment1
+namespace ContactManager;
+
+/// <summary>
+/// Main class where program starts
+/// </summary>
+internal class Program
 {
     /// <summary>
-    /// Main class where program starts
+    /// Main Functions
     /// </summary>
-    internal class Program
+    public static void Main()
     {
-        /// <summary>
-        /// Main Functions
-        /// </summary>
-        public static void Main()
-        {
-            ContactRepository contactRepository = new ();
-            ContactManager contactManager = new ContactManager(contactRepository);
-            ConsoleInputs consoleInputs = new ConsoleInputs(contactManager);
+        ContactRepository contactRepository = new ();
+        ContactController contactController = new ContactController(contactRepository);
+        ConsoleOperations consoleOperations = new ConsoleOperations(contactController);
 
-            consoleInputs.MenuInfo();
-        }
+        consoleOperations.MenuInfo();
     }
 }
