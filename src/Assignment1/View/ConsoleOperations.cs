@@ -20,6 +20,35 @@ public class ConsoleOperations
     }
 
     /// <summary>
+    /// Display contact field with its data.
+    /// </summary>
+    /// <param name="contactInfo">
+    /// Contact that needs to be displays.
+    /// </param>
+    public static void DisplayDetails(ContactInfo contactInfo)
+    {
+        Console.WriteLine(" ");
+        Console.WriteLine("1. Name: " + contactInfo.Name);
+        Console.WriteLine("2. Phone Number: " + contactInfo.PhoneNumber);
+        Console.WriteLine("3. Email Address: " + contactInfo.Email);
+        Console.WriteLine("4. Notes: " + contactInfo.Notes);
+        Console.WriteLine(" ");
+    }
+
+    /// <summary>
+    /// Display property.
+    /// </summary>
+    public static void DisplayContactProperty()
+    {
+        Console.WriteLine("Choose field to edit: ");
+        Console.WriteLine("[1] - Name");
+        Console.WriteLine("[2] - Phone Number");
+        Console.WriteLine("[3] - Email address");
+        Console.WriteLine("[4] - Notes");
+        Console.WriteLine("[5] - Exit");
+    }
+
+    /// <summary>
     /// Displays Main Menu and redirect to selected method.
     /// </summary>
     public void MenuInfo()
@@ -88,7 +117,7 @@ public class ConsoleOperations
 
         foreach (ContactInfo contact in contacts)
         {
-            this.DisplayDetails(contact);
+            DisplayDetails(contact);
         }
     }
 
@@ -170,22 +199,6 @@ public class ConsoleOperations
     }
 
     /// <summary>
-    /// Display contact field with its data.
-    /// </summary>
-    /// <param name="contactInfo">
-    /// Contact that needs to be displays.
-    /// </param>
-    public void DisplayDetails(ContactInfo contactInfo)
-    {
-        Console.WriteLine(" ");
-        Console.WriteLine("1. Name: " + contactInfo.Name);
-        Console.WriteLine("2. Phone Number: " + contactInfo.PhoneNumber);
-        Console.WriteLine("3. Email Address: " + contactInfo.Email);
-        Console.WriteLine("4. Notes: " + contactInfo.Notes);
-        Console.WriteLine(" ");
-    }
-
-    /// <summary>
     /// Search contact.
     /// </summary>
     /// <returns> List of contact that match user input.</returns>
@@ -209,7 +222,7 @@ public class ConsoleOperations
 
         foreach (ContactInfo contact in searchResult)
         {
-            this.DisplayDetails(contact);
+            DisplayDetails(contact);
         }
 
         return searchResult;
@@ -228,19 +241,6 @@ public class ConsoleOperations
 
         this._manager.DeleteContact(id);
         Console.WriteLine("Contact Deleted Successfully");
-    }
-
-    /// <summary>
-    /// Display property.
-    /// </summary>
-    public void DisplayContactProperty()
-    {
-        Console.WriteLine("Choose field to edit: ");
-        Console.WriteLine("[1] - Name");
-        Console.WriteLine("[2] - Phone Number");
-        Console.WriteLine("[3] - Email address");
-        Console.WriteLine("[4] - Notes");
-        Console.WriteLine("[5] - Exit");
     }
 
     /// <summary>
@@ -290,7 +290,7 @@ public class ConsoleOperations
         int property = 0;
         while (!isOptionValid)
         {
-            this.DisplayContactProperty();
+            DisplayContactProperty();
             option = Console.ReadLine();
             if (option == "5")
             {
