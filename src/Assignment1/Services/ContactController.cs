@@ -114,8 +114,7 @@ public class ContactController
     /// <summary>
     /// Check if phone number exist or not.
     /// </summary>
-    /// <param name="phoneNumber"> P
-    /// hone number </param>
+    /// <param name="phoneNumber"> Phone number </param>
     /// <returns> true or false </returns>
     public bool IsNumberExist(string? phoneNumber)
     {
@@ -134,8 +133,8 @@ public class ContactController
     /// <summary>
     /// Validation of inputs
     /// </summary>
-    /// <param name="field"> property </param>
-    /// <param name="fieldValue"> value of the property </param>
+    /// <param name="field"> Property </param>
+    /// <param name="fieldValue"> Value of the property </param>
     /// <returns> Error message </returns>
     public string CheckValidation(int field, string? fieldValue)
     {
