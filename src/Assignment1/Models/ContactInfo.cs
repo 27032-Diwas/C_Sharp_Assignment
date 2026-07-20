@@ -6,10 +6,10 @@
     public class ContactInfo
     {
         /// <summary>
-        /// Gets or sets guid
+        /// Gets or init guid
         /// </summary>
         /// <value> id for data</value>
-        public Guid Id { get; set; }
+        public Guid Id { get; init; }
 
         /// <summary>
         /// Gets or sets name

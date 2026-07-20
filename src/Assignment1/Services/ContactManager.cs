@@ -30,14 +30,24 @@ namespace Assignment1.Services
         }
 
         /// <summary>
-        /// Add contact.
+        /// Add contact
         /// </summary>
-        /// <param name="contactInfo"> Object - contact </param>
-        /// <returns> Contact </returns>
-        public string AddContact(ContactInfo contactInfo)
+        /// <param name="name"> Name of contact</param>
+        /// <param name="phoneNumber"> Phone number of contact </param>
+        /// <param name="email"> Email of contact </param>
+        /// <param name="notes"> Notes of contact </param>
+        /// <returns> Successful message </returns>
+        public string AddContact(string? name, string? phoneNumber, string? email, string? notes)
         {
-            contactInfo.Id = Guid.NewGuid();
-            this._contactRepository.AddContact(contactInfo);
+            ContactInfo contact = new ()
+            {
+                Id = Guid.NewGuid(),
+            };
+            contact.Name = name;
+            contact.PhoneNumber = phoneNumber;
+            contact.Email = email;
+            contact.Notes = notes;
+            this._contactRepository.AddContact(contact);
             return "Contact Added Successfully";
         }
 
@@ -122,6 +132,10 @@ namespace Assignment1.Services
             else if (field == 3 && !Validation.IsEmail(fieldValue))
             {
                 return "Enter a valid Email";
+            }
+            else if (field == 4 && !Validation.IsNotes(fieldValue))
+            {
+                return "Notes should be less than 50 words";
             }
 
             return null;

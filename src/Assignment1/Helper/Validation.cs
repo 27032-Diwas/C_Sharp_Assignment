@@ -10,7 +10,7 @@
         /// </summary>
         /// <param name="name"> object </param>
         /// <returns> isCorrect</returns>
-        public static bool IsNameEmpty(string? name) => string.IsNullOrWhiteSpace(name) || name == "Error Found" || name == string.Empty;
+        public static bool IsNameEmpty(string? name) => string.IsNullOrWhiteSpace(name) || name == string.Empty;
 
         /// <summary>
         /// Is number empty
@@ -51,6 +51,25 @@
             }
 
             return email.Contains('@') && email.Contains('.');
+        }
+
+        /// <summary>
+        /// Check for notes length
+        /// </summary>
+        /// <param name="notes"> Notes </param>
+        /// <returns> true or false</returns>
+        public static bool IsNotes(string? notes)
+        {
+            if (notes == string.Empty)
+            {
+                return true;
+            }
+            else if (notes == null)
+            {
+                return false;
+            }
+
+            return notes.Length < 50;
         }
     }
 }

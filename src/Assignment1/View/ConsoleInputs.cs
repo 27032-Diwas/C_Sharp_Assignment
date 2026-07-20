@@ -94,57 +94,53 @@ namespace Assignment1.View
         }
 
         /// <summary>
+        /// Get input till the value is correct
+        /// </summary>
+        /// <param name="propertyId"> position of property in object </param>
+        /// <returns> input value </returns>
+        public string? GetInput(int propertyId)
+        {
+            string? input, message;
+            List<string> property = new ()
+            {
+                "Name",
+                "Phone Number",
+                "Email",
+                "Notes",
+            };
+            do
+            {
+                Console.WriteLine($"Enter contact {property[propertyId - 1]}: ");
+                input = Console.ReadLine();
+                message = this._manager.CheckValidation(propertyId, input);
+                Console.Clear();
+                Console.WriteLine(message);
+            }
+            while (message != null);
+            return input;
+        }
+
+        /// <summary>
         /// Add Contact method.
         /// </summary>
         public void AddContact()
         {
             // object
             ContactInfo contactInfo = new ();
-            string? name, phoneNumber, email, message;
-            do
-            {
-                Console.WriteLine("Enter Contact Name: ");
-                name = Console.ReadLine();
-                message = this._manager.CheckValidation(1, name);
-                Console.Clear();
-                Console.WriteLine(message);
-            }
-            while (message != null);
-
-            contactInfo.Name = name;
-            do
-            {
-                Console.WriteLine("Enter Contact Phone Number: ");
-                phoneNumber = Console.ReadLine();
-                message = this._manager.CheckValidation(2, phoneNumber);
-                Console.Clear();
-                Console.WriteLine(message);
-            }
-            while (message != null);
-
-            contactInfo.PhoneNumber = phoneNumber;
-            do
-            {
-                Console.WriteLine("Enter Contact Email: ");
-                email = Console.ReadLine();
-                message = this._manager.CheckValidation(3, email);
-                Console.Clear();
-                Console.WriteLine(message);
-            }
-            while (message != null);
-            contactInfo.Email = email;
-            Console.WriteLine("Enter contact Notes: ");
-            contactInfo.Notes = Console.ReadLine();
+            string? name, phoneNumber, email, message, notes;
+            name = this.GetInput(1);
+            phoneNumber = this.GetInput(2);
+            email = this.GetInput(3);
+            notes = this.GetInput(4);
 
             Console.Clear();
-            message = this._manager.AddContact(contactInfo);
+            message = this._manager.AddContact(name, phoneNumber, email, notes);
             if (message != "Contact Added Successfully")
             {
                 Console.WriteLine(message);
                 return;
             }
 
-            this.DisplayDetails(contactInfo);
             Console.WriteLine(message);
         }
 
@@ -222,33 +218,6 @@ namespace Assignment1.View
         }
 
         /// <summary>
-        /// To get the property that need to be edited.
-        /// </summary>
-        /// <returns> The Property</returns>
-        public int GetProperty()
-        {
-            string? option;
-            bool isOptionValid = false;
-            int property = 0;
-            while (!isOptionValid)
-            {
-                this.DisplayProperty();
-                option = Console.ReadLine();
-                if (option != "1" && option != "2" && option != "3" && option != "4")
-                {
-                    Console.WriteLine("Enter a Valid Option!!!");
-                    continue;
-                }
-
-                property = int.Parse(option);
-
-                isOptionValid = true;
-            }
-
-            return property;
-        }
-
-        /// <summary>
         /// Guid of the selected contact
         /// </summary>
         /// <returns> Guid </returns>
@@ -285,24 +254,30 @@ namespace Assignment1.View
         }
 
         /// <summary>
-        /// Get property value
+        /// To get the property that need to be edited.
         /// </summary>
-        /// <param name="property"> Property </param>
-        /// <returns> Property value </returns>
-        public string? GetPropertyValue(int property)
+        /// <returns> The Property</returns>
+        public int GetProperty()
         {
-            string? propertyValue, message;
-            do
+            string? option;
+            bool isOptionValid = false;
+            int property = 0;
+            while (!isOptionValid)
             {
-                Console.WriteLine("Enter New Detail: ");
-                propertyValue = Console.ReadLine();
-                message = this._manager.CheckValidation(property, propertyValue);
-                Console.Clear();
-                Console.WriteLine(message);
-            }
-            while (message != null);
+                this.DisplayProperty();
+                option = Console.ReadLine();
+                if (option != "1" && option != "2" && option != "3" && option != "4")
+                {
+                    Console.WriteLine("Enter a Valid Option!!!");
+                    continue;
+                }
 
-            return propertyValue;
+                property = int.Parse(option);
+
+                isOptionValid = true;
+            }
+
+            return property;
         }
 
         /// <summary>
@@ -321,7 +296,7 @@ namespace Assignment1.View
             bool isDataValid = false;
             while (!isDataValid)
             {
-                string? propertyValue = this.GetPropertyValue(property);
+                string? propertyValue = this.GetInput(property);
 
                 Console.Clear();
 

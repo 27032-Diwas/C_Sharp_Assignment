@@ -114,8 +114,10 @@ namespace Assignment1.Repository
             List<ContactInfo> contactsCopy = new ();
             foreach (ContactInfo contact in contacts)
             {
-                ContactInfo contactCopy = new ();
-                contactCopy.Id = contact.Id;
+                ContactInfo contactCopy = new ()
+                {
+                    Id = contact.Id,
+                };
                 contactCopy.Name = contact.Name;
                 contactCopy.PhoneNumber = contact.PhoneNumber;
                 contactCopy.Email = contact.Email;
