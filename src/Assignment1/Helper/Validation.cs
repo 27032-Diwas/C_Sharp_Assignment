@@ -36,7 +36,7 @@ public class Validation
             return false;
         }
 
-        return Regex.IsMatch(phone,PhoneRegex);
+        return Regex.IsMatch(phone, PhoneRegex);
     }
 
     /// <summary>

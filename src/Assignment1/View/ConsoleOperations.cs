@@ -116,6 +116,7 @@ public class ConsoleOperations
         if (contacts.Count == 0)
         {
             Console.WriteLine(RepeatedStrings.NoContactExits);
+            return;
         }
 
         DisplayDetails(contacts);

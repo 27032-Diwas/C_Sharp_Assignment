@@ -28,7 +28,7 @@ public static class RepeatedStrings
     public static readonly string DoYouWantToDelete = "Do you want to delete(y/n):";
 
     /// <summary>
-    /// Validation is successful 
+    /// Validation is successful
     /// </summary>
     public static readonly string ValidationIsSuccessful = "Validation is successful";
 
@@ -136,7 +136,6 @@ public static class RepeatedStrings
     /// Choose field to edit.
     /// </summary>
     public static readonly string ChooseFieldToEdit = "Choose field to edit:";
-
 
     /// <summary>
     /// Select one of the below options.
