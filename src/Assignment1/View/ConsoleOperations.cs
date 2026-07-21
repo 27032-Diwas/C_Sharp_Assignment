@@ -112,7 +112,7 @@ public class ConsoleOperations
     /// </summary>
     public void ViewContact()
     {
-        List<ContactInfo> contacts = this._manager.ViewContact();
+        List<ContactInfo> contacts = this._manager.ViewContactController();
         if (contacts.Count == 0)
         {
             Console.WriteLine(RepeatedStrings.NoContactExits);
@@ -194,7 +194,7 @@ public class ConsoleOperations
         }
 
         Console.Clear();
-        Console.WriteLine(this._manager.AddContact(name, phoneNumber, email, notes));
+        Console.WriteLine(this._manager.AddContactController(name, phoneNumber, email, notes));
     }
 
     /// <summary>
@@ -203,7 +203,7 @@ public class ConsoleOperations
     /// <returns> List of contact that match user input.</returns>
     public List<ContactInfo>? SearchContact()
     {
-        if (this._manager.ViewContact().Count == 0)
+        if (this._manager.ViewContactController().Count == 0)
         {
             Console.WriteLine(RepeatedStrings.NoContactExits);
             return null;
@@ -217,7 +217,7 @@ public class ConsoleOperations
             return null;
         }
 
-        List<ContactInfo> searchResult = this._manager.SearchContact(searchWord);
+        List<ContactInfo> searchResult = this._manager.SearchContactController(searchWord);
         if (searchResult.Count == 0)
         {
             Console.Clear();
@@ -245,7 +245,7 @@ public class ConsoleOperations
         string? choice = Console.ReadLine();
         if (choice == "y" || choice == "Y")
         {
-            this._manager.DeleteContact(id);
+            this._manager.DeleteContactController(id);
             Console.WriteLine($"{RepeatedStrings.Contact} {RepeatedStrings.Deleted} {RepeatedStrings.Successfully}");
             return;
         }
@@ -350,7 +350,7 @@ public class ConsoleOperations
                 return;
             }
 
-            string message = this._manager.EditContact(guid, selectedProperty, propertyValue);
+            string message = this._manager.EditContactController(guid, selectedProperty, propertyValue);
             if (message != $"{RepeatedStrings.Contact} {RepeatedStrings.Edited} {RepeatedStrings.Successfully}")
             {
                 Console.WriteLine(message);

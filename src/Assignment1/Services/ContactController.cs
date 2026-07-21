@@ -25,7 +25,7 @@ public class ContactController
     /// View Contacts.
     /// </summary>
     /// <returns> Return the list of contacts </returns>
-    public List<ContactInfo> ViewContact()
+    public List<ContactInfo> ViewContactController()
     {
         return this._contactRepository.ViewContact();
     }
@@ -38,7 +38,7 @@ public class ContactController
     /// <param name="email"> Email of contact </param>
     /// <param name="notes"> Notes of contact </param>
     /// <returns> Successful message </returns>
-    public string AddContact(string? name, string? phoneNumber, string? email, string? notes)
+    public string AddContactController(string? name, string? phoneNumber, string? email, string? notes)
     {
         string message;
         ContactInfo contact = new ()
@@ -82,7 +82,7 @@ public class ContactController
     /// </summary>
     /// <param name="searchWord"> Word to be searched. </param>
     /// <returns> List of contact that macheres the user input. </returns>
-    public List<ContactInfo> SearchContact(string? searchWord) => this._contactRepository.SearchContact(searchWord);
+    public List<ContactInfo> SearchContactController(string? searchWord) => this._contactRepository.SearchContact(searchWord);
 
     /// <summary>
     /// Edit Contact
@@ -91,7 +91,7 @@ public class ContactController
     /// <param name="field"> Field </param>
     /// <param name="fieldValue"> Value to update </param>
     /// <returns> Contact </returns>
-    public string EditContact(Guid? id, int field, string? fieldValue)
+    public string EditContactController(Guid? id, int field, string? fieldValue)
     {
         string message = this.CheckValidation(field, fieldValue);
         if (message != "Validation is successful")
@@ -107,7 +107,7 @@ public class ContactController
     /// Delete Contact.
     /// </summary>
     /// <param name="id"> Guid </param>
-    public void DeleteContact(Guid? id)
+    public void DeleteContactController(Guid? id)
     {
         this._contactRepository.DeleteContact(id);
     }
@@ -119,7 +119,7 @@ public class ContactController
     /// <returns> true or false </returns>
     public bool IsNumberExist(string? phoneNumber)
     {
-        List<ContactInfo> contacts = this.ViewContact();
+        List<ContactInfo> contacts = this.ViewContactController();
         foreach (ContactInfo contact in contacts)
         {
             if (contact.PhoneNumber == phoneNumber)

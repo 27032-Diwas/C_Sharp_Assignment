@@ -3,7 +3,7 @@
 namespace ContactManager.Repository;
 
 /// <summary>
-/// Deals with all the data
+/// Contains all the methods that work with contact list.
 /// </summary>
 public class ContactRepository
 {
@@ -48,7 +48,7 @@ public class ContactRepository
     }
 
     /// <summary>
-    /// Delete the contact
+    /// Delete contact
     /// </summary>
     /// <param name="id">
     /// word to be deleted

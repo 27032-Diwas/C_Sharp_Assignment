@@ -1,7 +1,7 @@
 ﻿namespace ContactManager.Models;
 
 /// <summary>
-/// contact info
+/// Contains contact's properties.
 /// </summary>
 public class ContactInfo
 {

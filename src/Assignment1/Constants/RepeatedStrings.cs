@@ -3,7 +3,7 @@
 namespace ContactManager.Constants;
 
 /// <summary>
-/// Contains strins that are repeatedly used.
+/// Contains strings that are repeatedly used.
 /// </summary>
 public static class RepeatedStrings
 {

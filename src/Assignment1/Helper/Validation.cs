@@ -3,7 +3,7 @@
 namespace ContactManager.Helper;
 
 /// <summary>
-/// Validating all data
+/// Contains validation methods and returns true or flase
 /// </summary>
 public class Validation
 {
@@ -11,21 +11,21 @@ public class Validation
     private static readonly string PhoneRegex = @"^\d{10}$";
 
     /// <summary>
-    /// Is name empty
+    /// Check wheather name is empty or not.
     /// </summary>
     /// <param name="name"> object </param>
-    /// <returns> isCorrect</returns>
+    /// <returns> true or false </returns>
     public static bool IsNameEmpty(string? name) => string.IsNullOrWhiteSpace(name) || name == string.Empty;
 
     /// <summary>
-    /// Is number empty
+    /// Check wheather number is empty or not.
     /// </summary>
     /// <param name="phoneNumber"> number </param>
     /// <returns> true or false </returns>
     public static bool IsNumberEmpty(string? phoneNumber) => string.IsNullOrWhiteSpace(phoneNumber) || phoneNumber == string.Empty;
 
     /// <summary>
-    /// Is number valid
+    /// Check wheather number is valid or not.
     /// </summary>
     /// <param name="phone"> number </param>
     /// <returns> true of false </returns>
@@ -40,7 +40,7 @@ public class Validation
     }
 
     /// <summary>
-    /// Is email valide
+    /// Check for valid email.
     /// </summary>
     /// <param name="email"> email </param>
     /// <returns> true or false </returns>
@@ -59,7 +59,7 @@ public class Validation
     }
 
     /// <summary>
-    /// Check for notes length
+    /// Check for notes length.
     /// </summary>
     /// <param name="notes"> Notes </param>
     /// <returns> true or false</returns>
