@@ -143,6 +143,7 @@ public class ConsoleOperations
             input = Console.ReadLine();
             if (input == "E")
             {
+                Console.WriteLine(RepeatedStrings.ProcessCancelled);
                 return "E";
             }
 
@@ -169,28 +170,24 @@ public class ConsoleOperations
         name = this.GetDetail(1);
         if (name == "E")
         {
-            Console.WriteLine(RepeatedStrings.ProcessCancelled);
             return;
         }
 
         phoneNumber = this.GetDetail(2);
         if (phoneNumber == "E")
         {
-            Console.WriteLine(RepeatedStrings.ProcessCancelled);
             return;
         }
 
         email = this.GetDetail(3);
         if (email == "E")
         {
-            Console.WriteLine(RepeatedStrings.ProcessCancelled);
             return;
         }
 
         notes = this.GetDetail(4);
         if (notes == "E")
         {
-            Console.WriteLine(RepeatedStrings.ProcessCancelled);
             return;
         }
 
@@ -347,7 +344,6 @@ public class ConsoleOperations
             Console.Clear();
             if (propertyValue == "E")
             {
-                Console.WriteLine(RepeatedStrings.ProcessCancelled); // Cancelled during edit
                 return;
             }
 
