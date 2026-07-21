@@ -146,7 +146,6 @@ public class ConsoleOperations
             }
 
             message = this._manager.CheckValidation(contactField, input);
-            Console.Clear();
             if (message == "Validation is successful")
             {
                 break;

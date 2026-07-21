@@ -35,7 +35,10 @@ public class ContactRepository
         List<ContactInfo> searchMatch = new ();
         foreach (ContactInfo contact in this._contacts)
         {
-            if ((searchWord != null && contact.Name != null && contact.PhoneNumber != null && contact.Email != null) && (contact.Name.ToLower().Contains(searchWord.ToLower()) || contact.PhoneNumber.ToLower().Contains(searchWord.ToLower()) || contact.Email.ToLower().Contains(searchWord.ToLower())))
+            if ((searchWord != null && contact.Name != null && contact.PhoneNumber != null && contact.Email != null) &&
+                (contact.Name.ToLower().Contains(searchWord.ToLower())
+                || contact.PhoneNumber.ToLower().Contains(searchWord.ToLower())
+                || contact.Email.ToLower().Contains(searchWord.ToLower())))
             {
                 searchMatch.Add(contact);
             }
