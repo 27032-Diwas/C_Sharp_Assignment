@@ -1,4 +1,5 @@
-﻿using ContactManager.Helper;
+﻿using ContactManager.Constants;
+using ContactManager.Helper;
 using ContactManager.Models;
 using ContactManager.Repository;
 
@@ -140,29 +141,29 @@ public class ContactController
     {
         if (field == 1 && Validation.IsNameEmpty(fieldValue))
         {
-            return "Name is Required";
+            return $"{RepeatedStrings.Name} {RepeatedStrings.IsRequired}";
         }
         else if (field == 2 && Validation.IsNumberEmpty(fieldValue))
         {
-            return "Phone Number is Required";
+            return $"{RepeatedStrings.PhoneNumber} {RepeatedStrings.IsRequired}";
         }
         else if (field == 2 && !Validation.IsNumber(fieldValue))
         {
-            return "Phone Number should be 10 digit number";
+            return $"{RepeatedStrings.PhoneNumber} should be valid";
         }
         else if (field == 2 && this.IsNumberExist(fieldValue))
         {
-            return "Phone Number Already Exist";
+            return $"{RepeatedStrings.PhoneNumber} Already Exist";
         }
         else if (field == 3 && !Validation.IsEmail(fieldValue))
         {
-            return "Enter a valid Email";
+            return $"{RepeatedStrings.Enter} a valid {RepeatedStrings.Email}";
         }
         else if (field == 4 && !Validation.IsNotes(fieldValue))
         {
-            return "Notes should be less than 50 words";
+            return $"{RepeatedStrings.Notes} should be less than 50 words";
         }
 
-        return "Validation is successful";
+        return RepeatedStrings.ValidationIsSuccessful;
     }
 }

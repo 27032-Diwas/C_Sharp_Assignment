@@ -1,10 +1,15 @@
-﻿namespace ContactManager.Helper;
+﻿using System.Text.RegularExpressions;
+
+namespace ContactManager.Helper;
 
 /// <summary>
 /// Validating all data
 /// </summary>
 public class Validation
 {
+    private static readonly Regex EmailRegex = new (@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+    private static readonly string PhoneRegex = @"^\d{10}$";
+
     /// <summary>
     /// Is name empty
     /// </summary>
@@ -31,7 +36,7 @@ public class Validation
             return false;
         }
 
-        return phone.Length == 10 && phone.All(char.IsDigit);
+        return Regex.IsMatch(phone,PhoneRegex);
     }
 
     /// <summary>
@@ -50,7 +55,7 @@ public class Validation
             return false;
         }
 
-        return email.Contains('@') && email.Contains('.');
+        return EmailRegex.IsMatch(email);
     }
 
     /// <summary>

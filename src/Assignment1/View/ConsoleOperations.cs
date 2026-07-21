@@ -1,4 +1,6 @@
-﻿using ContactManager.Models;
+﻿using ConsoleTables;
+using ContactManager.Constants;
+using ContactManager.Models;
 using ContactManager.Services;
 
 namespace ContactManager.View;
@@ -22,17 +24,19 @@ public class ConsoleOperations
     /// <summary>
     /// Display contact field with its data.
     /// </summary>
-    /// <param name="contactInfo">
+    /// <param name="contacts">
     /// Contact that needs to be displays.
     /// </param>
-    public static void DisplayDetails(ContactInfo contactInfo)
+    public static void DisplayDetails(List<ContactInfo> contacts)
     {
-        Console.WriteLine(" ");
-        Console.WriteLine("1. Name: " + contactInfo.Name);
-        Console.WriteLine("2. Phone Number: " + contactInfo.PhoneNumber);
-        Console.WriteLine("3. Email Address: " + contactInfo.Email);
-        Console.WriteLine("4. Notes: " + contactInfo.Notes);
-        Console.WriteLine(" ");
+        ConsoleTable contactTable = new ConsoleTable("S.No", RepeatedStrings.Name, RepeatedStrings.PhoneNumber, RepeatedStrings.Email, RepeatedStrings.Notes);
+        int i = 1;
+        foreach (ContactInfo contact in contacts)
+        {
+            contactTable.AddRow(i++, contact.Name, contact.PhoneNumber, contact.Email, contact.Notes);
+        }
+
+        contactTable.Write();
     }
 
     /// <summary>
@@ -40,12 +44,12 @@ public class ConsoleOperations
     /// </summary>
     public static void DisplayContactProperty()
     {
-        Console.WriteLine("Choose field to edit: ");
-        Console.WriteLine("[1] - Name");
-        Console.WriteLine("[2] - Phone Number");
-        Console.WriteLine("[3] - Email address");
-        Console.WriteLine("[4] - Notes");
-        Console.WriteLine("[5] - Exit");
+        Console.WriteLine(RepeatedStrings.ChooseFieldToEdit);
+        Console.WriteLine($"[1] - {RepeatedStrings.Name}");
+        Console.WriteLine($"[2] - {RepeatedStrings.PhoneNumber}");
+        Console.WriteLine($"[3] - {RepeatedStrings.Email}");
+        Console.WriteLine($"[4] - {RepeatedStrings.Notes}");
+        Console.WriteLine($"[5] - {RepeatedStrings.Exit}");
     }
 
     /// <summary>
@@ -57,13 +61,13 @@ public class ConsoleOperations
         do
         {
             Console.WriteLine(" ");
-            Console.WriteLine("Select one of the below options: ");
-            Console.WriteLine("[1] - View contacts");
-            Console.WriteLine("[2] - Add new contact");
-            Console.WriteLine("[3] - Search contact");
-            Console.WriteLine("[4] - Edit contact");
-            Console.WriteLine("[5] - Delete contact");
-            Console.WriteLine("[6] - Quit");
+            Console.WriteLine(RepeatedStrings.SelectOneOfTheBelowOptions);
+            Console.WriteLine($"[1] - {RepeatedStrings.View} {RepeatedStrings.Contact}");
+            Console.WriteLine($"[2] - {RepeatedStrings.Add} {RepeatedStrings.Contact}");
+            Console.WriteLine($"[3] - {RepeatedStrings.Search} {RepeatedStrings.Contact}");
+            Console.WriteLine($"[4] - {RepeatedStrings.Edit} {RepeatedStrings.Contact}");
+            Console.WriteLine($"[5] - {RepeatedStrings.Delete} {RepeatedStrings.Contact}");
+            Console.WriteLine($"[6] - {RepeatedStrings.Exit}");
             Console.WriteLine(" ");
 
             option = Console.ReadLine();
@@ -72,31 +76,31 @@ public class ConsoleOperations
             switch (option)
             {
                 case "1":
-                    Console.WriteLine("View Contacts\n");
+                    Console.WriteLine($"{RepeatedStrings.View} {RepeatedStrings.Contact}\n");
                     this.ViewContact();
                     break;
                 case "2":
-                    Console.WriteLine("Add Contact\n");
+                    Console.WriteLine($"{RepeatedStrings.Add} {RepeatedStrings.Contact}\n");
                     this.AddContact();
                     break;
                 case "3":
-                    Console.WriteLine("Search Contact\n");
+                    Console.WriteLine($"{RepeatedStrings.Search} {RepeatedStrings.Contact}\n");
                     this.SearchContact();
                     break;
                 case "4":
-                    Console.WriteLine("Edit Contact\n");
+                    Console.WriteLine($"{RepeatedStrings.Edit} {RepeatedStrings.Contact}\n");
                     this.EditContact();
                     break;
                 case "5":
-                    Console.WriteLine("Delete Contact\n");
+                    Console.WriteLine($"{RepeatedStrings.Delete} {RepeatedStrings.Contact}\n");
                     this.DeleteContact();
                     break;
                 case "6":
-                    Console.WriteLine("End Process\n");
+                    Console.WriteLine(RepeatedStrings.EndProcess);
                     return;
                 default:
                     Console.Clear();
-                    Console.WriteLine("Please Enter a Valid Option");
+                    Console.WriteLine(RepeatedStrings.EnterAValidOption);
                     break;
             }
         }
@@ -111,14 +115,10 @@ public class ConsoleOperations
         List<ContactInfo> contacts = this._manager.ViewContact();
         if (contacts.Count == 0)
         {
-            Console.WriteLine("No Contact Found");
-            return;
+            Console.WriteLine(RepeatedStrings.NoContactExits);
         }
 
-        foreach (ContactInfo contact in contacts)
-        {
-            DisplayDetails(contact);
-        }
+        DisplayDetails(contacts);
     }
 
     /// <summary>
@@ -131,14 +131,14 @@ public class ConsoleOperations
         string? input, message;
         List<string> contactFields = new ()
         {
-            "Name",
-            "Phone Number",
-            "Email",
-            "Notes",
+            RepeatedStrings.Name,
+            RepeatedStrings.PhoneNumber,
+            RepeatedStrings.Email,
+            RepeatedStrings.Notes,
         };
         do
         {
-            Console.WriteLine($"Enter contact {contactFields[contactField - 1]} or E to Exit: ");
+            Console.WriteLine($"{RepeatedStrings.Enter} {RepeatedStrings.Contact} {contactFields[contactField - 1]} or E to {RepeatedStrings.Exit}: ");
             input = Console.ReadLine();
             if (input == "E")
             {
@@ -146,7 +146,7 @@ public class ConsoleOperations
             }
 
             message = this._manager.CheckValidation(contactField, input);
-            if (message == "Validation is successful")
+            if (message == RepeatedStrings.ValidationIsSuccessful)
             {
                 break;
             }
@@ -168,28 +168,28 @@ public class ConsoleOperations
         name = this.GetDetail(1);
         if (name == "E")
         {
-            Console.WriteLine("Process Canceled");
+            Console.WriteLine(RepeatedStrings.ProcessCancelled);
             return;
         }
 
         phoneNumber = this.GetDetail(2);
         if (phoneNumber == "E")
         {
-            Console.WriteLine("Process Canceled");
+            Console.WriteLine(RepeatedStrings.ProcessCancelled);
             return;
         }
 
         email = this.GetDetail(3);
         if (email == "E")
         {
-            Console.WriteLine("Process Canceled");
+            Console.WriteLine(RepeatedStrings.ProcessCancelled);
             return;
         }
 
         notes = this.GetDetail(4);
         if (notes == "E")
         {
-            Console.WriteLine("Process Canceled");
+            Console.WriteLine(RepeatedStrings.ProcessCancelled);
             return;
         }
 
@@ -203,11 +203,17 @@ public class ConsoleOperations
     /// <returns> List of contact that match user input.</returns>
     public List<ContactInfo>? SearchContact()
     {
-        Console.WriteLine("Enter Name or PhoneNumber or Email: ");
+        if (this._manager.ViewContact().Count == 0)
+        {
+            Console.WriteLine(RepeatedStrings.NoContactExits);
+            return null;
+        }
+
+        Console.WriteLine($"{RepeatedStrings.Enter} {RepeatedStrings.Name} or {RepeatedStrings.PhoneNumber} or {RepeatedStrings.Email}: ");
         string? searchWord = Console.ReadLine();
         if (searchWord == string.Empty)
         {
-            Console.WriteLine("No value entered!!");
+            Console.WriteLine(RepeatedStrings.NoValueEntered);
             return null;
         }
 
@@ -215,14 +221,11 @@ public class ConsoleOperations
         if (searchResult.Count == 0)
         {
             Console.Clear();
-            Console.WriteLine("No Match Found!!!");
+            Console.WriteLine(RepeatedStrings.NoMatchFound);
             return null;
         }
 
-        foreach (ContactInfo contact in searchResult)
-        {
-            DisplayDetails(contact);
-        }
+        DisplayDetails(searchResult);
 
         return searchResult;
     }
@@ -238,8 +241,17 @@ public class ConsoleOperations
             return;
         }
 
-        this._manager.DeleteContact(id);
-        Console.WriteLine("Contact Deleted Successfully");
+        Console.WriteLine(RepeatedStrings.DoYouWantToDelete);
+        string? choice = Console.ReadLine();
+        if (choice == "y" || choice == "Y")
+        {
+            this._manager.DeleteContact(id);
+            Console.WriteLine($"{RepeatedStrings.Contact} {RepeatedStrings.Deleted} {RepeatedStrings.Successfully}");
+            return;
+        }
+
+        Console.Clear();
+        Console.WriteLine(RepeatedStrings.ProcessCancelled);
     }
 
     /// <summary>
@@ -265,7 +277,7 @@ public class ConsoleOperations
             string? choice = Console.ReadLine();
             if (choice == string.Empty)
             {
-                Console.WriteLine("Enter a valid option !!");
+                Console.WriteLine(RepeatedStrings.EnterAValidOption);
                 continue;
             }
             else if (choice != null && choice.All(char.IsDigit))
@@ -298,7 +310,7 @@ public class ConsoleOperations
 
             if (option != "1" && option != "2" && option != "3" && option != "4")
             {
-                Console.WriteLine("Enter a Valid Option!!!");
+                Console.WriteLine(RepeatedStrings.EnterAValidOption);
                 continue;
             }
 
@@ -334,19 +346,19 @@ public class ConsoleOperations
             Console.Clear();
             if (propertyValue == "E")
             {
-                Console.WriteLine("Process Canceled"); // Cancelled during edit
+                Console.WriteLine(RepeatedStrings.ProcessCancelled); // Cancelled during edit
                 return;
             }
 
             string message = this._manager.EditContact(guid, selectedProperty, propertyValue);
-            if (message != "Contact Edited Successfully")
+            if (message != $"{RepeatedStrings.Contact} {RepeatedStrings.Edited} {RepeatedStrings.Successfully}")
             {
                 Console.WriteLine(message);
                 continue;
             }
 
             isDataValid = true;
-            Console.WriteLine("Contact Edited Successfully");
+            Console.WriteLine($"{RepeatedStrings.Contact} {RepeatedStrings.Edited} {RepeatedStrings.Successfully}");
         }
     }
 }
