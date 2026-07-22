@@ -22,6 +22,17 @@ public class ConsoleOperations
     }
 
     /// <summary>
+    /// Enum for main menu
+    /// </summary>
+    public enum MenuOptions
+    {
+        /// <summary>
+        /// Exit the process.
+        /// </summary>
+        Exit,
+    }
+
+    /// <summary>
     /// Display contact field with its data.
     /// </summary>
     /// <param name="contacts">
@@ -112,8 +123,8 @@ public class ConsoleOperations
     /// </summary>
     public void ViewContact()
     {
-        List<ContactInfo> contacts = this._manager.ViewContactController();
-        if (contacts.Count == 0)
+        List<ContactInfo> contacts = this._manager.ViewContact();
+        if (!contacts.Any())
         {
             Console.WriteLine(RepeatedStrings.NoContactExits);
             return;
@@ -123,9 +134,9 @@ public class ConsoleOperations
     }
 
     /// <summary>
-    /// Get input till the value is correct
+    /// Get input till the value is correct.
     /// </summary>
-    /// <param name="contactField"> position of property in object </param>
+    /// <param name="contactField"> position of property in object. </param>
     /// <returns> input value </returns>
     public string? GetDetail(int contactField)
     {
@@ -144,7 +155,7 @@ public class ConsoleOperations
             if (input == "E")
             {
                 Console.WriteLine(RepeatedStrings.ProcessCancelled);
-                return "E";
+                return $"{MenuOptions.Exit}";
             }
 
             message = this._manager.CheckValidation(contactField, input);
@@ -168,31 +179,31 @@ public class ConsoleOperations
         ContactInfo contactInfo = new ();
         string? name, phoneNumber, email, notes;
         name = this.GetDetail(1);
-        if (name == "E")
+        if (name == $"{MenuOptions.Exit}")
         {
             return;
         }
 
         phoneNumber = this.GetDetail(2);
-        if (phoneNumber == "E")
+        if (phoneNumber == $"{MenuOptions.Exit}")
         {
             return;
         }
 
         email = this.GetDetail(3);
-        if (email == "E")
+        if (email == $"{MenuOptions.Exit}")
         {
             return;
         }
 
         notes = this.GetDetail(4);
-        if (notes == "E")
+        if (notes == $"{MenuOptions.Exit}")
         {
             return;
         }
 
         Console.Clear();
-        Console.WriteLine(this._manager.AddContactController(name, phoneNumber, email, notes));
+        Console.WriteLine(this._manager.AddContact(name, phoneNumber, email, notes));
     }
 
     /// <summary>
@@ -201,7 +212,7 @@ public class ConsoleOperations
     /// <returns> List of contact that match user input.</returns>
     public List<ContactInfo>? SearchContact()
     {
-        if (this._manager.ViewContactController().Count == 0)
+        if (!this._manager.ViewContact().Any())
         {
             Console.WriteLine(RepeatedStrings.NoContactExits);
             return null;
@@ -215,7 +226,7 @@ public class ConsoleOperations
             return null;
         }
 
-        List<ContactInfo> searchResult = this._manager.SearchContactController(searchWord);
+        List<ContactInfo> searchResult = this._manager.SearchContact(searchWord);
         if (searchResult.Count == 0)
         {
             Console.Clear();
@@ -243,7 +254,7 @@ public class ConsoleOperations
         string? choice = Console.ReadLine();
         if (choice == "y" || choice == "Y")
         {
-            this._manager.DeleteContactController(id);
+            this._manager.DeleteContact(id);
             Console.WriteLine($"{RepeatedStrings.Contact} {RepeatedStrings.Deleted} {RepeatedStrings.Successfully}");
             return;
         }
@@ -260,13 +271,17 @@ public class ConsoleOperations
     {
         List<ContactInfo>? searchResults = this.SearchContact();
         int selectedContactNumber = 1;
-        if (searchResults == null)
+        switch (searchResults)
         {
-            return null;
-        }
-        else if (searchResults.Count == 1)
-        {
-            return searchResults[0].Id;
+            case null:
+                return null;
+            default:
+                if (searchResults.Count == 1)
+                {
+                    return searchResults[0].Id;
+                }
+
+                break;
         }
 
         do
@@ -291,7 +306,7 @@ public class ConsoleOperations
     /// <summary>
     /// To get the property that need to be edited.
     /// </summary>
-    /// <returns> The Property</returns>
+    /// <returns> Contact field. </returns>
     public int GetContactProperty()
     {
         string? option;
@@ -321,7 +336,7 @@ public class ConsoleOperations
     }
 
     /// <summary>
-    /// Edit contact
+    /// Edit contact.
     /// </summary>
     public void EditContact()
     {
@@ -334,7 +349,7 @@ public class ConsoleOperations
         int selectedProperty = this.GetContactProperty();
         if (selectedProperty == 5)
         {
-            return; // Selected Exit option
+            return; // Selected Exit option.
         }
 
         bool isDataValid = false;
@@ -342,20 +357,21 @@ public class ConsoleOperations
         {
             string? propertyValue = this.GetDetail(selectedProperty);
             Console.Clear();
-            if (propertyValue == "E")
+            if (propertyValue == $"{MenuOptions.Exit}")
             {
+                Console.WriteLine(RepeatedStrings.ProcessCancelled);
                 return;
             }
 
-            string message = this._manager.EditContactController(guid, selectedProperty, propertyValue);
-            if (message != $"{RepeatedStrings.Contact} {RepeatedStrings.Edited} {RepeatedStrings.Successfully}")
+            string message = this._manager.EditContact(guid, selectedProperty, propertyValue);
+            if (message != RepeatedStrings.ContactEditedSuccessfully)
             {
                 Console.WriteLine(message);
                 continue;
             }
 
             isDataValid = true;
-            Console.WriteLine($"{RepeatedStrings.Contact} {RepeatedStrings.Edited} {RepeatedStrings.Successfully}");
+            Console.WriteLine(RepeatedStrings.ContactEditedSuccessfully);
         }
     }
 }

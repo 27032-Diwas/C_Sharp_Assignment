@@ -25,7 +25,7 @@ public class ContactController
     /// View Contacts.
     /// </summary>
     /// <returns> Return the list of contacts </returns>
-    public List<ContactInfo> ViewContactController()
+    public List<ContactInfo> ViewContact()
     {
         return this._contactRepository.ViewContact();
     }
@@ -38,43 +38,42 @@ public class ContactController
     /// <param name="email"> Email of contact </param>
     /// <param name="notes"> Notes of contact </param>
     /// <returns> Successful message </returns>
-    public string AddContactController(string? name, string? phoneNumber, string? email, string? notes)
+    public string AddContact(string? name, string? phoneNumber, string? email, string? notes)
     {
-        string message;
         ContactInfo contact = new ()
         {
             Id = Guid.NewGuid(),
         };
-        message = this.CheckValidation(1, name);
-        if (message != "Validation is successful")
+        string message = this.CheckValidation(1, name);
+        if (message != RepeatedStrings.ValidationIsSuccessful)
         {
             return message;
         }
 
         contact.Name = name;
         message = this.CheckValidation(2, phoneNumber);
-        if (message != "Validation is successful")
+        if (message != RepeatedStrings.ValidationIsSuccessful)
         {
             return message;
         }
 
         contact.PhoneNumber = phoneNumber;
         message = this.CheckValidation(3, email);
-        if (message != "Validation is successful")
+        if (message != RepeatedStrings.ValidationIsSuccessful)
         {
             return message;
         }
 
         contact.Email = email;
         message = this.CheckValidation(4, notes);
-        if (message != "Validation is successful")
+        if (message != RepeatedStrings.ValidationIsSuccessful)
         {
             return message;
         }
 
         contact.Notes = notes;
         this._contactRepository.AddContact(contact);
-        return "Contact Added Successfully";
+        return RepeatedStrings.ContactAddedSuccessfully;
     }
 
     /// <summary>
@@ -82,32 +81,32 @@ public class ContactController
     /// </summary>
     /// <param name="searchWord"> Word to be searched. </param>
     /// <returns> List of contact that macheres the user input. </returns>
-    public List<ContactInfo> SearchContactController(string? searchWord) => this._contactRepository.SearchContact(searchWord);
+    public List<ContactInfo> SearchContact(string? searchWord) => this._contactRepository.SearchContact(searchWord);
 
     /// <summary>
-    /// Edit Contact
+    /// Edit Contact.
     /// </summary>
-    /// <param name="id"> Guid </param>
-    /// <param name="field"> Field </param>
-    /// <param name="fieldValue"> Value to update </param>
-    /// <returns> Contact </returns>
-    public string EditContactController(Guid? id, int field, string? fieldValue)
+    /// <param name="id"> Guid. </param>
+    /// <param name="contactField"> Field. </param>
+    /// <param name="contactValue"> Value to update. </param>
+    /// <returns> Contact. </returns>
+    public string EditContact(Guid? id, int contactField, string? contactValue)
     {
-        string message = this.CheckValidation(field, fieldValue);
-        if (message != "Validation is successful")
+        string message = this.CheckValidation(contactField, contactValue);
+        if (message != RepeatedStrings.ValidationIsSuccessful)
         {
             return message;
         }
 
-        message = this._contactRepository.EditContact(id, field, fieldValue);
+        message = this._contactRepository.EditContact(id, contactField, contactValue);
         return message;
     }
 
     /// <summary>
     /// Delete Contact.
     /// </summary>
-    /// <param name="id"> Guid </param>
-    public void DeleteContactController(Guid? id)
+    /// <param name="id"> Guid. </param>
+    public void DeleteContact(Guid? id)
     {
         this._contactRepository.DeleteContact(id);
     }
@@ -115,11 +114,11 @@ public class ContactController
     /// <summary>
     /// Check if phone number exist or not.
     /// </summary>
-    /// <param name="phoneNumber"> Phone number </param>
-    /// <returns> true or false </returns>
+    /// <param name="phoneNumber"> Phone number. </param>
+    /// <returns> true or false. </returns>
     public bool IsNumberExist(string? phoneNumber)
     {
-        List<ContactInfo> contacts = this.ViewContactController();
+        List<ContactInfo> contacts = this.ViewContact();
         foreach (ContactInfo contact in contacts)
         {
             if (contact.PhoneNumber == phoneNumber)
@@ -132,36 +131,30 @@ public class ContactController
     }
 
     /// <summary>
-    /// Validation of inputs
+    /// Validation of inputs.
     /// </summary>
-    /// <param name="field"> Property </param>
-    /// <param name="fieldValue"> Value of the property </param>
+    /// <param name="contactfield"> Property. </param>
+    /// <param name="contactValue"> Value of the property. </param>
     /// <returns> Error message </returns>
-    public string CheckValidation(int field, string? fieldValue)
+    public string CheckValidation(int contactfield, string? contactValue)
     {
-        if (field == 1 && Validation.IsNameEmpty(fieldValue))
+        switch (contactfield)
         {
-            return $"{RepeatedStrings.Name} {RepeatedStrings.IsRequired}";
-        }
-        else if (field == 2 && Validation.IsNumberEmpty(fieldValue))
-        {
-            return $"{RepeatedStrings.PhoneNumber} {RepeatedStrings.IsRequired}";
-        }
-        else if (field == 2 && !Validation.IsNumber(fieldValue))
-        {
-            return $"{RepeatedStrings.PhoneNumber} should be valid";
-        }
-        else if (field == 2 && this.IsNumberExist(fieldValue))
-        {
-            return $"{RepeatedStrings.PhoneNumber} Already Exist";
-        }
-        else if (field == 3 && !Validation.IsEmail(fieldValue))
-        {
-            return $"{RepeatedStrings.Enter} a valid {RepeatedStrings.Email}";
-        }
-        else if (field == 4 && !Validation.IsNotes(fieldValue))
-        {
-            return $"{RepeatedStrings.Notes} should be less than 50 words";
+            case 1 when Validation.IsNameEmpty(contactValue):
+                return $"{RepeatedStrings.Name} {RepeatedStrings.IsRequired}";
+            case 1 when !Validation.IsNameValid(contactValue):
+                return RepeatedStrings.NameShouldBeMoreThanOneCharacter;
+            case 2 when Validation.IsNumberEmpty(contactValue):
+                return $"{RepeatedStrings.PhoneNumber} {RepeatedStrings.IsRequired}";
+            case 2 when !Validation.IsNumber(contactValue):
+                return $"{RepeatedStrings.PhoneNumber} should be 10 digit number.";
+            case 2 when this.IsNumberExist(contactValue):
+                return $"{RepeatedStrings.PhoneNumber} Already Exist";
+            case 3 when !Validation.IsEmail(contactValue):
+                return $"{RepeatedStrings.Enter} a valid {RepeatedStrings.Email}";
+            case 4 when !Validation.IsNotes(contactValue):
+                return RepeatedStrings.NotesShouldBeLessThan50Character;
+                ;
         }
 
         return RepeatedStrings.ValidationIsSuccessful;

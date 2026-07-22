@@ -8,127 +8,127 @@ namespace ContactManager.Constants;
 public static class RepeatedStrings
 {
     /// <summary>
-    /// Enter a Valid Option
+    /// Enter a valid option.
     /// </summary>
     public static readonly string EnterAValidOption = "ENTED A VALID OPTION!!";
 
     /// <summary>
-    /// Enter
+    /// Enter.
     /// </summary>
     public static readonly string Enter = "Enter";
 
     /// <summary>
-    /// Is Required
+    /// Is required.
     /// </summary>
     public static readonly string IsRequired = "is required";
 
     /// <summary>
-    /// Do you want to delete
+    /// Do you want to delete.
     /// </summary>
     public static readonly string DoYouWantToDelete = "Do you want to delete(y/n):";
 
     /// <summary>
-    /// Validation is successful
+    /// Validation is successful.
     /// </summary>
     public static readonly string ValidationIsSuccessful = "Validation is successful";
 
     /// <summary>
-    /// End Process.
+    /// End process.
     /// </summary>
     public static readonly string EndProcess = "END PROCESS!!";
 
     /// <summary>
-    /// Process Cancelled.
+    /// Process cancelled.
     /// </summary>
     public static readonly string ProcessCancelled = "PROCESS CANCELLED!!";
 
     /// <summary>
-    /// No Contact Exist
+    /// No contact exist.
     /// </summary>
     public static readonly string NoContactExits = "NO CONTACT EXIST!!";
 
     /// <summary>
-    /// No Value Entered
+    /// No value entered.
     /// </summary>
     public static readonly string NoValueEntered = "NO VALUE ENTERED!!";
 
     /// <summary>
-    /// No Match Found
+    /// No match found.
     /// </summary>
     public static readonly string NoMatchFound = "NO MATCH FOUND!!";
 
     /// <summary>
-    /// Contact
+    /// Contact.
     /// </summary>
     public static readonly string Contact = "Contact";
 
     /// <summary>
-    /// Name
+    /// Name.
     /// </summary>
     public static readonly string Name = "Name";
 
     /// <summary>
-    /// Phone Number
+    /// Phone number.
     /// </summary>
     public static readonly string PhoneNumber = "Phone Number";
 
     /// <summary>
-    /// Email
+    /// Email.
     /// </summary>
     public static readonly string Email = "Email";
 
     /// <summary>
-    /// Notes
+    /// Notes.
     /// </summary>
     public static readonly string Notes = "Notes";
 
     /// <summary>
-    /// Add
+    /// Add.
     /// </summary>
     public static readonly string Add = "Add";
 
     /// <summary>
-    /// Added
+    /// Added.
     /// </summary>
     public static readonly string Added = "Added";
 
     /// <summary>
-    /// Edit
+    /// Edit.
     /// </summary>
     public static readonly string Edit = "Edit";
 
     /// <summary>
-    /// Edited
+    /// Edited.
     /// </summary>
     public static readonly string Edited = "Edited";
 
     /// <summary>
-    /// Delete
+    /// Delete.
     /// </summary>
     public static readonly string Delete = "Delete";
 
     /// <summary>
-    /// Deleted
+    /// Deleted.
     /// </summary>
     public static readonly string Deleted = "Deleted";
 
     /// <summary>
-    /// Successfully
+    /// Successfully.
     /// </summary>
     public static readonly string Successfully = "Successfully";
 
     /// <summary>
-    /// View
+    /// View.
     /// </summary>
     public static readonly string View = "View";
 
     /// <summary>
-    /// Search
+    /// Search.
     /// </summary>
     public static readonly string Search = "Search";
 
     /// <summary>
-    /// Exit
+    /// Exit.
     /// </summary>
     public static readonly string Exit = "Exit";
 
@@ -141,4 +141,29 @@ public static class RepeatedStrings
     /// Select one of the below options.
     /// </summary>
     public static readonly string SelectOneOfTheBelowOptions = "Select one of the below options:";
+
+    /// <summary>
+    /// Contact edited successfully.
+    /// </summary>
+    public static readonly string ContactEditedSuccessfully = "CONTACT EDITED SUCCESSFULLY!!!";
+
+    /// <summary>
+    /// Contact added successfully.
+    /// </summary>
+    public static readonly string ContactAddedSuccessfully = "CONTACT ADDED SUCCESSFULLY!!!";
+
+    /// <summary>
+    /// Id should not be null.
+    /// </summary>
+    public static readonly string IdShouldNotBeNull = "ID SHOULD NOT BE NULL!!!";
+
+    /// <summary>
+    /// Name should be more than one character.
+    /// </summary>
+    public static readonly string NameShouldBeMoreThanOneCharacter = "NAME SHOULD BE MORE THAN ONE CHARACTER!!!";
+
+    /// <summary>
+    /// Notes should be less than 50 character.
+    /// </summary>
+    public static readonly string NotesShouldBeLessThan50Character = "NOTES SHOULD BE LESE THAN 50 CHARACTER!!!";
 }
