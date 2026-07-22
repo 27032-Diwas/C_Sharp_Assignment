@@ -62,7 +62,7 @@ public class Validation
             return false;
         }
 
-        return Regex.IsMatch(email, EmailRegex, RegexOptions.IgnoreCase);
+        return Regex.IsMatch(email, EmailRegex, RegexOptions.IgnoreCase) && !email.Contains("..");
     }
 
     /// <summary>

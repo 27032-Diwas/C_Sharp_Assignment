@@ -166,4 +166,29 @@ public static class RepeatedStrings
     /// Notes should be less than 50 character.
     /// </summary>
     public static readonly string NotesShouldBeLessThan50Character = "NOTES SHOULD BE LESE THAN 50 CHARACTER!!!";
+
+    /// <summary>
+    /// Name is required.
+    /// </summary>
+    public static readonly string NameIsRequired = "NAME IS REQUIRED!!!";
+
+    /// <summary>
+    /// Phone number is requried.
+    /// </summary>
+    public static readonly string PhoneNumberIsRequired = "PHONE NUMBER IS REQUIRED!!!";
+
+    /// <summary>
+    /// Phone number should be 10 digit number.
+    /// </summary>
+    public static readonly string PhoneNumberShouldBe10DigitNumber = "PHONE NUMBER SHOOULD BE 10 DIGIT NUMBER!!!";
+
+    /// <summary>
+    /// Phone number already exist.
+    /// </summary>
+    public static readonly string PhoneNumberAlreadyExist = "PHONE NUMBER ALREADY EXIST!!!";
+
+    /// <summary>
+    /// Enter a valid email.
+    /// </summary>
+    public static readonly string EnterAValidEmail = "ENTER A VALID EMAIL!!!";
 }

@@ -141,20 +141,19 @@ public class ContactController
         switch (contactfield)
         {
             case 1 when Validation.IsNameEmpty(contactValue):
-                return $"{RepeatedStrings.Name} {RepeatedStrings.IsRequired}";
+                return RepeatedStrings.NameIsRequired;
             case 1 when !Validation.IsNameValid(contactValue):
                 return RepeatedStrings.NameShouldBeMoreThanOneCharacter;
             case 2 when Validation.IsNumberEmpty(contactValue):
-                return $"{RepeatedStrings.PhoneNumber} {RepeatedStrings.IsRequired}";
+                return RepeatedStrings.PhoneNumberIsRequired;
             case 2 when !Validation.IsNumber(contactValue):
-                return $"{RepeatedStrings.PhoneNumber} should be 10 digit number.";
+                return RepeatedStrings.PhoneNumberShouldBe10DigitNumber;
             case 2 when this.IsNumberExist(contactValue):
-                return $"{RepeatedStrings.PhoneNumber} Already Exist";
+                return RepeatedStrings.PhoneNumberAlreadyExist;
             case 3 when !Validation.IsEmail(contactValue):
-                return $"{RepeatedStrings.Enter} a valid {RepeatedStrings.Email}";
+                return RepeatedStrings.EnterAValidEmail;
             case 4 when !Validation.IsNotes(contactValue):
                 return RepeatedStrings.NotesShouldBeLessThan50Character;
-                ;
         }
 
         return RepeatedStrings.ValidationIsSuccessful;
