@@ -43,7 +43,6 @@ public static class Validation
                                                       || (email is not null && Regex.IsMatch(email, RegexPatterns.EmailRegex, RegexOptions.IgnoreCase)
                                                       && !email.Contains(".."));
 
-
     /// <summary>
     /// Check for notes length.
     /// </summary>
