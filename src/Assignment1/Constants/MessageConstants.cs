@@ -127,7 +127,7 @@ public static class MessageConstants
     /// <summary>
     /// Message displayed when the contact name contains fewer than two characters.
     /// </summary>
-    public const string NameTooShort = "NAME SHOULD CONTAIN AT LEAST 2 CHARACTERS!!!";
+    public const string NameTooShort = "NAME SHOULD CONTAIN AT LEAST 2 CHARACTERS AND CONTAINS ONE ALPHABETES!!!";
 
     /// <summary>
     /// The maximum allowed length for notes.

@@ -145,7 +145,7 @@ public class ConsoleOperations
         {
             Console.WriteLine($"Enter contact {contactFields[contactField - 1]} or E to Exit: ");
             input = Console.ReadLine();
-            if (input == "E")
+            if (input is not null && input.ToUpper() == "E")
             {
                 Console.WriteLine(MessageConstants.ProcessCancelled);
                 return "E";
