@@ -116,31 +116,12 @@ public class ContactController
     }
 
     /// <summary>
-    /// Check if phone number exist or not.
-    /// </summary>
-    /// <param name="phoneNumber"> Phone number. </param>
-    /// <returns> true or false. </returns>
-    private bool IsPhoneNumberExist(string? phoneNumber)
-    {
-        List<ContactInfo> contacts = this.ViewContact();
-        foreach (ContactInfo contact in contacts)
-        {
-            if (contact.PhoneNumber == phoneNumber)
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /// <summary>
     /// Validation of inputs.
     /// </summary>
     /// <param name="contactfield"> Property. </param>
     /// <param name="contactValue"> Value of the property. </param>
     /// <returns> Error message. </returns>
-    private string CheckValidation(int contactfield, string? contactValue)
+    public string CheckValidation(int contactfield, string? contactValue)
     {
         switch (contactfield)
         {
@@ -161,5 +142,24 @@ public class ContactController
         }
 
         return MessageConstants.ValidationSuccessful;
+    }
+
+    /// <summary>
+    /// Check if phone number exist or not.
+    /// </summary>
+    /// <param name="phoneNumber"> Phone number. </param>
+    /// <returns> true or false. </returns>
+    private bool IsPhoneNumberExist(string? phoneNumber)
+    {
+        List<ContactInfo> contacts = this.ViewContact();
+        foreach (ContactInfo contact in contacts)
+        {
+            if (contact.PhoneNumber == phoneNumber)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
