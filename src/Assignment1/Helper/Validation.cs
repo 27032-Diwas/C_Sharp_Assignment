@@ -35,13 +35,14 @@ public static class Validation
                                                                   && Regex.IsMatch(phoneNumber, RegexPatterns.PhoneNumberRegex);
 
     /// <summary>
-    /// Check for valid email.
+    /// Check for email if it is valid.
     /// </summary>
     /// <param name="email"> Email. </param>
     /// <returns> true or false. </returns>
     public static bool IsValidEmail(string? email) => email == string.Empty
                                                       || (email is not null && Regex.IsMatch(email, RegexPatterns.EmailRegex, RegexOptions.IgnoreCase)
                                                       && !email.Contains(".."));
+
 
     /// <summary>
     /// Check for notes length.
