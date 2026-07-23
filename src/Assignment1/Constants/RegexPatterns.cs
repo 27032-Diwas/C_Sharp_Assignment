@@ -10,6 +10,7 @@ namespace ContactManager.Constants;
 public class RegexPatterns
 {
     /// <summary>
+    /// hi arul, this is for commit purpose.
     /// Regular expression pattern used to validate email addresses.
     /// </summary>
     public const string EmailRegex = @"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$";
