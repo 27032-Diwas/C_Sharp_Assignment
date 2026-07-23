@@ -1,17 +1,20 @@
-﻿using ContactManager.Helper;
+﻿// <copyright file="Program.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+namespace ContactManager;
+
 using ContactManager.Repository;
 using ContactManager.Services;
 using ContactManager.View;
 
-namespace ContactManager;
-
 /// <summary>
-/// Main class where program starts
+/// Main class where program starts.
 /// </summary>
 internal class Program
 {
     /// <summary>
-    /// Main Functions
+    /// Main Functions.
     /// </summary>
     public static void Main()
     {

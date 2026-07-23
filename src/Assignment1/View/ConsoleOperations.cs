@@ -1,55 +1,28 @@
-﻿using ConsoleTables;
+﻿// <copyright file="ConsoleOperations.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+namespace ContactManager.View;
+
+using ConsoleTables;
 using ContactManager.Constants;
 using ContactManager.Models;
 using ContactManager.Services;
-
-namespace ContactManager.View;
 
 /// <summary>
 /// Deals with all console operations.
 /// </summary>
 public class ConsoleOperations
 {
-    private readonly ContactController _contactController;
+    private readonly ContactController contactController;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ConsoleOperations"/> class.
     /// </summary>
-    /// <param name="manager"> service object </param>
+    /// <param name="manager"> service object. </param>
     public ConsoleOperations(ContactController manager)
     {
-        this._contactController = manager;
-    }
-
-    /// <summary>
-    /// Display contact field with its data.
-    /// </summary>
-    /// <param name="contacts">
-    /// Contact that needs to be displays.
-    /// </param>
-    public static void DisplayDetails(List<ContactInfo> contacts)
-    {
-        ConsoleTable contactTable = new ConsoleTable("S.No", MessageConstants.Name, MessageConstants.PhoneNumber, MessageConstants.Email, MessageConstants.Notes);
-        int i = 1;
-        foreach (ContactInfo contact in contacts)
-        {
-            contactTable.AddRow(i++, contact.Name, contact.PhoneNumber, contact.Email, contact.Notes);
-        }
-
-        contactTable.Write();
-    }
-
-    /// <summary>
-    /// Display property.
-    /// </summary>
-    public static void DisplayContactProperty()
-    {
-        Console.WriteLine(MessageConstants.SelectFieldToEdit);
-        Console.WriteLine($"[1] - {MessageConstants.Name}");
-        Console.WriteLine($"[2] - {MessageConstants.PhoneNumber}");
-        Console.WriteLine($"[3] - {MessageConstants.Email}");
-        Console.WriteLine($"[4] - {MessageConstants.Notes}");
-        Console.WriteLine($"[5] - Exit");
+        this.contactController = manager;
     }
 
     /// <summary>
@@ -108,11 +81,42 @@ public class ConsoleOperations
     }
 
     /// <summary>
+    /// Display contact field with its data.
+    /// </summary>
+    /// <param name="contacts">
+    /// Contact that needs to be displays.
+    /// </param>
+    private static void DisplayDetails(List<ContactInfo> contacts)
+    {
+        ConsoleTable contactTable = new ConsoleTable("S.No", MessageConstants.Name, MessageConstants.PhoneNumber, MessageConstants.Email, MessageConstants.Notes);
+        int i = 1;
+        foreach (ContactInfo contact in contacts)
+        {
+            contactTable.AddRow(i++, contact.Name, contact.PhoneNumber, contact.Email, contact.Notes);
+        }
+
+        contactTable.Write();
+    }
+
+    /// <summary>
+    /// Display property.
+    /// </summary>
+    private static void DisplayContactProperty()
+    {
+        Console.WriteLine(MessageConstants.SelectFieldToEdit);
+        Console.WriteLine($"[1] - {MessageConstants.Name}");
+        Console.WriteLine($"[2] - {MessageConstants.PhoneNumber}");
+        Console.WriteLine($"[3] - {MessageConstants.Email}");
+        Console.WriteLine($"[4] - {MessageConstants.Notes}");
+        Console.WriteLine($"[5] - Exit");
+    }
+
+    /// <summary>
     /// View Contacts method. This method displays full contact details.
     /// </summary>
-    public void ViewContact()
+    private void ViewContact()
     {
-        List<ContactInfo> contacts = this._contactController.ViewContact();
+        List<ContactInfo> contacts = this.contactController.ViewContact();
         if (!contacts.Any())
         {
             Console.WriteLine(MessageConstants.NoContactsExist);
@@ -126,8 +130,8 @@ public class ConsoleOperations
     /// Get input till the value is correct.
     /// </summary>
     /// <param name="contactField"> position of property in object. </param>
-    /// <returns> input value </returns>
-    public string? GetDetail(int contactField)
+    /// <returns> input value. </returns>
+    private string? GetDetail(int contactField)
     {
         string? input, message;
         List<string> contactFields = new ()
@@ -147,7 +151,7 @@ public class ConsoleOperations
                 return "E";
             }
 
-            message = this._contactController.CheckValidation(contactField, input);
+            message = this.contactController.CheckValidation(contactField, input);
             if (message == MessageConstants.ValidationSuccessful)
             {
                 break;
@@ -162,7 +166,7 @@ public class ConsoleOperations
     /// <summary>
     /// Add Contact method.
     /// </summary>
-    public void AddContact()
+    private void AddContact()
     {
         // object
         ContactInfo contactInfo = new ();
@@ -192,16 +196,16 @@ public class ConsoleOperations
         }
 
         Console.Clear();
-        Console.WriteLine(this._contactController.AddContact(name, phoneNumber, email, notes));
+        Console.WriteLine(this.contactController.AddContact(name, phoneNumber, email, notes));
     }
 
     /// <summary>
     /// Search contact.
     /// </summary>
     /// <returns> List of contact that match user input.</returns>
-    public List<ContactInfo>? SearchContact()
+    private List<ContactInfo>? SearchContact()
     {
-        if (!this._contactController.ViewContact().Any())
+        if (!this.contactController.ViewContact().Any())
         {
             Console.WriteLine(MessageConstants.NoContactsExist);
             return null;
@@ -215,7 +219,7 @@ public class ConsoleOperations
             return null;
         }
 
-        List<ContactInfo> searchResult = this._contactController.SearchContact(searchWord);
+        List<ContactInfo> searchResult = this.contactController.SearchContact(searchWord);
         if (!searchResult.Any())
         {
             Console.Clear();
@@ -231,7 +235,7 @@ public class ConsoleOperations
     /// <summary>
     /// Delete contact.
     /// </summary>
-    public void DeleteContact()
+    private void DeleteContact()
     {
         Guid? id = this.SelectContact();
         if (id == null)
@@ -243,7 +247,7 @@ public class ConsoleOperations
         string? choice = Console.ReadLine();
         if (choice == "y" || choice == "Y")
         {
-            this._contactController.DeleteContact(id);
+            this.contactController.DeleteContact(id);
             Console.WriteLine($"{MessageConstants.ContactDeletedSuccessfully}");
             return;
         }
@@ -253,10 +257,10 @@ public class ConsoleOperations
     }
 
     /// <summary>
-    /// Guid of the selected contact
+    /// Guid of the selected contact.
     /// </summary>
-    /// <returns> Guid </returns>
-    public Guid? SelectContact()
+    /// <returns> Guid. </returns>
+    private Guid? SelectContact()
     {
         List<ContactInfo>? searchResults = this.SearchContact();
         int selectedContactNumber = 1;
@@ -296,7 +300,7 @@ public class ConsoleOperations
     /// To get the property that need to be edited.
     /// </summary>
     /// <returns> Contact field. </returns>
-    public int GetContactProperty()
+    private int GetContactProperty()
     {
         string? option;
         bool isOptionValid = false;
@@ -327,7 +331,7 @@ public class ConsoleOperations
     /// <summary>
     /// Edit contact.
     /// </summary>
-    public void EditContact()
+    private void EditContact()
     {
         Guid? guid = this.SelectContact();
         if (guid == null)
@@ -353,7 +357,7 @@ public class ConsoleOperations
                 return;
             }
 
-            string message = this._contactController.EditContact(guid, selectedProperty, propertyValue);
+            string message = this.contactController.EditContact(guid, selectedProperty, propertyValue);
             if (message != MessageConstants.ContactUpdatedSuccessfully)
             {
                 Console.WriteLine(message);

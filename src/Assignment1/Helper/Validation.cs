@@ -1,7 +1,11 @@
-﻿using System.Text.RegularExpressions;
-using ContactManager.Constants;
+﻿// <copyright file="Validation.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace ContactManager.Helper;
+
+using System.Text.RegularExpressions;
+using ContactManager.Constants;
 
 /// <summary>
 /// Contains validation methods and returns true or false.
@@ -12,7 +16,7 @@ public static class Validation
     /// Check whether name is more than one letter.
     /// </summary>
     /// <param name="name"> Name. </param>
-    /// <returns> true or false </returns>
+    /// <returns> true or false. </returns>
     public static bool IsValidName(string? name) => name is not null && Regex.IsMatch(name, RegexPatterns.NameRegex);
 
     /// <summary>
@@ -26,7 +30,7 @@ public static class Validation
     /// Check whether number is valid or not.
     /// </summary>
     /// <param name="phoneNumber"> Phone number. </param>
-    /// <returns> true of false </returns>
+    /// <returns> true of false. </returns>
     public static bool IsValidPhoneNumber(string? phoneNumber) => phoneNumber is not null
                                                                   && Regex.IsMatch(phoneNumber, RegexPatterns.PhoneNumberRegex);
 
@@ -34,7 +38,7 @@ public static class Validation
     /// Check for valid email.
     /// </summary>
     /// <param name="email"> Email. </param>
-    /// <returns> true or false </returns>
+    /// <returns> true or false. </returns>
     public static bool IsValidEmail(string? email) => email == string.Empty
                                                       || (email is not null && Regex.IsMatch(email, RegexPatterns.EmailRegex, RegexOptions.IgnoreCase)
                                                       && !email.Contains(".."));
@@ -42,7 +46,7 @@ public static class Validation
     /// <summary>
     /// Check for notes length.
     /// </summary>
-    /// <param name="notes"> Notes </param>
-    /// <returns> true or false</returns>
+    /// <param name="notes"> Notes. </param>
+    /// <returns> true or false. </returns>
     public static bool IsValidNotes(string? notes) => notes == string.Empty || (notes is not null && notes.Length < 50);
 }

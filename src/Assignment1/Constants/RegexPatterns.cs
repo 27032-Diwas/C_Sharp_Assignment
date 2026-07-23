@@ -1,7 +1,11 @@
-﻿namespace ContactManager.Constants;
+﻿// <copyright file="RegexPatterns.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+namespace ContactManager.Constants;
 
 /// <summary>
-/// Contains all the regex patterns
+/// Contains all the regex patterns.
 /// </summary>
 public class RegexPatterns
 {

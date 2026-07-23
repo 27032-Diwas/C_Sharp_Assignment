@@ -1,4 +1,8 @@
-﻿namespace ContactManager.Models;
+﻿// <copyright file="ContactInfo.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+namespace ContactManager.Models;
 
 /// <summary>
 /// Contains contact's properties.
@@ -14,7 +18,7 @@ public class ContactInfo
     /// <summary>
     /// Gets or sets name.
     /// </summary>
-    /// <value> name for data </value>
+    /// <value> name for data. </value>
     public string? Name { get; set; }
 
     /// <summary>
@@ -30,7 +34,7 @@ public class ContactInfo
     public string? Email { get; set; }
 
     /// <summary>
-    /// Gets or sets
+    /// Gets or sets.
     /// </summary>
     /// <value> notes for data. </value>
     public string? Notes { get; set; }

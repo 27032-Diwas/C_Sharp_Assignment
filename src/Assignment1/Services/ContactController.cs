@@ -1,16 +1,20 @@
-﻿using ContactManager.Constants;
+﻿// <copyright file="ContactController.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+namespace ContactManager.Services;
+
+using ContactManager.Constants;
 using ContactManager.Helper;
 using ContactManager.Models;
 using ContactManager.Repository;
-
-namespace ContactManager.Services;
 
 /// <summary>
 /// Contains all the logical part of contact manager.
 /// </summary>
 public class ContactController
 {
-    private readonly ContactRepository _contactRepository;
+    private readonly ContactRepository contactRepository;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ContactController"/> class.
@@ -18,26 +22,26 @@ public class ContactController
     /// <param name="contactRepository"> Repo link. </param>
     public ContactController(ContactRepository contactRepository)
     {
-        this._contactRepository = contactRepository;
+        this.contactRepository = contactRepository;
     }
 
     /// <summary>
     /// View Contacts.
     /// </summary>
-    /// <returns> Return the list of contacts </returns>
+    /// <returns> Return the list of contacts. </returns>
     public List<ContactInfo> ViewContact()
     {
-        return this._contactRepository.ViewContact();
+        return this.contactRepository.ViewContact();
     }
 
     /// <summary>
-    /// Add contact
+    /// Add contact.
     /// </summary>
-    /// <param name="name"> Name of contact</param>
-    /// <param name="phoneNumber"> Phone number of contact </param>
-    /// <param name="email"> Email of contact </param>
-    /// <param name="notes"> Notes of contact </param>
-    /// <returns> Successful message </returns>
+    /// <param name="name"> Name of contact.</param>
+    /// <param name="phoneNumber"> Phone number of contact. </param>
+    /// <param name="email"> Email of contact. </param>
+    /// <param name="notes"> Notes of contact. </param>
+    /// <returns> Successful message. </returns>
     public string AddContact(string? name, string? phoneNumber, string? email, string? notes)
     {
         ContactInfo contact = new ()
@@ -72,7 +76,7 @@ public class ContactController
         }
 
         contact.Notes = notes;
-        this._contactRepository.AddContact(contact);
+        this.contactRepository.AddContact(contact);
         return MessageConstants.ContactAddedSuccessfully;
     }
 
@@ -81,7 +85,7 @@ public class ContactController
     /// </summary>
     /// <param name="searchWord"> Word to be searched. </param>
     /// <returns> List of contact that matches the user input. </returns>
-    public List<ContactInfo> SearchContact(string? searchWord) => this._contactRepository.SearchContact(searchWord);
+    public List<ContactInfo> SearchContact(string? searchWord) => this.contactRepository.SearchContact(searchWord);
 
     /// <summary>
     /// Edit Contact.
@@ -98,7 +102,7 @@ public class ContactController
             return message;
         }
 
-        message = this._contactRepository.EditContact(id, contactField, contactValue);
+        message = this.contactRepository.EditContact(id, contactField, contactValue);
         return message;
     }
 
@@ -108,7 +112,7 @@ public class ContactController
     /// <param name="id"> Guid. </param>
     public void DeleteContact(Guid? id)
     {
-        this._contactRepository.DeleteContact(id);
+        this.contactRepository.DeleteContact(id);
     }
 
     /// <summary>
@@ -116,7 +120,7 @@ public class ContactController
     /// </summary>
     /// <param name="phoneNumber"> Phone number. </param>
     /// <returns> true or false. </returns>
-    public bool IsPhoneNumberExist(string? phoneNumber)
+    private bool IsPhoneNumberExist(string? phoneNumber)
     {
         List<ContactInfo> contacts = this.ViewContact();
         foreach (ContactInfo contact in contacts)
@@ -135,8 +139,8 @@ public class ContactController
     /// </summary>
     /// <param name="contactfield"> Property. </param>
     /// <param name="contactValue"> Value of the property. </param>
-    /// <returns> Error message </returns>
-    public string CheckValidation(int contactfield, string? contactValue)
+    /// <returns> Error message. </returns>
+    private string CheckValidation(int contactfield, string? contactValue)
     {
         switch (contactfield)
         {

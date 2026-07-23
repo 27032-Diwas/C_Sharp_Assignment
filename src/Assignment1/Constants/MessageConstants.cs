@@ -1,4 +1,8 @@
-﻿namespace ContactManager.Constants;
+﻿// <copyright file="MessageConstants.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+namespace ContactManager.Constants;
 
 /// <summary>
 /// Contains strings that are repeatedly used.
