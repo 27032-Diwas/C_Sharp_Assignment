@@ -10,7 +10,7 @@ namespace ContactManager.View;
 /// </summary>
 public class ConsoleOperations
 {
-    private readonly ContactController _manager;
+    private readonly ContactController _contactController;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ConsoleOperations"/> class.
@@ -18,18 +18,7 @@ public class ConsoleOperations
     /// <param name="manager"> service object </param>
     public ConsoleOperations(ContactController manager)
     {
-        this._manager = manager;
-    }
-
-    /// <summary>
-    /// Enum for main menu
-    /// </summary>
-    public enum MenuOptions
-    {
-        /// <summary>
-        /// Exit the process.
-        /// </summary>
-        Exit,
+        this._contactController = manager;
     }
 
     /// <summary>
@@ -40,7 +29,7 @@ public class ConsoleOperations
     /// </param>
     public static void DisplayDetails(List<ContactInfo> contacts)
     {
-        ConsoleTable contactTable = new ConsoleTable("S.No", RepeatedStrings.Name, RepeatedStrings.PhoneNumber, RepeatedStrings.Email, RepeatedStrings.Notes);
+        ConsoleTable contactTable = new ConsoleTable("S.No", MessageConstants.Name, MessageConstants.PhoneNumber, MessageConstants.Email, MessageConstants.Notes);
         int i = 1;
         foreach (ContactInfo contact in contacts)
         {
@@ -55,12 +44,12 @@ public class ConsoleOperations
     /// </summary>
     public static void DisplayContactProperty()
     {
-        Console.WriteLine(RepeatedStrings.ChooseFieldToEdit);
-        Console.WriteLine($"[1] - {RepeatedStrings.Name}");
-        Console.WriteLine($"[2] - {RepeatedStrings.PhoneNumber}");
-        Console.WriteLine($"[3] - {RepeatedStrings.Email}");
-        Console.WriteLine($"[4] - {RepeatedStrings.Notes}");
-        Console.WriteLine($"[5] - {RepeatedStrings.Exit}");
+        Console.WriteLine(MessageConstants.SelectFieldToEdit);
+        Console.WriteLine($"[1] - {MessageConstants.Name}");
+        Console.WriteLine($"[2] - {MessageConstants.PhoneNumber}");
+        Console.WriteLine($"[3] - {MessageConstants.Email}");
+        Console.WriteLine($"[4] - {MessageConstants.Notes}");
+        Console.WriteLine($"[5] - Exit");
     }
 
     /// <summary>
@@ -72,13 +61,13 @@ public class ConsoleOperations
         do
         {
             Console.WriteLine(" ");
-            Console.WriteLine(RepeatedStrings.SelectOneOfTheBelowOptions);
-            Console.WriteLine($"[1] - {RepeatedStrings.View} {RepeatedStrings.Contact}");
-            Console.WriteLine($"[2] - {RepeatedStrings.Add} {RepeatedStrings.Contact}");
-            Console.WriteLine($"[3] - {RepeatedStrings.Search} {RepeatedStrings.Contact}");
-            Console.WriteLine($"[4] - {RepeatedStrings.Edit} {RepeatedStrings.Contact}");
-            Console.WriteLine($"[5] - {RepeatedStrings.Delete} {RepeatedStrings.Contact}");
-            Console.WriteLine($"[6] - {RepeatedStrings.Exit}");
+            Console.WriteLine(MessageConstants.SelectOption);
+            Console.WriteLine($"[1] - {MessageConstants.ViewContact}");
+            Console.WriteLine($"[2] - {MessageConstants.AddContact}");
+            Console.WriteLine($"[3] - {MessageConstants.SearchContact}");
+            Console.WriteLine($"[4] - {MessageConstants.EditContact}");
+            Console.WriteLine($"[5] - {MessageConstants.DeleteContact}");
+            Console.WriteLine($"[6] - Exit");
             Console.WriteLine(" ");
 
             option = Console.ReadLine();
@@ -87,31 +76,31 @@ public class ConsoleOperations
             switch (option)
             {
                 case "1":
-                    Console.WriteLine($"{RepeatedStrings.View} {RepeatedStrings.Contact}\n");
+                    Console.WriteLine($"{MessageConstants.ViewContact}\n");
                     this.ViewContact();
                     break;
                 case "2":
-                    Console.WriteLine($"{RepeatedStrings.Add} {RepeatedStrings.Contact}\n");
+                    Console.WriteLine($"{MessageConstants.AddContact}\n");
                     this.AddContact();
                     break;
                 case "3":
-                    Console.WriteLine($"{RepeatedStrings.Search} {RepeatedStrings.Contact}\n");
+                    Console.WriteLine($"{MessageConstants.SearchContact}\n");
                     this.SearchContact();
                     break;
                 case "4":
-                    Console.WriteLine($"{RepeatedStrings.Edit} {RepeatedStrings.Contact}\n");
+                    Console.WriteLine($"{MessageConstants.EditContact}\n");
                     this.EditContact();
                     break;
                 case "5":
-                    Console.WriteLine($"{RepeatedStrings.Delete} {RepeatedStrings.Contact}\n");
+                    Console.WriteLine($"{MessageConstants.DeleteContact}\n");
                     this.DeleteContact();
                     break;
                 case "6":
-                    Console.WriteLine(RepeatedStrings.EndProcess);
+                    Console.WriteLine(MessageConstants.ProcessEnded);
                     return;
                 default:
                     Console.Clear();
-                    Console.WriteLine(RepeatedStrings.EnterAValidOption);
+                    Console.WriteLine(MessageConstants.InvalidOption);
                     break;
             }
         }
@@ -123,10 +112,10 @@ public class ConsoleOperations
     /// </summary>
     public void ViewContact()
     {
-        List<ContactInfo> contacts = this._manager.ViewContact();
+        List<ContactInfo> contacts = this._contactController.ViewContact();
         if (!contacts.Any())
         {
-            Console.WriteLine(RepeatedStrings.NoContactExits);
+            Console.WriteLine(MessageConstants.NoContactsExist);
             return;
         }
 
@@ -143,23 +132,23 @@ public class ConsoleOperations
         string? input, message;
         List<string> contactFields = new ()
         {
-            RepeatedStrings.Name,
-            RepeatedStrings.PhoneNumber,
-            RepeatedStrings.Email,
-            RepeatedStrings.Notes,
+            MessageConstants.Name,
+            MessageConstants.PhoneNumber,
+            MessageConstants.Email,
+            MessageConstants.Notes,
         };
         do
         {
-            Console.WriteLine($"{RepeatedStrings.Enter} {RepeatedStrings.Contact} {contactFields[contactField - 1]} or E to {RepeatedStrings.Exit}: ");
+            Console.WriteLine($"Enter contact {contactFields[contactField - 1]} or E to Exit: ");
             input = Console.ReadLine();
             if (input == "E")
             {
-                Console.WriteLine(RepeatedStrings.ProcessCancelled);
-                return $"{MenuOptions.Exit}";
+                Console.WriteLine(MessageConstants.ProcessCancelled);
+                return "E";
             }
 
-            message = this._manager.CheckValidation(contactField, input);
-            if (message == RepeatedStrings.ValidationIsSuccessful)
+            message = this._contactController.CheckValidation(contactField, input);
+            if (message == MessageConstants.ValidationSuccessful)
             {
                 break;
             }
@@ -179,31 +168,31 @@ public class ConsoleOperations
         ContactInfo contactInfo = new ();
         string? name, phoneNumber, email, notes;
         name = this.GetDetail(1);
-        if (name == $"{MenuOptions.Exit}")
+        if (name == "E")
         {
             return;
         }
 
         phoneNumber = this.GetDetail(2);
-        if (phoneNumber == $"{MenuOptions.Exit}")
+        if (phoneNumber == "E")
         {
             return;
         }
 
         email = this.GetDetail(3);
-        if (email == $"{MenuOptions.Exit}")
+        if (email == "E")
         {
             return;
         }
 
         notes = this.GetDetail(4);
-        if (notes == $"{MenuOptions.Exit}")
+        if (notes == "E")
         {
             return;
         }
 
         Console.Clear();
-        Console.WriteLine(this._manager.AddContact(name, phoneNumber, email, notes));
+        Console.WriteLine(this._contactController.AddContact(name, phoneNumber, email, notes));
     }
 
     /// <summary>
@@ -212,25 +201,25 @@ public class ConsoleOperations
     /// <returns> List of contact that match user input.</returns>
     public List<ContactInfo>? SearchContact()
     {
-        if (!this._manager.ViewContact().Any())
+        if (!this._contactController.ViewContact().Any())
         {
-            Console.WriteLine(RepeatedStrings.NoContactExits);
+            Console.WriteLine(MessageConstants.NoContactsExist);
             return null;
         }
 
-        Console.WriteLine($"{RepeatedStrings.Enter} {RepeatedStrings.Name} or {RepeatedStrings.PhoneNumber} or {RepeatedStrings.Email}: ");
+        Console.WriteLine($"Enter {MessageConstants.Name} or {MessageConstants.PhoneNumber} or {MessageConstants.Email}: ");
         string? searchWord = Console.ReadLine();
         if (searchWord == string.Empty)
         {
-            Console.WriteLine(RepeatedStrings.NoValueEntered);
+            Console.WriteLine(MessageConstants.NoValueEntered);
             return null;
         }
 
-        List<ContactInfo> searchResult = this._manager.SearchContact(searchWord);
-        if (searchResult.Count == 0)
+        List<ContactInfo> searchResult = this._contactController.SearchContact(searchWord);
+        if (!searchResult.Any())
         {
             Console.Clear();
-            Console.WriteLine(RepeatedStrings.NoMatchFound);
+            Console.WriteLine(MessageConstants.NoMatchFound);
             return null;
         }
 
@@ -250,17 +239,17 @@ public class ConsoleOperations
             return;
         }
 
-        Console.WriteLine(RepeatedStrings.DoYouWantToDelete);
+        Console.WriteLine(MessageConstants.ConfirmDelete);
         string? choice = Console.ReadLine();
         if (choice == "y" || choice == "Y")
         {
-            this._manager.DeleteContact(id);
-            Console.WriteLine($"{RepeatedStrings.Contact} {RepeatedStrings.Deleted} {RepeatedStrings.Successfully}");
+            this._contactController.DeleteContact(id);
+            Console.WriteLine($"{MessageConstants.ContactDeletedSuccessfully}");
             return;
         }
 
         Console.Clear();
-        Console.WriteLine(RepeatedStrings.ProcessCancelled);
+        Console.WriteLine(MessageConstants.ProcessCancelled);
     }
 
     /// <summary>
@@ -290,7 +279,7 @@ public class ConsoleOperations
             string? choice = Console.ReadLine();
             if (choice == string.Empty)
             {
-                Console.WriteLine(RepeatedStrings.EnterAValidOption);
+                Console.WriteLine(MessageConstants.InvalidOption);
                 continue;
             }
             else if (choice != null && choice.All(char.IsDigit))
@@ -323,7 +312,7 @@ public class ConsoleOperations
 
             if (option != "1" && option != "2" && option != "3" && option != "4")
             {
-                Console.WriteLine(RepeatedStrings.EnterAValidOption);
+                Console.WriteLine(MessageConstants.InvalidOption);
                 continue;
             }
 
@@ -349,6 +338,7 @@ public class ConsoleOperations
         int selectedProperty = this.GetContactProperty();
         if (selectedProperty == 5)
         {
+            Console.WriteLine(MessageConstants.ProcessCancelled);
             return; // Selected Exit option.
         }
 
@@ -357,21 +347,21 @@ public class ConsoleOperations
         {
             string? propertyValue = this.GetDetail(selectedProperty);
             Console.Clear();
-            if (propertyValue == $"{MenuOptions.Exit}")
+            if (propertyValue == "E")
             {
-                Console.WriteLine(RepeatedStrings.ProcessCancelled);
+                Console.WriteLine(MessageConstants.ProcessCancelled);
                 return;
             }
 
-            string message = this._manager.EditContact(guid, selectedProperty, propertyValue);
-            if (message != RepeatedStrings.ContactEditedSuccessfully)
+            string message = this._contactController.EditContact(guid, selectedProperty, propertyValue);
+            if (message != MessageConstants.ContactUpdatedSuccessfully)
             {
                 Console.WriteLine(message);
                 continue;
             }
 
             isDataValid = true;
-            Console.WriteLine(RepeatedStrings.ContactEditedSuccessfully);
+            Console.WriteLine(MessageConstants.ContactUpdatedSuccessfully);
         }
     }
 }

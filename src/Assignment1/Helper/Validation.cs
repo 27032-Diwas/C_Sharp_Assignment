@@ -1,86 +1,48 @@
 ﻿using System.Text.RegularExpressions;
+using ContactManager.Constants;
 
 namespace ContactManager.Helper;
 
 /// <summary>
 /// Contains validation methods and returns true or false.
 /// </summary>
-public class Validation
+public static class Validation
 {
-    private static readonly string EmailRegex = @"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$";
-    private static readonly string PhoneRegex = @"^\d{10}$";
-
-    /// <summary>
-    /// Check whether name is empty or not.
-    /// </summary>
-    /// <param name="name"> Name. </param>
-    /// <returns> true or false </returns>
-    public static bool IsNameEmpty(string? name) => string.IsNullOrWhiteSpace(name) || name == string.Empty;
-
     /// <summary>
     /// Check whether name is more than one letter.
     /// </summary>
     /// <param name="name"> Name. </param>
     /// <returns> true or false </returns>
-    public static bool IsNameValid(string? name) => name != null && name.Length > 1;
+    public static bool IsValidName(string? name) => name is not null && Regex.IsMatch(name, RegexPatterns.NameRegex);
 
     /// <summary>
-    /// Check whether number is empty or not.
+    /// Check whether enter string is empty or not.
     /// </summary>
-    /// <param name="phoneNumber"> Phone number </param>
-    /// <returns> true or false </returns>
-    public static bool IsNumberEmpty(string? phoneNumber) => string.IsNullOrWhiteSpace(phoneNumber) || phoneNumber == string.Empty;
+    /// <param name="contactDetail"> string to check. </param>
+    /// <returns> true or false. </returns>
+    public static bool IsValidInput(string? contactDetail) => string.IsNullOrWhiteSpace(contactDetail) || contactDetail == string.Empty;
 
     /// <summary>
     /// Check whether number is valid or not.
     /// </summary>
-    /// <param name="phone"> Phone number. </param>
+    /// <param name="phoneNumber"> Phone number. </param>
     /// <returns> true of false </returns>
-    public static bool IsNumber(string? phone)
-    {
-        if (phone == null)
-        {
-            return false;
-        }
-
-        return Regex.IsMatch(phone, PhoneRegex);
-    }
+    public static bool IsValidPhoneNumber(string? phoneNumber) => phoneNumber is not null
+                                                                  && Regex.IsMatch(phoneNumber, RegexPatterns.PhoneNumberRegex);
 
     /// <summary>
     /// Check for valid email.
     /// </summary>
     /// <param name="email"> Email. </param>
     /// <returns> true or false </returns>
-    public static bool IsEmail(string? email)
-    {
-        if (email == string.Empty)
-        {
-            return true;
-        }
-        else if (email == null)
-        {
-            return false;
-        }
-
-        return Regex.IsMatch(email, EmailRegex, RegexOptions.IgnoreCase) && !email.Contains("..");
-    }
+    public static bool IsValidEmail(string? email) => email == string.Empty
+                                                      || (email is not null && Regex.IsMatch(email, RegexPatterns.EmailRegex, RegexOptions.IgnoreCase)
+                                                      && !email.Contains(".."));
 
     /// <summary>
     /// Check for notes length.
     /// </summary>
     /// <param name="notes"> Notes </param>
     /// <returns> true or false</returns>
-    public static bool IsNotes(string? notes)
-    {
-        if (notes == string.Empty)
-        {
-            return true;
-        }
-        else if (notes == null)
-        {
-            return false;
-        }
-
-        return notes.Length < 50;
-    }
+    public static bool IsValidNotes(string? notes) => notes == string.Empty || (notes is not null && notes.Length < 50);
 }

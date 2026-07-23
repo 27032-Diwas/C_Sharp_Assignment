@@ -45,42 +45,42 @@ public class ContactController
             Id = Guid.NewGuid(),
         };
         string message = this.CheckValidation(1, name);
-        if (message != RepeatedStrings.ValidationIsSuccessful)
+        if (message != MessageConstants.ValidationSuccessful)
         {
             return message;
         }
 
         contact.Name = name;
         message = this.CheckValidation(2, phoneNumber);
-        if (message != RepeatedStrings.ValidationIsSuccessful)
+        if (message != MessageConstants.ValidationSuccessful)
         {
             return message;
         }
 
         contact.PhoneNumber = phoneNumber;
         message = this.CheckValidation(3, email);
-        if (message != RepeatedStrings.ValidationIsSuccessful)
+        if (message != MessageConstants.ValidationSuccessful)
         {
             return message;
         }
 
         contact.Email = email;
         message = this.CheckValidation(4, notes);
-        if (message != RepeatedStrings.ValidationIsSuccessful)
+        if (message != MessageConstants.ValidationSuccessful)
         {
             return message;
         }
 
         contact.Notes = notes;
         this._contactRepository.AddContact(contact);
-        return RepeatedStrings.ContactAddedSuccessfully;
+        return MessageConstants.ContactAddedSuccessfully;
     }
 
     /// <summary>
     /// Search contact.
     /// </summary>
     /// <param name="searchWord"> Word to be searched. </param>
-    /// <returns> List of contact that macheres the user input. </returns>
+    /// <returns> List of contact that matches the user input. </returns>
     public List<ContactInfo> SearchContact(string? searchWord) => this._contactRepository.SearchContact(searchWord);
 
     /// <summary>
@@ -93,7 +93,7 @@ public class ContactController
     public string EditContact(Guid? id, int contactField, string? contactValue)
     {
         string message = this.CheckValidation(contactField, contactValue);
-        if (message != RepeatedStrings.ValidationIsSuccessful)
+        if (message != MessageConstants.ValidationSuccessful)
         {
             return message;
         }
@@ -116,7 +116,7 @@ public class ContactController
     /// </summary>
     /// <param name="phoneNumber"> Phone number. </param>
     /// <returns> true or false. </returns>
-    public bool IsNumberExist(string? phoneNumber)
+    public bool IsPhoneNumberExist(string? phoneNumber)
     {
         List<ContactInfo> contacts = this.ViewContact();
         foreach (ContactInfo contact in contacts)
@@ -140,22 +140,22 @@ public class ContactController
     {
         switch (contactfield)
         {
-            case 1 when Validation.IsNameEmpty(contactValue):
-                return RepeatedStrings.NameIsRequired;
-            case 1 when !Validation.IsNameValid(contactValue):
-                return RepeatedStrings.NameShouldBeMoreThanOneCharacter;
-            case 2 when Validation.IsNumberEmpty(contactValue):
-                return RepeatedStrings.PhoneNumberIsRequired;
-            case 2 when !Validation.IsNumber(contactValue):
-                return RepeatedStrings.PhoneNumberShouldBe10DigitNumber;
-            case 2 when this.IsNumberExist(contactValue):
-                return RepeatedStrings.PhoneNumberAlreadyExist;
-            case 3 when !Validation.IsEmail(contactValue):
-                return RepeatedStrings.EnterAValidEmail;
-            case 4 when !Validation.IsNotes(contactValue):
-                return RepeatedStrings.NotesShouldBeLessThan50Character;
+            case 1 when Validation.IsValidInput(contactValue):
+                return MessageConstants.NameRequired;
+            case 1 when !Validation.IsValidName(contactValue):
+                return MessageConstants.NameTooShort;
+            case 2 when Validation.IsValidInput(contactValue):
+                return MessageConstants.PhoneNumberRequired;
+            case 2 when !Validation.IsValidPhoneNumber(contactValue):
+                return MessageConstants.InvalidPhoneNumber;
+            case 2 when this.IsPhoneNumberExist(contactValue):
+                return MessageConstants.DuplicatePhoneNumber;
+            case 3 when !Validation.IsValidEmail(contactValue):
+                return MessageConstants.InvalidEmailAddress;
+            case 4 when !Validation.IsValidNotes(contactValue):
+                return MessageConstants.NotesExceedMaximumLength;
         }
 
-        return RepeatedStrings.ValidationIsSuccessful;
+        return MessageConstants.ValidationSuccessful;
     }
 }

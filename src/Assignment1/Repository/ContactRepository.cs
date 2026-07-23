@@ -36,8 +36,8 @@ public class ContactRepository
         List<ContactInfo> searchMatch = new ();
         foreach (ContactInfo contact in this._contacts)
         {
-            if ((searchWord != null && contact.Name != null && contact.PhoneNumber != null && contact.Email != null) &&
-                (contact.Name.Contains(searchWord, StringComparison.OrdinalIgnoreCase)
+            if ((searchWord != null && contact.Name != null && contact.PhoneNumber != null && contact.Email != null)
+                && (contact.Name.Contains(searchWord, StringComparison.OrdinalIgnoreCase)
                 || contact.PhoneNumber.Contains(searchWord, StringComparison.OrdinalIgnoreCase)
                 || contact.Email.Contains(searchWord, StringComparison.OrdinalIgnoreCase)))
             {
@@ -75,34 +75,36 @@ public class ContactRepository
     /// <returns> Message. </returns>
     public string EditContact(Guid? id, int contactField, string? contactDetail)
     {
-        if (id != null)
+        if (id == null)
         {
-            foreach (ContactInfo contact in this._contacts)
-            {
-                if (contact.Id == id)
-                {
-                    switch (contactField)
-                    {
-                        case 1:
-                            contact.Name = contactDetail;
-                            break;
-                        case 2:
-                            contact.PhoneNumber = contactDetail;
-                            break;
-                        case 3:
-                            contact.Email = contactDetail;
-                            break;
-                        case 4:
-                            contact.Notes = contactDetail;
-                            break;
-                    }
-                }
-            }
-
-            return RepeatedStrings.ContactEditedSuccessfully;
+            return MessageConstants.ContactIdRequired;
         }
 
-        return RepeatedStrings.IdShouldNotBeNull;
+        foreach (ContactInfo contact in this._contacts)
+        {
+            if (contact.Id == id)
+            {
+                switch (contactField)
+                {
+                    case 1:
+                        contact.Name = contactDetail;
+                        break;
+                    case 2:
+                        contact.PhoneNumber = contactDetail;
+                        break;
+                    case 3:
+                        contact.Email = contactDetail;
+                        break;
+                    case 4:
+                        contact.Notes = contactDetail;
+                        break;
+                }
+
+                break;
+            }
+        }
+
+        return MessageConstants.ContactUpdatedSuccessfully;
     }
 
     /// <summary>
