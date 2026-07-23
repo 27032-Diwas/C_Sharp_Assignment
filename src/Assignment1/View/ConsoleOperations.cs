@@ -40,7 +40,7 @@ public class ConsoleOperations
             Console.WriteLine($"[3] - {MessageConstants.SearchContact}");
             Console.WriteLine($"[4] - {MessageConstants.EditContact}");
             Console.WriteLine($"[5] - {MessageConstants.DeleteContact}");
-            Console.WriteLine($"[6] - Exit");
+            Console.WriteLine($"[6] - EXIT");
             Console.WriteLine(" ");
 
             option = Console.ReadLine();
@@ -108,7 +108,7 @@ public class ConsoleOperations
         Console.WriteLine($"[2] - {MessageConstants.PhoneNumber}");
         Console.WriteLine($"[3] - {MessageConstants.Email}");
         Console.WriteLine($"[4] - {MessageConstants.Notes}");
-        Console.WriteLine($"[5] - Exit");
+        Console.WriteLine($"[5] - EXIT");
     }
 
     /// <summary>

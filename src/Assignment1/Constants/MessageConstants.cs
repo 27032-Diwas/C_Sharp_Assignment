@@ -130,9 +130,9 @@ public static class MessageConstants
     public const string NameTooShort = "NAME SHOULD CONTAIN AT LEAST 2 CHARACTERS!!!";
 
     /// <summary>
-    /// Message displayed when notes exceed the maximum allowed length.
+    /// The maximum allowed length for notes.
     /// </summary>
-    public const string NotesExceedMaximumLength = "NOTES SHOULD BE LESS THAN 50 CHARACTERS!!!";
+    public const int NotesMaximumLength = 50;
 
     /// <summary>
     /// Message displayed when the contact name is not provided.
@@ -158,4 +158,9 @@ public static class MessageConstants
     /// Message displayed when an invalid email address is entered.
     /// </summary>
     public const string InvalidEmailAddress = "ENTER A VALID EMAIL ADDRESS!!!";
+
+    /// <summary>
+    /// Message displayed when notes exceed the maximum allowed length.
+    /// </summary>
+    public static readonly string NotesExceedMaximumLength = $"NOTES SHOULD BE LESS THAN {NotesMaximumLength} CHARACTERS!!!";
 }
