@@ -1,5 +1,8 @@
 ﻿namespace OOPS.Models.ShapeHierarchy;
 
+/// <summary>
+/// Circle class inheriting shape class.
+/// </summary>
 public class Circle : Shape
 {
     private const string _shape = "Circle";
@@ -32,6 +35,6 @@ public class Circle : Shape
     /// <returns> String of details. </returns>
     public override string PrintDetails()
     {
-        return $"Shape : _shape, Area : {this.CalculateArea():F2}, Color : {this.Color}";
+        return $"Shape : {_shape}, Area : {this.CalculateArea():F2}, Color : {this.Color}";
     }
 }

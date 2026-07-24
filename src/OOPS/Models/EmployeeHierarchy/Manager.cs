@@ -1,13 +1,17 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace OOPS.Models.EmployeeHierarchy;
 
-namespace OOPS.Models.EmployeeHierarchy
+public class Manager
 {
-    internal class Manager
+    public Manager(string name, decimal salary)
     {
+        this.Name = name;
+        this.Salary = salary;
     }
+
+    public string Name { get; set; }
+    public decimal Salary { get; set; }
+
+    public abstract double CalculateBonus();
+
+    public abstract string PrintDetails();
 }
