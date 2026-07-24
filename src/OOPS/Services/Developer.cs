@@ -1,29 +1,31 @@
-﻿namespace OOPS.Models.EmployeeHierarchy;
+﻿using OOPS.Models.EmployeeHierarchy;
+
+namespace OOPS.Services;
 
 /// <summary>
-/// Manager class inheriting employee class.
+/// Developer class inheriting employee class.
 /// </summary>
-public class Manager : Employee
+public class Developer : Employee
 {
-    private const string _position = "Manager";
+    private const string _position = "Developer";
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="Manager"/> class.
+    /// Initializes a new instance of the <see cref="Developer"/> class.
     /// </summary>
     /// <param name="name"> Employee name.</param>
     /// <param name="salary"> Employee salary. </param>
-    public Manager(string name, decimal salary)
+    public Developer(string name, decimal salary)
         : base(name, salary)
     {
     }
 
     /// <summary>
-    /// Calculate bonus of manager.
+    /// Calculate bonus of developer.
     /// </summary>
-    /// <returns> Bonus of manager in double. </returns>
+    /// <returns> Bonus of developer in double. </returns>
     public override double CalculateBonus()
     {
-        return (double)this.Salary * 0.2;
+        return (double)this.Salary * 0.15;
     }
 
     /// <summary>
@@ -34,5 +36,4 @@ public class Manager : Employee
     {
         return $"Name: {this.Name}, Position: {_position}, Salary: {this.Salary}, Bonus: {this.CalculateBonus():F2}";
     }
-
 }

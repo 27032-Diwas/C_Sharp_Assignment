@@ -1,19 +1,21 @@
-﻿namespace OOPS.Models.ShapeHierarchy;
+﻿using OOPS.Models.ShapeHierarchy;
+
+namespace OOPS.Services;
 
 /// <summary>
 /// Rectange class inheriting shape class.
 /// </summary>
-public class Rectangle : Shape
+public class RectangleShape : Shape
 {
     private const string _shape = "Rectangle";
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="Rectangle"/> class.
+    /// Initializes a new instance of the <see cref="RectangleShape"/> class.
     /// </summary>
     /// <param name="color"> Color of the rectangle. </param>
     /// <param name="length"> Length of the rectangle. </param>
     /// <param name="width"> Width of the rectangel. </param>
-    public Rectangle(string color, double length, double width)
+    public RectangleShape(string color, double length, double width)
         : base(color)
     {
         this.Length = length;

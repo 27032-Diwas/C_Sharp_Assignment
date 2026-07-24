@@ -1,4 +1,6 @@
-﻿namespace OOPS;
+﻿using OOPS.View;
+
+namespace OOPS;
 
 /// <summary>
 /// OOPS Assignment
@@ -8,9 +10,12 @@ internal class Program
     /// <summary>
     /// Main class where program starts.
     /// </summary>
-    /// <param name="args"></param>
-    static void Main(string[] args)
+    /// <param name="args"> Argument. </param>
+    private static void Main(string[] args)
     {
-        Console.WriteLine("Hello, World!");
+        MainMenu mainMenu = new MainMenu();
+
+        mainMenu.GetMenuOption();
+        Console.ReadKey();
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace OOPS.Models.ShapeHierarchy;
+﻿using OOPS.Models.ShapeHierarchy;
+
+namespace OOPS.Services;
 
 /// <summary>
 /// Circle class inheriting shape class.
