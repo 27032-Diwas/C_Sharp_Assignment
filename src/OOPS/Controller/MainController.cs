@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace OOPS.Controller;
 
-namespace OOPS.Controller
+internal class MainController
 {
-    internal class MainController
-    {
-    }
 }
