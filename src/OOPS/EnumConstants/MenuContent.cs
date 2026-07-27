@@ -103,4 +103,15 @@ public static class MenuContent
         /// </summary>
         Withdraw,
     }
+
+    /// <summary>
+    /// Contains exit enum.
+    /// </summary>
+    public enum Exit
+    {
+        /// <summary>
+        /// Header displayed for exit.
+        /// </summary>
+        Exit,
+    }
 }

@@ -16,13 +16,13 @@ public class BankAccountContent
         Exit,
 
         /// <summary>
-        /// Header displayed for shape hierarchy.
+        /// Header displayed for savings account.
         /// </summary>
         SavingsAccount,
 
         /// <summary>
-        /// Header displayed for employee hierarchy.
+        /// Header displayed for checking account
         /// </summary>
-        CurrentAccount,
+        CheckingAccount,
     }
 }

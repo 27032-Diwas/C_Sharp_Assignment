@@ -29,6 +29,7 @@ public class EmployeeHierarchy
                 Console.WriteLine(MessageConstants.InvalidOption);
                 continue;
             }
+
             Console.Clear();
 
             switch (choice)
@@ -56,8 +57,8 @@ public class EmployeeHierarchy
 
     private void Manager()
     {
-        string? name = ValidInput.GetValidStringInput(MessageConstants.GetEmployeeName);
-        decimal salary = ValidInput.GetValidDecimalInput(MessageConstants.GetEmployeeSalary);
+        string? name = ValidInput.GetName(MessageConstants.GetEmployeeName);
+        decimal salary = ValidInput.GetAmount(MessageConstants.GetEmployeeSalary);
         Manager manager = new (name, salary);
 
         Console.WriteLine(manager.PrintDetails());
@@ -68,8 +69,8 @@ public class EmployeeHierarchy
 
     private void Developer()
     {
-        string? name = ValidInput.GetValidStringInput(MessageConstants.GetEmployeeName);
-        decimal salary = 
+        string? name = ValidInput.GetName(MessageConstants.GetEmployeeName);
+        decimal salary = ValidInput.GetAmount(MessageConstants.GetEmployeeSalary);
         Developer developer = new (name, salary);
 
         Console.WriteLine(developer.PrintDetails());
@@ -77,6 +78,4 @@ public class EmployeeHierarchy
         Console.ReadKey();
         Console.Clear();
     }
-
-    
 }

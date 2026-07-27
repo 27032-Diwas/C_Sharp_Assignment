@@ -75,18 +75,7 @@ public class BankSystem
 
     private void AddAccount()
     {
-        string? name;
-        bool isValidName;
-        do
-        {
-            name = ValidInput.GetValidStringInput(MessageConstants.GetAccountHolderName);
-            isValidName = !Validation.IsValidName(name);
-            if (isValidName)
-            {
-                Console.WriteLine(MessageConstants.NameTooShort);
-            }
-        }
-        while (isValidName);
+        string? name = ValidInput.GetName(MessageConstants.GetAccountHolderName);
 
         BankAccountContent.BankAccountTypes accountType = default;
         bool isValidMenuOption = true;
@@ -108,10 +97,11 @@ public class BankSystem
 
         if (accountType == BankAccountContent.BankAccountTypes.Exit)
         {
+            Console.Clear();
             return;
         }
 
-        decimal amount = ValidInput.GetValidDecimalInput(MessageConstants.GetAmonut);
+        decimal amount = ValidInput.GetAmount(MessageConstants.GetAmonutDeposit);
         string message = this._bankServices.AddAccount(name, amount, accountType);
         Console.WriteLine(message);
         Console.WriteLine(MessageConstants.GetAnyKey);
@@ -121,7 +111,7 @@ public class BankSystem
 
     private void ViewAccount()
     {
-        decimal accountNumber = ValidInput.GetValidDecimalInput(MessageConstants.GetAccountNumber);
+        decimal accountNumber = ValidInput.GetAccountNumber(MessageConstants.GetAccountNumber);
         Console.WriteLine(this._bankServices.ViewContact(accountNumber));
         Console.WriteLine(MessageConstants.GetAnyKey);
         Console.ReadKey();
@@ -130,8 +120,15 @@ public class BankSystem
 
     private void Deposit()
     {
-        decimal accountNumber = ValidInput.GetValidDecimalInput(MessageConstants.GetAccountNumber);
-        decimal amount = ValidInput.GetValidDecimalInput(MessageConstants.GetAmonut);
+        decimal accountNumber = ValidInput.GetAccountNumber(MessageConstants.GetAccountNumber);
+        string message = this._bankServices.ViewContact(accountNumber);
+        if (message == MessageConstants.AccountNotFound)
+        {
+            Console.WriteLine(message);
+            return;
+        }
+
+        decimal amount = ValidInput.GetAmount(MessageConstants.GetAmonutDeposit);
         Console.WriteLine(this._bankServices.Deposit(accountNumber, amount));
         Console.WriteLine(MessageConstants.GetAnyKey);
         Console.ReadKey();
@@ -140,8 +137,15 @@ public class BankSystem
 
     private void Withdraw()
     {
-        decimal accountNumber = ValidInput.GetValidDecimalInput(MessageConstants.GetAccountNumber);
-        decimal amount = ValidInput.GetValidDecimalInput(MessageConstants.GetAmonut);
+        decimal accountNumber = ValidInput.GetAccountNumber(MessageConstants.GetAccountNumber);
+        string message = this._bankServices.ViewContact(accountNumber);
+        if (message == MessageConstants.AccountNotFound)
+        {
+            Console.WriteLine(message);
+            return;
+        }
+
+        decimal amount = ValidInput.GetAmount(MessageConstants.GetAmonutWithdraw);
         Console.WriteLine(this._bankServices.Withdraw(accountNumber, amount));
         Console.WriteLine(MessageConstants.GetAnyKey);
         Console.ReadKey();

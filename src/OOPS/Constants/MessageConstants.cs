@@ -66,9 +66,14 @@ public static class MessageConstants
     public const string AccountNotFound = "ACCOUNT NOT FOUND!!";
 
     /// <summary>
-    /// Message displayed when the input is not a valid account number.
+    /// Message displayed when the input is invalid account number.
     /// </summary>
-    public const string InvalidAccountNumber = "ENTER A VALID ACCOUNT NUMBER!!";
+    public const string InvalidAccountNumber = "ACCOUNT NUMBER SHOULD BE A 10 DIGIT NUMBER!!";
+
+    /// <summary>
+    /// Message displayed when the input is not a color.
+    /// </summary>
+    public const string InvalidColor = "ENTER A VALID COLOR!!";
 
     /// <summary>
     /// Prompt requesting the user to enter rectangle witdth.
@@ -103,7 +108,12 @@ public static class MessageConstants
     /// <summary>
     /// Prompt requesting the user to enter amount value to deposit.
     /// </summary>
-    public const string GetAmonut = "Enter the amount to deposit: ";
+    public const string GetAmonutDeposit = "Enter amount to deposit(is Rs): ";
+
+    /// <summary>
+    /// Prompt requesting the user to enter amount value to withdraw.
+    /// </summary>
+    public const string GetAmonutWithdraw = "Enter amount to withdraw(is Rs): ";
 
     /// <summary>
     /// Prompt requesting the user to enter account number.
@@ -141,7 +151,12 @@ public static class MessageConstants
     public static readonly string LessThanMinimumBalance = $"SAVINGS ACCOUNT SHOULD MAINTAIN Rs.{BankConstants.SavingAccountMinimumBalance} MINIMUM BALANCE!!!";
 
     /// <summary>
-    /// Message displayed when the balance is insufficient.
+    /// Message displayed when the balance is insufficient in savings account.
     /// </summary>
-    public static readonly string InsufficientBalance = $"INSUFFICIENT BALANCE. SAVINGS ACCOUNT SHOULD MAINTAIN Rs.{BankConstants.SavingAccountMinimumBalance} MINIMUM BALANCE";
+    public static readonly string SavingsAccountInsufficientBalance = $"INSUFFICIENT BALANCE. SAVINGS ACCOUNT SHOULD MAINTAIN Rs.{BankConstants.SavingAccountMinimumBalance} MINIMUM BALANCE";
+
+    /// <summary>
+    /// Message displayed when the balance is insufficient in checking account.
+    /// </summary>
+    public static readonly string CheckingAccountInsufficientBalance = $"INSUFFICIENT BALANCE. CHECKING ACCOUNT SHOULD MAINTAIN Rs.{BankConstants.CurrentAccountMinimumThresold} MINIMUM BALANCE";
 }

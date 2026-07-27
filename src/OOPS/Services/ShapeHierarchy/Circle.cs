@@ -17,7 +17,7 @@ public class Circle : Shape
     public Circle(string color, double radius)
         : base(color)
     {
-        Radius = radius;
+        this.Radius = radius;
     }
 
     private double Radius { get; set; }
@@ -28,7 +28,7 @@ public class Circle : Shape
     /// <returns> Area of circle in double. </returns>
     public override double CalculateArea()
     {
-        return Radius * Radius * Math.PI;
+        return this.Radius * this.Radius * Math.PI;
     }
 
     /// <summary>
@@ -37,6 +37,6 @@ public class Circle : Shape
     /// <returns> String of details. </returns>
     public override string PrintDetails()
     {
-        return $"Shape : {_shape}, Area : {CalculateArea():F2}, Color : {Color}";
+        return $"Shape : {_shape}, Area : {this.CalculateArea():F2}, Color : {this.Color}";
     }
 }

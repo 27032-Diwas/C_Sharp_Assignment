@@ -18,8 +18,8 @@ public class RectangleShape : Shape
     public RectangleShape(string color, double length, double width)
         : base(color)
     {
-        Length = length;
-        Width = width;
+        this.Length = length;
+        this.Width = width;
     }
 
     private double Length { get; set; }
@@ -32,7 +32,7 @@ public class RectangleShape : Shape
     /// <returns> Area of rectangle in double. </returns>
     public override double CalculateArea()
     {
-        return Length * Width;
+        return this.Length * this.Width;
     }
 
     /// <summary>
@@ -41,6 +41,6 @@ public class RectangleShape : Shape
     /// <returns> String of details. </returns>
     public override string PrintDetails()
     {
-        return $"Shape : {_shape}, Area : {CalculateArea():F2}, Color : {Color}";
+        return $"Shape : {_shape}, Area : {this.CalculateArea():F2}, Color : {this.Color}";
     }
 }

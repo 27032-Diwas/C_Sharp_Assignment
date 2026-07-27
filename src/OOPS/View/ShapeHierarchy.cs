@@ -55,9 +55,9 @@ public class ShapeHierarchy
 
     private void Rectangle()
     {
-        double length = ValidInput.GetValidDoubleInput(MessageConstants.GetRectangleLength);
-        double width = ValidInput.GetValidDoubleInput(MessageConstants.GetRectangleWidth);
-        string? color = ValidInput.GetValidStringInput(MessageConstants.GetColor);
+        double length = ValidInput.GetMeasurement(MessageConstants.GetRectangleLength);
+        double width = ValidInput.GetMeasurement(MessageConstants.GetRectangleWidth);
+        string? color = ValidInput.GetColor(MessageConstants.GetColor);
         RectangleShape rectangle = new (color, width, length);
 
         Console.WriteLine(rectangle.PrintDetails());
@@ -68,8 +68,8 @@ public class ShapeHierarchy
 
     private void Circle()
     {
-        double radius = ValidInput.GetValidDoubleInput(MessageConstants.GetCircleRadius);
-        string? color = ValidInput.GetValidStringInput(MessageConstants.GetColor);
+        double radius = ValidInput.GetMeasurement(MessageConstants.GetCircleRadius);
+        string? color = ValidInput.GetColor(MessageConstants.GetColor);
         Circle circle = new (color, radius);
 
         Console.WriteLine(circle.PrintDetails());

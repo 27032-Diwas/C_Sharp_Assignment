@@ -1,4 +1,5 @@
 ﻿using OOPS.Constants;
+using OOPS.EnumConstants;
 using OOPS.Helper;
 
 namespace OOPS.View;
@@ -21,7 +22,14 @@ public static class ValidInput
         do
         {
             Console.WriteLine(message);
-            isValidInput = double.TryParse(Console.ReadLine(), out result);
+            string? input = Console.ReadLine();
+
+            // var isParsed = Enum.TryParse(input, true, out MenuContent.Exit choice);
+            // if (isParsed && Enum.IsDefined(typeof(MenuContent.Exit), choice))
+            // {
+            //    return ;
+            // }
+            isValidInput = double.TryParse(input, out result);
 
             if (!isValidInput)
             {
@@ -65,7 +73,7 @@ public static class ValidInput
     /// <returns> string value. </returns>
     public static string GetValidStringInput(string message)
     {
-        string? result;
+        string result;
         bool isValidInput = false;
 
         do
@@ -73,7 +81,7 @@ public static class ValidInput
             Console.WriteLine(message);
             result = Console.ReadLine();
 
-            if (result is null || result.Trim() == string.Empty)
+            if (string.IsNullOrEmpty(result.Trim()))
             {
                 Console.WriteLine(MessageConstants.InvalidStringInput);
                 continue;
@@ -87,17 +95,41 @@ public static class ValidInput
     }
 
     /// <summary>
+    /// Get vaild measurement from the user.
+    /// </summary>
+    /// /// <param name="message"> Message to display when getting input. </param>
+    /// <returns> Return salary. </returns>
+    public static double GetMeasurement(string message)
+    {
+        double measurement;
+        bool isValidMeasurement;
+        do
+        {
+            measurement = GetValidDoubleInput(message);
+            isValidMeasurement = !Validation.IsValidMeasurement(measurement);
+
+            if (isValidMeasurement)
+            {
+                Console.WriteLine(MessageConstants.NegativeValue);
+            }
+        }
+        while (isValidMeasurement);
+        return measurement;
+    }
+
+    /// <summary>
     /// Get vaild salary from the user.
     /// </summary>
+    /// /// <param name="message"> Message to display when getting input. </param>
     /// <returns> Return salary. </returns>
-    public static decimal GetAmount()
+    public static decimal GetAmount(string message)
     {
         decimal amount;
         bool isValidAmount;
         do
         {
-            amount = GetValidDecimalInput(MessageConstants.GetEmployeeSalary);
-            isValidAmount = !Validation.IsAmountValid(amount);
+            amount = GetValidDecimalInput(message);
+            isValidAmount = !Validation.IsValidAmount(amount);
 
             if (isValidAmount)
             {
@@ -111,22 +143,69 @@ public static class ValidInput
     /// <summary>
     /// Get vaild name from the user.
     /// </summary>
+    /// <param name="message"> Message to display when getting input. </param>
     /// <returns> Name. </returns>
-    public static string GetName()
+    public static string GetName(string message)
     {
         string? name;
         bool isValidName;
         do
         {
-            name = GetValidStringInput(MessageConstants.GetEmployeeName);
+            name = GetValidStringInput(message);
             isValidName = !Validation.IsValidName(name);
 
             if (isValidName)
             {
-                Console.WriteLine(MessageConstants.NegativeValue);
+                Console.WriteLine(MessageConstants.NameTooShort);
             }
         }
         while (isValidName);
         return name;
+    }
+
+    /// <summary>
+    /// Get vaild account number from the user.
+    /// </summary>
+    /// <param name="message"> Message to display when getting input. </param>
+    /// <returns> Account number. </returns>
+    public static decimal GetAccountNumber(string message)
+    {
+        decimal accountNumber;
+        bool isValidAccountNumber;
+        do
+        {
+            accountNumber = GetValidDecimalInput(message);
+            isValidAccountNumber = !Validation.IsValidAccountNumber(accountNumber);
+
+            if (isValidAccountNumber)
+            {
+                Console.WriteLine(MessageConstants.InvalidAccountNumber);
+            }
+        }
+        while (isValidAccountNumber);
+        return accountNumber;
+    }
+
+    /// <summary>
+    /// Get vaild color from the user.
+    /// </summary>
+    /// <param name="message"> Message to display when getting input. </param>
+    /// <returns> Color. </returns>
+    public static string GetColor(string message)
+    {
+        string? color;
+        bool isValidColor;
+        do
+        {
+            color = GetValidStringInput(message);
+            isValidColor = !Validation.IsValidColor(color);
+
+            if (isValidColor)
+            {
+                Console.WriteLine(MessageConstants.InvalidColor);
+            }
+        }
+        while (isValidColor);
+        return color;
     }
 }

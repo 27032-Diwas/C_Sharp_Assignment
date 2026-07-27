@@ -6,15 +6,15 @@ namespace OOPS.Services.BankSystem;
 /// <summary>
 /// Contains methods related to saving account.
 /// </summary>
-public class CurrentAccount : BankAccount
+public class CheckingAccount : BankAccount
 {
     /// <summary>
-    /// Initializes a new instance of the <see cref="CurrentAccount"/> class.
+    /// Initializes a new instance of the <see cref="CheckingAccount"/> class.
     /// </summary>
     /// <param name="name"> Account holder name. </param>
     /// <param name="accountNumber"> Account number. </param>
     /// <param name="balance"> Balance. </param>
-    public CurrentAccount(string name, decimal accountNumber, decimal balance)
+    public CheckingAccount(string name, decimal accountNumber, decimal balance)
         : base(name, accountNumber, balance)
     {
     }
@@ -26,12 +26,12 @@ public class CurrentAccount : BankAccount
     /// <returns> Success or failure message.</returns>
     public override string Withdraw(decimal amount)
     {
-        if (this.Balance - amount > BankConstants.CurrentAccountMinimumThresold)
+        if (this.Balance - amount >= BankConstants.CurrentAccountMinimumThresold)
         {
             this.Balance -= amount;
             return MessageConstants.WithdrawSuccess;
         }
 
-        return MessageConstants.InsufficientBalance;
+        return MessageConstants.CheckingAccountInsufficientBalance;
     }
 }

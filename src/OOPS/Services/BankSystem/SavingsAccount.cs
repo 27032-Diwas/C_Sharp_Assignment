@@ -26,12 +26,12 @@ public class SavingsAccount : BankAccount
     /// <returns> Success or failure message.</returns>
     public override string Withdraw(decimal amount)
     {
-        if (this.Balance - amount > BankConstants.SavingAccountMinimumBalance)
+        if (this.Balance - amount >= BankConstants.SavingAccountMinimumBalance)
         {
             this.Balance -= amount;
             return MessageConstants.WithdrawSuccess;
         }
 
-        return MessageConstants.InsufficientBalance;
+        return MessageConstants.SavingsAccountInsufficientBalance;
     }
 }

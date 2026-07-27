@@ -39,14 +39,14 @@ public class BankServices
         {
             return MessageConstants.NameTooShort;
         }
-        else if (!Validation.IsAmountValid(amount))
+        else if (!Validation.IsValidAmount(amount))
         {
             return MessageConstants.NegativeValue;
         }
 
-        if (accountType == BankAccountContent.BankAccountTypes.CurrentAccount)
+        if (accountType == BankAccountContent.BankAccountTypes.CheckingAccount)
         {
-            CurrentAccount currentAccount = new (name, accountNumber, amount);
+            CheckingAccount currentAccount = new (name, accountNumber, amount);
             accountNumber += 1;
             this._bankSystemRepo.AddAccount(currentAccount);
             return $"{MessageConstants.AccountAddedSuccessfully}\n{this._bankSystemRepo.ViewAccount(accountNumber - 1)}";
