@@ -1,6 +1,6 @@
 ﻿using OOPS.Constants;
 using OOPS.EnumConstants;
-using OOPS.Services;
+using OOPS.Services.ShapeHierarchy;
 
 namespace OOPS.View;
 
@@ -29,6 +29,7 @@ public class ShapeHierarchy
                 continue;
             }
 
+            Console.Clear();
             switch (choice)
             {
                 case MenuContent.ShapeMenu.Back:
@@ -44,16 +45,12 @@ public class ShapeHierarchy
     }
 
     /// <summary>
-    /// Displays main menu options.
+    /// Displays shpae menu options.
     /// </summary>
     private static void DisplayMenu()
     {
-        Console.Clear();
         Console.WriteLine(MessageConstants.ShapeMenu);
-        foreach (var value in Enum.GetValues(typeof(MenuContent.ShapeMenu)))
-        {
-            Console.WriteLine($"{(int)value}. {value}");
-        }
+        DisplayEnum.DisplayMenu(typeof(MenuContent.ShapeMenu));
     }
 
     private void Rectangle()
@@ -66,6 +63,7 @@ public class ShapeHierarchy
         Console.WriteLine(rectangle.PrintDetails());
         Console.WriteLine(MessageConstants.GetAnyKey);
         Console.ReadKey();
+        Console.Clear();
     }
 
     private void Circle()
@@ -77,5 +75,6 @@ public class ShapeHierarchy
         Console.WriteLine(circle.PrintDetails());
         Console.WriteLine(MessageConstants.GetAnyKey);
         Console.ReadKey();
+        Console.Clear();
     }
 }

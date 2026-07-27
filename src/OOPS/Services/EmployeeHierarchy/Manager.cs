@@ -1,6 +1,6 @@
-﻿using OOPS.Models.EmployeeHierarchy;
+﻿using OOPS.Models;
 
-namespace OOPS.Services;
+namespace OOPS.Services.EmployeeHierarchy;
 
 /// <summary>
 /// Manager class inheriting employee class.
@@ -25,7 +25,7 @@ public class Manager : Employee
     /// <returns> Bonus of manager in double. </returns>
     public override double CalculateBonus()
     {
-        return (double)this.Salary * 0.2;
+        return (double)Salary * 0.2;
     }
 
     /// <summary>
@@ -34,6 +34,6 @@ public class Manager : Employee
     /// <returns> Details as a string. </returns>
     public override string PrintDetails()
     {
-        return $"Name: {this.Name}, Position: {_position}, Salary: {this.Salary}, Bonus: {this.CalculateBonus():F2}";
+        return $"Name: {Name}, Position: {_position}, Salary: {Salary}, Bonus: {CalculateBonus():F2}";
     }
 }

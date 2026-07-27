@@ -15,6 +15,7 @@ public class MainMenu
     {
         ShapeHierarchy shapeHierarchy = new ();
         EmployeeHierarchy employeeHierarchy = new ();
+        BankSystem bankSystem = new ();
         bool isValidMenuOption = true;
 
         while (isValidMenuOption)
@@ -30,6 +31,7 @@ public class MainMenu
                 continue;
             }
 
+            Console.Clear();
             switch (choice)
             {
                 case MenuContent.MainMenu.Exit:
@@ -42,6 +44,7 @@ public class MainMenu
                     employeeHierarchy.GetMenuOption();
                     break;
                 case MenuContent.MainMenu.BankSystem:
+                    bankSystem.GetMenuOption();
                     break;
             }
         }
@@ -52,11 +55,7 @@ public class MainMenu
     /// </summary>
     private static void DisplayMenu()
     {
-        Console.Clear();
         Console.WriteLine(MessageConstants.MainMenu);
-        foreach (var value in Enum.GetValues(typeof(MenuContent.MainMenu)))
-        {
-            Console.WriteLine($"{(int)value}. {value}");
-        }
+        DisplayEnum.DisplayMenu(typeof(MenuContent.MainMenu));
     }
 }

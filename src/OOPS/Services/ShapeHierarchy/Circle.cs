@@ -1,6 +1,6 @@
-﻿using OOPS.Models.ShapeHierarchy;
+﻿using OOPS.Models;
 
-namespace OOPS.Services;
+namespace OOPS.Services.ShapeHierarchy;
 
 /// <summary>
 /// Circle class inheriting shape class.
@@ -17,7 +17,7 @@ public class Circle : Shape
     public Circle(string color, double radius)
         : base(color)
     {
-        this.Radius = radius;
+        Radius = radius;
     }
 
     private double Radius { get; set; }
@@ -28,7 +28,7 @@ public class Circle : Shape
     /// <returns> Area of circle in double. </returns>
     public override double CalculateArea()
     {
-        return this.Radius * this.Radius * Math.PI;
+        return Radius * Radius * Math.PI;
     }
 
     /// <summary>
@@ -37,6 +37,6 @@ public class Circle : Shape
     /// <returns> String of details. </returns>
     public override string PrintDetails()
     {
-        return $"Shape : {_shape}, Area : {this.CalculateArea():F2}, Color : {this.Color}";
+        return $"Shape : {_shape}, Area : {CalculateArea():F2}, Color : {Color}";
     }
 }

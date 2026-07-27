@@ -31,6 +31,11 @@ public static class MessageConstants
     public const string EmployeeMenu = "EMPLOYEE MENU";
 
     /// <summary>
+    /// Header message for bank systme menu.
+    /// </summary>
+    public const string BankSystemMenu = "BANK SYSTEM MENU";
+
+    /// <summary>
     /// Message displayed when the user enters an invalid menu option.
     /// </summary>
     public const string InvalidOption = "ENTER A VALID OPTION!!";
@@ -56,6 +61,16 @@ public static class MessageConstants
     public const string InvalidStringInput = "ENTER A VAILD INPUT!!";
 
     /// <summary>
+    /// Message displayed account is not found.
+    /// </summary>
+    public const string AccountNotFound = "ACCOUNT NOT FOUND!!";
+
+    /// <summary>
+    /// Message displayed when the input is not a valid account number.
+    /// </summary>
+    public const string InvalidAccountNumber = "ENTER A VALID ACCOUNT NUMBER!!";
+
+    /// <summary>
     /// Prompt requesting the user to enter rectangle witdth.
     /// </summary>
     public const string GetRectangleWidth = "Enter width of rectangle: ";
@@ -79,4 +94,54 @@ public static class MessageConstants
     /// Prompt requesting the user to enter employee salary.
     /// </summary>
     public const string GetEmployeeSalary = "Enter salary of employee(in Rs): ";
+
+    /// <summary>
+    /// Prompt requesting the user to enter account holder name.
+    /// </summary>
+    public const string GetAccountHolderName = "Enter name of account holder: ";
+
+    /// <summary>
+    /// Prompt requesting the user to enter amount value to deposit.
+    /// </summary>
+    public const string GetAmonut = "Enter the amount to deposit: ";
+
+    /// <summary>
+    /// Prompt requesting the user to enter account number.
+    /// </summary>
+    public const string GetAccountNumber = "Enter account number: ";
+
+    /// <summary>
+    /// Message displayed when the deposit is successful.
+    /// </summary>
+    public const string DepositSuccess = "DEPOSITED SUCCESSFULLY!!";
+
+    /// <summary>
+    /// Message displayed when the withdrawal is successful.
+    /// </summary>
+    public const string WithdrawSuccess = "WITHDRAWAL SUCCESSFULLY!!";
+
+    /// <summary>
+    /// Message displayed when the account name contains fewer than two characters.
+    /// </summary>
+    public const string NameTooShort = "NAME SHOULD CONTAIN AT LEAST 2 CHARACTERS AND CONTAINS ONE ALPHABETES!!!";
+
+    /// <summary>
+    /// Message displayed when the amount value is negative.
+    /// </summary>
+    public const string NegativeValue = "AMOUNT SHOULD NOT BE A NEGATIVE VALUE!!!";
+
+    /// <summary>
+    /// Message displayed when a account is added successfully.
+    /// </summary>
+    public const string AccountAddedSuccessfully = "ACCOUNT ADDED SUCCESSFULLY!!!";
+
+    /// <summary>
+    /// Message displayed when the amount is less than minimum balance.
+    /// </summary>
+    public static readonly string LessThanMinimumBalance = $"SAVINGS ACCOUNT SHOULD MAINTAIN Rs.{BankConstants.SavingAccountMinimumBalance} MINIMUM BALANCE!!!";
+
+    /// <summary>
+    /// Message displayed when the balance is insufficient.
+    /// </summary>
+    public static readonly string InsufficientBalance = $"INSUFFICIENT BALANCE. SAVINGS ACCOUNT SHOULD MAINTAIN Rs.{BankConstants.SavingAccountMinimumBalance} MINIMUM BALANCE";
 }

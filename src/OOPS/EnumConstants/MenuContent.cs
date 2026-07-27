@@ -72,4 +72,35 @@ public static class MenuContent
         /// </summary>
         Developer,
     }
+
+    /// <summary>
+    /// Contains bank system menu options.
+    /// </summary>
+    public enum BankSystemMenu
+    {
+        /// <summary>
+        /// Header displayed for exit option.
+        /// </summary>
+        Back,
+
+        /// <summary>
+        /// Header displayed for add account.
+        /// </summary>
+        AddAccount,
+
+        /// <summary>
+        /// Header displayed for see account details.
+        /// </summary>
+        ViewAccount,
+
+        /// <summary>
+        /// Header displayed for deposit.
+        /// </summary>
+        Deposit,
+
+        /// <summary>
+        /// Header displayed for withdraw.
+        /// </summary>
+        Withdraw,
+    }
 }

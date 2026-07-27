@@ -1,6 +1,7 @@
 ﻿using OOPS.Constants;
 using OOPS.EnumConstants;
-using OOPS.Services;
+using OOPS.Helper;
+using OOPS.Services.EmployeeHierarchy;
 
 namespace OOPS.View;
 
@@ -28,6 +29,7 @@ public class EmployeeHierarchy
                 Console.WriteLine(MessageConstants.InvalidOption);
                 continue;
             }
+            Console.Clear();
 
             switch (choice)
             {
@@ -44,16 +46,12 @@ public class EmployeeHierarchy
     }
 
     /// <summary>
-    /// Displays main menu options.
+    /// Displays employee menu options.
     /// </summary>
     private static void DisplayMenu()
     {
-        Console.ReadKey();
         Console.WriteLine(MessageConstants.EmployeeMenu);
-        foreach (var value in Enum.GetValues(typeof(MenuContent.EmployeeMenu)))
-        {
-            Console.WriteLine($"{(int)value}. {value}");
-        }
+        DisplayEnum.DisplayMenu(typeof(MenuContent.EmployeeMenu));
     }
 
     private void Manager()
@@ -65,16 +63,20 @@ public class EmployeeHierarchy
         Console.WriteLine(manager.PrintDetails());
         Console.WriteLine(MessageConstants.GetAnyKey);
         Console.ReadKey();
+        Console.Clear();
     }
 
     private void Developer()
     {
         string? name = ValidInput.GetValidStringInput(MessageConstants.GetEmployeeName);
-        decimal salary = ValidInput.GetValidDecimalInput(MessageConstants.GetEmployeeSalary);
+        decimal salary = 
         Developer developer = new (name, salary);
 
         Console.WriteLine(developer.PrintDetails());
         Console.WriteLine(MessageConstants.GetAnyKey);
         Console.ReadKey();
+        Console.Clear();
     }
+
+    
 }

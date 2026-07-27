@@ -1,7 +1,7 @@
-﻿namespace OOPS.Models.EmployeeHierarchy;
+﻿namespace OOPS.Models;
 
 /// <summary>
-/// Abstract shape call containing employee property and calculate bonus, print details methods.
+/// Abstract employee call containing employee property and calculate bonus, print details methods.
 /// </summary>
 public abstract class Employee
 {

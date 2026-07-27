@@ -1,4 +1,5 @@
 ﻿using OOPS.Constants;
+using OOPS.Helper;
 
 namespace OOPS.View;
 
@@ -77,10 +78,55 @@ public static class ValidInput
                 Console.WriteLine(MessageConstants.InvalidStringInput);
                 continue;
             }
+
             isValidInput = true;
         }
         while (!isValidInput);
 
         return result;
+    }
+
+    /// <summary>
+    /// Get vaild salary from the user.
+    /// </summary>
+    /// <returns> Return salary. </returns>
+    public static decimal GetAmount()
+    {
+        decimal amount;
+        bool isValidAmount;
+        do
+        {
+            amount = GetValidDecimalInput(MessageConstants.GetEmployeeSalary);
+            isValidAmount = !Validation.IsAmountValid(amount);
+
+            if (isValidAmount)
+            {
+                Console.WriteLine(MessageConstants.NegativeValue);
+            }
+        }
+        while (isValidAmount);
+        return amount;
+    }
+
+    /// <summary>
+    /// Get vaild name from the user.
+    /// </summary>
+    /// <returns> Name. </returns>
+    public static string GetName()
+    {
+        string? name;
+        bool isValidName;
+        do
+        {
+            name = GetValidStringInput(MessageConstants.GetEmployeeName);
+            isValidName = !Validation.IsValidName(name);
+
+            if (isValidName)
+            {
+                Console.WriteLine(MessageConstants.NegativeValue);
+            }
+        }
+        while (isValidName);
+        return name;
     }
 }

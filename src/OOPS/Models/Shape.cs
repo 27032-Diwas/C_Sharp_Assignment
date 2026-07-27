@@ -1,4 +1,4 @@
-﻿namespace OOPS.Models.ShapeHierarchy;
+﻿namespace OOPS.Models;
 
 /// <summary>
 /// Abstract shape call containing color property and calculate area, print details methods.
