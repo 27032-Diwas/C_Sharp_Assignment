@@ -26,7 +26,7 @@ public class CheckingAccount : BankAccount
     /// <returns> Success or failure message.</returns>
     public override string Withdraw(decimal amount)
     {
-        if (this.Balance - amount >= BankConstants.CurrentAccountMinimumThresold)
+        if (this.Balance - amount >= BankConstants.CheckingAccountMinimumThresold)
         {
             this.Balance -= amount;
             return MessageConstants.WithdrawSuccess;

@@ -23,7 +23,7 @@ public abstract class BankAccount
     /// <summary>
     /// Gets or sets.
     /// </summary>
-    /// <value> Account holder name of user. </value>
+    /// <value> Account holder name. </value>
     public string AccountHolderName { get; set; }
 
     /// <summary>
@@ -41,7 +41,7 @@ public abstract class BankAccount
     /// <summary>
     /// Deposits amount into users account.
     /// </summary>
-    /// <param name="amount"> Amount to deposit </param>
+    /// <param name="amount"> Amount to deposit. </param>
     /// <returns> Success or failure message. </returns>
     public string Deposit(decimal amount)
     {
@@ -52,7 +52,7 @@ public abstract class BankAccount
     /// <summary>
     /// Withdraw amount from the account.
     /// </summary>
-    /// <param name="amount"> Amount to withdraw </param>
+    /// <param name="amount"> Amount to withdraw. </param>
     /// <returns> success or failure message. </returns>
     public abstract string Withdraw(decimal amount);
 

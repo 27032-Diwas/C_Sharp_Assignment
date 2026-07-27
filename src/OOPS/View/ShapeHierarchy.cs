@@ -1,6 +1,7 @@
 ﻿using OOPS.Constants;
 using OOPS.EnumConstants;
 using OOPS.Services.ShapeHierarchy;
+using System.Drawing;
 
 namespace OOPS.View;
 
@@ -55,9 +56,31 @@ public class ShapeHierarchy
 
     private void Rectangle()
     {
-        double length = ValidInput.GetMeasurement(MessageConstants.GetRectangleLength);
-        double width = ValidInput.GetMeasurement(MessageConstants.GetRectangleWidth);
-        string? color = ValidInput.GetColor(MessageConstants.GetColor);
+        double? inputDouble;
+        inputDouble = ValidInput.GetMeasurement(MessageConstants.GetRectangleLength);
+        if (inputDouble is null)
+        {
+            Console.Clear();
+            return;
+        }
+
+        double length = (double)inputDouble;
+        inputDouble = ValidInput.GetMeasurement(MessageConstants.GetRectangleWidth);
+        if (inputDouble is null)
+        {
+            Console.Clear();
+            return;
+        }
+
+        double width = (double)inputDouble;
+        string? inputString = ValidInput.GetColor(MessageConstants.GetColor);
+        if (inputString is null)
+        {
+            Console.Clear();
+            return;
+        }
+
+        string color = inputString;
         RectangleShape rectangle = new (color, width, length);
 
         Console.WriteLine(rectangle.PrintDetails());
@@ -68,8 +91,23 @@ public class ShapeHierarchy
 
     private void Circle()
     {
-        double radius = ValidInput.GetMeasurement(MessageConstants.GetCircleRadius);
-        string? color = ValidInput.GetColor(MessageConstants.GetColor);
+        double? inputDouble;
+        inputDouble = ValidInput.GetMeasurement(MessageConstants.GetCircleRadius);
+        if (inputDouble is null)
+        {
+            Console.Clear();
+            return;
+        }
+
+        double radius = (double)inputDouble;
+        string? inputString = ValidInput.GetColor(MessageConstants.GetColor);
+        if (inputString is null)
+        {
+            Console.Clear();
+            return;
+        }
+
+        string color = inputString;
         Circle circle = new (color, radius);
 
         Console.WriteLine(circle.PrintDetails());

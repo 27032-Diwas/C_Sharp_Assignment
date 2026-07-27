@@ -14,7 +14,7 @@ public static class ValidInput
     /// </summary>
     /// <param name="message"> Failure Message. </param>
     /// <returns> Double value. </returns>
-    public static double GetValidDoubleInput(string message)
+    public static double? GetValidDoubleInput(string message)
     {
         double result;
         bool isValidInput;
@@ -24,11 +24,12 @@ public static class ValidInput
             Console.WriteLine(message);
             string? input = Console.ReadLine();
 
-            // var isParsed = Enum.TryParse(input, true, out MenuContent.Exit choice);
-            // if (isParsed && Enum.IsDefined(typeof(MenuContent.Exit), choice))
-            // {
-            //    return ;
-            // }
+            var isParsed = Enum.TryParse(input, true, out MenuContent.Exit choice);
+            if (isParsed && Enum.IsDefined(typeof(MenuContent.Exit), choice))
+            {
+                return null;
+            }
+
             isValidInput = double.TryParse(input, out result);
 
             if (!isValidInput)
@@ -46,7 +47,7 @@ public static class ValidInput
     /// </summary>
     /// <param name="message"> Failure Message. </param>
     /// <returns> Double value. </returns>
-    public static decimal GetValidDecimalInput(string message)
+    public static decimal? GetValidDecimalInput(string message)
     {
         decimal result;
         bool isValidInput;
@@ -54,7 +55,15 @@ public static class ValidInput
         do
         {
             Console.WriteLine(message);
-            isValidInput = decimal.TryParse(Console.ReadLine(), out result);
+
+            string? input = Console.ReadLine();
+            var isParsed = Enum.TryParse(input, true, out MenuContent.Exit choice);
+            if (isParsed && Enum.IsDefined(typeof(MenuContent.Exit), choice))
+            {
+                return null;
+            }
+
+            isValidInput = decimal.TryParse(input, out result);
 
             if (!isValidInput)
             {
@@ -71,9 +80,9 @@ public static class ValidInput
     /// </summary>
     /// <param name="message"> Failure message. </param>
     /// <returns> string value. </returns>
-    public static string GetValidStringInput(string message)
+    public static string? GetValidStringInput(string message)
     {
-        string result;
+        string? result;
         bool isValidInput = false;
 
         do
@@ -81,10 +90,16 @@ public static class ValidInput
             Console.WriteLine(message);
             result = Console.ReadLine();
 
-            if (string.IsNullOrEmpty(result.Trim()))
+            if (result is null || string.IsNullOrEmpty(result.Trim()))
             {
                 Console.WriteLine(MessageConstants.InvalidStringInput);
                 continue;
+            }
+
+            var isParsed = Enum.TryParse(result, true, out MenuContent.Exit choice);
+            if (isParsed && Enum.IsDefined(typeof(MenuContent.Exit), choice))
+            {
+                return null;
             }
 
             isValidInput = true;
@@ -99,13 +114,18 @@ public static class ValidInput
     /// </summary>
     /// /// <param name="message"> Message to display when getting input. </param>
     /// <returns> Return salary. </returns>
-    public static double GetMeasurement(string message)
+    public static double? GetMeasurement(string message)
     {
-        double measurement;
+        double? measurement;
         bool isValidMeasurement;
         do
         {
             measurement = GetValidDoubleInput(message);
+            if (measurement is null)
+            {
+                return null;
+            }
+
             isValidMeasurement = !Validation.IsValidMeasurement(measurement);
 
             if (isValidMeasurement)
@@ -122,13 +142,19 @@ public static class ValidInput
     /// </summary>
     /// /// <param name="message"> Message to display when getting input. </param>
     /// <returns> Return salary. </returns>
-    public static decimal GetAmount(string message)
+    public static decimal? GetAmount(string message)
     {
-        decimal amount;
+        decimal? amount;
         bool isValidAmount;
         do
         {
             amount = GetValidDecimalInput(message);
+
+            if (amount is null)
+            {
+                return null;
+            }
+
             isValidAmount = !Validation.IsValidAmount(amount);
 
             if (isValidAmount)
@@ -145,13 +171,19 @@ public static class ValidInput
     /// </summary>
     /// <param name="message"> Message to display when getting input. </param>
     /// <returns> Name. </returns>
-    public static string GetName(string message)
+    public static string? GetName(string message)
     {
         string? name;
         bool isValidName;
         do
         {
             name = GetValidStringInput(message);
+
+            if (name is null)
+            {
+                return null;
+            }
+
             isValidName = !Validation.IsValidName(name);
 
             if (isValidName)
@@ -168,13 +200,19 @@ public static class ValidInput
     /// </summary>
     /// <param name="message"> Message to display when getting input. </param>
     /// <returns> Account number. </returns>
-    public static decimal GetAccountNumber(string message)
+    public static decimal? GetAccountNumber(string message)
     {
-        decimal accountNumber;
+        decimal? accountNumber;
         bool isValidAccountNumber;
         do
         {
             accountNumber = GetValidDecimalInput(message);
+
+            if (accountNumber is null)
+            {
+                return null;
+            }
+
             isValidAccountNumber = !Validation.IsValidAccountNumber(accountNumber);
 
             if (isValidAccountNumber)
@@ -198,6 +236,12 @@ public static class ValidInput
         do
         {
             color = GetValidStringInput(message);
+
+            if (color is null)
+            {
+                return null;
+            }
+
             isValidColor = !Validation.IsValidColor(color);
 
             if (isValidColor)

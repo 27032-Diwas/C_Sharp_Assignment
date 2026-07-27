@@ -11,7 +11,7 @@ public static class BankConstants
     public const decimal SavingAccountMinimumBalance = 1000;
 
     /// <summary>
-    /// Minimum balance for current account.
+    /// Minimum thresold for checking account.
     /// </summary>
-    public const decimal CurrentAccountMinimumThresold = -50000;
+    public const decimal CheckingAccountMinimumThresold = -50000;
 }

@@ -37,7 +37,7 @@ public static class MenuContent
     public enum ShapeMenu
     {
         /// <summary>
-        /// Header displayed for exit option.
+        /// Header displayed for back option.
         /// </summary>
         Back,
 
@@ -58,7 +58,7 @@ public static class MenuContent
     public enum EmployeeMenu
     {
         /// <summary>
-        /// Header displayed for exit option.
+        /// Header displayed for back option.
         /// </summary>
         Back,
 
@@ -79,7 +79,7 @@ public static class MenuContent
     public enum BankSystemMenu
     {
         /// <summary>
-        /// Header displayed for exit option.
+        /// Header displayed for back option.
         /// </summary>
         Back,
 

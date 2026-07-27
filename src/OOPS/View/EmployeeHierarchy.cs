@@ -57,8 +57,22 @@ public class EmployeeHierarchy
 
     private void Manager()
     {
-        string? name = ValidInput.GetName(MessageConstants.GetEmployeeName);
-        decimal salary = ValidInput.GetAmount(MessageConstants.GetEmployeeSalary);
+        string? inputString = ValidInput.GetName(MessageConstants.GetEmployeeName);
+        if (inputString is null)
+        {
+            Console.Clear();
+            return;
+        }
+
+        string name = inputString;
+        decimal? inputDecimal = ValidInput.GetAmount(MessageConstants.GetEmployeeSalary);
+        if (inputDecimal is null)
+        {
+            Console.Clear();
+            return;
+        }
+
+        decimal salary = (decimal)inputDecimal;
         Manager manager = new (name, salary);
 
         Console.WriteLine(manager.PrintDetails());
@@ -69,8 +83,22 @@ public class EmployeeHierarchy
 
     private void Developer()
     {
-        string? name = ValidInput.GetName(MessageConstants.GetEmployeeName);
-        decimal salary = ValidInput.GetAmount(MessageConstants.GetEmployeeSalary);
+        string? inputString = ValidInput.GetName(MessageConstants.GetEmployeeName);
+        if (inputString is null)
+        {
+            Console.Clear();
+            return;
+        }
+
+        string name = inputString;
+        decimal? inputDecimal = ValidInput.GetAmount(MessageConstants.GetEmployeeSalary);
+        if (inputDecimal is null)
+        {
+            Console.Clear();
+            return;
+        }
+
+        decimal salary = (decimal)inputDecimal;
         Developer developer = new (name, salary);
 
         Console.WriteLine(developer.PrintDetails());

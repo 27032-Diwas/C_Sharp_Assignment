@@ -43,7 +43,7 @@ public static class MessageConstants
     /// <summary>
     /// Prompt requesting the user to enter rectangle length.
     /// </summary>
-    public const string GetRectangleLength = "Enter length of rectangle(20 or 20.5): ";
+    public const string GetRectangleLength = "Enter length of rectangle(20 or 20.5) or Exit to quit process: ";
 
     /// <summary>
     /// Message displayed when the input is not double.
@@ -61,12 +61,12 @@ public static class MessageConstants
     public const string InvalidStringInput = "ENTER A VAILD INPUT!!";
 
     /// <summary>
-    /// Message displayed account is not found.
+    /// Message displayed when the account is not found.
     /// </summary>
     public const string AccountNotFound = "ACCOUNT NOT FOUND!!";
 
     /// <summary>
-    /// Message displayed when the input is invalid account number.
+    /// Message displayed when the input is an invalid account number.
     /// </summary>
     public const string InvalidAccountNumber = "ACCOUNT NUMBER SHOULD BE A 10 DIGIT NUMBER!!";
 
@@ -78,47 +78,47 @@ public static class MessageConstants
     /// <summary>
     /// Prompt requesting the user to enter rectangle witdth.
     /// </summary>
-    public const string GetRectangleWidth = "Enter width of rectangle: ";
+    public const string GetRectangleWidth = "Enter width of rectangle or Exit to quit process: ";
 
     /// <summary>
     /// Prompt requesting the user to enter circle radius.
     /// </summary>
-    public const string GetCircleRadius = "Enter radius of circle(in cm): ";
+    public const string GetCircleRadius = "Enter radius of circle(in cm) or Exit to quit process: ";
 
     /// <summary>
     /// Prompt requesting the user to enter color.
     /// </summary>
-    public const string GetColor = "Enter color: ";
+    public const string GetColor = "Enter a color or Exit to quit process: ";
 
     /// <summary>
     /// Prompt requesting the user to enter employee name.
     /// </summary>
-    public const string GetEmployeeName = "Enter name of employee: ";
+    public const string GetEmployeeName = "Enter name of employee or Exit to quit process: ";
 
     /// <summary>
     /// Prompt requesting the user to enter employee salary.
     /// </summary>
-    public const string GetEmployeeSalary = "Enter salary of employee(in Rs): ";
+    public const string GetEmployeeSalary = "Enter salary of employee(in Rs) or Exit to quit process: ";
 
     /// <summary>
     /// Prompt requesting the user to enter account holder name.
     /// </summary>
-    public const string GetAccountHolderName = "Enter name of account holder: ";
+    public const string GetAccountHolderName = "Enter name of account holder or Exit to quit process: ";
 
     /// <summary>
     /// Prompt requesting the user to enter amount value to deposit.
     /// </summary>
-    public const string GetAmonutDeposit = "Enter amount to deposit(is Rs): ";
+    public const string GetAmonutDeposit = "Enter amount to deposit(is Rs) or Exit to quit process: ";
 
     /// <summary>
     /// Prompt requesting the user to enter amount value to withdraw.
     /// </summary>
-    public const string GetAmonutWithdraw = "Enter amount to withdraw(is Rs): ";
+    public const string GetAmonutWithdraw = "Enter amount to withdraw(is Rs) or Exit to quit process: ";
 
     /// <summary>
     /// Prompt requesting the user to enter account number.
     /// </summary>
-    public const string GetAccountNumber = "Enter account number: ";
+    public const string GetAccountNumber = "Enter account number or Exit to quit process: ";
 
     /// <summary>
     /// Message displayed when the deposit is successful.
@@ -158,5 +158,5 @@ public static class MessageConstants
     /// <summary>
     /// Message displayed when the balance is insufficient in checking account.
     /// </summary>
-    public static readonly string CheckingAccountInsufficientBalance = $"INSUFFICIENT BALANCE. CHECKING ACCOUNT SHOULD MAINTAIN Rs.{BankConstants.CurrentAccountMinimumThresold} MINIMUM BALANCE";
+    public static readonly string CheckingAccountInsufficientBalance = $"INSUFFICIENT BALANCE. CHECKING ACCOUNT BALANCE SHOULD NOT GO BELOW Rs.{BankConstants.CheckingAccountMinimumThresold}";
 }
