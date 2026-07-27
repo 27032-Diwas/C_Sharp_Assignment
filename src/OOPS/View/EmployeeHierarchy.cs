@@ -76,9 +76,7 @@ public class EmployeeHierarchy
         Manager manager = new (name, salary);
 
         Console.WriteLine(manager.PrintDetails());
-        Console.WriteLine(MessageConstants.GetAnyKey);
-        Console.ReadKey();
-        Console.Clear();
+        ValidInput.GetAnyKey();
     }
 
     private void Developer()
@@ -102,8 +100,6 @@ public class EmployeeHierarchy
         Developer developer = new (name, salary);
 
         Console.WriteLine(developer.PrintDetails());
-        Console.WriteLine(MessageConstants.GetAnyKey);
-        Console.ReadKey();
-        Console.Clear();
+        ValidInput.GetAnyKey();
     }
 }

@@ -34,6 +34,6 @@ public class Manager : Employee
     /// <returns> Details as a string. </returns>
     public override string PrintDetails()
     {
-        return $"Name: {this.Name}, Position: {_position}, Salary: {this.Salary}, Bonus: {this.CalculateBonus():F2}";
+        return $"\nName: {this.Name}\nPosition: {_position}\nSalary: {this.Salary}\nBonus: {this.CalculateBonus():F2}";
     }
 }

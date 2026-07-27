@@ -25,7 +25,7 @@ public class Developer : Employee
     /// <returns> Bonus of developer in double. </returns>
     public override double CalculateBonus()
     {
-        return (double)Salary * 0.15;
+        return (double)this.Salary * 0.15;
     }
 
     /// <summary>
@@ -34,6 +34,6 @@ public class Developer : Employee
     /// <returns> Details as a string. </returns>
     public override string PrintDetails()
     {
-        return $"Name: {Name}, Position: {_position}, Salary: {Salary}, Bonus: {CalculateBonus():F2}";
+        return $"\nName: {this.Name}\nPosition: {_position}\nSalary: {this.Salary}\nBonus: {this.CalculateBonus():F2}";
     }
 }

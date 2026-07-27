@@ -41,6 +41,6 @@ public class RectangleShape : Shape
     /// <returns> String of details. </returns>
     public override string PrintDetails()
     {
-        return $"Shape : {_shape}, Area : {this.CalculateArea():F2}, Color : {this.Color}";
+        return $"\nShape : {_shape}\nArea : {this.CalculateArea():F2}\nColor : {this.Color}";
     }
 }

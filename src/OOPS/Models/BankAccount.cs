@@ -60,5 +60,5 @@ public abstract class BankAccount
     /// Displays details of account holder such as name, account number, balance.
     /// </summary>
     /// <returns> Details as a string. </returns>
-    public virtual string PrintDetails() => $"Account Holder Name: {this.AccountHolderName}\nAccount Number: {this.AccountNumber}\nBalance: {this.Balance}";
+    public abstract string PrintDetails();
 }

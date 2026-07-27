@@ -8,32 +8,32 @@ public static class MessageConstants
     /// <summary>
     /// Prompt requesting the user to select one of the available options.
     /// </summary>
-    public const string SelectOption = "Select one of the below options:";
+    public const string SelectOption = "\nSelect one of the below options:";
 
     /// <summary>
     /// Message displayed when the application process ends.
     /// </summary>
-    public const string ProcessEnded = "END PROCESS!!";
+    public const string ProcessEnded = "THANK YOU FOR USING THIS APPLICATION!!";
 
     /// <summary>
     /// Header message for main menu.
     /// </summary>
-    public const string MainMenu = "MAIN MENU";
+    public const string MainMenu = "\nMAIN MENU\n";
 
     /// <summary>
     /// Header message for shape menu.
     /// </summary>
-    public const string ShapeMenu = "SHAPE MENU";
+    public const string ShapeMenu = "\nSHAPE MENU\n";
 
     /// <summary>
     /// Header message for employee menu.
     /// </summary>
-    public const string EmployeeMenu = "EMPLOYEE MENU";
+    public const string EmployeeMenu = "\nEMPLOYEE MENU\n";
 
     /// <summary>
     /// Header message for bank systme menu.
     /// </summary>
-    public const string BankSystemMenu = "BANK SYSTEM MENU";
+    public const string BankSystemMenu = "\nBANK SYSTEM MENU\n";
 
     /// <summary>
     /// Message displayed when the user enters an invalid menu option.
@@ -53,7 +53,7 @@ public static class MessageConstants
     /// <summary>
     /// Prompt requesting the user to enter any key.
     /// </summary>
-    public const string GetAnyKey = "PRESS ANY KEY TO CONTINUE!!";
+    public const string GetAnyKey = "\nPRESS ANY KEY TO CONTINUE!!";
 
     /// <summary>
     /// Message displayed when the input is not string.

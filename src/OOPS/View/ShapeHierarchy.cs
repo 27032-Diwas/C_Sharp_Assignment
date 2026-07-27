@@ -1,7 +1,6 @@
 ﻿using OOPS.Constants;
 using OOPS.EnumConstants;
 using OOPS.Services.ShapeHierarchy;
-using System.Drawing;
 
 namespace OOPS.View;
 
@@ -84,9 +83,7 @@ public class ShapeHierarchy
         RectangleShape rectangle = new (color, width, length);
 
         Console.WriteLine(rectangle.PrintDetails());
-        Console.WriteLine(MessageConstants.GetAnyKey);
-        Console.ReadKey();
-        Console.Clear();
+        ValidInput.GetAnyKey();
     }
 
     private void Circle()
@@ -111,8 +108,6 @@ public class ShapeHierarchy
         Circle circle = new (color, radius);
 
         Console.WriteLine(circle.PrintDetails());
-        Console.WriteLine(MessageConstants.GetAnyKey);
-        Console.ReadKey();
-        Console.Clear();
+        ValidInput.GetAnyKey();
     }
 }

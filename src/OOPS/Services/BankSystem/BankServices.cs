@@ -57,7 +57,7 @@ public class BankServices
             return MessageConstants.LessThanMinimumBalance;
         }
 
-        SavingsAccount savingsAccount = new SavingsAccount(name, accountNumber, amount);
+        SavingsAccount savingsAccount = new (name, accountNumber, amount);
         accountNumber += 1;
         this._bankSystemRepo.AddAccount(savingsAccount);
 

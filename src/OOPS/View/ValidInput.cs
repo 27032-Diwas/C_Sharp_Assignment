@@ -229,7 +229,7 @@ public static class ValidInput
     /// </summary>
     /// <param name="message"> Message to display when getting input. </param>
     /// <returns> Color. </returns>
-    public static string GetColor(string message)
+    public static string? GetColor(string message)
     {
         string? color;
         bool isValidColor;
@@ -251,5 +251,15 @@ public static class ValidInput
         }
         while (isValidColor);
         return color;
+    }
+
+    /// <summary>
+    /// Gets any key and clear the console.
+    /// </summary>
+    public static void GetAnyKey()
+    {
+        Console.WriteLine(MessageConstants.GetAnyKey);
+        Console.ReadKey();
+        Console.Clear();
     }
 }

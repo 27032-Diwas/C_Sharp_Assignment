@@ -117,9 +117,7 @@ public class BankSystem
         decimal amount = (decimal)inputDecimal;
         string message = this._bankServices.AddAccount(name, amount, accountType);
         Console.WriteLine(message);
-        Console.WriteLine(MessageConstants.GetAnyKey);
-        Console.ReadKey();
-        Console.Clear();
+        ValidInput.GetAnyKey();
     }
 
     private void ViewAccount()
@@ -133,9 +131,7 @@ public class BankSystem
 
         decimal accountNumber = (decimal)inputDecimal;
         Console.WriteLine(this._bankServices.ViewContact(accountNumber));
-        Console.WriteLine(MessageConstants.GetAnyKey);
-        Console.ReadKey();
-        Console.Clear();
+        ValidInput.GetAnyKey();
     }
 
     private void Deposit()
@@ -165,9 +161,7 @@ public class BankSystem
 
         decimal amount = (decimal)inputDecimal;
         Console.WriteLine(this._bankServices.Deposit(accountNumber, amount));
-        Console.WriteLine(MessageConstants.GetAnyKey);
-        Console.ReadKey();
-        Console.Clear();
+        ValidInput.GetAnyKey();
     }
 
     private void Withdraw()
@@ -198,8 +192,6 @@ public class BankSystem
 
         decimal amount = (decimal)inputDecimal;
         Console.WriteLine(this._bankServices.Withdraw(accountNumber, amount));
-        Console.WriteLine(MessageConstants.GetAnyKey);
-        Console.ReadKey();
-        Console.Clear();
+        ValidInput.GetAnyKey();
     }
 }
