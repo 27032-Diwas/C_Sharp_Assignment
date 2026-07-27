@@ -264,17 +264,14 @@ public class ConsoleOperations
     {
         List<ContactInfo>? searchResults = this.SearchContact();
         int selectedContactNumber = 1;
-        switch (searchResults)
-        {
-            case null:
-                return null;
-            default:
-                if (searchResults.Count == 1)
-                {
-                    return searchResults[0].Id;
-                }
 
-                break;
+        if (searchResults is null)
+        {
+            return null;
+        }
+        else if (searchResults.Count() == 1)
+        {
+            return searchResults[0].Id;
         }
 
         do

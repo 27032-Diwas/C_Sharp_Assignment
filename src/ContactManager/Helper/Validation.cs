@@ -48,5 +48,6 @@ public static class Validation
     /// </summary>
     /// <param name="notes"> Notes. </param>
     /// <returns> true or false. </returns>
-    public static bool IsValidNotes(string? notes) => notes == string.Empty || (notes is not null && notes.Length < MessageConstants.NotesMaximumLength);
+    public static bool IsValidNotes(string? notes) => notes == string.Empty
+                                                      || (notes is not null && notes.Length < MessageConstants.NotesMaximumLength);
 }
