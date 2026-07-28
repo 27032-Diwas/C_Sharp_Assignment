@@ -1,6 +1,7 @@
-﻿using System.Drawing;
+﻿using OOPS.Constants;
+using System.Drawing;
 using System.Text.RegularExpressions;
-using OOPS.Constants;
+using System.Xml.Linq;
 
 namespace OOPS.Helper;
 
@@ -30,6 +31,22 @@ public static class Validation
     /// <param name="measurement"> Measurement. </param>
     /// <returns> true or false. </returns>
     public static bool IsValidMeasurement(double? measurement) => measurement > 0;
+
+    /// <summary>
+    /// Check whether mpin is valid.
+    /// </summary>
+    /// <param name="mpin"> Mpin. </param>
+    /// <returns> true or false. </returns>
+    public static bool IsValidMpin(decimal? mpin)
+    {
+        string? pin = mpin.ToString();
+        if (pin is null)
+        {
+            return false;
+        }
+
+        return Regex.IsMatch(pin, RegexPatterns.MpinRegex);
+    }
 
     /// <summary>
     /// Check whether account number is 10 digit or not.

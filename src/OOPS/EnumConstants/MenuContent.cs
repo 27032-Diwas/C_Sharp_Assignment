@@ -89,19 +89,9 @@ public static class MenuContent
         AddAccount,
 
         /// <summary>
-        /// Header displayed for see account details.
+        /// Header displayed for existing account.
         /// </summary>
-        ViewAccount,
-
-        /// <summary>
-        /// Header displayed for deposit.
-        /// </summary>
-        Deposit,
-
-        /// <summary>
-        /// Header displayed for withdraw.
-        /// </summary>
-        Withdraw,
+        ExistingAccount,
     }
 
     /// <summary>
@@ -113,5 +103,26 @@ public static class MenuContent
         /// Header displayed for exit.
         /// </summary>
         Exit,
+    }
+
+    /// <summary>
+    /// Contains option related to working in an account.
+    /// </summary>
+    public enum AccountMenu
+    {
+        /// <summary>
+        /// Header displayed for back option.
+        /// </summary>
+        Back,
+
+        /// <summary>
+        /// Header displayed for deposit.
+        /// </summary>
+        Deposit,
+
+        /// <summary>
+        /// Header displayed for withdraw.
+        /// </summary>
+        Withdraw,
     }
 }

@@ -262,4 +262,33 @@ public static class ValidInput
         Console.ReadKey();
         Console.Clear();
     }
+
+    /// <summary>
+    /// Get vaild mpin from the user.
+    /// </summary>
+    /// <param name="message"> Message to display when getting input. </param>
+    /// <returns> Mpin. </returns>
+    public static decimal? GetMpin(string message)
+    {
+        decimal? mpin;
+        bool isValidMpin;
+        do
+        {
+            mpin = GetValidDecimalInput(message);
+
+            if (mpin is null)
+            {
+                return null;
+            }
+
+            isValidMpin = !Validation.IsValidMpin(mpin);
+
+            if (isValidMpin)
+            {
+                Console.WriteLine(MessageConstants.InvalidMpin);
+            }
+        }
+        while (isValidMpin);
+        return mpin;
+    }
 }

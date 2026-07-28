@@ -32,8 +32,9 @@ public class BankServices
     /// <param name="name"> Account holder name. </param>
     /// <param name="amount"> Account number. </param>
     /// <param name="accountType"> Account type. </param>
+    /// <param name="mpin"> Mpin. </param>
     /// <returns> Sucess or failure message. </returns>
-    public string AddAccount(string name, decimal amount, BankAccountContent.BankAccountTypes? accountType)
+    public string AddAccount(string name, decimal amount, BankAccountContent.BankAccountTypes? accountType, decimal mpin)
     {
         if (Validation.IsValidName(name) is false)
         {
@@ -43,13 +44,17 @@ public class BankServices
         {
             return MessageConstants.NegativeValue;
         }
+        else if (!Validation.IsValidMpin(mpin))
+        {
+            return MessageConstants.InvalidMpin;
+        }
 
         if (accountType == BankAccountContent.BankAccountTypes.CheckingAccount)
         {
-            CheckingAccount currentAccount = new (name, accountNumber, amount);
+            CheckingAccount currentAccount = new (name, accountNumber, amount, mpin);
             accountNumber += 1;
             this._bankSystemRepo.AddAccount(currentAccount);
-            return $"{MessageConstants.AccountAddedSuccessfully}\n{this._bankSystemRepo.ViewAccount(accountNumber - 1)}";
+            return $"{MessageConstants.AccountAddedSuccessfully}\n{this._bankSystemRepo.ViewAccount(accountNumber - 1, mpin)}";
         }
 
         if (amount < BankConstants.SavingAccountMinimumBalance)
@@ -57,21 +62,22 @@ public class BankServices
             return MessageConstants.LessThanMinimumBalance;
         }
 
-        SavingsAccount savingsAccount = new (name, accountNumber, amount);
+        SavingsAccount savingsAccount = new (name, accountNumber, amount, mpin);
         accountNumber += 1;
         this._bankSystemRepo.AddAccount(savingsAccount);
 
-        return $"{MessageConstants.AccountAddedSuccessfully}\n{this._bankSystemRepo.ViewAccount(accountNumber - 1)}";
+        return $"{MessageConstants.AccountAddedSuccessfully}\n{this._bankSystemRepo.ViewAccount(accountNumber - 1, mpin)}";
     }
 
     /// <summary>
     /// Get details from repository.
     /// </summary>
     /// <param name="accountNumber"> Account Number. </param>
+    /// <param name="mpin"> Mpin. </param>
     /// <returns> Details as a string. </returns>
-    public string ViewContact(decimal accountNumber)
+    public string ViewContact(decimal accountNumber, decimal mpin)
     {
-        return this._bankSystemRepo.ViewAccount(accountNumber);
+        return this._bankSystemRepo.ViewAccount(accountNumber, mpin);
     }
 
     /// <summary>

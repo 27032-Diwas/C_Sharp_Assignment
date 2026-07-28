@@ -76,6 +76,11 @@ public static class MessageConstants
     public const string InvalidColor = "ENTER A VALID COLOR!!";
 
     /// <summary>
+    /// Message displayed when the input is a invalid mpin.
+    /// </summary>
+    public const string InvalidMpin = "WRONG PIN, TRY AGAIN!!";
+
+    /// <summary>
     /// Prompt requesting the user to enter rectangle witdth.
     /// </summary>
     public const string GetRectangleWidth = "Enter width of rectangle or Exit to quit process: ";
@@ -119,6 +124,11 @@ public static class MessageConstants
     /// Prompt requesting the user to enter account number.
     /// </summary>
     public const string GetAccountNumber = "Enter account number or Exit to quit process: ";
+
+    /// <summary>
+    /// Prompt requesting the user to Mpin.
+    /// </summary>
+    public const string GetMpin = "Enter MPIN or Exit to quit process: ";
 
     /// <summary>
     /// Message displayed when the deposit is successful.

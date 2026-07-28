@@ -20,12 +20,18 @@ public class BankSystemRepo
     /// Get account details by account number.
     /// </summary>
     /// <param name="accountNumber"> Account number. </param>
+    /// <param name="mpin"> Mpin. </param>
     /// <returns> Account object. </returns>
-    public string ViewAccount(decimal accountNumber)
+    public string ViewAccount(decimal accountNumber, decimal mpin)
     {
         BankAccount? account = this.GetAccount(accountNumber);
         if (account != null)
         {
+            if (mpin != account.MPin)
+            {
+                return MessageConstants.InvalidMpin;
+            }
+
             return account.PrintDetails();
         }
 

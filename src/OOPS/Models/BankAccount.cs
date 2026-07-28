@@ -13,11 +13,13 @@ public abstract class BankAccount
     /// <param name="name"> Account holder name. </param>
     /// <param name="accountNumber"> Account number of user. </param>
     /// <param name="balance"> Balance of user. </param>
-    public BankAccount(string name, decimal accountNumber, decimal balance)
+    /// <param name="mpin"> Mpin. </param>
+    public BankAccount(string name, decimal accountNumber, decimal balance, decimal mpin)
     {
         this.AccountHolderName = name;
         this.AccountNumber = accountNumber;
         this.Balance = balance;
+        this.MPin = mpin;
     }
 
     /// <summary>
@@ -37,6 +39,12 @@ public abstract class BankAccount
     /// </summary>
     /// <value> Balance of user. </value>
     public decimal Balance { get; set; }
+
+    /// <summary>
+    /// Gets or init.
+    /// </summary>
+    /// <value> MPin value to access account. </value>
+    public decimal MPin { get; init; }
 
     /// <summary>
     /// Deposits amount into users account.

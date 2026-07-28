@@ -51,14 +51,8 @@ public class BankSystem
                 case MenuContent.BankSystemMenu.AddAccount:
                     this.AddAccount();
                     break;
-                case MenuContent.BankSystemMenu.ViewAccount:
-                    this.ViewAccount();
-                    break;
-                case MenuContent.BankSystemMenu.Deposit:
-                    this.Deposit();
-                    break;
-                case MenuContent.BankSystemMenu.Withdraw:
-                    this.Withdraw();
+                case MenuContent.BankSystemMenu.ExistingAccount:
+                    this.ExistingAccount();
                     break;
             }
         }
@@ -115,12 +109,24 @@ public class BankSystem
         }
 
         decimal amount = (decimal)inputDecimal;
-        string message = this._bankServices.AddAccount(name, amount, accountType);
+
+        inputDecimal = ValidInput.GetAmount(MessageConstants.GetMpin);
+        if (inputDecimal is null)
+        {
+            Console.Clear();
+            return;
+        }
+
+        decimal mpin = (decimal)inputDecimal;
+        string message = this._bankServices.AddAccount(name, amount, accountType, mpin);
         Console.WriteLine(message);
         ValidInput.GetAnyKey();
     }
 
-    private void ViewAccount()
+    /// <summary>
+    /// Display options for existing account to perform opertations like view, deposit and withdraw.
+    /// </summary>
+    private void ExistingAccount()
     {
         decimal? inputDecimal = ValidInput.GetAccountNumber(MessageConstants.GetAccountNumber);
         if (inputDecimal is null)
@@ -130,27 +136,99 @@ public class BankSystem
         }
 
         decimal accountNumber = (decimal)inputDecimal;
-        Console.WriteLine(this._bankServices.ViewContact(accountNumber));
-        ValidInput.GetAnyKey();
+        inputDecimal = this.GetValidMpin(accountNumber);
+        if (inputDecimal is null)
+        {
+            return;
+        }
+        else if (inputDecimal == 0)
+        {
+            Console.WriteLine("Three attempt failed");
+            return;
+        }
+
+        decimal mpin = (decimal)inputDecimal;
+
+        bool isValidMenuOption = true;
+
+        while (isValidMenuOption)
+        {
+            DisplayEnum.DisplayMenu(typeof(MenuContent.AccountMenu));
+
+            Console.WriteLine(MessageConstants.SelectOption);
+            var isParsed = Enum.TryParse<MenuContent.AccountMenu>(Console.ReadLine(), true, out MenuContent.AccountMenu choice);
+            if (!isParsed || !Enum.IsDefined(typeof(MenuContent.AccountMenu), choice))
+            {
+                Console.Clear();
+                Console.WriteLine(MessageConstants.InvalidOption);
+                continue;
+            }
+
+            Console.Clear();
+            switch (choice)
+            {
+                case MenuContent.AccountMenu.Back:
+                    return;
+                case MenuContent.AccountMenu.Deposit:
+                    this.Deposit(accountNumber);
+                    break;
+                case MenuContent.AccountMenu.Withdraw:
+                    this.Withdraw(accountNumber);
+                    break;
+            }
+        }
     }
 
-    private void Deposit()
+    /// <summary>
+    /// Gets valid mpin from user.
+    /// </summary>
+    /// <param name="accountNumber"> Account Number </param>
+    /// <returns> Mpin. </returns>
+    private decimal? GetValidMpin(decimal accountNumber)
     {
-        decimal? inputDecimal;
-        inputDecimal = ValidInput.GetAccountNumber(MessageConstants.GetAccountNumber);
+        int mpinAttempt = 3;
+        decimal mpin = 0;
+        while (mpinAttempt > 0)
+        {
+            decimal? inputDecimal = ValidInput.GetMpin(MessageConstants.GetMpin);
+            if (inputDecimal is null)
+            {
+                Console.Clear();
+                return null;
+            }
+
+            mpin = (decimal)inputDecimal;
+            string message = this._bankServices.ViewContact(accountNumber, mpin);
+            Console.WriteLine(message);
+            if (message == MessageConstants.InvalidMpin)
+            {
+                mpin = 0;
+                mpinAttempt--;
+                continue;
+            }
+
+            return null;
+        }
+
+        return mpin;
+    }
+
+    private void Deposit(decimal accountNumber)
+    {
+        decimal? inputDecimal = this.GetValidMpin(accountNumber);
         if (inputDecimal is null)
         {
             Console.Clear();
             return;
         }
-
-        decimal accountNumber = (decimal)inputDecimal;
-        string message = this._bankServices.ViewContact(accountNumber);
-        if (message == MessageConstants.AccountNotFound)
+        else if (inputDecimal == 0)
         {
-            Console.WriteLine(message);
+            Console.WriteLine("Three attempt failed");
             return;
         }
+
+        decimal mpin = (decimal)inputDecimal;
+        string message = this._bankServices.ViewContact(accountNumber, mpin);
 
         inputDecimal = ValidInput.GetAmount(MessageConstants.GetAmonutDeposit);
         if (inputDecimal is null)
@@ -164,18 +242,22 @@ public class BankSystem
         ValidInput.GetAnyKey();
     }
 
-    private void Withdraw()
+    private void Withdraw(decimal accountNumber)
     {
-        decimal? inputDecimal;
-        inputDecimal = ValidInput.GetAccountNumber(MessageConstants.GetAccountNumber);
+        decimal? inputDecimal = this.GetValidMpin(accountNumber);
         if (inputDecimal is null)
         {
             Console.Clear();
             return;
         }
+        else if (inputDecimal == 0)
+        {
+            Console.WriteLine("Three attempt failed");
+            return;
+        }
 
-        decimal accountNumber = (decimal)inputDecimal;
-        string message = this._bankServices.ViewContact(accountNumber);
+        decimal mpin = (decimal)inputDecimal;
+        string message = this._bankServices.ViewContact(accountNumber, mpin);
         Console.WriteLine(message);
         if (message == MessageConstants.AccountNotFound)
         {
