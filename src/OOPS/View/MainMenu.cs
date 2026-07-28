@@ -11,10 +11,8 @@ public class MainMenu
     /// <summary>
     /// Get menu choice from user.
     /// </summary>
-    public void GetMenuOption()
+    public static void GetMenuOption()
     {
-        ShapeHierarchy shapeHierarchy = new ();
-        EmployeeHierarchy employeeHierarchy = new ();
         BankSystem bankSystem = new ();
 
         while (true)
@@ -28,10 +26,10 @@ public class MainMenu
                     Console.WriteLine(MessageConstants.ProcessEnded);
                     return;
                 case MenuContent.MainMenu.ShapeHierarchy:
-                    shapeHierarchy.GetMenuOption();
+                    ShapeHierarchy.GetMenuOption();
                     break;
                 case MenuContent.MainMenu.EmployeeHierarchy:
-                    employeeHierarchy.GetMenuOption();
+                    EmployeeHierarchy.GetMenuOption();
                     break;
                 case MenuContent.MainMenu.BankSystem:
                     bankSystem.GetMenuOption();

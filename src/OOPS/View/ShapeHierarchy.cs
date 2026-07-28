@@ -12,7 +12,7 @@ public class ShapeHierarchy
     /// <summary>
     /// Get shape menu choice from user.
     /// </summary>
-    public void GetMenuOption()
+    public static void GetMenuOption()
     {
         while (true)
         {
@@ -24,16 +24,16 @@ public class ShapeHierarchy
                 case MenuContent.ShapeMenu.Back:
                     return;
                 case MenuContent.ShapeMenu.Rectangle:
-                    this.Rectangle();
+                    Rectangle();
                     break;
                 case MenuContent.ShapeMenu.Circle:
-                    this.Circle();
+                    Circle();
                     break;
             }
         }
     }
 
-    private void Rectangle()
+    private static void Rectangle()
     {
         double? inputDouble;
         inputDouble = ValidInput.GetMeasurement(MessageConstants.GetRectangleLength);
@@ -60,13 +60,13 @@ public class ShapeHierarchy
         }
 
         string color = inputString;
-        RectangleShape rectangle = new(color, width, length);
+        RectangleShape rectangle = new (color, width, length);
 
         Console.WriteLine(rectangle.PrintDetails());
         ValidInput.GetAnyKey();
     }
 
-    private void Circle()
+    private static void Circle()
     {
         double? inputDouble;
         inputDouble = ValidInput.GetMeasurement(MessageConstants.GetCircleRadius);
@@ -85,7 +85,7 @@ public class ShapeHierarchy
         }
 
         string color = inputString;
-        Circle circle = new(color, radius);
+        Circle circle = new (color, radius);
 
         Console.WriteLine(circle.PrintDetails());
         ValidInput.GetAnyKey();

@@ -14,7 +14,7 @@ public class EmployeeHierarchy
     /// <summary>
     /// Get employee menu choice from user.
     /// </summary>
-    public void GetMenuOption()
+    public static void GetMenuOption()
     {
         while (true)
         {
@@ -26,16 +26,16 @@ public class EmployeeHierarchy
                 case MenuContent.EmployeeMenu.Back:
                     return;
                 case MenuContent.EmployeeMenu.Manager:
-                    this.Manager();
+                    Manager();
                     break;
                 case MenuContent.EmployeeMenu.Developer:
-                    this.Developer();
+                    Developer();
                     break;
             }
         }
     }
 
-    private void Manager()
+    private static void Manager()
     {
         string? inputString = ValidInput.GetName(MessageConstants.GetEmployeeName);
         if (inputString is null)
@@ -53,13 +53,13 @@ public class EmployeeHierarchy
         }
 
         decimal salary = (decimal)inputDecimal;
-        Manager manager = new(name, salary);
+        Manager manager = new (name, salary);
 
         Console.WriteLine(manager.PrintDetails());
         ValidInput.GetAnyKey();
     }
 
-    private void Developer()
+    private static void Developer()
     {
         string? inputString = ValidInput.GetName(MessageConstants.GetEmployeeName);
         if (inputString is null)
@@ -77,7 +77,7 @@ public class EmployeeHierarchy
         }
 
         decimal salary = (decimal)inputDecimal;
-        Developer developer = new(name, salary);
+        Developer developer = new (name, salary);
 
         Console.WriteLine(developer.PrintDetails());
         ValidInput.GetAnyKey();

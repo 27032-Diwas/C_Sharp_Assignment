@@ -40,5 +40,5 @@ public class SavingsAccount : BankAccount
     /// Displays details of account holder such as name, account number, account type, balance.
     /// </summary>
     /// <returns> Details as a string. </returns>
-    public override string PrintDetails() => $"\nAccount Holder Name: {this.AccountHolderName}\nAccount Number: {this.AccountNumber}\nAccount Type: Savings Account\nBalance: {this.Balance}";
+    public override string PrintDetails() => $"\nAccount Holder Name: {this.AccountHolderName}\nAccount Number: {this.AccountNumber}\nAccount Type: Savings Account\nBalance: {this.Balance}\n";
 }

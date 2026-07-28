@@ -187,6 +187,8 @@ string PrintDetails();
 - Define area calculation contract.
 - Display shape information.
 
+![Shape Menu](Docs/Assets/ShapeMenu.png)
+
 ---
 
 ## Derived Class: Circle
@@ -212,11 +214,7 @@ Area = π × Radius²
 
 ### Example
 
-```text
-Color : Red
-Radius : 10
-Area : 314.16
-```
+![Add circle](Docs/Assets/AddCircle.png)
 
 ---
 
@@ -244,12 +242,7 @@ Area = Length × Width
 
 ### Example
 
-```text
-Color : Blue
-Length : 5
-Width : 10
-Area : 50
-```
+![Add rectangle](Docs/Assets/AddRectangle.png)
 
 ---
 
@@ -279,6 +272,8 @@ void PrintDetails();
 - Define bonus calculation behavior.
 - Display employee information.
 
+![Employee Menu](Docs/Assets/EmployeeMenu.png)
+
 ---
 
 ## Derived Class: Developer
@@ -298,12 +293,7 @@ PrintDetails()
 
 ### Example
 
-```text
-Role : Developer
-Name : John
-Salary : 50000
-Bonus : 7500
-```
+![Add developer](Docs/Assets/AddDeveloper.png)
 
 ---
 
@@ -324,12 +314,7 @@ PrintDetails()
 
 ### Example
 
-```text
-Role : Manager
-Name : Smith
-Salary : 80000
-Bonus : 16000
-```
+![Add manager](Docs/Assets/AddManager.png)
 
 ---
 
@@ -362,6 +347,8 @@ PrintDetails()
 - Handle withdrawals.
 - Display account information.
 
+![Banksystem Menu](Docs/Assets/BankSystemMenu.png)
+
 ---
 
 ## Derived Class: SavingsAccount
@@ -383,12 +370,9 @@ PrintDetails()
 
 ### Example
 
-```text
-Account Type : Savings
-Account Number : SA101
-Account Holder : Alex
-Balance : 10000
-```
+![Add account](Docs/Assets/AddAccount.png)
+
+![Minimum balance](Docs/Assets/SavingAccountMinimumBalance.png)
 
 ---
 
@@ -411,12 +395,9 @@ PrintDetails()
 
 ### Example
 
-```text
-Account Type : Checking
-Account Number : CA101
-Account Holder : Smith
-Balance : 15000
-```
+![Checking Account](Docs/Assets/WithdrawCheckingAccount.png)
+
+![Minimum thresold](Docs/Assets/CheckingAccountMinimumThresold.png)
 
 ---
 
@@ -476,13 +457,14 @@ Validate Account Number
 Validate Numeric Inputs
 Validate Amount
 Validate Menu Selection
+Validate Mpin
 ```
-
+![Shape Menu](Docs/Assets/WrongMpin.png)
 Regular expressions from `RegexPattern.cs` are used for input validation.
 
 ---
 
-# 📝 Constants
+#  Constants
 
 ## BankConstants.cs
 
@@ -557,7 +539,7 @@ View Details
 
 ---
 
-# 🖥 View Layer
+# View Layer
 
 The View layer interacts with users and displays menus.
 
@@ -650,43 +632,6 @@ Main Menu
 
 ---
 
-#  Sample Execution
-
-## Shape Module
-
-```text
-Enter Shape Type : Circle
-
-Color : Red
-Radius : 5
-
-```
-
----
-
-## Employee Module
-
-```text
-Enter Employee Type : Developer
-
-Name : John
-Salary : 50000
-
-```
-
----
-
-## Bank Module
-
-```text
-Create Savings Account
-
-Account Number : ACC001
-Account Holder : Alex
-Balance : 10000
-```
-
----
 
 # 🛠️ Technologies Used
 
