@@ -16,21 +16,9 @@ public class EmployeeHierarchy
     /// </summary>
     public void GetMenuOption()
     {
-        bool isValidMenuOption = true;
-
-        while (isValidMenuOption)
+        while (true)
         {
-            DisplayMenu();
-
-            Console.WriteLine(MessageConstants.SelectOption);
-            var isParsed = Enum.TryParse<MenuContent.EmployeeMenu>(Console.ReadLine(), true, out MenuContent.EmployeeMenu choice);
-            if (!isParsed || !Enum.IsDefined(typeof(MenuContent.EmployeeMenu), choice))
-            {
-                Console.Clear();
-                Console.WriteLine(MessageConstants.InvalidOption);
-                continue;
-            }
-
+            MenuContent.EmployeeMenu choice = DisplayEnum.GetMenuChoice<MenuContent.EmployeeMenu>(MessageConstants.EmployeeMenu);
             Console.Clear();
 
             switch (choice)
@@ -45,15 +33,6 @@ public class EmployeeHierarchy
                     break;
             }
         }
-    }
-
-    /// <summary>
-    /// Displays employee menu options.
-    /// </summary>
-    private static void DisplayMenu()
-    {
-        Console.WriteLine(MessageConstants.EmployeeMenu);
-        DisplayEnum.DisplayMenu(typeof(MenuContent.EmployeeMenu));
     }
 
     private void Manager()
@@ -74,7 +53,7 @@ public class EmployeeHierarchy
         }
 
         decimal salary = (decimal)inputDecimal;
-        Manager manager = new (name, salary);
+        Manager manager = new(name, salary);
 
         Console.WriteLine(manager.PrintDetails());
         ValidInput.GetAnyKey();
@@ -98,7 +77,7 @@ public class EmployeeHierarchy
         }
 
         decimal salary = (decimal)inputDecimal;
-        Developer developer = new (name, salary);
+        Developer developer = new(name, salary);
 
         Console.WriteLine(developer.PrintDetails());
         ValidInput.GetAnyKey();

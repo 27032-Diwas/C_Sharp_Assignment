@@ -116,6 +116,11 @@ public static class MenuContent
         Back,
 
         /// <summary>
+        /// Header displayed for view account.
+        /// </summary>
+        ViewAccount,
+
+        /// <summary>
         /// Header displayed for deposit.
         /// </summary>
         Deposit,

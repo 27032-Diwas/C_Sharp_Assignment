@@ -28,20 +28,9 @@ public class BankSystem
     /// </summary>
     public void GetMenuOption()
     {
-        bool isValidMenuOption = true;
-
-        while (isValidMenuOption)
+        while (true)
         {
-            DisplayMenu();
-
-            Console.WriteLine(MessageConstants.SelectOption);
-            var isParsed = Enum.TryParse<MenuContent.BankSystemMenu>(Console.ReadLine(), true, out MenuContent.BankSystemMenu choice);
-            if (!isParsed || !Enum.IsDefined(typeof(MenuContent.BankSystemMenu), choice))
-            {
-                Console.Clear();
-                Console.WriteLine(MessageConstants.InvalidOption);
-                continue;
-            }
+            MenuContent.BankSystemMenu choice = DisplayEnum.GetMenuChoice<MenuContent.BankSystemMenu>(MessageConstants.BankSystemMenu);
 
             Console.Clear();
             switch (choice)
@@ -58,15 +47,6 @@ public class BankSystem
         }
     }
 
-    /// <summary>
-    /// Displays bank system menu options.
-    /// </summary>
-    private static void DisplayMenu()
-    {
-        Console.WriteLine(MessageConstants.BankSystemMenu);
-        DisplayEnum.DisplayMenu(typeof(MenuContent.BankSystemMenu));
-    }
-
     private void AddAccount()
     {
         string? inputString = ValidInput.GetName(MessageConstants.GetAccountHolderName);
@@ -77,23 +57,8 @@ public class BankSystem
         }
 
         string name = inputString;
-        BankAccountContent.BankAccountTypes accountType = default;
-        bool isValidMenuOption = true;
 
-        while (isValidMenuOption)
-        {
-            Console.WriteLine(MessageConstants.SelectOption);
-            DisplayEnum.DisplayMenu(typeof(BankAccountContent.BankAccountTypes));
-            var isParsed = Enum.TryParse<BankAccountContent.BankAccountTypes>(Console.ReadLine(), true, out accountType);
-            if (!isParsed || !Enum.IsDefined(typeof(BankAccountContent.BankAccountTypes), accountType))
-            {
-                Console.Clear();
-                Console.WriteLine(MessageConstants.InvalidOption);
-                continue;
-            }
-
-            break;
-        }
+        BankAccountContent.BankAccountTypes accountType = DisplayEnum.GetMenuChoice<BankAccountContent.BankAccountTypes>(MessageConstants.BankAccountTpyes);
 
         if (accountType == BankAccountContent.BankAccountTypes.Exit)
         {
@@ -110,7 +75,7 @@ public class BankSystem
 
         decimal amount = (decimal)inputDecimal;
 
-        inputDecimal = ValidInput.GetAmount(MessageConstants.GetMpin);
+        inputDecimal = ValidInput.GetMpin(MessageConstants.GetMpin);
         if (inputDecimal is null)
         {
             Console.Clear();
@@ -149,26 +114,17 @@ public class BankSystem
 
         decimal mpin = (decimal)inputDecimal;
 
-        bool isValidMenuOption = true;
-
-        while (isValidMenuOption)
+        while (true)
         {
-            DisplayEnum.DisplayMenu(typeof(MenuContent.AccountMenu));
-
-            Console.WriteLine(MessageConstants.SelectOption);
-            var isParsed = Enum.TryParse<MenuContent.AccountMenu>(Console.ReadLine(), true, out MenuContent.AccountMenu choice);
-            if (!isParsed || !Enum.IsDefined(typeof(MenuContent.AccountMenu), choice))
-            {
-                Console.Clear();
-                Console.WriteLine(MessageConstants.InvalidOption);
-                continue;
-            }
-
+            MenuContent.AccountMenu choice = DisplayEnum.GetMenuChoice<MenuContent.AccountMenu>(MessageConstants.AccountFunctionality);
             Console.Clear();
             switch (choice)
             {
                 case MenuContent.AccountMenu.Back:
                     return;
+                case MenuContent.AccountMenu.ViewAccount:
+                    this.ViewAccount(accountNumber);
+                    break;
                 case MenuContent.AccountMenu.Deposit:
                     this.Deposit(accountNumber);
                     break;
@@ -176,6 +132,8 @@ public class BankSystem
                     this.Withdraw(accountNumber);
                     break;
             }
+
+            ValidInput.GetAnyKey();
         }
     }
 
@@ -190,7 +148,7 @@ public class BankSystem
         decimal mpin = 0;
         while (mpinAttempt > 0)
         {
-            decimal? inputDecimal = ValidInput.GetMpin(MessageConstants.GetMpin);
+            decimal? inputDecimal = ValidInput.GetValidDecimalInput(MessageConstants.GetMpin);
             if (inputDecimal is null)
             {
                 Console.Clear();
@@ -200,17 +158,34 @@ public class BankSystem
             mpin = (decimal)inputDecimal;
             string message = this._bankServices.ViewContact(accountNumber, mpin);
             Console.WriteLine(message);
-            if (message == MessageConstants.InvalidMpin)
+            if (message == MessageConstants.WrongMpin)
             {
                 mpin = 0;
                 mpinAttempt--;
                 continue;
             }
 
-            return null;
+            return mpin;
         }
 
         return mpin;
+    }
+
+    private void ViewAccount(decimal accountNumber)
+    {
+        decimal? inputDecimal = this.GetValidMpin(accountNumber);
+        if (inputDecimal is null)
+        {
+            Console.Clear();
+            return;
+        }
+        else if (inputDecimal == 0)
+        {
+            Console.WriteLine("Three attempt failed");
+            return;
+        }
+
+        return;
     }
 
     private void Deposit(decimal accountNumber)
@@ -228,7 +203,6 @@ public class BankSystem
         }
 
         decimal mpin = (decimal)inputDecimal;
-        string message = this._bankServices.ViewContact(accountNumber, mpin);
 
         inputDecimal = ValidInput.GetAmount(MessageConstants.GetAmonutDeposit);
         if (inputDecimal is null)
@@ -239,7 +213,6 @@ public class BankSystem
 
         decimal amount = (decimal)inputDecimal;
         Console.WriteLine(this._bankServices.Deposit(accountNumber, amount));
-        ValidInput.GetAnyKey();
     }
 
     private void Withdraw(decimal accountNumber)
@@ -257,13 +230,6 @@ public class BankSystem
         }
 
         decimal mpin = (decimal)inputDecimal;
-        string message = this._bankServices.ViewContact(accountNumber, mpin);
-        Console.WriteLine(message);
-        if (message == MessageConstants.AccountNotFound)
-        {
-            Console.Clear();
-            return;
-        }
 
         inputDecimal = ValidInput.GetAmount(MessageConstants.GetAmonutWithdraw);
         if (inputDecimal is null)
@@ -274,6 +240,5 @@ public class BankSystem
 
         decimal amount = (decimal)inputDecimal;
         Console.WriteLine(this._bankServices.Withdraw(accountNumber, amount));
-        ValidInput.GetAnyKey();
     }
 }

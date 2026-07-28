@@ -36,6 +36,16 @@ public static class MessageConstants
     public const string BankSystemMenu = "\nBANK SYSTEM MENU\n";
 
     /// <summary>
+    /// Header message for bank account types.
+    /// </summary>
+    public const string BankAccountTpyes = "\nBANK ACCOUNT TYPES\n";
+
+    /// <summary>
+    /// Header message for account functionality.
+    /// </summary>
+    public const string AccountFunctionality = "\nACCOUNT FUNCTIONALITY\n";
+
+    /// <summary>
     /// Message displayed when the user enters an invalid menu option.
     /// </summary>
     public const string InvalidOption = "ENTER A VALID OPTION!!";
@@ -43,7 +53,7 @@ public static class MessageConstants
     /// <summary>
     /// Prompt requesting the user to enter rectangle length.
     /// </summary>
-    public const string GetRectangleLength = "Enter length of rectangle(20 or 20.5) or Exit to quit process: ";
+    public const string GetRectangleLength = "Enter length of rectangle or Exit to quit process: ";
 
     /// <summary>
     /// Message displayed when the input is not double.
@@ -78,7 +88,12 @@ public static class MessageConstants
     /// <summary>
     /// Message displayed when the input is a invalid mpin.
     /// </summary>
-    public const string InvalidMpin = "WRONG PIN, TRY AGAIN!!";
+    public const string InvalidMpin = "MPin should be 4 digit and unique!!";
+
+    /// <summary>
+    /// Message displayed when the input mpin does not match.
+    /// </summary>
+    public const string WrongMpin = "Wrong MPIN!!";
 
     /// <summary>
     /// Prompt requesting the user to enter rectangle witdth.
@@ -88,7 +103,7 @@ public static class MessageConstants
     /// <summary>
     /// Prompt requesting the user to enter circle radius.
     /// </summary>
-    public const string GetCircleRadius = "Enter radius of circle(in cm) or Exit to quit process: ";
+    public const string GetCircleRadius = "Enter radius of circle or Exit to quit process: ";
 
     /// <summary>
     /// Prompt requesting the user to enter color.

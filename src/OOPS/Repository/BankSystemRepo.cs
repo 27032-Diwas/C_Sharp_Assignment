@@ -29,7 +29,7 @@ public class BankSystemRepo
         {
             if (mpin != account.MPin)
             {
-                return MessageConstants.InvalidMpin;
+                return MessageConstants.WrongMpin;
             }
 
             return account.PrintDetails();

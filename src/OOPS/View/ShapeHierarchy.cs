@@ -14,20 +14,9 @@ public class ShapeHierarchy
     /// </summary>
     public void GetMenuOption()
     {
-        bool isValidMenuOption = true;
-
-        while (isValidMenuOption)
+        while (true)
         {
-            DisplayMenu();
-
-            Console.WriteLine(MessageConstants.SelectOption);
-            var isParsed = Enum.TryParse<MenuContent.ShapeMenu>(Console.ReadLine(), true, out MenuContent.ShapeMenu choice);
-            if (!isParsed || !Enum.IsDefined(typeof(MenuContent.ShapeMenu), choice))
-            {
-                Console.Clear();
-                Console.WriteLine(MessageConstants.InvalidOption);
-                continue;
-            }
+            MenuContent.ShapeMenu choice = DisplayEnum.GetMenuChoice<MenuContent.ShapeMenu>(MessageConstants.ShapeMenu);
 
             Console.Clear();
             switch (choice)
@@ -42,15 +31,6 @@ public class ShapeHierarchy
                     break;
             }
         }
-    }
-
-    /// <summary>
-    /// Displays shpae menu options.
-    /// </summary>
-    private static void DisplayMenu()
-    {
-        Console.WriteLine(MessageConstants.ShapeMenu);
-        DisplayEnum.DisplayMenu(typeof(MenuContent.ShapeMenu));
     }
 
     private void Rectangle()
@@ -80,7 +60,7 @@ public class ShapeHierarchy
         }
 
         string color = inputString;
-        RectangleShape rectangle = new (color, width, length);
+        RectangleShape rectangle = new(color, width, length);
 
         Console.WriteLine(rectangle.PrintDetails());
         ValidInput.GetAnyKey();
@@ -105,7 +85,7 @@ public class ShapeHierarchy
         }
 
         string color = inputString;
-        Circle circle = new (color, radius);
+        Circle circle = new(color, radius);
 
         Console.WriteLine(circle.PrintDetails());
         ValidInput.GetAnyKey();

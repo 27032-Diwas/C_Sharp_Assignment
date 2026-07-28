@@ -16,20 +16,10 @@ public class MainMenu
         ShapeHierarchy shapeHierarchy = new ();
         EmployeeHierarchy employeeHierarchy = new ();
         BankSystem bankSystem = new ();
-        bool isValidMenuOption = true;
 
-        while (isValidMenuOption)
+        while (true)
         {
-            DisplayMenu();
-
-            Console.WriteLine(MessageConstants.SelectOption);
-            var isParsed = Enum.TryParse<MenuContent.MainMenu>(Console.ReadLine(), true, out MenuContent.MainMenu choice);
-            if (!isParsed || !Enum.IsDefined(typeof(MenuContent.MainMenu), choice))
-            {
-                Console.Clear();
-                Console.WriteLine(MessageConstants.InvalidOption);
-                continue;
-            }
+            MenuContent.MainMenu choice = DisplayEnum.GetMenuChoice<MenuContent.MainMenu>(MessageConstants.MainMenu);
 
             Console.Clear();
             switch (choice)
