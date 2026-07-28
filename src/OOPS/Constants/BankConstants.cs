@@ -14,9 +14,4 @@ public static class BankConstants
     /// Minimum thresold for checking account.
     /// </summary>
     public const decimal CheckingAccountMinimumThresold = -50000;
-
-    /// <summary>
-    /// Default Mpin.
-    /// </summary>
-    public const string DefaultMpin = "0000";
 }

@@ -106,7 +106,7 @@ public class BankSystem
         {
             return;
         }
-        else if (mpin.Equals(BankConstants.DefaultMpin))
+        else if (mpin.Equals(MessageConstants.MpinAttemptFailed))
         {
             Console.WriteLine("Three attempt failed");
             return;
@@ -141,7 +141,7 @@ public class BankSystem
     private string? GetValidMpin(decimal accountNumber)
     {
         int mpinAttempt = 3;
-        string mpin = BankConstants.DefaultMpin;
+        string? mpin = null;
         while (mpinAttempt > 0)
         {
             string? inputString = ValidInput.GetValidStringInput(MessageConstants.GetMpin);
@@ -160,12 +160,17 @@ public class BankSystem
             }
             else if (message.Equals(MessageConstants.WrongMpin))
             {
-                mpin = BankConstants.DefaultMpin;
+                mpin = MessageConstants.MpinAttemptFailed;
                 mpinAttempt--;
                 continue;
             }
 
             return mpin;
+        }
+
+        if (mpinAttempt == -1)
+        {
+            return MessageConstants.MpinAttemptFailed;
         }
 
         return mpin;
@@ -179,7 +184,7 @@ public class BankSystem
             Console.Clear();
             return;
         }
-        else if (inputDecimal.Equals(BankConstants.DefaultMpin))
+        else if (inputDecimal.Equals(MessageConstants.MpinAttemptFailed))
         {
             Console.WriteLine("Three attempt failed");
             return;
@@ -197,7 +202,7 @@ public class BankSystem
             Console.Clear();
             return;
         }
-        else if (mpin.Equals(BankConstants.DefaultMpin))
+        else if (mpin.Equals(MessageConstants.MpinAttemptFailed))
         {
             Console.WriteLine("Three attempt failed");
             return;
@@ -223,7 +228,7 @@ public class BankSystem
             Console.Clear();
             return;
         }
-        else if (mpin.Equals(BankConstants.DefaultMpin))
+        else if (mpin.Equals(MessageConstants.MpinAttemptFailed))
         {
             Console.WriteLine("Three attempt failed");
             return;

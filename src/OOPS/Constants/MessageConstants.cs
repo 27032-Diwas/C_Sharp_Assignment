@@ -76,6 +76,11 @@ public static class MessageConstants
     public const string AccountNotFound = "ACCOUNT NOT FOUND!!";
 
     /// <summary>
+    /// Message displayed when the all mpin attempt is failed.
+    /// </summary>
+    public const string MpinAttemptFailed = "ACCOUNT NOT FOUND!!";
+
+    /// <summary>
     /// Message displayed when the input is an invalid account number.
     /// </summary>
     public const string InvalidAccountNumber = "ACCOUNT NUMBER SHOULD BE A 10 DIGIT NUMBER!!";
