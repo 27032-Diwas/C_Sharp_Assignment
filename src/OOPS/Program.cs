@@ -11,11 +11,9 @@ internal class Program
     /// Main class where program starts.
     /// </summary>
     /// <param name="args"> Argument. </param>
-    private static void Main(string[] args)
+    private static void Main()
     {
-        MainMenu mainMenu = new MainMenu();
-
-        mainMenu.GetMenuOption();
+        MainMenu.GetMenuOption();
         Console.ReadKey();
     }
 }
