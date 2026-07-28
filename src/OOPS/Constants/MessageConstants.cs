@@ -53,7 +53,7 @@ public static class MessageConstants
     /// <summary>
     /// Prompt requesting the user to enter rectangle length.
     /// </summary>
-    public const string GetRectangleLength = "Enter length of rectangle or Exit to quit process: ";
+    public const string GetRectangleLength = "Enter length of rectangle or Exit/[0] to quit process: ";
 
     /// <summary>
     /// Message displayed when the input is not double.
@@ -98,52 +98,52 @@ public static class MessageConstants
     /// <summary>
     /// Prompt requesting the user to enter rectangle witdth.
     /// </summary>
-    public const string GetRectangleWidth = "Enter width of rectangle or Exit to quit process: ";
+    public const string GetRectangleWidth = "Enter width of rectangle or Exit/[0] to quit process: ";
 
     /// <summary>
     /// Prompt requesting the user to enter circle radius.
     /// </summary>
-    public const string GetCircleRadius = "Enter radius of circle or Exit to quit process: ";
+    public const string GetCircleRadius = "Enter radius of circle or Exit/[0] to quit process: ";
 
     /// <summary>
     /// Prompt requesting the user to enter color.
     /// </summary>
-    public const string GetColor = "Enter a color or Exit to quit process: ";
+    public const string GetColor = "Enter a color or Exit/[0] to quit process: ";
 
     /// <summary>
     /// Prompt requesting the user to enter employee name.
     /// </summary>
-    public const string GetEmployeeName = "Enter name of employee or Exit to quit process: ";
+    public const string GetEmployeeName = "Enter name of employee or Exit/[0] to quit process: ";
 
     /// <summary>
     /// Prompt requesting the user to enter employee salary.
     /// </summary>
-    public const string GetEmployeeSalary = "Enter salary of employee(in Rs) or Exit to quit process: ";
+    public const string GetEmployeeSalary = "Enter salary of employee(in Rs) or Exit/[0] to quit process: ";
 
     /// <summary>
     /// Prompt requesting the user to enter account holder name.
     /// </summary>
-    public const string GetAccountHolderName = "Enter name of account holder or Exit to quit process: ";
+    public const string GetAccountHolderName = "Enter name of account holder or Exit/[0] to quit process: ";
 
     /// <summary>
     /// Prompt requesting the user to enter amount value to deposit.
     /// </summary>
-    public const string GetAmonutDeposit = "Enter amount to deposit(is Rs) or Exit to quit process: ";
+    public const string GetAmonutDeposit = "Enter amount to deposit(is Rs) or Exit/[0] to quit process: ";
 
     /// <summary>
     /// Prompt requesting the user to enter amount value to withdraw.
     /// </summary>
-    public const string GetAmonutWithdraw = "Enter amount to withdraw(is Rs) or Exit to quit process: ";
+    public const string GetAmonutWithdraw = "Enter amount to withdraw(is Rs) or Exit/[0] to quit process: ";
 
     /// <summary>
     /// Prompt requesting the user to enter account number.
     /// </summary>
-    public const string GetAccountNumber = "Enter account number or Exit to quit process: ";
+    public const string GetAccountNumber = "Enter account number or Exit/[0] to quit process: ";
 
     /// <summary>
     /// Prompt requesting the user to Mpin.
     /// </summary>
-    public const string GetMpin = "Enter MPIN or Exit to quit process: ";
+    public const string GetMpin = "Enter MPIN or Exit/[0] to quit process: ";
 
     /// <summary>
     /// Message displayed when the deposit is successful.

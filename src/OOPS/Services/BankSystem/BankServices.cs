@@ -34,7 +34,7 @@ public class BankServices
     /// <param name="accountType"> Account type. </param>
     /// <param name="mpin"> Mpin. </param>
     /// <returns> Sucess or failure message. </returns>
-    public string AddAccount(string name, decimal amount, BankAccountContent.BankAccountTypes? accountType, decimal mpin)
+    public string AddAccount(string name, decimal amount, BankAccountContent.BankAccountTypes? accountType, string mpin)
     {
         if (Validation.IsValidName(name) is false)
         {
@@ -75,7 +75,7 @@ public class BankServices
     /// <param name="accountNumber"> Account Number. </param>
     /// <param name="mpin"> Mpin. </param>
     /// <returns> Details as a string. </returns>
-    public string ViewContact(decimal accountNumber, decimal mpin)
+    public string ViewContact(decimal accountNumber, string mpin)
     {
         return this._bankSystemRepo.ViewAccount(accountNumber, mpin);
     }

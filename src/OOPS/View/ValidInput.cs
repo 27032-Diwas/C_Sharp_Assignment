@@ -268,13 +268,13 @@ public static class ValidInput
     /// </summary>
     /// <param name="message"> Message to display when getting input. </param>
     /// <returns> Mpin. </returns>
-    public static decimal? GetMpin(string message)
+    public static string? GetMpin(string message)
     {
-        decimal? mpin;
+        string? mpin;
         bool isValidMpin;
         do
         {
-            mpin = GetValidDecimalInput(message);
+            mpin = GetValidStringInput(message);
 
             if (mpin is null)
             {

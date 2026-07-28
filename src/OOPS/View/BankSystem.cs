@@ -75,14 +75,14 @@ public class BankSystem
 
         decimal amount = (decimal)inputDecimal;
 
-        inputDecimal = ValidInput.GetMpin(MessageConstants.GetMpin);
-        if (inputDecimal is null)
+        inputString = ValidInput.GetMpin(MessageConstants.GetMpin);
+        if (inputString is null)
         {
             Console.Clear();
             return;
         }
 
-        decimal mpin = (decimal)inputDecimal;
+        string mpin = inputString;
         string message = this._bankServices.AddAccount(name, amount, accountType, mpin);
         Console.WriteLine(message);
         ValidInput.GetAnyKey();
@@ -101,12 +101,12 @@ public class BankSystem
         }
 
         decimal accountNumber = (decimal)inputDecimal;
-        decimal? mpin = this.GetValidMpin(accountNumber);
+        string? mpin = this.GetValidMpin(accountNumber);
         if (mpin is null)
         {
             return;
         }
-        else if (mpin == 0)
+        else if (mpin.Equals(BankConstants.DefaultMpin))
         {
             Console.WriteLine("Three attempt failed");
             return;
@@ -138,29 +138,29 @@ public class BankSystem
     /// </summary>
     /// <param name="accountNumber"> Account Number </param>
     /// <returns> Mpin. </returns>
-    private decimal? GetValidMpin(decimal accountNumber)
+    private string? GetValidMpin(decimal accountNumber)
     {
         int mpinAttempt = 3;
-        decimal mpin = 0;
+        string mpin = BankConstants.DefaultMpin;
         while (mpinAttempt > 0)
         {
-            decimal? inputDecimal = ValidInput.GetValidDecimalInput(MessageConstants.GetMpin);
-            if (inputDecimal is null)
+            string? inputString = ValidInput.GetValidStringInput(MessageConstants.GetMpin);
+            if (inputString is null)
             {
                 Console.Clear();
                 return null;
             }
 
-            mpin = (decimal)inputDecimal;
+            mpin = inputString;
             string message = this._bankServices.ViewContact(accountNumber, mpin);
             Console.WriteLine(message);
-            if (message == MessageConstants.AccountNotFound)
+            if (message.Equals(MessageConstants.AccountNotFound))
             {
                 return null;
             }
-            else if (message == MessageConstants.WrongMpin)
+            else if (message.Equals(MessageConstants.WrongMpin))
             {
-                mpin = 0;
+                mpin = BankConstants.DefaultMpin;
                 mpinAttempt--;
                 continue;
             }
@@ -173,13 +173,13 @@ public class BankSystem
 
     private void ViewAccount(decimal accountNumber)
     {
-        decimal? inputDecimal = this.GetValidMpin(accountNumber);
+        string? inputDecimal = this.GetValidMpin(accountNumber);
         if (inputDecimal is null)
         {
             Console.Clear();
             return;
         }
-        else if (inputDecimal == 0)
+        else if (inputDecimal.Equals(BankConstants.DefaultMpin))
         {
             Console.WriteLine("Three attempt failed");
             return;
@@ -191,13 +191,13 @@ public class BankSystem
 
     private void Deposit(decimal accountNumber)
     {
-        decimal? mpin = this.GetValidMpin(accountNumber);
+        string? mpin = this.GetValidMpin(accountNumber);
         if (mpin is null)
         {
             Console.Clear();
             return;
         }
-        else if (mpin == 0)
+        else if (mpin.Equals(BankConstants.DefaultMpin))
         {
             Console.WriteLine("Three attempt failed");
             return;
@@ -217,13 +217,13 @@ public class BankSystem
 
     private void Withdraw(decimal accountNumber)
     {
-        decimal? mpin = this.GetValidMpin(accountNumber);
+        string? mpin = this.GetValidMpin(accountNumber);
         if (mpin is null)
         {
             Console.Clear();
             return;
         }
-        else if (mpin == 0)
+        else if (mpin.Equals(BankConstants.DefaultMpin))
         {
             Console.WriteLine("Three attempt failed");
             return;

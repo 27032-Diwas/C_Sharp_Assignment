@@ -22,12 +22,12 @@ public class BankSystemRepo
     /// <param name="accountNumber"> Account number. </param>
     /// <param name="mpin"> Mpin. </param>
     /// <returns> Account object. </returns>
-    public string ViewAccount(decimal accountNumber, decimal mpin)
+    public string ViewAccount(decimal accountNumber, string mpin)
     {
         BankAccount? account = this.GetAccount(accountNumber);
         if (account != null)
         {
-            if (mpin != account.MPin)
+            if (!mpin.Equals(account.MPin))
             {
                 return MessageConstants.WrongMpin;
             }

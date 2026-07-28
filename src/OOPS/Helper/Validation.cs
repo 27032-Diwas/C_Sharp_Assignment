@@ -36,16 +36,7 @@ public static class Validation
     /// </summary>
     /// <param name="mpin"> Mpin. </param>
     /// <returns> true or false. </returns>
-    public static bool IsValidMpin(decimal? mpin)
-    {
-        string? pin = mpin.ToString();
-        if (pin is null)
-        {
-            return false;
-        }
-
-        return Regex.IsMatch(pin, RegexPatterns.MpinRegex);
-    }
+    public static bool IsValidMpin(string mpin) => Regex.IsMatch(mpin, RegexPatterns.MpinRegex);
 
     /// <summary>
     /// Check whether account number is 10 digit or not.
