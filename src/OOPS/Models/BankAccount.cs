@@ -29,10 +29,10 @@ public abstract class BankAccount
     public string AccountHolderName { get; set; }
 
     /// <summary>
-    /// Gets or sets.
+    /// Gets or init.
     /// </summary>
     /// <value> Account number of user. </value>
-    public decimal AccountNumber { get; set; }
+    public decimal AccountNumber { get; init; }
 
     /// <summary>
     /// Gets or sets.
