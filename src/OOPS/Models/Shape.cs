@@ -9,26 +9,29 @@ public abstract class Shape
     /// Initializes a new instance of the <see cref="Shape"/> class.
     /// </summary>
     /// <param name="color"> Color of the shape. </param>
-    public Shape(string color)
-    {
-        this.Color = color;
-    }
+    public Shape(string color) => this.Color = color;
 
     /// <summary>
-    /// Gets or sets property.
+    /// Gets or sets the color of the shape.
     /// </summary>
-    /// <value> Color of shape. </value>
+    /// <value>
+    /// A string representing the color of the shape.
+    /// </value>
     public string Color { get; set; }
 
     /// <summary>
-    /// Calculates area of the shape.
+    /// Calculates the area of the shape.
     /// </summary>
-    /// <returns> Area of shape in double. </returns>
+    /// <returns>
+    /// The area of the shape.
+    /// </returns>
     public abstract double CalculateArea();
 
     /// <summary>
-    /// Prints details - color and area.
+    /// Returns the shape details, including its color and area.
     /// </summary>
-    /// <returns> Color and area as a string. </returns>
+    /// <returns>
+    /// A string containing the color and area of the shape.
+    /// </returns>
     public abstract string PrintDetails();
 }

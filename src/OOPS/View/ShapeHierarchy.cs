@@ -5,12 +5,12 @@ using OOPS.Services.ShapeHierarchy;
 namespace OOPS.View;
 
 /// <summary>
-/// Contains methods related to shape hierarchy.
+/// Provides functionality for demonstrating the shape hierarchy.
 /// </summary>
 public class ShapeHierarchy
 {
     /// <summary>
-    /// Get shape menu choice from user.
+    /// Displays the shape menu and processes the selected option.
     /// </summary>
     public static void GetMenuOption()
     {
@@ -33,6 +33,9 @@ public class ShapeHierarchy
         }
     }
 
+    /// <summary>
+    /// Creates a rectangle and displays its details.
+    /// </summary>
     private static void Rectangle()
     {
         double? inputDouble;
@@ -60,12 +63,15 @@ public class ShapeHierarchy
         }
 
         string color = inputString;
-        RectangleShape rectangle = new (color, width, length);
+        RectangleShape rectangle = new (color, length, width);
 
         Console.WriteLine(rectangle.PrintDetails());
         ValidInput.GetAnyKey();
     }
 
+    /// <summary>
+    /// Creates a circle and displays its details.
+    /// </summary>
     private static void Circle()
     {
         double? inputDouble;

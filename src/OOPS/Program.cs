@@ -3,14 +3,13 @@
 namespace OOPS;
 
 /// <summary>
-/// OOPS Assignment
+/// Entry point of the application.
 /// </summary>
 internal class Program
 {
     /// <summary>
-    /// Main class where program starts.
+    /// Starts the application and displays the main menu.
     /// </summary>
-    /// <param name="args"> Argument. </param>
     private static void Main()
     {
         MainMenu.GetMenuOption();

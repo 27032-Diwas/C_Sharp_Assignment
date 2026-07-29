@@ -1,9 +1,9 @@
 ﻿namespace OOPS.Constants;
 
 /// <summary>
-/// Contains all the constants related to bank system.
+/// Contains all the cofigurables related to bank system.
 /// </summary>
-public static class BankConstants
+public static class BankConfigurables
 {
     /// <summary>
     /// Minimum balance for savings account.
@@ -11,7 +11,7 @@ public static class BankConstants
     public const decimal SavingAccountMinimumBalance = 1000;
 
     /// <summary>
-    /// Minimum thresold for checking account.
+    /// Minimum threshold for checking account.
     /// </summary>
-    public const decimal CheckingAccountMinimumThresold = -50000;
+    public const decimal CheckingAccountMinimumThreshold = -50000;
 }

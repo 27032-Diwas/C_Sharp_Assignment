@@ -1,7 +1,7 @@
 ﻿namespace OOPS.EnumConstants;
 
 /// <summary>
-/// Contains all menu options in this applications.
+/// Contains all menu options in this application.
 /// </summary>
 public static class MenuContent
 {
@@ -11,22 +11,22 @@ public static class MenuContent
     public enum MainMenu
     {
         /// <summary>
-        /// Header displayed for exit option.
+        /// Represents the option to exit the application.
         /// </summary>
         Exit,
 
         /// <summary>
-        /// Header displayed for shape hierarchy.
+        /// Represents the option to access the shape hierarchy module.
         /// </summary>
         ShapeHierarchy,
 
         /// <summary>
-        /// Header displayed for employee hierarchy.
+        /// Represents the option to access the employee hierarchy module.
         /// </summary>
         EmployeeHierarchy,
 
         /// <summary>
-        /// Header displayed for bank system.
+        /// Represents the option to access the bank system module.
         /// </summary>
         BankSystem,
     }
@@ -37,17 +37,17 @@ public static class MenuContent
     public enum ShapeMenu
     {
         /// <summary>
-        /// Header displayed for back option.
+        /// Represents the option to return to the previous menu.
         /// </summary>
         Back,
 
         /// <summary>
-        /// Header displayed for rectangle.
+        /// Represents the option to work with a rectangle.
         /// </summary>
         Rectangle,
 
         /// <summary>
-        /// Header displayed for circle.
+        /// Represents the option to work with a circle.
         /// </summary>
         Circle,
     }
@@ -58,17 +58,17 @@ public static class MenuContent
     public enum EmployeeMenu
     {
         /// <summary>
-        /// Header displayed for back option.
+        /// Represents the option to return to the previous menu.
         /// </summary>
         Back,
 
         /// <summary>
-        /// Header displayed for manager.
+        /// Represents the option to work with a manager.
         /// </summary>
         Manager,
 
         /// <summary>
-        /// Header displayed for developer.
+        /// Represents the option to work with a developer.
         /// </summary>
         Developer,
     }
@@ -79,17 +79,17 @@ public static class MenuContent
     public enum BankSystemMenu
     {
         /// <summary>
-        /// Header displayed for back option.
+        /// Represents the option to return to the previous menu.
         /// </summary>
         Back,
 
         /// <summary>
-        /// Header displayed for add account.
+        /// Represents the option to add a new account.
         /// </summary>
         AddAccount,
 
         /// <summary>
-        /// Header displayed for existing account.
+        /// Represents the option to access an existing account.
         /// </summary>
         ExistingAccount,
     }
@@ -100,7 +100,7 @@ public static class MenuContent
     public enum Exit
     {
         /// <summary>
-        /// Header displayed for exit.
+        /// Represents the option to exit the application.
         /// </summary>
         Exit,
     }
@@ -111,22 +111,22 @@ public static class MenuContent
     public enum AccountMenu
     {
         /// <summary>
-        /// Header displayed for back option.
+        /// Represents the option to return to the previous menu.
         /// </summary>
         Back,
 
         /// <summary>
-        /// Header displayed for view account.
+        /// Represents the option to view account details.
         /// </summary>
         ViewAccount,
 
         /// <summary>
-        /// Header displayed for deposit.
+        /// Represents the option to deposit money into the account.
         /// </summary>
         Deposit,
 
         /// <summary>
-        /// Header displayed for withdraw.
+        /// Represents the option to withdraw money from the account.
         /// </summary>
         Withdraw,
     }

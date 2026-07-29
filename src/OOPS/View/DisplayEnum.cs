@@ -4,14 +4,14 @@ using OOPS.EnumConstants;
 namespace OOPS.View;
 
 /// <summary>
-/// Contains methods related to enum.
+/// Provides methods for displaying and retrieving enum values.
 /// </summary>
 public static class DisplayEnum
 {
     /// <summary>
-    /// Displays the values in the enum.
+    /// Displays all values defined in the specified enumeration.
     /// </summary>
-    /// <param name="menuType"> Enum list. </param>
+    /// <param name="menuType"> The enumeration type to display. </param>
     public static void DisplayMenu(Type menuType)
     {
         foreach (var value in Enum.GetValues(menuType))
@@ -21,11 +21,13 @@ public static class DisplayEnum
     }
 
     /// <summary>
-    /// Get user choice from the menu.
+    /// Gets a valid menu option selected by the user.
     /// </summary>
-    /// <typeparam name="T">Enum type.</typeparam>
-    /// <param name="message"> Message to says what menu this is. </param>
-    /// <returns>Selected enum value.</returns>
+    /// <typeparam name="T"> The enumeration type. </typeparam>
+    /// <param name="message"> The message displayed before the menu options. </param>
+    /// <returns>
+    /// The selected enumeration value.
+    /// </returns>
     public static T GetMenuChoice<T>(string message)
         where T : struct, Enum
     {

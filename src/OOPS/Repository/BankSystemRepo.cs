@@ -42,7 +42,7 @@ public class BankSystemRepo
     /// Deposit amount into account.
     /// </summary>
     /// <param name="accountNumber"> Account number. </param>
-    /// <param name="amount">amount to deposit. </param>
+    /// <param name="amount"> Amount to deposit. </param>
     /// <returns> Success message. </returns>
     public string Deposit(decimal accountNumber, decimal amount)
     {
@@ -77,7 +77,7 @@ public class BankSystemRepo
     /// Withdraw amount into account.
     /// </summary>
     /// <param name="accountNumber"> Account number. </param>
-    /// <param name="amount">amount to deposit. </param>
+    /// <param name="amount"> Amount to deposit. </param>
     /// <returns> Success or failure message. </returns>
     public string Withdraw(decimal accountNumber, decimal amount)
     {

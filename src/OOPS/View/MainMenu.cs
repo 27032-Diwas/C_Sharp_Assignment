@@ -4,12 +4,12 @@ using OOPS.EnumConstants;
 namespace OOPS.View;
 
 /// <summary>
-/// Contains main menu of the project.
+/// Provides the main menu and navigation for the application.
 /// </summary>
 public class MainMenu
 {
     /// <summary>
-    /// Get menu choice from user.
+    /// Displays the main menu and processes the selected option.
     /// </summary>
     public static void GetMenuOption()
     {
@@ -36,14 +36,5 @@ public class MainMenu
                     break;
             }
         }
-    }
-
-    /// <summary>
-    /// Displays main menu options.
-    /// </summary>
-    private static void DisplayMenu()
-    {
-        Console.WriteLine(MessageConstants.MainMenu);
-        DisplayEnum.DisplayMenu(typeof(MenuContent.MainMenu));
     }
 }

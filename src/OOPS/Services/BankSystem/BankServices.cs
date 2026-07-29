@@ -6,12 +6,12 @@ using OOPS.Repository;
 namespace OOPS.Services.BankSystem;
 
 /// <summary>
-/// Contains all the methods connecting view, repository and accounts.
+/// Provides methods for managing bank accounts and coordinating interactions between the repository and the user interface.
 /// </summary>
 public class BankServices
 {
     /// <summary>
-    /// Starting account number of customer.
+    /// Represents the starting account number assigned to new accounts.
     /// </summary>
     private static decimal accountNumber = 1000000001;
 
@@ -20,23 +20,25 @@ public class BankServices
     /// <summary>
     /// Initializes a new instance of the <see cref="BankServices"/> class.
     /// </summary>
-    /// <param name="bankSystemRepo"> Link to repo </param>
+    /// <param name="bankSystemRepo"> The repository used to manage bank account data. </param>
     public BankServices(BankSystemRepo bankSystemRepo)
     {
         this._bankSystemRepo = bankSystemRepo;
     }
 
     /// <summary>
-    /// Add account to the list.
+    /// Adds a new bank account.
     /// </summary>
-    /// <param name="name"> Account holder name. </param>
-    /// <param name="amount"> Account number. </param>
-    /// <param name="accountType"> Account type. </param>
-    /// <param name="mpin"> Mpin. </param>
-    /// <returns> Sucess or failure message. </returns>
+    /// <param name="name"> The name of the account holder. </param>
+    /// <param name="amount"> The initial account balance. </param>
+    /// <param name="accountType"> The type of account to create. </param>
+    /// <param name="mpin"> The MPIN for the account. </param>
+    /// <returns>
+    /// A message indicating the result of the account creation operation.
+    /// </returns>
     public string AddAccount(string name, decimal amount, BankAccountContent.BankAccountTypes? accountType, string mpin)
     {
-        if (Validation.IsValidName(name) is false)
+        if (!Validation.IsValidName(name))
         {
             return MessageConstants.NameTooShort;
         }
@@ -57,7 +59,7 @@ public class BankServices
             return $"{MessageConstants.AccountAddedSuccessfully}\n{this._bankSystemRepo.ViewAccount(accountNumber - 1, mpin)}";
         }
 
-        if (amount < BankConstants.SavingAccountMinimumBalance)
+        if (amount < BankConfigurables.SavingAccountMinimumBalance)
         {
             return MessageConstants.LessThanMinimumBalance;
         }
@@ -70,35 +72,32 @@ public class BankServices
     }
 
     /// <summary>
-    /// Get details from repository.
+    /// Retrieves the details of an account.
     /// </summary>
-    /// <param name="accountNumber"> Account Number. </param>
-    /// <param name="mpin"> Mpin. </param>
-    /// <returns> Details as a string. </returns>
-    public string ViewContact(decimal accountNumber, string mpin)
-    {
-        return this._bankSystemRepo.ViewAccount(accountNumber, mpin);
-    }
+    /// <param name="accountNumber"> The account number. </param>
+    /// <param name="mpin"> The MPIN associated with the account. </param>
+    /// <returns>
+    /// A string containing the account details or an appropriate status message.
+    /// </returns>
+    public string ViewAccount(decimal accountNumber, string mpin) => this._bankSystemRepo.ViewAccount(accountNumber, mpin);
 
     /// <summary>
-    /// Deposit amount into account.
+    /// Deposits an amount into the specified account.
     /// </summary>
-    /// <param name="accountNumber"> Account number. </param>
-    /// <param name="amount">Amount to deposit. </param>
-    /// <returns> Success message. </returns>
-    public string Deposit(decimal accountNumber, decimal amount)
-    {
-        return this._bankSystemRepo.Deposit(accountNumber, amount);
-    }
+    /// <param name="accountNumber"> The account number. </param>
+    /// <param name="amount"> The amount to deposit. </param>
+    /// <returns>
+    /// A message indicating the result of the deposit operation.
+    /// </returns>
+    public string Deposit(decimal accountNumber, decimal amount) => this._bankSystemRepo.Deposit(accountNumber, amount);
 
     /// <summary>
-    /// Withdraw amount into account.
+    /// Withdraws an amount from the specified account.
     /// </summary>
-    /// <param name="accountNumber"> Account number. </param>
-    /// <param name="amount">Amount to deposit. </param>
-    /// <returns> Success message. </returns>
-    public string Withdraw(decimal accountNumber, decimal amount)
-    {
-        return this._bankSystemRepo.Withdraw(accountNumber, amount);
-    }
+    /// <param name="accountNumber"> The account number. </param>
+    /// <param name="amount"> The amount to withdraw. </param>
+    /// <returns>
+    /// A message indicating the result of the withdrawal operation.
+    /// </returns>
+    public string Withdraw(decimal accountNumber, decimal amount) => this._bankSystemRepo.Withdraw(accountNumber, amount);
 }

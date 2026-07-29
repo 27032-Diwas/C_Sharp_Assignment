@@ -7,12 +7,12 @@ using static OOPS.EnumConstants.MenuContent;
 namespace OOPS.View;
 
 /// <summary>
-/// Contains methods related to employee hierarchy.
+/// Provides functionality for demonstrating the employee hierarchy.
 /// </summary>
 public class EmployeeHierarchy
 {
     /// <summary>
-    /// Get employee menu choice from user.
+    /// Displays the employee menu and processes the selected option.
     /// </summary>
     public static void GetMenuOption()
     {
@@ -35,6 +35,9 @@ public class EmployeeHierarchy
         }
     }
 
+    /// <summary>
+    /// Creates a manager and displays the manager details.
+    /// </summary>
     private static void Manager()
     {
         string? inputString = ValidInput.GetName(MessageConstants.GetEmployeeName);
@@ -59,6 +62,9 @@ public class EmployeeHierarchy
         ValidInput.GetAnyKey();
     }
 
+    /// <summary>
+    /// Creates a developer and displays the developer details.
+    /// </summary>
     private static void Developer()
     {
         string? inputString = ValidInput.GetName(MessageConstants.GetEmployeeName);

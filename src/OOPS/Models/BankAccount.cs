@@ -32,7 +32,7 @@ public abstract class BankAccount
     /// Gets or init.
     /// </summary>
     /// <value> Account number of user. </value>
-    public decimal AccountNumber { get; init; }
+    public decimal AccountNumber { get; private init; }
 
     /// <summary>
     /// Gets or sets.
@@ -43,30 +43,32 @@ public abstract class BankAccount
     /// <summary>
     /// Gets or init.
     /// </summary>
-    /// <value> MPin value to access account. </value>
-    public string MPin { get; init; }
+    /// <value> MPIN value. </value>
+    public string MPin { get; private init; }
 
     /// <summary>
-    /// Deposits amount into users account.
+    /// Deposits the specified amount into the account.
     /// </summary>
-    /// <param name="amount"> Amount to deposit. </param>
-    /// <returns> Success or failure message. </returns>
-    public string Deposit(decimal amount)
-    {
-        this.Balance += amount;
-        return MessageConstants.DepositSuccess;
-    }
+    /// <param name="amount"> The amount to deposit. </param>
+    /// <returns>
+    /// A message indicating whether the deposit operation was successful.
+    /// </returns>
+    public abstract string Deposit(decimal amount);
 
     /// <summary>
-    /// Withdraw amount from the account.
+    /// Withdraws the specified amount from the account.
     /// </summary>
-    /// <param name="amount"> Amount to withdraw. </param>
-    /// <returns> success or failure message. </returns>
+    /// <param name="amount"> The amount to withdraw. </param>
+    /// <returns>
+    /// A message indicating whether the withdrawal operation was successful.
+    /// </returns>
     public abstract string Withdraw(decimal amount);
 
     /// <summary>
-    /// Displays details of account holder such as name, account number, balance.
+    /// Returns the account holder details, including the account holder name, account number, and account balance.
     /// </summary>
-    /// <returns> Details as a string. </returns>
+    /// <returns>
+    /// A string containing the account details.
+    /// </returns>
     public abstract string PrintDetails();
 }

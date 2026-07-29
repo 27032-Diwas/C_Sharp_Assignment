@@ -1,9 +1,10 @@
-﻿using OOPS.Models;
+﻿using OOPS.Constants;
+using OOPS.Models;
 
 namespace OOPS.Services.EmployeeHierarchy;
 
 /// <summary>
-/// Developer class inheriting employee class.
+/// Represents a developer in the employee hierarchy.
 /// </summary>
 public class Developer : Employee
 {
@@ -12,28 +13,26 @@ public class Developer : Employee
     /// <summary>
     /// Initializes a new instance of the <see cref="Developer"/> class.
     /// </summary>
-    /// <param name="name"> Employee name.</param>
-    /// <param name="salary"> Employee salary. </param>
+    /// <param name="name"> The name of the employee. </param>
+    /// <param name="salary"> The salary of the employee. </param>
     public Developer(string name, decimal salary)
         : base(name, salary)
     {
     }
 
     /// <summary>
-    /// Calculate bonus of developer.
+    /// Calculates the bonus for the developer.
     /// </summary>
-    /// <returns> Bonus of developer in double. </returns>
-    public override double CalculateBonus()
-    {
-        return (double)this.Salary * 0.15;
-    }
+    /// <returns>
+    /// The calculated bonus amount.
+    /// </returns>
+    public override double CalculateBonus() => (double)this.Salary * EmployeeConfigurables.DeveloperBonus;
 
     /// <summary>
-    /// Displays details such as name, salary, position and bonus.
+    /// Returns the employee details, including the name, position, salary, and bonus.
     /// </summary>
-    /// <returns> Details as a string. </returns>
-    public override string PrintDetails()
-    {
-        return $"\nName: {this.Name}\nPosition: {_position}\nSalary: {this.Salary}\nBonus: {this.CalculateBonus():F2}";
-    }
+    /// <returns>
+    /// A string containing the employee details.
+    /// </returns>
+    public override string PrintDetails() => $"\nName: {this.Name}\nPosition: {_position}\nSalary: {this.Salary}\nBonus: {this.CalculateBonus():F2}";
 }

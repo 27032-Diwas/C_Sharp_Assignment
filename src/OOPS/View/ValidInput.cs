@@ -5,15 +5,17 @@ using OOPS.Helper;
 namespace OOPS.View;
 
 /// <summary>
-/// Contains method to get input.
+/// Provides methods for validating and retrieving user input.
 /// </summary>
 public static class ValidInput
 {
     /// <summary>
-    /// Checks for valid double input.
+    /// Gets a valid double value from the user.
     /// </summary>
-    /// <param name="message"> Failure Message. </param>
-    /// <returns> Double value. </returns>
+    /// <param name="message"> The message displayed when prompting for input. </param>
+    /// <returns>
+    /// The validated double value, or null if the operation is cancelled.
+    /// </returns>
     public static double? GetValidDoubleInput(string message)
     {
         double result;
@@ -43,10 +45,12 @@ public static class ValidInput
     }
 
     /// <summary>
-    /// Checks for valid double input.
+    /// Gets a valid decimal value from the user.
     /// </summary>
-    /// <param name="message"> Failure Message. </param>
-    /// <returns> Double value. </returns>
+    /// <param name="message"> The message displayed when prompting for input. </param>
+    /// <returns>
+    /// The validated decimal value, or null if the operation is cancelled.
+    /// </returns>
     public static decimal? GetValidDecimalInput(string message)
     {
         decimal result;
@@ -76,10 +80,12 @@ public static class ValidInput
     }
 
     /// <summary>
-    /// Check for valid string input.
+    /// Gets a valid non-empty string value from the user.
     /// </summary>
-    /// <param name="message"> Failure message. </param>
-    /// <returns> string value. </returns>
+    /// <param name="message"> The message displayed when prompting for input. </param>
+    /// <returns>
+    /// The validated string value, or null if the operation is cancelled.
+    /// </returns>
     public static string? GetValidStringInput(string message)
     {
         string? result;
@@ -110,38 +116,42 @@ public static class ValidInput
     }
 
     /// <summary>
-    /// Get vaild measurement from the user.
+    /// Gets a valid measurement value from the user.
     /// </summary>
-    /// /// <param name="message"> Message to display when getting input. </param>
-    /// <returns> Return salary. </returns>
+    /// <param name="message"> The message displayed when prompting for input. </param>
+    /// <returns>
+    /// The validated measurement value, or null if the operation is cancelled.
+    /// </returns>
     public static double? GetMeasurement(string message)
     {
-        double? measurement;
-        bool isValidMeasurement;
+        double? dimensions;
+        bool isValidDimensions;
         do
         {
-            measurement = GetValidDoubleInput(message);
-            if (measurement is null)
+            dimensions = GetValidDoubleInput(message);
+            if (dimensions is null)
             {
                 return null;
             }
 
-            isValidMeasurement = !Validation.IsValidMeasurement(measurement);
+            isValidDimensions = !Validation.IsValidDimensions(dimensions);
 
-            if (isValidMeasurement)
+            if (isValidDimensions)
             {
                 Console.WriteLine(MessageConstants.NegativeValue);
             }
         }
-        while (isValidMeasurement);
-        return measurement;
+        while (isValidDimensions);
+        return dimensions;
     }
 
     /// <summary>
-    /// Get vaild salary from the user.
+    /// Gets a valid amount from the user.
     /// </summary>
-    /// /// <param name="message"> Message to display when getting input. </param>
-    /// <returns> Return salary. </returns>
+    /// <param name="message"> The message displayed when prompting for input. </param>
+    /// <returns>
+    /// The validated amount, or null if the operation is cancelled.
+    /// </returns>
     public static decimal? GetAmount(string message)
     {
         decimal? amount;
@@ -167,10 +177,12 @@ public static class ValidInput
     }
 
     /// <summary>
-    /// Get vaild name from the user.
+    /// Gets a valid name from the user.
     /// </summary>
-    /// <param name="message"> Message to display when getting input. </param>
-    /// <returns> Name. </returns>
+    /// <param name="message"> The message displayed when prompting for input. </param>
+    /// <returns>
+    /// The validated name, or null if the operation is cancelled.
+    /// </returns>
     public static string? GetName(string message)
     {
         string? name;
@@ -196,10 +208,12 @@ public static class ValidInput
     }
 
     /// <summary>
-    /// Get vaild account number from the user.
+    /// Gets a valid account number from the user.
     /// </summary>
-    /// <param name="message"> Message to display when getting input. </param>
-    /// <returns> Account number. </returns>
+    /// <param name="message"> The message displayed when prompting for input. </param>
+    /// <returns>
+    /// The validated account number, or null if the operation is cancelled.
+    /// </returns>
     public static decimal? GetAccountNumber(string message)
     {
         decimal? accountNumber;
@@ -225,10 +239,12 @@ public static class ValidInput
     }
 
     /// <summary>
-    /// Get vaild color from the user.
+    /// Gets a valid color from the user.
     /// </summary>
-    /// <param name="message"> Message to display when getting input. </param>
-    /// <returns> Color. </returns>
+    /// <param name="message"> The message displayed when prompting for input. </param>
+    /// <returns>
+    /// The validated color, or null if the operation is cancelled.
+    /// </returns>
     public static string? GetColor(string message)
     {
         string? color;
@@ -254,7 +270,7 @@ public static class ValidInput
     }
 
     /// <summary>
-    /// Gets any key and clear the console.
+    /// Waits for the user to press a key and then clears the console.
     /// </summary>
     public static void GetAnyKey()
     {
@@ -264,10 +280,12 @@ public static class ValidInput
     }
 
     /// <summary>
-    /// Get vaild mpin from the user.
+    /// Gets a valid MPIN from the user.
     /// </summary>
-    /// <param name="message"> Message to display when getting input. </param>
-    /// <returns> Mpin. </returns>
+    /// <param name="message">The message displayed when prompting for input.</param>
+    /// <returns>
+    /// The validated MPIN, or null if the operation is cancelled.
+    /// </returns>
     public static string? GetMpin(string message)
     {
         string? mpin;

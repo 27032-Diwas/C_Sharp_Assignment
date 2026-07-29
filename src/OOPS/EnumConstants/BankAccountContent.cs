@@ -1,7 +1,7 @@
 ﻿namespace OOPS.EnumConstants;
 
 /// <summary>
-/// Contains all bank related options in this applications.
+/// Contains all bank related options in this application.
 /// </summary>
 public class BankAccountContent
 {
@@ -11,17 +11,17 @@ public class BankAccountContent
     public enum BankAccountTypes
     {
         /// <summary>
-        /// Header displayed for exit option.
+        /// Represents the option to exit the application.
         /// </summary>
         Exit,
 
         /// <summary>
-        /// Header displayed for savings account.
+        /// Represents the option to exit the savings account.
         /// </summary>
         SavingsAccount,
 
         /// <summary>
-        /// Header displayed for checking account
+        /// Represents the option to exit the checking account.
         /// </summary>
         CheckingAccount,
     }

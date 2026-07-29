@@ -5,52 +5,64 @@ using OOPS.Constants;
 namespace OOPS.Helper;
 
 /// <summary>
-/// Contains validation methods and returns true or false.
+/// Provides methods for validating user input.
 /// </summary>
 public static class Validation
 {
     /// <summary>
-    /// Check whether name is more than one letter.
+    /// Determines whether the specified name is valid.
     /// </summary>
-    /// <param name="name"> Name. </param>
-    /// <returns> true or false. </returns>
+    /// <param name="name"> The name to validate. </param>
+    /// <returns>
+    /// True if the name contains at least two characters and matches the required pattern; otherwise false.
+    /// </returns>
     public static bool IsValidName(string? name) => !string.IsNullOrEmpty(name)
                                                     && Regex.IsMatch(name, RegexPatterns.NameRegex);
 
     /// <summary>
-    /// Check whether amount is positive or not.
+    /// Determines whether the specified amount is valid.
     /// </summary>
-    /// <param name="amount"> Amonut to deposit or withdraw. </param>
-    /// <returns> true or false. </returns>
+    /// <param name="amount"> The amount to validate. </param>
+    /// <returns>
+    /// True if the amount is greater than or equal to zero; otherwise false.
+    /// </returns>
     public static bool IsValidAmount(decimal? amount) => amount >= 0;
 
     /// <summary>
-    /// Check whether measurement is positive or not.
+    /// Determines whether the specified dimension value is valid.
     /// </summary>
-    /// <param name="measurement"> Measurement. </param>
-    /// <returns> true or false. </returns>
-    public static bool IsValidMeasurement(double? measurement) => measurement > 0;
+    /// <param name="dimensions"> The measurement to validate. </param>
+    /// <returns>
+    /// True if the measurement is greater than zero; otherwise false.
+    /// </returns>
+    public static bool IsValidDimensions(double? dimensions) => dimensions > 0;
 
     /// <summary>
-    /// Check whether mpin is valid.
+    /// Determines whether the specified MPIN is valid.
     /// </summary>
-    /// <param name="mpin"> Mpin. </param>
-    /// <returns> true or false. </returns>
+    /// <param name="mpin"> The MPIN to validate. </param>
+    /// <returns>
+    /// True if the MPIN matches the required pattern; otherwise false.
+    /// </returns>
     public static bool IsValidMpin(string mpin) => Regex.IsMatch(mpin, RegexPatterns.MpinRegex);
 
     /// <summary>
-    /// Check whether account number is 10 digit or not.
+    /// Determines whether the specified account number is valid.
     /// </summary>
-    /// <param name="accountNumber"> Account number. </param>
-    /// <returns> true or flase. </returns>
+    /// <param name="accountNumber"> The account number to validate. </param>
+    /// <returns>
+    /// True if the account number contains exactly ten digits; otherwise false.
+    /// </returns>
     public static bool IsValidAccountNumber(decimal? accountNumber) => accountNumber > 1000000000
                                                                       && accountNumber < 10000000000;
 
     /// <summary>
-    /// Check whether color is valid or not.
+    /// Determines whether the specified color name is valid.
     /// </summary>
-    /// <param name="colorName"> Color name. </param>
-    /// <returns> true or false. </returns>
+    /// <param name="colorName"> The color name to validate. </param>
+    /// <returns>
+    /// True if the color name represents a known color; otherwise false.
+    /// </returns>
     public static bool IsValidColor(string? colorName)
     {
         if (string.IsNullOrEmpty(colorName))
