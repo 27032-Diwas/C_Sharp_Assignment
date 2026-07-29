@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OOPS", "src\OOPS\OOPS.cspro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactManager", "src\ContactManager\ContactManager.csproj", "{DF9D4585-6AC5-46E0-A4CF-664B4B9A457E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryManager", "src\InventoryManager\InventoryManager.csproj", "{50FFB469-C98C-4ECB-8D4C-7206F59599AF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{DF9D4585-6AC5-46E0-A4CF-664B4B9A457E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF9D4585-6AC5-46E0-A4CF-664B4B9A457E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF9D4585-6AC5-46E0-A4CF-664B4B9A457E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50FFB469-C98C-4ECB-8D4C-7206F59599AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50FFB469-C98C-4ECB-8D4C-7206F59599AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50FFB469-C98C-4ECB-8D4C-7206F59599AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50FFB469-C98C-4ECB-8D4C-7206F59599AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -38,6 +44,7 @@ Global
 		{93EBAE55-A8BA-40FF-93AA-7D9E4359B6B9} = {06861454-9561-492A-9F93-A33B6F7AE3AB}
 		{4860B536-1576-4A59-9626-4EE7B39092AE} = {DCAA095E-2796-41FA-A1D0-1134E29309E7}
 		{DF9D4585-6AC5-46E0-A4CF-664B4B9A457E} = {DCAA095E-2796-41FA-A1D0-1134E29309E7}
+		{50FFB469-C98C-4ECB-8D4C-7206F59599AF} = {DCAA095E-2796-41FA-A1D0-1134E29309E7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D4CECB66-8E11-49D9-AA1E-464EE0231450}
