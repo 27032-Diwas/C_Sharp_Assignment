@@ -1,9 +1,18 @@
-﻿namespace InventoryManager;
+﻿using InventoryManager.Controller;
 
+namespace InventoryManager;
+
+/// <summary>
+/// Entry point of the applications.
+/// </summary>
 internal class Program
 {
-    static void Main(string[] args)
+    /// <summary>
+    /// Start the application and display the main menu.
+    /// </summary>
+    public static void Main()
     {
-        Console.WriteLine("Hello, World!");
+        InventoryMenuController.GetMenuOption();
+        Console.ReadKey();
     }
 }
