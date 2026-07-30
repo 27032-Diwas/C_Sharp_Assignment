@@ -25,17 +25,17 @@ public class BankSystemRepo
     public string ViewAccount(decimal accountNumber, string mpin)
     {
         BankAccount? account = this.GetAccount(accountNumber);
-        if (account != null)
+        if (account == null)
         {
-            if (!mpin.Equals(account.MPin))
-            {
-                return MessageConstants.WrongMpin;
-            }
-
-            return account.PrintDetails();
+            return MessageConstants.AccountNotFound;
         }
 
-        return MessageConstants.AccountNotFound;
+        if (!mpin.Equals(account.MPin))
+        {
+            return MessageConstants.WrongMpin;
+        }
+
+        return account.PrintDetails();
     }
 
     /// <summary>
@@ -47,12 +47,12 @@ public class BankSystemRepo
     public string Deposit(decimal accountNumber, decimal amount)
     {
         BankAccount? account = this.GetAccount(accountNumber);
-        if (account != null)
+        if (account == null)
         {
-            return account.Deposit(amount);
+            return MessageConstants.AccountNotFound;
         }
 
-        return MessageConstants.AccountNotFound;
+        return account.Deposit(amount);
     }
 
     /// <summary>
@@ -82,11 +82,11 @@ public class BankSystemRepo
     public string Withdraw(decimal accountNumber, decimal amount)
     {
         BankAccount? account = this.GetAccount(accountNumber);
-        if (account != null)
+        if (account == null)
         {
-            return account.Withdraw(amount);
+            return MessageConstants.AccountNotFound;
         }
 
-        return MessageConstants.AccountNotFound;
+        return account.Withdraw(amount);
     }
 }

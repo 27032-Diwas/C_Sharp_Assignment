@@ -23,9 +23,8 @@ public static class ValidInput
         bool isValidDimension = true;
         do
         {
-            Console.WriteLine(message);
-            input = Console.ReadLine();
-            if (Enum.TryParse(input, true, out MenuContent.Exit choice) && Enum.IsDefined(typeof(MenuContent.Exit), choice))
+            input = GetInput(message);
+            if (input is null)
             {
                 return null;
             }
@@ -61,10 +60,9 @@ public static class ValidInput
         bool isValidAmount = true;
         do
         {
-            Console.WriteLine(message);
-            input = Console.ReadLine();
+            input = GetInput(message);
 
-            if (Enum.TryParse(input, true, out MenuContent.Exit choice) && Enum.IsDefined(typeof(MenuContent.Exit), choice))
+            if (input is null)
             {
                 return null;
             }
@@ -99,10 +97,9 @@ public static class ValidInput
         bool isValidName;
         do
         {
-            Console.WriteLine(message);
-            name = Console.ReadLine();
+            name = GetInput(message);
 
-            if (Enum.TryParse(name, true, out MenuContent.Exit choice) && Enum.IsDefined(typeof(MenuContent.Exit), choice))
+            if (name is null)
             {
                 return null;
             }
@@ -132,10 +129,9 @@ public static class ValidInput
         string? input;
         do
         {
-            Console.WriteLine(message);
-            input = Console.ReadLine();
+            input = GetInput(message);
 
-            if (Enum.TryParse(input, true, out MenuContent.Exit choice) && Enum.IsDefined(typeof(MenuContent.Exit), choice))
+            if (input is null)
             {
                 return null;
             }
@@ -170,10 +166,9 @@ public static class ValidInput
         bool isValidColor;
         do
         {
-            Console.WriteLine(message);
-            color = Console.ReadLine();
+            color = GetInput(message);
 
-            if (Enum.TryParse(color, true, out MenuContent.Exit choice) && Enum.IsDefined(typeof(MenuContent.Exit), choice))
+            if (color is null)
             {
                 return null;
             }
@@ -212,10 +207,9 @@ public static class ValidInput
         bool isValidMpin;
         do
         {
-            Console.WriteLine(message);
-            mpin = Console.ReadLine();
+            mpin = GetInput(message);
 
-            if (Enum.TryParse(mpin, true, out MenuContent.Exit choice) && Enum.IsDefined(typeof(MenuContent.Exit), choice))
+            if (mpin is null)
             {
                 return null;
             }
@@ -229,5 +223,18 @@ public static class ValidInput
         }
         while (isValidMpin);
         return mpin;
+    }
+
+    private static string? GetInput(string message)
+    {
+        Console.WriteLine(message);
+        string? input = Console.ReadLine();
+
+        if (Enum.TryParse(input, true, out MenuContent.Exit choice) && Enum.IsDefined(typeof(MenuContent.Exit), choice))
+        {
+            return null;
+        }
+
+        return input;
     }
 }
