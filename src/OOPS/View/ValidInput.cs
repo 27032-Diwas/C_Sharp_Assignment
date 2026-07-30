@@ -10,139 +10,41 @@ namespace OOPS.View;
 public static class ValidInput
 {
     /// <summary>
-    /// Gets a valid double value from the user.
+    /// Gets a valid dimension value from the user.
     /// </summary>
     /// <param name="message"> The message displayed when prompting for input. </param>
     /// <returns>
-    /// The validated double value, or null if the operation is cancelled.
+    /// The validated dimension value, or null if the operation is cancelled.
     /// </returns>
-    public static double? GetValidDoubleInput(string message)
+    public static double? GetDimension(string message)
     {
-        double result;
-        bool isValidInput;
-
+        double dimension;
+        string? input;
+        bool isValidDimension = true;
         do
         {
             Console.WriteLine(message);
-            string? input = Console.ReadLine();
-
-            var isParsed = Enum.TryParse(input, true, out MenuContent.Exit choice);
-            if (isParsed && Enum.IsDefined(typeof(MenuContent.Exit), choice))
+            input = Console.ReadLine();
+            if (Enum.TryParse(input, true, out MenuContent.Exit choice) && Enum.IsDefined(typeof(MenuContent.Exit), choice))
             {
                 return null;
             }
 
-            isValidInput = double.TryParse(input, out result);
-
-            if (!isValidInput)
+            if (!double.TryParse(input, out dimension))
             {
                 Console.WriteLine(MessageConstants.InvalidDoubleInput);
-            }
-        }
-        while (!isValidInput);
-
-        return result;
-    }
-
-    /// <summary>
-    /// Gets a valid decimal value from the user.
-    /// </summary>
-    /// <param name="message"> The message displayed when prompting for input. </param>
-    /// <returns>
-    /// The validated decimal value, or null if the operation is cancelled.
-    /// </returns>
-    public static decimal? GetValidDecimalInput(string message)
-    {
-        decimal result;
-        bool isValidInput;
-
-        do
-        {
-            Console.WriteLine(message);
-
-            string? input = Console.ReadLine();
-            var isParsed = Enum.TryParse(input, true, out MenuContent.Exit choice);
-            if (isParsed && Enum.IsDefined(typeof(MenuContent.Exit), choice))
-            {
-                return null;
-            }
-
-            isValidInput = decimal.TryParse(input, out result);
-
-            if (!isValidInput)
-            {
-                Console.WriteLine(MessageConstants.InvalidDoubleInput);
-            }
-        }
-        while (!isValidInput);
-
-        return result;
-    }
-
-    /// <summary>
-    /// Gets a valid non-empty string value from the user.
-    /// </summary>
-    /// <param name="message"> The message displayed when prompting for input. </param>
-    /// <returns>
-    /// The validated string value, or null if the operation is cancelled.
-    /// </returns>
-    public static string? GetValidStringInput(string message)
-    {
-        string? result;
-        bool isValidInput = false;
-
-        do
-        {
-            Console.WriteLine(message);
-            result = Console.ReadLine();
-
-            if (result is null || string.IsNullOrEmpty(result.Trim()))
-            {
-                Console.WriteLine(MessageConstants.InvalidStringInput);
                 continue;
             }
 
-            var isParsed = Enum.TryParse(result, true, out MenuContent.Exit choice);
-            if (isParsed && Enum.IsDefined(typeof(MenuContent.Exit), choice))
-            {
-                return null;
-            }
+            isValidDimension = !Validation.IsValidDimension(dimension);
 
-            isValidInput = true;
-        }
-        while (!isValidInput);
-
-        return result;
-    }
-
-    /// <summary>
-    /// Gets a valid measurement value from the user.
-    /// </summary>
-    /// <param name="message"> The message displayed when prompting for input. </param>
-    /// <returns>
-    /// The validated measurement value, or null if the operation is cancelled.
-    /// </returns>
-    public static double? GetMeasurement(string message)
-    {
-        double? dimensions;
-        bool isValidDimensions;
-        do
-        {
-            dimensions = GetValidDoubleInput(message);
-            if (dimensions is null)
-            {
-                return null;
-            }
-
-            isValidDimensions = !Validation.IsValidDimensions(dimensions);
-
-            if (isValidDimensions)
+            if (isValidDimension)
             {
                 Console.WriteLine(MessageConstants.NegativeValue);
             }
         }
-        while (isValidDimensions);
-        return dimensions;
+        while (isValidDimension);
+        return dimension;
     }
 
     /// <summary>
@@ -154,15 +56,23 @@ public static class ValidInput
     /// </returns>
     public static decimal? GetAmount(string message)
     {
-        decimal? amount;
-        bool isValidAmount;
+        decimal amount;
+        string? input;
+        bool isValidAmount = true;
         do
         {
-            amount = GetValidDecimalInput(message);
+            Console.WriteLine(message);
+            input = Console.ReadLine();
 
-            if (amount is null)
+            if (Enum.TryParse(input, true, out MenuContent.Exit choice) && Enum.IsDefined(typeof(MenuContent.Exit), choice))
             {
                 return null;
+            }
+
+            if (!decimal.TryParse(input, out amount))
+            {
+                Console.WriteLine(MessageConstants.InvalidDoubleInput);
+                continue;
             }
 
             isValidAmount = !Validation.IsValidAmount(amount);
@@ -189,9 +99,10 @@ public static class ValidInput
         bool isValidName;
         do
         {
-            name = GetValidStringInput(message);
+            Console.WriteLine(message);
+            name = Console.ReadLine();
 
-            if (name is null)
+            if (Enum.TryParse(name, true, out MenuContent.Exit choice) && Enum.IsDefined(typeof(MenuContent.Exit), choice))
             {
                 return null;
             }
@@ -216,15 +127,23 @@ public static class ValidInput
     /// </returns>
     public static decimal? GetAccountNumber(string message)
     {
-        decimal? accountNumber;
-        bool isValidAccountNumber;
+        decimal accountNumber;
+        bool isValidAccountNumber = true;
+        string? input;
         do
         {
-            accountNumber = GetValidDecimalInput(message);
+            Console.WriteLine(message);
+            input = Console.ReadLine();
 
-            if (accountNumber is null)
+            if (Enum.TryParse(input, true, out MenuContent.Exit choice) && Enum.IsDefined(typeof(MenuContent.Exit), choice))
             {
                 return null;
+            }
+
+            if (!decimal.TryParse(input, out accountNumber))
+            {
+                Console.WriteLine(MessageConstants.InvalidDoubleInput);
+                continue;
             }
 
             isValidAccountNumber = !Validation.IsValidAccountNumber(accountNumber);
@@ -251,9 +170,10 @@ public static class ValidInput
         bool isValidColor;
         do
         {
-            color = GetValidStringInput(message);
+            Console.WriteLine(message);
+            color = Console.ReadLine();
 
-            if (color is null)
+            if (Enum.TryParse(color, true, out MenuContent.Exit choice) && Enum.IsDefined(typeof(MenuContent.Exit), choice))
             {
                 return null;
             }
@@ -292,9 +212,10 @@ public static class ValidInput
         bool isValidMpin;
         do
         {
-            mpin = GetValidStringInput(message);
+            Console.WriteLine(message);
+            mpin = Console.ReadLine();
 
-            if (mpin is null)
+            if (Enum.TryParse(mpin, true, out MenuContent.Exit choice) && Enum.IsDefined(typeof(MenuContent.Exit), choice))
             {
                 return null;
             }

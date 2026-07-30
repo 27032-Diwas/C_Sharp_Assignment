@@ -31,11 +31,11 @@ public static class Validation
     /// <summary>
     /// Determines whether the specified dimension value is valid.
     /// </summary>
-    /// <param name="dimensions"> The measurement to validate. </param>
+    /// <param name="dimension"> The dimension to validate. </param>
     /// <returns>
-    /// True if the measurement is greater than zero; otherwise false.
+    /// True if the dimension is greater than zero; otherwise false.
     /// </returns>
-    public static bool IsValidDimensions(double? dimensions) => dimensions > 0;
+    public static bool IsValidDimension(double? dimension) => dimension > 0;
 
     /// <summary>
     /// Determines whether the specified MPIN is valid.
@@ -44,7 +44,8 @@ public static class Validation
     /// <returns>
     /// True if the MPIN matches the required pattern; otherwise false.
     /// </returns>
-    public static bool IsValidMpin(string mpin) => Regex.IsMatch(mpin, RegexPatterns.MpinRegex);
+    public static bool IsValidMpin(string? mpin) => !string.IsNullOrEmpty(mpin)
+                                                    && Regex.IsMatch(mpin, RegexPatterns.MpinRegex);
 
     /// <summary>
     /// Determines whether the specified account number is valid.

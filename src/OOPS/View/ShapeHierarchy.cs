@@ -24,10 +24,10 @@ public class ShapeHierarchy
                 case MenuContent.ShapeMenu.Back:
                     return;
                 case MenuContent.ShapeMenu.Rectangle:
-                    Rectangle();
+                    CreateRectangle();
                     break;
                 case MenuContent.ShapeMenu.Circle:
-                    Circle();
+                    CreateCircle();
                     break;
             }
         }
@@ -36,25 +36,25 @@ public class ShapeHierarchy
     /// <summary>
     /// Creates a rectangle and displays its details.
     /// </summary>
-    private static void Rectangle()
+    private static void CreateRectangle()
     {
         double? inputDouble;
-        inputDouble = ValidInput.GetMeasurement(MessageConstants.GetRectangleLength);
+        inputDouble = ValidInput.GetDimension(MessageConstants.GetRectangleLength);
         if (inputDouble is null)
         {
             Console.Clear();
             return;
         }
 
-        double length = (double)inputDouble;
-        inputDouble = ValidInput.GetMeasurement(MessageConstants.GetRectangleWidth);
+        double length = inputDouble.Value;
+        inputDouble = ValidInput.GetDimension(MessageConstants.GetRectangleWidth);
         if (inputDouble is null)
         {
             Console.Clear();
             return;
         }
 
-        double width = (double)inputDouble;
+        double width = inputDouble.Value;
         string? inputString = ValidInput.GetColor(MessageConstants.GetColor);
         if (inputString is null)
         {
@@ -72,17 +72,17 @@ public class ShapeHierarchy
     /// <summary>
     /// Creates a circle and displays its details.
     /// </summary>
-    private static void Circle()
+    private static void CreateCircle()
     {
         double? inputDouble;
-        inputDouble = ValidInput.GetMeasurement(MessageConstants.GetCircleRadius);
+        inputDouble = ValidInput.GetDimension(MessageConstants.GetCircleRadius);
         if (inputDouble is null)
         {
             Console.Clear();
             return;
         }
 
-        double radius = (double)inputDouble;
+        double radius = inputDouble.Value;
         string? inputString = ValidInput.GetColor(MessageConstants.GetColor);
         if (inputString is null)
         {

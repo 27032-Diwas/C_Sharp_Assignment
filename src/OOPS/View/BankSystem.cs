@@ -83,7 +83,7 @@ public class BankSystem
             return;
         }
 
-        decimal amount = (decimal)inputDecimal;
+        decimal amount = inputDecimal.Value;
 
         inputString = ValidInput.GetMpin(MessageConstants.GetMpin);
         if (inputString is null)
@@ -110,7 +110,7 @@ public class BankSystem
             return;
         }
 
-        decimal accountNumber = (decimal)inputDecimal;
+        decimal accountNumber = inputDecimal.Value;
         string? mpin = this.GetValidMpin(accountNumber);
         if (mpin is null)
         {
@@ -156,10 +156,17 @@ public class BankSystem
         string? mpin;
         while (mpinAttempt > 0)
         {
-            string? inputString = ValidInput.GetValidStringInput(MessageConstants.GetMpin);
-            if (inputString is null)
+            Console.WriteLine(MessageConstants.GetMpin);
+            string? inputString = Console.ReadLine();
+
+            if (string.IsNullOrEmpty(inputString))
             {
-                Console.Clear();
+                mpinAttempt--;
+                continue;
+            }
+
+            if (Enum.TryParse(inputString, true, out MenuContent.Exit choice) && Enum.IsDefined(typeof(MenuContent.Exit), choice))
+            {
                 return null;
             }
 
@@ -228,7 +235,7 @@ public class BankSystem
             return;
         }
 
-        decimal amount = (decimal)inputDecimal;
+        decimal amount = inputDecimal.Value;
         Console.WriteLine(this._bankServices.Deposit(accountNumber, amount));
         ValidInput.GetAnyKey();
     }
@@ -258,7 +265,7 @@ public class BankSystem
             return;
         }
 
-        decimal amount = (decimal)inputDecimal;
+        decimal amount = inputDecimal.Value;
         Console.WriteLine(this._bankServices.Withdraw(accountNumber, amount));
         ValidInput.GetAnyKey();
     }

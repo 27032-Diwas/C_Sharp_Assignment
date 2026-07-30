@@ -133,12 +133,12 @@ public static class MessageConstants
     /// <summary>
     /// Represents the message prompted to get the deposit amount from the user.
     /// </summary>
-    public const string GetAmonutDeposit = "Enter amount to deposit(is Rs) or Exit/[0] to quit process: ";
+    public const string GetAmonutDeposit = "Enter amount to deposit(in Rs) or Exit/[0] to quit process: ";
 
     /// <summary>
     /// Represents the message prompted to get the withdrawal amount from the user.
     /// </summary>
-    public const string GetAmonutWithdraw = "Enter amount to withdraw(is Rs) or Exit/[0] to quit process: ";
+    public const string GetAmonutWithdraw = "Enter amount to withdraw(in Rs) or Exit/[0] to quit process: ";
 
     /// <summary>
     /// Represents the message prompted to get the account number from the user.

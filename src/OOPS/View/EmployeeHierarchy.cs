@@ -26,10 +26,10 @@ public class EmployeeHierarchy
                 case MenuContent.EmployeeMenu.Back:
                     return;
                 case MenuContent.EmployeeMenu.Manager:
-                    Manager();
+                    CreateManager();
                     break;
                 case MenuContent.EmployeeMenu.Developer:
-                    Developer();
+                    CreateDeveloper();
                     break;
             }
         }
@@ -38,7 +38,7 @@ public class EmployeeHierarchy
     /// <summary>
     /// Creates a manager and displays the manager details.
     /// </summary>
-    private static void Manager()
+    private static void CreateManager()
     {
         string? inputString = ValidInput.GetName(MessageConstants.GetEmployeeName);
         if (inputString is null)
@@ -55,7 +55,7 @@ public class EmployeeHierarchy
             return;
         }
 
-        decimal salary = (decimal)inputDecimal;
+        decimal salary = inputDecimal.Value;
         Manager manager = new (name, salary);
 
         Console.WriteLine(manager.PrintDetails());
@@ -65,7 +65,7 @@ public class EmployeeHierarchy
     /// <summary>
     /// Creates a developer and displays the developer details.
     /// </summary>
-    private static void Developer()
+    private static void CreateDeveloper()
     {
         string? inputString = ValidInput.GetName(MessageConstants.GetEmployeeName);
         if (inputString is null)
@@ -82,7 +82,7 @@ public class EmployeeHierarchy
             return;
         }
 
-        decimal salary = (decimal)inputDecimal;
+        decimal salary = inputDecimal.Value;
         Developer developer = new (name, salary);
 
         Console.WriteLine(developer.PrintDetails());
