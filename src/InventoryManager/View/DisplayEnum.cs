@@ -5,7 +5,7 @@ namespace InventoryManager.View;
 /// <summary>
 /// Provides methods for displaying and retrieving enum values.
 /// </summary>
-public class InventoryEnumView
+public class DisplayEnum
 {
     /// <summary>
     /// Displays all values defined in the specified enumeration.

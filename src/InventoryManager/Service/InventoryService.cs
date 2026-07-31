@@ -1,4 +1,6 @@
 ﻿using InventoryManager.Constants;
+using InventoryManager.EnumConstants;
+using InventoryManager.Helper;
 using InventoryManager.Models;
 using InventoryManager.Repository;
 
@@ -9,6 +11,7 @@ namespace InventoryManager.Service;
 /// </summary>
 public class InventoryService : IService
 {
+    private static Dictionary<string, int> _categoryCounters = new ();
     private readonly InventoryRepository _inventoryRepository;
 
     /// <summary>
@@ -23,10 +26,36 @@ public class InventoryService : IService
     /// <summary>
     /// Adds a new product.
     /// </summary>
-    /// <param name="product"> Object containing product details. </param>
+    /// <param name="productName"> Name of the product. </param>
+    /// <param name="category"> Category of product. </param>
+    /// <param name="productPrice"> Price of the product. </param>
+    /// <param name="productQuantity"> Quantity of the product. </param>
     /// <param name="message"> A message indicating the result of the product addition operation. </param>
-    public void AddProduct(Product product, out string message)
+    public void AddProduct(string productName, ProductEnums.ProductCategories category, decimal productPrice, int productQuantity, out string message)
     {
+        if (!Validation.IsProductNameValid(productName))
+        {
+            message = MessageConstants.InvalidProductName;
+            return;
+        }
+        else if (!Validation.IsProductPriceValid(productPrice))
+        {
+            message = MessageConstants.InvalidProductPrice;
+            return;
+        }
+        else if (!Validation.IsProductQuantiyValid(productQuantity))
+        {
+            message = MessageConstants.InvalidProductQuantity;
+            return;
+        }
+
+        Product product = new (this.GenerateProductId(category), productName)
+        {
+            ProductPrice = productPrice,
+            ProductQuantity = productQuantity,
+        };
+
+        this._inventoryRepository.AddProduct(product);
         message = MessageConstants.SuccessfulAdditionOfProduct;
     }
 
@@ -77,5 +106,41 @@ public class InventoryService : IService
     public void ValiadateInputs(Product product, out string message)
     {
         message = string.Empty;
+    }
+
+    private string GenerateProductId(ProductEnums.ProductCategories category)
+    {
+        string productIdPrefix = "Misc";
+        switch (category)
+        {
+            case ProductEnums.ProductCategories.Clothing:
+                productIdPrefix = "CLTH";
+                break;
+            case ProductEnums.ProductCategories.Sports:
+                productIdPrefix = "SPRT";
+                break;
+            case ProductEnums.ProductCategories.Grocery:
+                productIdPrefix = "GROC";
+                break;
+            case ProductEnums.ProductCategories.Consumable:
+                productIdPrefix = "CONS";
+                break;
+            case ProductEnums.ProductCategories.Electronics:
+                productIdPrefix = "ELEC";
+                break;
+            case ProductEnums.ProductCategories.Furniture:
+                productIdPrefix = "FURN";
+                break;
+            case ProductEnums.ProductCategories.Miscellaneous:
+                productIdPrefix = "MISC";
+                break;
+        }
+
+        if (!_categoryCounters.ContainsKey(productIdPrefix))
+        {
+            _categoryCounters[productIdPrefix] = 0;
+        }
+
+        return $"{productIdPrefix} - {_categoryCounters[productIdPrefix]:D4}";
     }
 }

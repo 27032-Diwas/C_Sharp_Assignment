@@ -1,4 +1,7 @@
-﻿using InventoryManager.Repository;
+﻿using InventoryManager.Constants;
+using InventoryManager.EnumConstants;
+using InventoryManager.Helper;
+using InventoryManager.Repository;
 using InventoryManager.Service;
 using InventoryManager.View;
 
@@ -14,7 +17,7 @@ public class InventoryController
     /// <summary>
     /// Initializes a new instance of the <see cref="InventoryController"/> class.
     /// </summary>
-    /// <param name="inventorySerivce"> Service that mangae logical operations. </param>
+    /// <param name="inventorySerivce"> Service that manage logical operations. </param>
     public InventoryController(InventoryService inventorySerivce)
     {
         this._inventorySerivce = inventorySerivce;
@@ -25,7 +28,70 @@ public class InventoryController
     /// </summary>
     public void AddProduct()
     {
+        string? userInput;
+        do
+        {
+            userInput = InventoryView.GetStringInput(MessageConstants.GetProductName);
+            if (userInput == null)
+            {
+                return;
+            }
 
+            if (!Validation.IsProductNameValid(userInput))
+            {
+                InventoryView.DisplayMessage(MessageConstants.InvalidProductName);
+                continue;
+            }
+
+            break;
+        }
+        while (true);
+        string productName = userInput;
+
+        ProductEnums.ProductCategories productCategory = DisplayEnum.GetMenuChoice<ProductEnums.ProductCategories>(MessageConstants.ProductCategories);
+
+        decimal? decimalInput;
+        do
+        {
+            decimalInput = InventoryView.GetDecimalInput(MessageConstants.GetProductPrice);
+            if (decimalInput == null)
+            {
+                return;
+            }
+
+            if (!Validation.IsProductPriceValid(decimalInput.Value))
+            {
+                InventoryView.DisplayMessage(MessageConstants.InvalidProductPrice);
+                continue;
+            }
+
+            break;
+        }
+        while (true);
+        decimal productPrice = decimalInput.Value;
+
+        int? integerInput;
+        do
+        {
+            integerInput = InventoryView.GetIntegerInput(MessageConstants.GetProductQuantity);
+            if (integerInput == null)
+            {
+                return;
+            }
+
+            if (!Validation.IsProductPriceValid(integerInput.Value))
+            {
+                InventoryView.DisplayMessage(MessageConstants.InvalidProductQuantity);
+                continue;
+            }
+
+            break;
+        }
+        while (true);
+        int productQuantity = integerInput.Value;
+        this._inventorySerivce.AddProduct(productName, productCategory, productPrice, productQuantity, out string message);
+        InventoryView.ClearConsole();
+        InventoryView.DisplayMessage(message);
     }
 
     /// <summary>

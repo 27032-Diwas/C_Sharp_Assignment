@@ -1,4 +1,5 @@
-﻿using InventoryManager.Models;
+﻿using InventoryManager.EnumConstants;
+using InventoryManager.Models;
 
 namespace InventoryManager.Service;
 
@@ -10,9 +11,12 @@ public interface IService
     /// <summary>
     /// Calls validateInputs to validate details and repository to add product into product list.
     /// </summary>
-    /// <param name="product"> Product object containing details. </param>
-    /// <param name="message"> Success or error message. </param>
-    public void AddProduct(Product product, out string message);
+    /// <param name="productName"> Name of the product. </param>
+    /// <param name="category"> Category of product. </param>
+    /// <param name="productPrice"> Price of the product. </param>
+    /// <param name="productQuantity"> Quantity of the product. </param>
+    /// <param name="message"> A message indicating the result of the product addition operation. </param>
+    public void AddProduct(string productName, ProductEnums.ProductCategories category, decimal productPrice, int productQuantity, out string message);
 
     /// <summary>
     /// Calls repository and passes productId to remove product from list.

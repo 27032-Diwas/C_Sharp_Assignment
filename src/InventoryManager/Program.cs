@@ -1,4 +1,6 @@
 ﻿using InventoryManager.Controller;
+using InventoryManager.Repository;
+using InventoryManager.Service;
 
 namespace InventoryManager;
 
@@ -12,7 +14,11 @@ internal class Program
     /// </summary>
     public static void Main()
     {
-        InventoryMenuController.GetMenuOption();
+        InventoryRepository inventoryRepository = new ();
+        InventoryService inventoryService = new (inventoryRepository);
+        InventoryController inventoryContorller = new (inventoryService);
+        InventoryMenuController inventoryMenuController = new (inventoryContorller);
+        inventoryMenuController.GetMenuOption();
         Console.ReadKey();
     }
 }

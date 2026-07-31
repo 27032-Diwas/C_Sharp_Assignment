@@ -11,6 +11,11 @@ public static class MessageConstants
     public const string SelectOption = "\nSelect one of the above options:";
 
     /// <summary>
+    /// Represents the message displayed when the application process ends.
+    /// </summary>
+    public const string ProcessEnded = "THANK YOU FOR USING THIS APPLICATION!!";
+
+    /// <summary>
     /// Represent the header message for main menu.
     /// </summary>
     public const string MainMenu = "MAIN MENU";
@@ -51,7 +56,52 @@ public static class MessageConstants
     public const string InvalidOption = "ENTER A VALID OPTION!!";
 
     /// <summary>
+    /// Represent the message prompted to get name of the product.
+    /// </summary>
+    public const string GetProductName = "Enter name of the product: ";
+
+    /// <summary>
+    /// Represent the header message for product categories.
+    /// </summary>
+    public const string ProductCategories = "PRODUCT CATEGORIES!!";
+
+    /// <summary>
+    /// Represent the message prompted to get price of the product.
+    /// </summary>
+    public const string GetProductPrice = "Enter price of the product: ";
+
+    /// <summary>
+    /// Represent the message prompted to get quantity of the product.
+    /// </summary>
+    public const string GetProductQuantity = "Enter quantity of the product: ";
+
+    /// <summary>
     /// Represent the message displayed when a product is added successfully.
     /// </summary>
     public const string SuccessfulAdditionOfProduct = "PRODUCT ADDED SUCCESSFULLY !!";
+
+    /// <summary>
+    /// Represents the message displayed when the user enter an invalid product name.
+    /// </summary>
+    public const string InvalidDigit = "ENTER A NUMBER!!";
+
+    /// <summary>
+    /// Represents the message displayed when the user enter an invalid product name.
+    /// </summary>
+    public const string InvalidProductName = "ENTER A VALID NAME!!";
+
+    /// <summary>
+    /// Represents the message displayed when the user enter an invalid product price.
+    /// </summary>
+    public const string InvalidProductPrice = "PRODUCT PRICE SHOULD BE GREATER THAN ZERO!!";
+
+    /// <summary>
+    /// Represents the message displayed when the user enter an invalid product quantity.
+    /// </summary>
+    public const string InvalidProductQuantity = "PRODUCT QUANTITY CAN NOT BE NEGATIVE!!";
+
+     /// <summary>
+    /// Represents the message prompted to get user input to exit current process.
+    /// </summary>
+    public const string ExitProcess = "or Exit/[0] to quit process: ";
 }

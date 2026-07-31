@@ -1,9 +1,20 @@
 ﻿namespace InventoryManager.EnumConstants;
 
-public static class ProductConstants
+/// <summary>
+/// Contians enums related to products.
+/// </summary>
+public static class ProductEnums
 {
+    /// <summary>
+    /// Contains all the product categories.
+    /// </summary>
     public enum ProductCategories
     {
+        /// <summary>
+        /// Represent the option to exit the process.
+        /// </summary>
+        Exit,
+
         /// <summary>
         /// Represent the clothing category.
         /// </summary>
