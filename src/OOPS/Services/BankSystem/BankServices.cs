@@ -89,7 +89,11 @@ public class BankServices
     /// <returns>
     /// A message indicating the result of the deposit operation.
     /// </returns>
-    public string Deposit(decimal accountNumber, decimal amount) => this._bankSystemRepo.Deposit(accountNumber, amount);
+    public string Deposit(decimal accountNumber, decimal amount)
+    {
+        this._bankSystemRepo.Deposit(accountNumber, amount, out string message);
+        return message;
+    }
 
     /// <summary>
     /// Withdraws an amount from the specified account.
@@ -99,5 +103,9 @@ public class BankServices
     /// <returns>
     /// A message indicating the result of the withdrawal operation.
     /// </returns>
-    public string Withdraw(decimal accountNumber, decimal amount) => this._bankSystemRepo.Withdraw(accountNumber, amount);
+    public string Withdraw(decimal accountNumber, decimal amount)
+    {
+        this._bankSystemRepo.Withdraw(accountNumber, amount, out string message);
+        return message;
+    }
 }

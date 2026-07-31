@@ -77,15 +77,6 @@ public class BankSystem
 
         string name = inputString;
 
-        decimal? inputDecimal = ValidInput.GetAmount(MessageConstants.GetAmonutDeposit);
-        if (inputDecimal is null)
-        {
-            Console.Clear();
-            return;
-        }
-
-        decimal amount = inputDecimal.Value;
-
         inputString = ValidInput.GetMpin(MessageConstants.GetMpin);
         if (inputString is null)
         {
@@ -94,6 +85,15 @@ public class BankSystem
         }
 
         string mpin = inputString;
+
+        decimal? inputDecimal = ValidInput.GetAmount(MessageConstants.GetAmonutDeposit);
+        if (inputDecimal is null)
+        {
+            Console.Clear();
+            return;
+        }
+
+        decimal amount = inputDecimal.Value;
         string message = this._bankServices.AddAccount(name, amount, accountType, mpin);
         Console.WriteLine(message);
         ValidInput.GetAnyKey();
@@ -163,6 +163,7 @@ public class BankSystem
             if (string.IsNullOrEmpty(inputString))
             {
                 mpinAttempt--;
+                Console.WriteLine($"Wrong MPIN!! {mpinAttempt} attempt left.");
                 continue;
             }
 
@@ -180,8 +181,8 @@ public class BankSystem
             }
             else if (message.Equals(MessageConstants.WrongMpin))
             {
-                Console.WriteLine(message);
                 mpinAttempt--;
+                Console.WriteLine($"{message} {mpinAttempt} attempt left.");
                 continue;
             }
 
@@ -205,7 +206,6 @@ public class BankSystem
         }
         else if (mpin.Equals(MessageConstants.MpinAttemptFailed))
         {
-            Console.WriteLine("Three attempt failed");
             return;
         }
 

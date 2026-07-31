@@ -43,16 +43,17 @@ public class BankSystemRepo
     /// </summary>
     /// <param name="accountNumber"> Account number. </param>
     /// <param name="amount"> Amount to deposit. </param>
-    /// <returns> Success message. </returns>
-    public string Deposit(decimal accountNumber, decimal amount)
+    /// <param name="message"> Success or error message</param>
+    public void Deposit(decimal accountNumber, decimal amount, out string message)
     {
         BankAccount? account = this.GetAccount(accountNumber);
         if (account == null)
         {
-            return MessageConstants.AccountNotFound;
+            message = MessageConstants.AccountNotFound;
+            return;
         }
 
-        return account.Deposit(amount);
+        message = account.Deposit(amount);
     }
 
     /// <summary>
@@ -78,15 +79,16 @@ public class BankSystemRepo
     /// </summary>
     /// <param name="accountNumber"> Account number. </param>
     /// <param name="amount"> Amount to deposit. </param>
-    /// <returns> Success or failure message. </returns>
-    public string Withdraw(decimal accountNumber, decimal amount)
+    /// <param name="message"> Success or error message</param>
+    public void Withdraw(decimal accountNumber, decimal amount, out string message)
     {
         BankAccount? account = this.GetAccount(accountNumber);
         if (account == null)
         {
-            return MessageConstants.AccountNotFound;
+            message = MessageConstants.AccountNotFound;
+            return;
         }
 
-        return account.Withdraw(amount);
+        message = account.Withdraw(amount);
     }
 }
