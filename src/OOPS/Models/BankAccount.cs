@@ -14,7 +14,7 @@ public abstract class BankAccount
     /// <param name="accountNumber"> Account number of user. </param>
     /// <param name="balance"> Balance of user. </param>
     /// <param name="mpin"> Mpin. </param>
-    public BankAccount(string name, decimal accountNumber, decimal balance, string mpin)
+    public BankAccount(string name, string accountNumber, decimal balance, string mpin)
     {
         this.AccountHolderName = name;
         this.AccountNumber = accountNumber;
@@ -32,7 +32,7 @@ public abstract class BankAccount
     /// Gets or init.
     /// </summary>
     /// <value> Account number of user. </value>
-    public decimal AccountNumber { get; private init; }
+    public string AccountNumber { get; private init; }
 
     /// <summary>
     /// Gets or sets.

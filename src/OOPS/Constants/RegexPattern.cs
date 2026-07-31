@@ -21,4 +21,12 @@ public class RegexPatterns
     /// - Allow only digits.
     /// </summary>
     public const string MpinRegex = @"^\d{4}$";
+
+    /// <summary>
+    /// Regular expression pattern used to validate account number.
+    /// The account number must:
+    /// - Be 10 digits.
+    /// - Allow only digits.
+    /// </summary>
+    public const string AccountNumberRegex = @"^ACC\d{6}$";
 }

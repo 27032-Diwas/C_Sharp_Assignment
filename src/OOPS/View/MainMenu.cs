@@ -17,21 +17,21 @@ public class MainMenu
 
         while (true)
         {
-            MenuContent.MainMenu choice = DisplayEnum.GetMenuChoice<MenuContent.MainMenu>(MessageConstants.MainMenu);
+            MenuOptions.MainMenu choice = DisplayEnum.GetMenuChoice<MenuOptions.MainMenu>(MessageConstants.MainMenu);
 
             Console.Clear();
             switch (choice)
             {
-                case MenuContent.MainMenu.Exit:
-                    Console.WriteLine(MessageConstants.ProcessEnded);
+                case MenuOptions.MainMenu.Exit:
+                    Console.WriteLine(MessageConstants.ApplicationExit);
                     return;
-                case MenuContent.MainMenu.ShapeHierarchy:
+                case MenuOptions.MainMenu.ShapeHierarchy:
                     ShapeHierarchy.GetMenuOption();
                     break;
-                case MenuContent.MainMenu.EmployeeHierarchy:
+                case MenuOptions.MainMenu.EmployeeHierarchy:
                     EmployeeHierarchy.GetMenuOption();
                     break;
-                case MenuContent.MainMenu.BankSystem:
+                case MenuOptions.MainMenu.BankSystem:
                     bankSystem.GetMenuOption();
                     break;
             }

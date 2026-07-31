@@ -1,7 +1,7 @@
 ﻿namespace OOPS.Constants;
 
 /// <summary>
-/// Contains all the cofigurables related to bank system.
+/// Contains all the configurables related to bank system.
 /// </summary>
 public static class BankConfigurables
 {

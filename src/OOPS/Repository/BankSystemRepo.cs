@@ -22,7 +22,7 @@ public class BankSystemRepo
     /// <param name="accountNumber"> Account number. </param>
     /// <param name="mpin"> Mpin. </param>
     /// <returns> Account object. </returns>
-    public string ViewAccount(decimal accountNumber, string mpin)
+    public string ViewAccount(string accountNumber, string mpin)
     {
         BankAccount? account = this.GetAccount(accountNumber);
         if (account == null)
@@ -44,7 +44,7 @@ public class BankSystemRepo
     /// <param name="accountNumber"> Account number. </param>
     /// <param name="amount"> Amount to deposit. </param>
     /// <param name="message"> Success or error message</param>
-    public void Deposit(decimal accountNumber, decimal amount, out string message)
+    public void Deposit(string accountNumber, decimal amount, out string message)
     {
         BankAccount? account = this.GetAccount(accountNumber);
         if (account == null)
@@ -61,11 +61,11 @@ public class BankSystemRepo
     /// </summary>
     /// <param name="accountNumber"> Account number. </param>
     /// <returns> Account object. </returns>
-    public BankAccount? GetAccount(decimal accountNumber)
+    public BankAccount? GetAccount(string accountNumber)
     {
         foreach (var account in this._accounts)
         {
-            if (account.AccountNumber == accountNumber)
+            if (account.AccountNumber.Equals(accountNumber))
             {
                 return account;
             }
@@ -80,7 +80,7 @@ public class BankSystemRepo
     /// <param name="accountNumber"> Account number. </param>
     /// <param name="amount"> Amount to deposit. </param>
     /// <param name="message"> Success or error message</param>
-    public void Withdraw(decimal accountNumber, decimal amount, out string message)
+    public void Withdraw(string accountNumber, decimal amount, out string message)
     {
         BankAccount? account = this.GetAccount(accountNumber);
         if (account == null)

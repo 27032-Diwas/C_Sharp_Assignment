@@ -3,7 +3,7 @@
 /// <summary>
 /// Contains all menu options in this application.
 /// </summary>
-public static class MenuContent
+public static class MenuOptions
 {
     /// <summary>
     /// Contains main menu options.

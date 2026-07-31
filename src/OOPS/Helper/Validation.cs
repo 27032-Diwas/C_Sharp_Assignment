@@ -54,8 +54,8 @@ public static class Validation
     /// <returns>
     /// True if the account number contains exactly ten digits; otherwise false.
     /// </returns>
-    public static bool IsValidAccountNumber(decimal? accountNumber) => accountNumber > 1000000000
-                                                                      && accountNumber < 10000000000;
+    public static bool IsValidAccountNumber(string? accountNumber) => !string.IsNullOrWhiteSpace(accountNumber)
+                                                                      && Regex.IsMatch(accountNumber, RegexPatterns.AccountNumberRegex);
 
     /// <summary>
     /// Determines whether the specified color name is valid.

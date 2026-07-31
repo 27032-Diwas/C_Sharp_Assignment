@@ -3,7 +3,7 @@
 /// <summary>
 /// Contains all bank related options in this application.
 /// </summary>
-public class BankAccountContent
+public class BankAccountDetails
 {
     /// <summary>
     /// Contains bank account type options.

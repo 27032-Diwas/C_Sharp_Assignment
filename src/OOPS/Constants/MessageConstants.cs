@@ -13,7 +13,7 @@ public static class MessageConstants
     /// <summary>
     /// Represents the message displayed when the application process ends.
     /// </summary>
-    public const string ProcessEnded = "THANK YOU FOR USING THIS APPLICATION!!";
+    public const string ApplicationExit = "THANK YOU FOR USING THIS APPLICATION!!";
 
     /// <summary>
     /// Represents the header message for the main menu.
@@ -83,7 +83,7 @@ public static class MessageConstants
     /// <summary>
     /// Represents the message displayed when the entered account number is invalid.
     /// </summary>
-    public const string InvalidAccountNumber = "ACCOUNT NUMBER SHOULD BE A 10 DIGIT NUMBER!!";
+    public const string InvalidAccountNumber = "ENTER A VALID ACCOUNT NUMBER!!";
 
     /// <summary>
     /// Represents the message displayed when the entered color is invalid.

@@ -13,7 +13,7 @@ public class BankServices
     /// <summary>
     /// Represents the starting account number assigned to new accounts.
     /// </summary>
-    private static decimal accountNumber = 1000000001;
+    private static string accountNumber = "ACC000001";
 
     private readonly BankSystemRepo _bankSystemRepo;
 
@@ -36,7 +36,7 @@ public class BankServices
     /// <returns>
     /// A message indicating the result of the account creation operation.
     /// </returns>
-    public string AddAccount(string name, decimal amount, BankAccountContent.BankAccountTypes? accountType, string mpin)
+    public string AddAccount(string name, decimal amount, BankAccountDetails.BankAccountTypes? accountType, string mpin)
     {
         if (!Validation.IsValidName(name))
         {
@@ -51,12 +51,13 @@ public class BankServices
             return MessageConstants.InvalidMpin;
         }
 
-        if (accountType == BankAccountContent.BankAccountTypes.CheckingAccount)
+        if (accountType == BankAccountDetails.BankAccountTypes.CheckingAccount)
         {
             CheckingAccount currentAccount = new (name, accountNumber, amount, mpin);
-            accountNumber += 1;
             this._bankSystemRepo.AddAccount(currentAccount);
-            return $"{MessageConstants.AccountAddedSuccessfully}\n{this._bankSystemRepo.ViewAccount(accountNumber - 1, mpin)}";
+            string checkingAccountDetails = $"{MessageConstants.AccountAddedSuccessfully}\n{this._bankSystemRepo.ViewAccount(accountNumber, mpin)}";
+            IncrementAccountNumber();
+            return checkingAccountDetails;
         }
 
         if (amount < BankConfigurables.SavingAccountMinimumBalance)
@@ -64,14 +65,14 @@ public class BankServices
             return MessageConstants.LessThanMinimumBalance;
         }
 
-        SavingsAccount savingsAccount = new (name, accountNumber, amount, mpin);
-        accountNumber += 1;
+        SavingsAccount savingsAccount = new (name, $"{accountNumber}", amount, mpin);
         this._bankSystemRepo.AddAccount(savingsAccount);
-
-        return $"{MessageConstants.AccountAddedSuccessfully}\n{this._bankSystemRepo.ViewAccount(accountNumber - 1, mpin)}";
+        string savingAccountDetails = $"{MessageConstants.AccountAddedSuccessfully}\n{this._bankSystemRepo.ViewAccount(accountNumber, mpin)}";
+        IncrementAccountNumber();
+        return savingAccountDetails;
     }
 
-    /// <summary>
+    /// <summary> 
     /// Retrieves the details of an account.
     /// </summary>
     /// <param name="accountNumber"> The account number. </param>
@@ -79,7 +80,7 @@ public class BankServices
     /// <returns>
     /// A string containing the account details or an appropriate status message.
     /// </returns>
-    public string ViewAccount(decimal accountNumber, string mpin) => this._bankSystemRepo.ViewAccount(accountNumber, mpin);
+    public string ViewAccount(string accountNumber, string mpin) => this._bankSystemRepo.ViewAccount(accountNumber, mpin);
 
     /// <summary>
     /// Deposits an amount into the specified account.
@@ -89,7 +90,7 @@ public class BankServices
     /// <returns>
     /// A message indicating the result of the deposit operation.
     /// </returns>
-    public string Deposit(decimal accountNumber, decimal amount)
+    public string Deposit(string accountNumber, decimal amount)
     {
         this._bankSystemRepo.Deposit(accountNumber, amount, out string message);
         return message;
@@ -103,9 +104,17 @@ public class BankServices
     /// <returns>
     /// A message indicating the result of the withdrawal operation.
     /// </returns>
-    public string Withdraw(decimal accountNumber, decimal amount)
+    public string Withdraw(string accountNumber, decimal amount)
     {
         this._bankSystemRepo.Withdraw(accountNumber, amount, out string message);
         return message;
+    }
+
+    private static void IncrementAccountNumber()
+    {
+        int number = int.Parse(accountNumber[3..]);
+        number++;
+
+        accountNumber = $"ACC{number:D6}";
     }
 }

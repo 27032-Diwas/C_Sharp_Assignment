@@ -122,24 +122,17 @@ public static class ValidInput
     /// <returns>
     /// The validated account number, or null if the operation is cancelled.
     /// </returns>
-    public static decimal? GetAccountNumber(string message)
+    public static string? GetAccountNumber(string message)
     {
-        decimal accountNumber;
-        bool isValidAccountNumber = true;
-        string? input;
+        string? accountNumber;
+        bool isValidAccountNumber;
         do
         {
-            input = GetInput(message);
+            accountNumber = GetInput(message);
 
-            if (input is null)
+            if (accountNumber is null)
             {
                 return null;
-            }
-
-            if (!decimal.TryParse(input, out accountNumber))
-            {
-                Console.WriteLine(MessageConstants.InvalidDoubleInput);
-                continue;
             }
 
             isValidAccountNumber = !Validation.IsValidAccountNumber(accountNumber);
@@ -230,7 +223,7 @@ public static class ValidInput
         Console.WriteLine(message);
         string? input = Console.ReadLine();
 
-        if (Enum.TryParse(input, true, out MenuContent.Exit choice) && Enum.IsDefined(typeof(MenuContent.Exit), choice))
+        if (Enum.TryParse(input, true, out MenuOptions.Exit choice) && Enum.IsDefined(typeof(MenuOptions.Exit), choice))
         {
             return null;
         }

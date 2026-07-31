@@ -15,7 +15,7 @@ public class SavingsAccount : BankAccount
     /// <param name="accountNumber"> The account number. </param>
     /// <param name="balance"> The account balance. </param>
     /// <param name="mpin"> The MPIN associated with the account. </param>
-    public SavingsAccount(string name, decimal accountNumber, decimal balance, string mpin)
+    public SavingsAccount(string name, string accountNumber, decimal balance, string mpin)
         : base(name, accountNumber, balance, mpin)
     {
     }
