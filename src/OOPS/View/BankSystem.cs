@@ -59,6 +59,15 @@ public class BankSystem
     /// </summary>
     private void AddAccount()
     {
+        BankAccountContent.BankAccountTypes accountType = DisplayEnum.GetMenuChoice<BankAccountContent.BankAccountTypes>(MessageConstants.BankAccountTypes);
+
+        if (accountType == BankAccountContent.BankAccountTypes.Exit)
+        {
+            Console.Clear();
+            return;
+        }
+
+        Console.Clear();
         string? inputString = ValidInput.GetName(MessageConstants.GetAccountHolderName);
         if (inputString is null)
         {
@@ -67,14 +76,6 @@ public class BankSystem
         }
 
         string name = inputString;
-
-        BankAccountContent.BankAccountTypes accountType = DisplayEnum.GetMenuChoice<BankAccountContent.BankAccountTypes>(MessageConstants.BankAccountTypes);
-
-        if (accountType == BankAccountContent.BankAccountTypes.Exit)
-        {
-            Console.Clear();
-            return;
-        }
 
         decimal? inputDecimal = ValidInput.GetAmount(MessageConstants.GetAmonutDeposit);
         if (inputDecimal is null)
@@ -172,13 +173,14 @@ public class BankSystem
 
             mpin = inputString;
             string message = this._bankServices.ViewAccount(accountNumber, mpin);
-            Console.WriteLine(message);
             if (message.Equals(MessageConstants.AccountNotFound))
             {
+                Console.WriteLine(message);
                 return null;
             }
             else if (message.Equals(MessageConstants.WrongMpin))
             {
+                Console.WriteLine(message);
                 mpinAttempt--;
                 continue;
             }
@@ -195,18 +197,19 @@ public class BankSystem
     /// <param name="accountNumber"> The account number. </param>
     private void ViewAccount(decimal accountNumber)
     {
-        string? inputDecimal = this.GetValidMpin(accountNumber);
-        if (inputDecimal is null)
+        string? mpin = this.GetValidMpin(accountNumber);
+        if (mpin is null)
         {
             Console.Clear();
             return;
         }
-        else if (inputDecimal.Equals(MessageConstants.MpinAttemptFailed))
+        else if (mpin.Equals(MessageConstants.MpinAttemptFailed))
         {
             Console.WriteLine("Three attempt failed");
             return;
         }
 
+        Console.WriteLine(this._bankServices.ViewAccount(accountNumber, mpin));
         ValidInput.GetAnyKey();
     }
 
@@ -237,6 +240,7 @@ public class BankSystem
 
         decimal amount = inputDecimal.Value;
         Console.WriteLine(this._bankServices.Deposit(accountNumber, amount));
+        Console.WriteLine(this._bankServices.ViewAccount(accountNumber, mpin));
         ValidInput.GetAnyKey();
     }
 
@@ -267,6 +271,7 @@ public class BankSystem
 
         decimal amount = inputDecimal.Value;
         Console.WriteLine(this._bankServices.Withdraw(accountNumber, amount));
+        Console.WriteLine(this._bankServices.ViewAccount(accountNumber, mpin));
         ValidInput.GetAnyKey();
     }
 }

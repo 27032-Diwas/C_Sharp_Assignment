@@ -8,7 +8,7 @@ public static class MessageConstants
     /// <summary>
     /// Represents the prompt requesting the user to select one of the available options.
     /// </summary>
-    public const string SelectOption = "\nSelect one of the below options:";
+    public const string SelectOption = "\nSelect one of the above options:";
 
     /// <summary>
     /// Represents the message displayed when the application process ends.
@@ -93,7 +93,7 @@ public static class MessageConstants
     /// <summary>
     /// Represents the message displayed when the entered MPIN is invalid.
     /// </summary>
-    public const string InvalidMpin = "MPIN should be 4 digit and unique!!";
+    public const string InvalidMpin = "MPIN should be 4 digit number!!";
 
     /// <summary>
     /// Represents the message displayed when the entered MPIN does not match.

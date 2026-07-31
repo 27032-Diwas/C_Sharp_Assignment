@@ -71,7 +71,7 @@ public static class Validation
             return false;
         }
 
-        Color color = Color.FromName(colorName.Trim());
+        Color color = Color.FromName(colorName.Replace(" ", string.Empty));
 
         return color.IsKnownColor;
     }
