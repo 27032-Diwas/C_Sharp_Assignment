@@ -58,7 +58,7 @@ public static class MessageConstants
     /// <summary>
     /// Represent the message prompted to get name of the product.
     /// </summary>
-    public const string GetProductName = "Enter name of the product: ";
+    public const string GetProductName = "Enter name of the product";
 
     /// <summary>
     /// Represent the header message for product categories.
@@ -68,12 +68,12 @@ public static class MessageConstants
     /// <summary>
     /// Represent the message prompted to get price of the product.
     /// </summary>
-    public const string GetProductPrice = "Enter price of the product: ";
+    public const string GetProductPrice = "Enter price of the product";
 
     /// <summary>
     /// Represent the message prompted to get quantity of the product.
     /// </summary>
-    public const string GetProductQuantity = "Enter quantity of the product: ";
+    public const string GetProductQuantity = "Enter quantity of the product";
 
     /// <summary>
     /// Represent the message displayed when a product is added successfully.
