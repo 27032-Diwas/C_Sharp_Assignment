@@ -13,7 +13,7 @@ public class BankServices
     /// <summary>
     /// Represents the starting account number assigned to new accounts.
     /// </summary>
-    public static string accountNumber = "ACC000001";
+    private static string accountNumber = "ACC000001";
 
     private readonly BankSystemRepo _bankSystemRepo;
 
