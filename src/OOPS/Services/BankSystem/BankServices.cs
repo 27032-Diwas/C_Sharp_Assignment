@@ -72,7 +72,7 @@ public class BankServices
         return savingAccountDetails;
     }
 
-    /// <summary> 
+    /// <summary>
     /// Retrieves the details of an account.
     /// </summary>
     /// <param name="accountNumber"> The account number. </param>
