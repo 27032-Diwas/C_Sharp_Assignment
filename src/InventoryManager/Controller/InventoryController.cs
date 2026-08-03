@@ -8,7 +8,7 @@ using InventoryManager.View;
 namespace InventoryManager.Controller;
 
 /// <summary>
-/// Contoller that containing method for add, view, update, delete, search, display product, get product details and get product id.
+///  Get input and display output for add, view, update, delete, search, display product, get product details and get product id.
 /// </summary>
 public class InventoryController
 {
@@ -24,7 +24,7 @@ public class InventoryController
     }
 
     /// <summary>
-    /// Calls get product details and create object with the details.
+    /// Get user inputs and validate it.
     /// </summary>
     public void AddProduct()
     {

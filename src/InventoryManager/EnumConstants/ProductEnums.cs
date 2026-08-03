@@ -1,7 +1,7 @@
 ﻿namespace InventoryManager.EnumConstants;
 
 /// <summary>
-/// Contians enums related to products.
+/// Contains enums related to products.
 /// </summary>
 public static class ProductEnums
 {

@@ -21,7 +21,7 @@ public interface IService
     /// <summary>
     /// Calls repository and passes productId to remove product from list.
     /// </summary>
-    /// <param name="productId"> ProductId of product to be removed. </param>
+    /// <param name="productId"> Id of the product to be removed. </param>
     /// <param name="message"> Success or error message. </param>
     public void RemoveProduct(string productId, out string message);
 

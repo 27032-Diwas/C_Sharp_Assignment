@@ -4,7 +4,7 @@ using InventoryManager.Constants;
 namespace InventoryManager.Helper;
 
 /// <summary>
-/// Contains all the validation methods.
+/// Contains all the validations.
 /// </summary>
 public static class Validation
 {

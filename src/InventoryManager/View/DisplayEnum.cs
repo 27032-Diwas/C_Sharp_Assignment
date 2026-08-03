@@ -3,7 +3,7 @@
 namespace InventoryManager.View;
 
 /// <summary>
-/// Provides methods for displaying and retrieving enum values.
+/// Display enum values and get input from them.
 /// </summary>
 public class DisplayEnum
 {

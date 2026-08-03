@@ -7,7 +7,7 @@ using InventoryManager.View;
 namespace InventoryManager.Controller;
 
 /// <summary>
-/// Contains method related to menu options and calls inventory controller.
+/// Contains menu and calls inventory controller based on user input.
 /// </summary>
 public class InventoryMenuController
 {

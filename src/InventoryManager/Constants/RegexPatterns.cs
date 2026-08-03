@@ -1,7 +1,7 @@
 ﻿namespace InventoryManager.Constants;
 
 /// <summary>
-/// Contains all the regex pattern need for inventory management application.
+/// Contains all the regex pattern required for inventory management application.
 /// </summary>
 public static class RegexPatterns
 {

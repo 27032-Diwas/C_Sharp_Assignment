@@ -16,39 +16,39 @@ public static class MessageConstants
     public const string ProcessEnded = "THANK YOU FOR USING THIS APPLICATION!!";
 
     /// <summary>
-    /// Represent the header message for main menu.
+    /// Represents the header message for main menu.
     /// </summary>
     public const string MainMenu = "MAIN MENU";
 
     /// <summary>
-    /// Represent the header message to exit application.
+    /// Represents the header message to exit application.
     /// </summary>
     public const string Exit = "EXIT";
 
     /// <summary>
-    /// Represent the header message for add product.
+    /// Represents the header message for add product.
     /// </summary>
     public const string AddProduct = "ADD PRODUCT";
 
     /// <summary>
-    /// Represent the header message for view products.
+    /// Represents the header message for view products.
     /// </summary>
     public const string ViewProducts = "VIEW PRODUCTS";
 
     /// <summary>
-    /// Represent the header message for search product.
+    /// Represents the header message for search product.
     /// </summary>
     public const string SearchProduct = "SEARCH PRODUCT";
 
     /// <summary>
-    /// Represent the header message for update product.
+    /// Represents the header message for update product.
     /// </summary>
     public const string UpdateProduct = "UPDATE PRODUCT";
 
     /// <summary>
-    /// Represent the header message for delete product.
+    /// Represents the header message for delete product.
     /// </summary>
-    public const string DeleteProduct = "DELETE PROCUT";
+    public const string DeleteProduct = "DELETE PRODCUT";
 
     /// <summary>
     /// Represents the message displayed when the user enters an invalid menu option.
@@ -56,27 +56,27 @@ public static class MessageConstants
     public const string InvalidOption = "ENTER A VALID OPTION!!";
 
     /// <summary>
-    /// Represent the message prompted to get name of the product.
+    /// Represents the message prompted to get name of the product.
     /// </summary>
     public const string GetProductName = "Enter name of the product";
 
     /// <summary>
-    /// Represent the header message for product categories.
+    /// Represents the header message for product categories.
     /// </summary>
     public const string ProductCategories = "\nPRODUCT CATEGORIES";
 
     /// <summary>
-    /// Represent the message prompted to get price of the product.
+    /// Represents the message prompted to get price of the product.
     /// </summary>
     public const string GetProductPrice = "Enter price of the product";
 
     /// <summary>
-    /// Represent the message prompted to get quantity of the product.
+    /// Represents the message prompted to get quantity of the product.
     /// </summary>
     public const string GetProductQuantity = "Enter quantity of the product";
 
     /// <summary>
-    /// Represent the message displayed when a product is added successfully.
+    /// Represents the message displayed when a product is added successfully.
     /// </summary>
     public const string SuccessfulAdditionOfProduct = "PRODUCT ADDED SUCCESSFULLY !!\n";
 

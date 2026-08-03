@@ -3,7 +3,7 @@
 namespace InventoryManager.Repository;
 
 /// <summary>
-/// Contains methods to work with product list (CRUD).
+/// Preforms read and write operation in list (CRUD).
 /// </summary>
 public class InventoryRepository : IRepository
 {
@@ -38,7 +38,7 @@ public class InventoryRepository : IRepository
     /// <summary>
     /// Search product in list based on search word entered by user.
     /// </summary>
-    /// <param name="searchWord"> Word need to be searched in product list. </param>
+    /// <param name="searchWord"> Word to be searched in product list. </param>
     /// <returns> List of products that match the search word. </returns>
     public List<Product> SearchProduct(string searchWord)
     {

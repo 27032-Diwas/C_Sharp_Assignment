@@ -7,7 +7,7 @@ using InventoryManager.Repository;
 namespace InventoryManager.Service;
 
 /// <summary>
-/// Provide methods for managing inventory and coordination between product repository and product controller.
+/// Provide service such as add, view, search, update, delete product and coordination between product repository and product controller.
 /// </summary>
 public class InventoryService : IService
 {
@@ -71,7 +71,7 @@ public class InventoryService : IService
     /// <summary>
     /// Removes product from product list.
     /// </summary>
-    /// <param name="productId"> Id of product that need to be removed. </param>
+    /// <param name="productId"> Id of the product to be removed. </param>
     /// <param name="message"> A message indicating the result of the product removal operation. </param>
     public void RemoveProduct(string productId, out string message)
     {
