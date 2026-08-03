@@ -2,7 +2,6 @@
 using OOPS.EnumConstants;
 using OOPS.Helper;
 using OOPS.Services.EmployeeHierarchy;
-using static OOPS.EnumConstants.MenuOptions;
 
 namespace OOPS.View;
 
@@ -18,17 +17,17 @@ public class EmployeeHierarchy
     {
         while (true)
         {
-            MenuOptions.EmployeeMenu choice = DisplayEnum.GetMenuChoice<MenuOptions.EmployeeMenu>(MessageConstants.EmployeeMenu);
+            EmployeeMenu choice = DisplayEnum.GetMenuChoice<EmployeeMenu>(MessageConstants.EmployeeMenu);
             Console.Clear();
 
             switch (choice)
             {
-                case MenuOptions.EmployeeMenu.Back:
+                case EmployeeMenu.Back:
                     return;
-                case MenuOptions.EmployeeMenu.Manager:
+                case EmployeeMenu.Manager:
                     CreateManager();
                     break;
-                case MenuOptions.EmployeeMenu.Developer:
+                case EmployeeMenu.Developer:
                     CreateDeveloper();
                     break;
             }

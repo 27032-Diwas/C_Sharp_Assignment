@@ -37,17 +37,17 @@ public class BankSystem
     {
         while (true)
         {
-            MenuOptions.BankSystemMenu choice = DisplayEnum.GetMenuChoice<MenuOptions.BankSystemMenu>(MessageConstants.BankSystemMenu);
+            BankSystemMenu choice = DisplayEnum.GetMenuChoice<BankSystemMenu>(MessageConstants.BankSystemMenu);
 
             Console.Clear();
             switch (choice)
             {
-                case MenuOptions.BankSystemMenu.Back:
+                case BankSystemMenu.Back:
                     return;
-                case MenuOptions.BankSystemMenu.AddAccount:
+                case BankSystemMenu.AddAccount:
                     this.AddAccount();
                     break;
-                case MenuOptions.BankSystemMenu.ExistingAccount:
+                case BankSystemMenu.ExistingAccount:
                     this.ExistingAccount();
                     break;
             }
@@ -59,9 +59,9 @@ public class BankSystem
     /// </summary>
     private void AddAccount()
     {
-        BankAccountDetails.BankAccountTypes accountType = DisplayEnum.GetMenuChoice<BankAccountDetails.BankAccountTypes>(MessageConstants.BankAccountTypes);
+        BankAccountTypes accountType = DisplayEnum.GetMenuChoice<BankAccountTypes>(MessageConstants.BankAccountTypes);
 
-        if (accountType == BankAccountDetails.BankAccountTypes.Exit)
+        if (accountType == BankAccountTypes.Back)
         {
             Console.Clear();
             return;
@@ -125,19 +125,19 @@ public class BankSystem
 
         while (true)
         {
-            MenuOptions.AccountMenu choice = DisplayEnum.GetMenuChoice<MenuOptions.AccountMenu>(MessageConstants.AccountFunctionality);
+            AccountMenu choice = DisplayEnum.GetMenuChoice<AccountMenu>(MessageConstants.AccountFunctionality);
             Console.Clear();
             switch (choice)
             {
-                case MenuOptions.AccountMenu.Back:
+                case AccountMenu.Back:
                     return;
-                case MenuOptions.AccountMenu.ViewAccount:
+                case AccountMenu.ViewAccount:
                     this.ViewAccount(accountNumber);
                     break;
-                case MenuOptions.AccountMenu.Deposit:
+                case AccountMenu.Deposit:
                     this.Deposit(accountNumber);
                     break;
-                case MenuOptions.AccountMenu.Withdraw:
+                case AccountMenu.Withdraw:
                     this.Withdraw(accountNumber);
                     break;
             }
@@ -167,7 +167,7 @@ public class BankSystem
                 continue;
             }
 
-            if (Enum.TryParse(inputString, true, out MenuOptions.Exit choice) && Enum.IsDefined(typeof(MenuOptions.Exit), choice))
+            if (Enum.TryParse(inputString, true, out Exit choice) && Enum.IsDefined(typeof(Exit), choice))
             {
                 return null;
             }

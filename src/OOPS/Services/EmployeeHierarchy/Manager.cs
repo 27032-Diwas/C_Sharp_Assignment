@@ -1,4 +1,5 @@
 ﻿using OOPS.Constants;
+using OOPS.EnumConstants;
 using OOPS.Models;
 
 namespace OOPS.Services.EmployeeHierarchy;
@@ -8,7 +9,7 @@ namespace OOPS.Services.EmployeeHierarchy;
 /// </summary>
 public class Manager : Employee
 {
-    private const string _position = "Manager";
+    private const EmployeeMenu _position = EmployeeMenu.Manager;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="Manager"/> class.

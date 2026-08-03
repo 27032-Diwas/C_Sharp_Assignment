@@ -36,7 +36,7 @@ public class BankServices
     /// <returns>
     /// A message indicating the result of the account creation operation.
     /// </returns>
-    public string AddAccount(string name, decimal amount, BankAccountDetails.BankAccountTypes? accountType, string mpin)
+    public string AddAccount(string name, decimal amount, BankAccountTypes? accountType, string mpin)
     {
         if (!Validation.IsValidName(name))
         {
@@ -51,7 +51,7 @@ public class BankServices
             return MessageConstants.InvalidMpin;
         }
 
-        if (accountType == BankAccountDetails.BankAccountTypes.CheckingAccount)
+        if (accountType == BankAccountTypes.CheckingAccount)
         {
             CheckingAccount currentAccount = new (name, accountNumber, amount, mpin);
             this._bankSystemRepo.AddAccount(currentAccount);

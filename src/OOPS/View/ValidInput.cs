@@ -223,7 +223,7 @@ public static class ValidInput
         Console.WriteLine(message);
         string? input = Console.ReadLine();
 
-        if (Enum.TryParse(input, true, out MenuOptions.Exit choice) && Enum.IsDefined(typeof(MenuOptions.Exit), choice))
+        if (Enum.TryParse(input, true, out Exit choice) && Enum.IsDefined(typeof(Exit), choice))
         {
             return null;
         }

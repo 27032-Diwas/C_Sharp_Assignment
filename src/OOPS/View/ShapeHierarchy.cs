@@ -16,17 +16,17 @@ public class ShapeHierarchy
     {
         while (true)
         {
-            MenuOptions.ShapeMenu choice = DisplayEnum.GetMenuChoice<MenuOptions.ShapeMenu>(MessageConstants.ShapeMenu);
+            ShapeMenu choice = DisplayEnum.GetMenuChoice<ShapeMenu>(MessageConstants.ShapeMenu);
 
             Console.Clear();
             switch (choice)
             {
-                case MenuOptions.ShapeMenu.Back:
+                case ShapeMenu.Back:
                     return;
-                case MenuOptions.ShapeMenu.Rectangle:
+                case ShapeMenu.Rectangle:
                     CreateRectangle();
                     break;
-                case MenuOptions.ShapeMenu.Circle:
+                case ShapeMenu.Circle:
                     CreateCircle();
                     break;
             }
