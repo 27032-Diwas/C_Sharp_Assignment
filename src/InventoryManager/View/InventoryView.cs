@@ -4,7 +4,7 @@ using InventoryManager.EnumConstants;
 namespace InventoryManager.View;
 
 /// <summary>
-/// Display messages to user and get input from them.
+/// Display messages to user and get input from user.
 /// </summary>
 public static class InventoryView
 {
