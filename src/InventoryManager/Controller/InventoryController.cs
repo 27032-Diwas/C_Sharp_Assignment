@@ -12,19 +12,19 @@ namespace InventoryManager.Controller;
 /// </summary>
 public class InventoryController
 {
-    private readonly InventoryService _inventorySerivce;
+    private readonly InventoryService _inventoryService;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="InventoryController"/> class.
     /// </summary>
-    /// <param name="inventorySerivce"> Service that manage logical operations. </param>
-    public InventoryController(InventoryService inventorySerivce)
+    /// <param name="inventoryService"> Service that manage logical operations. </param>
+    public InventoryController(InventoryService inventoryService)
     {
-        this._inventorySerivce = inventorySerivce;
+        this._inventoryService = inventoryService;
     }
 
     /// <summary>
-    /// Calls get product details and create object with the detials.
+    /// Calls get product details and create object with the details.
     /// </summary>
     public void AddProduct()
     {
@@ -89,7 +89,7 @@ public class InventoryController
         }
         while (true);
         int productQuantity = integerInput.Value;
-        this._inventorySerivce.AddProduct(productName, productCategory, productPrice, productQuantity, out string message);
+        this._inventoryService.AddProduct(productName, productCategory, productPrice, productQuantity, out string message);
         InventoryView.ClearConsole();
         InventoryView.DisplayMessage(message);
     }
@@ -102,7 +102,7 @@ public class InventoryController
     }
 
     /// <summary>
-    /// Getnew details and create an object and pass it to service.
+    /// Get new details and create an object and pass it to service.
     /// </summary>
     public void UpdateProduct()
     {
