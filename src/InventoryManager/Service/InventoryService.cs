@@ -63,10 +63,7 @@ public class InventoryService : IService
     /// Returns list of all products from product list.
     /// </summary>
     /// <returns> List containing all products. </returns>
-    public List<Product> GetAllProducts()
-    {
-        return new List<Product>();
-    }
+    public List<Product> GetAllProducts() => this._inventoryRepository.GetAllProducts();
 
     /// <summary>
     /// Removes product from product list.

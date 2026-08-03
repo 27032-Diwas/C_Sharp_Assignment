@@ -119,6 +119,14 @@ public class InventoryController : IController
     /// </summary>
     public void ViewAllProducts()
     {
+        List<Product> products = this._inventoryService.GetAllProducts();
+        if (!products.Any())
+        {
+            InventoryView.DisplayMessage(MessageConstants.EmptyList);
+            return;
+        }
+
+        InventoryView.DisplayProducts(products);
     }
 
     /// <summary>
