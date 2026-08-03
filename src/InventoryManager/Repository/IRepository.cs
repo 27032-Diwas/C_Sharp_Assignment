@@ -37,5 +37,4 @@ public interface IRepository
     /// <param name="searchWord"> Word to be searched. </param>
     /// <returns> List of products that match the word. </returns>
     public List<Product> SearchProduct(string searchWord);
-
 }
