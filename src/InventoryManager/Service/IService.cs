@@ -26,7 +26,7 @@ public interface IService
     public void RemoveProduct(string productId, out string message);
 
     /// <summary>
-    /// Calls validation to validate detials and repository to update product with new details.
+    /// Calls validation to validate details and repository to update product with new details.
     /// </summary>
     /// <param name="product"> Product object containing details. </param>
     /// <param name="message"> Success or error message. </param>
@@ -44,11 +44,4 @@ public interface IService
     /// <param name="searchWord"> Word need to be searched. </param>
     /// <returns> List of product that has search word. </returns>
     public List<Product> SearchProducts(string searchWord);
-
-    /// <summary>
-    /// Calls helper class to validate inputs.
-    /// </summary>
-    /// <param name="product"> Product object containing data. </param>
-    /// <param name="message"> Success or eroor message. </param>
-    public void ValiadateInputs(Product product, out string message);
 }

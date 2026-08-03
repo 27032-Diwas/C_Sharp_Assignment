@@ -26,7 +26,7 @@ public static class Validation
     /// <summary>
     /// Determine whether the specified product quantity is valid.
     /// </summary>
-    /// <param name="productQuantiy"> The product quantity to validate.</param>
+    /// <param name="productQuantity"> The product quantity to validate.</param>
     /// <returns> True if the product quantity is greater than or equal to zero; otherwise false. </returns>
-    public static bool IsProductQuantiyValid(int productQuantiy) => productQuantiy >= 0;
+    public static bool IsProductQuantityValid(int productQuantity) => productQuantity >= 0;
 }

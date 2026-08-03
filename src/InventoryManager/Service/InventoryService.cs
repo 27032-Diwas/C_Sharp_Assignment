@@ -43,7 +43,7 @@ public class InventoryService : IService
             message = MessageConstants.InvalidProductPrice;
             return;
         }
-        else if (!Validation.IsProductQuantiyValid(productQuantity))
+        else if (!Validation.IsProductQuantityValid(productQuantity))
         {
             message = MessageConstants.InvalidProductQuantity;
             return;
@@ -92,7 +92,7 @@ public class InventoryService : IService
     /// Update new value to existing list.
     /// </summary>
     /// <param name="product"> Object containing new details. </param>
-    /// <param name="message"> A message indicating the result of product updation operation. </param>
+    /// <param name="message"> A message indicating the result of product updating operation. </param>
     public void UpdateProduct(Product product, out string message)
     {
         message = string.Empty;
@@ -103,7 +103,7 @@ public class InventoryService : IService
     /// </summary>
     /// <param name="product"> Object containing product details. </param>
     /// <param name="message"> A message indicating the result of product detail validation. </param>
-    public void ValiadateInputs(Product product, out string message)
+    public void ValidateInputs(Product product, out string message)
     {
         message = string.Empty;
     }
@@ -141,6 +141,6 @@ public class InventoryService : IService
             _categoryCounters[productIdPrefix] = 0;
         }
 
-        return $"{productIdPrefix} - {_categoryCounters[productIdPrefix]:D4}";
+        return $"{productIdPrefix} - {++_categoryCounters[productIdPrefix]:D4}";
     }
 }

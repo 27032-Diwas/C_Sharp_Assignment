@@ -29,6 +29,10 @@ public class InventoryController
     public void AddProduct()
     {
         ProductEnums.ProductCategories productCategory = DisplayEnum.GetMenuChoice<ProductEnums.ProductCategories>(MessageConstants.ProductCategories);
+        if (productCategory == ProductEnums.ProductCategories.Exit)
+        {
+            return;
+        }
 
         string? userInput;
         do
