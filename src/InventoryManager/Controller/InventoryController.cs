@@ -127,6 +127,21 @@ public class InventoryController : IController
     /// <returns> List of products that matches the search word. </returns>
     public List<Product> SearchProducts()
     {
-        return new List<Product>();
+        string? userInput = InventoryView.GetStringInput(MessageConstants.GetSearchWord);
+        if (userInput == null)
+        {
+            return;
+        }
+
+        string searchWord = userInput;
+
+        List<Product> products = this._inventoryService.SearchProducts(searchWord);
+        if (!products.Any())
+        {
+            InventoryView.DisplayMessage(MessageConstants.EmptyList);
+            return;
+        }
+
+        InventoryView.DisplayProducts(products);
     }
 }
