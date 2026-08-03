@@ -1,9 +1,9 @@
 ﻿namespace OOPS.Constants;
 
 /// <summary>
-/// Contains all the configurables related to bank system.
+/// Contains all the configurable related to bank system.
 /// </summary>
-public static class BankConfigurables
+public static class BankConfigurable
 {
     /// <summary>
     /// Minimum balance for savings account.

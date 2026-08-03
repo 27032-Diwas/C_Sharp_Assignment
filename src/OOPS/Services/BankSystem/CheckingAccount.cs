@@ -42,7 +42,7 @@ public class CheckingAccount : BankAccount
     /// </returns>
     public override string Withdraw(decimal amount)
     {
-        if (this.Balance - amount >= BankConfigurables.CheckingAccountMinimumThreshold)
+        if (this.Balance - amount >= BankConfigurable.CheckingAccountMinimumThreshold)
         {
             this.Balance -= amount;
             return MessageConstants.WithdrawSuccess;

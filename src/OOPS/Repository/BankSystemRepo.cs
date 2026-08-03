@@ -57,7 +57,7 @@ public class BankSystemRepo
     }
 
     /// <summary>
-    /// Get account detials by account number.
+    /// Get account details by account number.
     /// </summary>
     /// <param name="accountNumber"> Account number. </param>
     /// <returns> Account object. </returns>

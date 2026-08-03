@@ -86,7 +86,7 @@ public class BankSystem
 
         string mpin = inputString;
 
-        decimal? inputDecimal = ValidInput.GetAmount(MessageConstants.GetAmonutDeposit);
+        decimal? inputDecimal = ValidInput.GetAmount(MessageConstants.GetAmountDeposit);
         if (inputDecimal is null)
         {
             Console.Clear();
@@ -231,7 +231,7 @@ public class BankSystem
             return;
         }
 
-        decimal? inputDecimal = ValidInput.GetAmount(MessageConstants.GetAmonutDeposit);
+        decimal? inputDecimal = ValidInput.GetAmount(MessageConstants.GetAmountDeposit);
         if (inputDecimal is null)
         {
             Console.Clear();
@@ -262,7 +262,7 @@ public class BankSystem
             return;
         }
 
-        decimal? inputDecimal = ValidInput.GetAmount(MessageConstants.GetAmonutWithdraw);
+        decimal? inputDecimal = ValidInput.GetAmount(MessageConstants.GetAmountWithdraw);
         if (inputDecimal is null)
         {
             Console.Clear();

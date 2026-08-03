@@ -133,12 +133,12 @@ public static class MessageConstants
     /// <summary>
     /// Represents the message prompted to get the deposit amount from the user.
     /// </summary>
-    public const string GetAmonutDeposit = "Enter amount to deposit(in Rs) or Exit/[0] to quit process: ";
+    public const string GetAmountDeposit = "Enter amount to deposit(in Rs) or Exit/[0] to quit process: ";
 
     /// <summary>
     /// Represents the message prompted to get the withdrawal amount from the user.
     /// </summary>
-    public const string GetAmonutWithdraw = "Enter amount to withdraw(in Rs) or Exit/[0] to quit process: ";
+    public const string GetAmountWithdraw = "Enter amount to withdraw(in Rs) or Exit/[0] to quit process: ";
 
     /// <summary>
     /// Represents the message prompted to get the account number from the user.
@@ -178,15 +178,15 @@ public static class MessageConstants
     /// <summary>
     /// Represents the message displayed when the account balance is less than the required minimum balance.
     /// </summary>
-    public static readonly string LessThanMinimumBalance = $"SAVINGS ACCOUNT SHOULD MAINTAIN Rs.{BankConfigurables.SavingAccountMinimumBalance} MINIMUM BALANCE!!!";
+    public static readonly string LessThanMinimumBalance = $"SAVINGS ACCOUNT SHOULD MAINTAIN Rs.{BankConfigurable.SavingAccountMinimumBalance} MINIMUM BALANCE!!!";
 
     /// <summary>
     /// Represents the message displayed when a savings account has insufficient balance.
     /// </summary>
-    public static readonly string SavingsAccountInsufficientBalance = $"INSUFFICIENT BALANCE. SAVINGS ACCOUNT SHOULD MAINTAIN Rs.{BankConfigurables.SavingAccountMinimumBalance} MINIMUM BALANCE";
+    public static readonly string SavingsAccountInsufficientBalance = $"INSUFFICIENT BALANCE. SAVINGS ACCOUNT SHOULD MAINTAIN Rs.{BankConfigurable.SavingAccountMinimumBalance} MINIMUM BALANCE";
 
     /// <summary>
     /// Represents the message displayed when a checking account has insufficient balance.
     /// </summary>
-    public static readonly string CheckingAccountInsufficientBalance = $"INSUFFICIENT BALANCE. CHECKING ACCOUNT BALANCE SHOULD NOT GO BELOW Rs.{BankConfigurables.CheckingAccountMinimumThreshold}";
+    public static readonly string CheckingAccountInsufficientBalance = $"INSUFFICIENT BALANCE. CHECKING ACCOUNT BALANCE SHOULD NOT GO BELOW Rs.{BankConfigurable.CheckingAccountMinimumThreshold}";
 }

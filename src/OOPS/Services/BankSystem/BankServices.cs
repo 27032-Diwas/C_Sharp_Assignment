@@ -60,7 +60,7 @@ public class BankServices
             return checkingAccountDetails;
         }
 
-        if (amount < BankConfigurables.SavingAccountMinimumBalance)
+        if (amount < BankConfigurable.SavingAccountMinimumBalance)
         {
             return MessageConstants.LessThanMinimumBalance;
         }

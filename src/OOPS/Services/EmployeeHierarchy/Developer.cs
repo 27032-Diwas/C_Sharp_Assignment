@@ -26,7 +26,7 @@ public class Developer : Employee
     /// <returns>
     /// The calculated bonus amount.
     /// </returns>
-    public override double CalculateBonus() => (double)this.Salary * EmployeeConfigurables.DeveloperBonus;
+    public override double CalculateBonus() => (double)this.Salary * EmployeeConfigurable.DeveloperBonus;
 
     /// <summary>
     /// Returns the employee details, including the name, position, salary, and bonus.

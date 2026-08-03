@@ -42,7 +42,7 @@ public class SavingsAccount : BankAccount
     /// </returns>
     public override string Withdraw(decimal amount)
     {
-        if (this.Balance - amount >= BankConfigurables.SavingAccountMinimumBalance)
+        if (this.Balance - amount >= BankConfigurable.SavingAccountMinimumBalance)
         {
             this.Balance -= amount;
             return MessageConstants.WithdrawSuccess;
