@@ -30,6 +30,9 @@ public class EmployeeHierarchy
                 case EmployeeMenu.Developer:
                     CreateDeveloper();
                     break;
+                default:
+                    Console.WriteLine(MessageConstants.InvalidOption);
+                    break;
             }
         }
     }

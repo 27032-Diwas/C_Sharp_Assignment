@@ -29,6 +29,9 @@ public class ShapeHierarchy
                 case ShapeMenu.Circle:
                     CreateCircle();
                     break;
+                default:
+                    Console.WriteLine(MessageConstants.InvalidOption);
+                    break;
             }
         }
     }

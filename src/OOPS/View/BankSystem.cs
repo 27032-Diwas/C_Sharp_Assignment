@@ -50,6 +50,9 @@ public class BankSystem
                 case BankSystemMenu.ExistingAccount:
                     this.ExistingAccount();
                     break;
+                default:
+                    Console.WriteLine(MessageConstants.InvalidOption);
+                    break;
             }
         }
     }
@@ -139,6 +142,9 @@ public class BankSystem
                     break;
                 case AccountMenu.Withdraw:
                     this.Withdraw(accountNumber);
+                    break;
+                default:
+                    Console.WriteLine(MessageConstants.InvalidOption);
                     break;
             }
         }

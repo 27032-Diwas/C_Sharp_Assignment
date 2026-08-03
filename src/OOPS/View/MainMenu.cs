@@ -34,6 +34,9 @@ public class MainMenu
                 case MainMenuEnum.BankSystem:
                     bankSystem.GetMenuOption();
                     break;
+                default:
+                    Console.WriteLine(MessageConstants.InvalidOption);
+                    break;
             }
         }
     }
