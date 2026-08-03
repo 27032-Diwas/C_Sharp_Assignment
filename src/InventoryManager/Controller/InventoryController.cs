@@ -28,6 +28,8 @@ public class InventoryController
     /// </summary>
     public void AddProduct()
     {
+        ProductEnums.ProductCategories productCategory = DisplayEnum.GetMenuChoice<ProductEnums.ProductCategories>(MessageConstants.ProductCategories);
+
         string? userInput;
         do
         {
@@ -47,8 +49,6 @@ public class InventoryController
         }
         while (true);
         string productName = userInput;
-
-        ProductEnums.ProductCategories productCategory = DisplayEnum.GetMenuChoice<ProductEnums.ProductCategories>(MessageConstants.ProductCategories);
 
         decimal? decimalInput;
         do

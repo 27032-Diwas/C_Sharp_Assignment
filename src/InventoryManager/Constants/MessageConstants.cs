@@ -63,7 +63,7 @@ public static class MessageConstants
     /// <summary>
     /// Represent the header message for product categories.
     /// </summary>
-    public const string ProductCategories = "PRODUCT CATEGORIES!!";
+    public const string ProductCategories = "\nPRODUCT CATEGORIES";
 
     /// <summary>
     /// Represent the message prompted to get price of the product.
@@ -78,7 +78,7 @@ public static class MessageConstants
     /// <summary>
     /// Represent the message displayed when a product is added successfully.
     /// </summary>
-    public const string SuccessfulAdditionOfProduct = "PRODUCT ADDED SUCCESSFULLY !!";
+    public const string SuccessfulAdditionOfProduct = "PRODUCT ADDED SUCCESSFULLY !!\n";
 
     /// <summary>
     /// Represents the message displayed when the user enter an invalid product name.
