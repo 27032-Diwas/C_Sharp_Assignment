@@ -83,10 +83,7 @@ public class InventoryService : IService
     /// </summary>
     /// <param name="searchWord"> Word that need to be searched. </param>
     /// <returns> List of products. </returns>
-    public List<Product> SearchProducts(string searchWord)
-    {
-        return new List<Product>();
-    }
+    public List<Product> SearchProducts(string searchWord) => this._inventoryRepository.SearchProduct(searchWord.Trim());
 
     /// <summary>
     /// Update new value to existing list.

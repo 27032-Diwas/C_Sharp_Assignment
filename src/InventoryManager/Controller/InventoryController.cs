@@ -1,6 +1,7 @@
 ﻿using InventoryManager.Constants;
 using InventoryManager.EnumConstants;
 using InventoryManager.Helper;
+using InventoryManager.Models;
 using InventoryManager.Repository;
 using InventoryManager.Service;
 using InventoryManager.View;
@@ -124,5 +125,21 @@ public class InventoryController
     /// </summary>
     public void SearchProducts()
     {
+        string? userInput = InventoryView.GetStringInput(MessageConstants.GetSearchWord);
+        if (userInput == null)
+        {
+            return;
+        }
+
+        string searchWord = userInput;
+
+        List<Product> products = this._inventoryService.SearchProducts(searchWord);
+        if (!products.Any())
+        {
+            InventoryView.DisplayMessage(MessageConstants.EmptyList);
+            return;
+        }
+
+        InventoryView.DisplayProducts(products);
     }
 }

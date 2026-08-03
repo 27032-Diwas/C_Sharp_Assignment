@@ -43,6 +43,7 @@ public class InventoryMenuController
                 case MenuConstants.MainMenu.ViewProducts:
                     break;
                 case MenuConstants.MainMenu.SearchProduct:
+                    this._inventoryController.SearchProducts();
                     break;
                 case MenuConstants.MainMenu.UpdateProduct:
                     break;

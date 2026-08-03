@@ -40,10 +40,13 @@ public class InventoryRepository : IRepository
     /// </summary>
     /// <param name="searchWord"> Word to be searched in product list. </param>
     /// <returns> List of products that match the search word. </returns>
-    public List<Product> SearchProduct(string searchWord)
-    {
-        return new List<Product>();
-    }
+    public List<Product> SearchProduct(string searchWord) => this._products
+                                                            .Where(product =>
+                                                                product.ProductId.Contains(searchWord, StringComparison.OrdinalIgnoreCase) ||
+                                                                product.ProductName.Contains(searchWord, StringComparison.OrdinalIgnoreCase))
+                                                                .OrderBy(product => product.ProductId)
+                                                                .Select(product => product.Clone())
+                                                                .ToList();
 
     /// <summary>
     /// Update the details of product in the product list.

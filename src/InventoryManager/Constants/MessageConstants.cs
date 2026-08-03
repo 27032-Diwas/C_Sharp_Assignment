@@ -61,6 +61,12 @@ public static class MessageConstants
     public const string GetProductName = "Enter name of the product";
 
     /// <summary>
+    /// Represents the message prompted to get word to search.
+    /// </summary>
+    public const string GetSearchWord = "Enter word to search";
+
+    /// <summary>
+    /// Represent the header message for product categories.
     /// Represents the header message for product categories.
     /// </summary>
     public const string ProductCategories = "\nPRODUCT CATEGORIES";
@@ -79,6 +85,11 @@ public static class MessageConstants
     /// Represents the message displayed when a product is added successfully.
     /// </summary>
     public const string SuccessfulAdditionOfProduct = "PRODUCT ADDED SUCCESSFULLY !!\n";
+
+    /// <summary>
+    /// Represent the message displayed when product list is empty.
+    /// </summary>
+    public const string EmptyList = "NO PRODUCT FOUND!!\n";
 
     /// <summary>
     /// Represents the message displayed when the user enter an invalid product name.
