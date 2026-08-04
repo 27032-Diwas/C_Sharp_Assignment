@@ -96,7 +96,7 @@ public static class MessageConstants
     public const string SuccessfulUpdateOfProduct = "PRODUCT UPDATED SUCCESSFULLY !!\n";
 
     /// <summary>
-    /// Represents the prompt requesting the user to select one of the available options.
+    /// Represents the prompt requesting the user to enter the serial number..
     /// </summary>
     public const string SelectSerialNumber = "\nEnter a serial number";
 
