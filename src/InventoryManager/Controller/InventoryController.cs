@@ -105,13 +105,13 @@ public class InventoryController : IController
     /// </summary>
     public void RemoveProduct()
     {
-        string? productId = this.GetIndex();
-        if (productId is null)
+        Product? product = this.GetProduct();
+        if (product is null)
         {
             return;
         }
 
-        this._inventoryService.RemoveProduct(productId, out string message);
+        this._inventoryService.RemoveProduct(product.ProductId, out string message);
         InventoryView.DisplayMessage(message);
     }
 
@@ -154,7 +154,7 @@ public class InventoryController : IController
         return products;
     }
 
-    private string? GetIndex()
+    private Product? GetProduct()
     {
         int? serialNo;
         List<Product>? products = this.SearchProducts();
@@ -181,7 +181,7 @@ public class InventoryController : IController
                 break;
             }
             while (true);
-            return products[0].ProductId;
+            return products[0];
         }
 
         do
@@ -202,6 +202,6 @@ public class InventoryController : IController
         }
         while (true);
 
-        return products[serialNo.Value - 1].ProductId;
+        return products[serialNo.Value - 1];
     }
 }
