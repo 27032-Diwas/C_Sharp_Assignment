@@ -162,6 +162,27 @@ public class InventoryController : IController
         {
             return null;
         }
+        else if (products.Count == 1)
+        {
+            string? choice;
+            do
+            {
+                choice = InventoryView.GetStringInput(MessageConstants.GetYesOrNo);
+                if (choice is null || choice.ToUpper().Equals("N"))
+                {
+                    return null;
+                }
+                else if (!choice.ToUpper().Equals("Y"))
+                {
+                    Console.WriteLine(MessageConstants.InvalidOption);
+                    continue;
+                }
+
+                break;
+            }
+            while (true);
+            return products[0].ProductId;
+        }
 
         do
         {

@@ -86,6 +86,11 @@ public static class MessageConstants
     public const string SelectSerialNumber = "\nEnter a serial number";
 
     /// <summary>
+    /// Represents the prompt requesting the user to select one of the available options.
+    /// </summary>
+    public const string GetYesOrNo = "\nDo you want to choose above option [Y/N]";
+
+    /// <summary>
     /// Represents the message displayed when a product is added successfully.
     /// </summary>
     public const string SuccessfulAdditionOfProduct = "PRODUCT ADDED SUCCESSFULLY !!\n";
