@@ -82,9 +82,19 @@ public static class MessageConstants
     public const string GetProductQuantity = "Enter quantity of the product";
 
     /// <summary>
+    /// Represents the prompt requesting the user to select one of the available options.
+    /// </summary>
+    public const string SelectSerialNumber = "\nEnter a serial number";
+
+    /// <summary>
     /// Represents the message displayed when a product is added successfully.
     /// </summary>
     public const string SuccessfulAdditionOfProduct = "PRODUCT ADDED SUCCESSFULLY !!\n";
+
+    /// <summary>
+    /// Represents the message displayed when a product is removed successfully.
+    /// </summary>
+    public const string SuccessfulRemovalOfProduct = "PRODUCT DELETED SUCCESSFULLY !!\n";
 
     /// <summary>
     /// Represent the message displayed when product list is empty.
@@ -111,7 +121,12 @@ public static class MessageConstants
     /// </summary>
     public const string InvalidProductQuantity = "PRODUCT QUANTITY CAN NOT BE NEGATIVE!!";
 
-     /// <summary>
+    /// <summary>
+    /// Represents the message displayed when the user enter an invalid serial number.
+    /// </summary>
+    public const string InvalidSerialNumber = "SERIAL NUMBER SHOULD BE WITHIN THE RANGE!!";
+
+    /// <summary>
     /// Represents the message prompted to get user input to exit current process.
     /// </summary>
     public const string ExitProcess = "or Exit/[0] to quit process: ";

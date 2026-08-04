@@ -75,7 +75,8 @@ public class InventoryService : IService
     /// <param name="message"> A message indicating the result of the product removal operation. </param>
     public void RemoveProduct(string productId, out string message)
     {
-        message = string.Empty;
+        this._inventoryRepository.RemoveProduct(productId);
+        message = MessageConstants.SuccessfulRemovalOfProduct;
     }
 
     /// <summary>
