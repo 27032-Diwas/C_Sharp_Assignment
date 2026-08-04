@@ -112,6 +112,54 @@ public class InventoryController : IController
     /// </summary>
     public void UpdateProduct()
     {
+        Product? product = this.GetProduct();
+        if (product is null)
+        {
+            return;
+        }
+
+        decimal? decimalInput;
+        do
+        {
+            decimalInput = InventoryView.GetDecimalInput(MessageConstants.GetProductPrice);
+            if (decimalInput == null)
+            {
+                return;
+            }
+
+            if (!Validation.IsProductPriceValid(decimalInput.Value))
+            {
+                InventoryView.DisplayMessage(MessageConstants.InvalidProductPrice);
+                continue;
+            }
+
+            break;
+        }
+        while (true);
+        decimal productPrice = decimalInput.Value;
+
+        int? integerInput;
+        do
+        {
+            integerInput = InventoryView.GetIntegerInput(MessageConstants.GetProductQuantity);
+            if (integerInput == null)
+            {
+                return;
+            }
+
+            if (!Validation.IsProductPriceValid(integerInput.Value))
+            {
+                InventoryView.DisplayMessage(MessageConstants.InvalidProductQuantity);
+                continue;
+            }
+
+            break;
+        }
+        while (true);
+        int productQuantity = integerInput.Value;
+
+        this._inventoryService.UpdateProduct(product, productPrice, productQuantity, out string message);
+        InventoryView.DisplayMessage(message);
     }
 
     /// <summary>
@@ -144,5 +192,56 @@ public class InventoryController : IController
 
         InventoryView.DisplayProducts(products);
         return products;
+    }
+
+    private Product? GetProduct()
+    {
+        int? serialNo;
+        List<Product>? products = this.SearchProducts();
+        if (products is null)
+        {
+            return null;
+        }
+        else if (products.Count == 1)
+        {
+            string? choice;
+            do
+            {
+                choice = InventoryView.GetStringInput(MessageConstants.GetYesOrNo);
+                if (choice is null || choice.ToUpper().Equals("N"))
+                {
+                    return null;
+                }
+                else if (!choice.ToUpper().Equals("Y"))
+                {
+                    Console.WriteLine(MessageConstants.InvalidOption);
+                    continue;
+                }
+
+                break;
+            }
+            while (true);
+            return products[0];
+        }
+
+        do
+        {
+            serialNo = InventoryView.GetIntegerInput($"{MessageConstants.SelectSerialNumber} [ 1 - {products.Count} ]");
+            if (serialNo is null)
+            {
+                return null;
+            }
+
+            if (serialNo > products.Count || serialNo < 1)
+            {
+                InventoryView.DisplayMessage($"{MessageConstants.InvalidSerialNumber} [ 1 - {products.Count} ]");
+                continue;
+            }
+
+            break;
+        }
+        while (true);
+
+        return products[serialNo.Value - 1];
     }
 }

@@ -51,8 +51,17 @@ public class InventoryRepository : IRepository
     /// <summary>
     /// Update the details of product in the product list.
     /// </summary>
-    /// <param name="product"> Instance of updated product. </param>
-    public void UpdateProduct(Product product)
+    /// <param name="updatedProduct"> Instance of updated product. </param>
+    public void UpdateProduct(Product updatedProduct)
     {
+        foreach (Product product in this._products)
+        {
+            if (product.ProductId.Equals(updatedProduct.ProductId))
+            {
+                product.ProductPrice = updatedProduct.ProductPrice;
+                product.ProductQuantity = updatedProduct.ProductQuantity;
+                break;
+            }
+        }
     }
 }

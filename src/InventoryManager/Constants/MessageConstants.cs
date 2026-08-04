@@ -91,6 +91,21 @@ public static class MessageConstants
     public const string InvalidString = "ENTER A VALUE!!";
 
     /// <summary>
+    /// Represents the message displayed when a product is updated successfully.
+    /// </summary>
+    public const string SuccessfulUpdateOfProduct = "PRODUCT UPDATED SUCCESSFULLY !!\n";
+
+    /// <summary>
+    /// Represents the prompt requesting the user to select one of the available options.
+    /// </summary>
+    public const string SelectSerialNumber = "\nEnter a serial number";
+
+    /// <summary>
+    /// Represents the prompt requesting the user to select one of the available options.
+    /// </summary>
+    public const string GetYesOrNo = "\nDo you want to choose above option [Y/N]";
+
+    /// <summary>
     /// Represent the message displayed when product list is empty.
     /// </summary>
     public const string EmptyList = "NO PRODUCT FOUND!!\n";
@@ -116,7 +131,12 @@ public static class MessageConstants
     public const string InvalidProductQuantity = "PRODUCT QUANTITY CAN NOT BE NEGATIVE!!";
 
     /// <summary>
-    /// Represents the message displayed when the user enters an invalid option.
+    /// Represents the message displayed when the user enter an invalid serial number.
+    /// </summary>
+    public const string InvalidSerialNumber = "SERIAL NUMBER SHOULD BE WITHIN THE RANGE!!";
+
+    /// <summary>
+    /// Represents the message prompted to get user input to exit current process.
     /// </summary>
     public const string InvalidOption = "ENTER A VALID OPTION!!";
 }

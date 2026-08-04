@@ -94,7 +94,22 @@ public class InventoryService : IService
     /// <param name="message"> A message indicating the result of product updating operation. </param>
     public void UpdateProduct(Product product, decimal productPrice, int productQuantity, out string message)
     {
-        message = string.Empty;
+        if (!Validation.IsProductPriceValid(productPrice))
+        {
+            message = MessageConstants.InvalidProductPrice;
+            return;
+        }
+        else if (!Validation.IsProductQuantityValid(productQuantity))
+        {
+            message = MessageConstants.InvalidProductQuantity;
+            return;
+        }
+
+        product.ProductPrice = productPrice;
+        product.ProductQuantity = productQuantity;
+
+        this._inventoryRepository.UpdateProduct(product);
+        message = MessageConstants.SuccessfulUpdateOfProduct;
     }
 
     private static string GenerateProductId(ProductCategories category)
