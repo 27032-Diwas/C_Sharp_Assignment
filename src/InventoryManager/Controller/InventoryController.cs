@@ -105,6 +105,14 @@ public class InventoryController : IController
     /// </summary>
     public void RemoveProduct()
     {
+        string? productId = this.GetIndex();
+        if (productId is null)
+        {
+            return;
+        }
+
+        this._inventoryService.RemoveProduct(productId, out string message);
+        InventoryView.DisplayMessage(message);
     }
 
     /// <summary>
@@ -144,5 +152,35 @@ public class InventoryController : IController
 
         InventoryView.DisplayProducts(products);
         return products;
+    }
+
+    private string? GetIndex()
+    {
+        int? serialNo;
+        List<Product>? products = this.SearchProducts();
+        if (products is null)
+        {
+            return null;
+        }
+
+        do
+        {
+            serialNo = InventoryView.GetIntegerInput($"{MessageConstants.SelectSerialNumber} [ 1 - {products.Count} ]");
+            if (serialNo is null)
+            {
+                return null;
+            }
+
+            if (serialNo > products.Count || serialNo < 1)
+            {
+                InventoryView.DisplayMessage($"{MessageConstants.InvalidSerialNumber} [ 1 - {products.Count} ]");
+                continue;
+            }
+
+            break;
+        }
+        while (true);
+
+        return products[serialNo.Value - 1].ProductId;
     }
 }

@@ -33,6 +33,14 @@ public class InventoryRepository : IRepository
     /// <param name="productId"> Id of product that needs to be removed. </param>
     public void RemoveProduct(string productId)
     {
+        foreach (Product product in this._products)
+        {
+            if (productId.Equals(product.ProductId))
+            {
+                this._products.Remove(product);
+                break;
+            }
+        }
     }
 
     /// <summary>
