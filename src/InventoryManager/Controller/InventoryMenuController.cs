@@ -54,6 +54,7 @@ public class InventoryMenuController
                 case MainMenuEnum.RemoveProduct:
                     InventoryView.DisplayMessage(MessageConstants.DeleteProduct);
                     this._inventoryController.RemoveProduct();
+                    break;
                 default:
                     InventoryView.DisplayMessage(ErrorMessages.InvalidOption);
                     break;
