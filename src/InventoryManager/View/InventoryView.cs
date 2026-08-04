@@ -1,5 +1,4 @@
 ﻿using InventoryManager.Constants;
-using InventoryManager.EnumConstants;
 
 namespace InventoryManager.View;
 
@@ -39,10 +38,11 @@ public static class InventoryView
             userInput = Console.ReadLine();
             if (string.IsNullOrEmpty(userInput))
             {
+                Console.WriteLine(MessageConstants.InvalidString);
                 continue;
             }
 
-            if (Enum.TryParse(userInput, true, out MenuConstants.Exit choice) && Enum.IsDefined(typeof(MenuConstants.Exit), choice))
+            if (userInput.ToUpper().Equals(MessageConstants.Exit))
             {
                 return null;
             }
@@ -68,10 +68,11 @@ public static class InventoryView
             string? userInput = Console.ReadLine();
             if (string.IsNullOrEmpty(userInput))
             {
+                Console.WriteLine(MessageConstants.InvalidDigit);
                 continue;
             }
 
-            if (Enum.TryParse(userInput, true, out MenuConstants.Exit choice) && Enum.IsDefined(typeof(MenuConstants.Exit), choice))
+            if (userInput.ToUpper().Equals(MessageConstants.Exit))
             {
                 return null;
             }
@@ -102,10 +103,11 @@ public static class InventoryView
             string? userInput = Console.ReadLine();
             if (string.IsNullOrEmpty(userInput))
             {
+                Console.WriteLine(MessageConstants.InvalidDigit);
                 continue;
             }
 
-            if (Enum.TryParse(userInput, true, out MenuConstants.Exit choice) && Enum.IsDefined(typeof(MenuConstants.Exit), choice))
+            if (userInput.ToUpper().Equals(MessageConstants.Exit))
             {
                 return null;
             }

@@ -23,30 +23,33 @@ public class InventoryMenuController
     }
 
     /// <summary>
-    /// Display the main menu and process the selected option.
+    /// Display the main menu and proceed to selected option.
     /// </summary>
     public void GetMenuOption()
     {
         while (true)
         {
-            MenuConstants.MainMenu choice = DisplayEnum.GetMenuChoice<MenuConstants.MainMenu>(MessageConstants.MainMenu);
+            MainMenuEnum choice = DisplayEnum.GetMenuChoice<MainMenuEnum>(MessageConstants.MainMenu);
             InventoryView.ClearConsole();
             switch (choice)
             {
-                case MenuConstants.MainMenu.Exit:
+                case MainMenuEnum.Exit:
                     InventoryView.DisplayMessage(MessageConstants.ProcessEnded);
                     return;
-                case MenuConstants.MainMenu.AddProduct:
+                case MainMenuEnum.AddProduct:
                     InventoryView.DisplayMessage(MessageConstants.AddProduct);
                     this._inventoryController.AddProduct();
                     break;
-                case MenuConstants.MainMenu.ViewProducts:
+                case MainMenuEnum.ViewProducts:
                     break;
-                case MenuConstants.MainMenu.SearchProduct:
+                case MainMenuEnum.SearchProduct:
                     break;
-                case MenuConstants.MainMenu.UpdateProduct:
+                case MainMenuEnum.UpdateProduct:
                     break;
-                case MenuConstants.MainMenu.RemoveProduct:
+                case MainMenuEnum.RemoveProduct:
+                    break;
+                default:
+                    InventoryView.DisplayMessage(MessageConstants.InvalidOption);
                     break;
             }
         }

@@ -16,7 +16,7 @@ public interface IService
     /// <param name="productPrice"> Price of the product. </param>
     /// <param name="productQuantity"> Quantity of the product. </param>
     /// <param name="message"> A message indicating the result of the product addition operation. </param>
-    public void AddProduct(string productName, ProductEnums.ProductCategories category, decimal productPrice, int productQuantity, out string message);
+    public void AddProduct(string productName, ProductCategories category, decimal productPrice, int productQuantity, out string message);
 
     /// <summary>
     /// Calls repository and passes productId to remove product from list.
@@ -29,8 +29,10 @@ public interface IService
     /// Calls validation to validate details and repository to update product with new details.
     /// </summary>
     /// <param name="product"> Product object containing details. </param>
+    /// <param name="productPrice"> Updated price of product. </param>
+    /// <param name="productQuantity"> Updated quantity of the product. </param>
     /// <param name="message"> Success or error message. </param>
-    public void UpdateProduct(Product product, out string message);
+    public void UpdateProduct(Product product, decimal productPrice, int productQuantity, out string message);
 
     /// <summary>
     /// Calls the repository to get list of all products.

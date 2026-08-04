@@ -12,13 +12,13 @@ namespace InventoryManager.Service;
 public class InventoryService : IService
 {
     private static Dictionary<string, int> _categoryCounters = new ();
-    private readonly InventoryRepository _inventoryRepository;
+    private readonly IRepository _inventoryRepository;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="InventoryService"/> class.
     /// </summary>
     /// <param name="inventoryRepository"> Repository that manage inventory data. </param>
-    public InventoryService(InventoryRepository inventoryRepository)
+    public InventoryService(IRepository inventoryRepository)
     {
         this._inventoryRepository = inventoryRepository;
     }
@@ -31,7 +31,7 @@ public class InventoryService : IService
     /// <param name="productPrice"> Price of the product. </param>
     /// <param name="productQuantity"> Quantity of the product. </param>
     /// <param name="message"> A message indicating the result of the product addition operation. </param>
-    public void AddProduct(string productName, ProductEnums.ProductCategories category, decimal productPrice, int productQuantity, out string message)
+    public void AddProduct(string productName, ProductCategories category, decimal productPrice, int productQuantity, out string message)
     {
         if (!Validation.IsProductNameValid(productName))
         {
@@ -92,47 +92,41 @@ public class InventoryService : IService
     /// Update new value to existing list.
     /// </summary>
     /// <param name="product"> Object containing new details. </param>
+    /// /// <param name="productPrice"> Updated price of product. </param>
+    /// <param name="productQuantity"> Updated quantity of the product. </param>
     /// <param name="message"> A message indicating the result of product updating operation. </param>
-    public void UpdateProduct(Product product, out string message)
+    public void UpdateProduct(Product product, decimal productPrice, int productQuantity, out string message)
     {
         message = string.Empty;
     }
 
-    /// <summary>
-    /// Validate inputs by calling validation class.
-    /// </summary>
-    /// <param name="product"> Object containing product details. </param>
-    /// <param name="message"> A message indicating the result of product detail validation. </param>
-    public void ValidateInputs(Product product, out string message)
-    {
-        message = string.Empty;
-    }
-
-    private string GenerateProductId(ProductEnums.ProductCategories category)
+    private string GenerateProductId(ProductCategories category)
     {
         string productIdPrefix = "Misc";
         switch (category)
         {
-            case ProductEnums.ProductCategories.Clothing:
+            case ProductCategories.Clothing:
                 productIdPrefix = "CLTH";
                 break;
-            case ProductEnums.ProductCategories.Sports:
+            case ProductCategories.Sports:
                 productIdPrefix = "SPRT";
                 break;
-            case ProductEnums.ProductCategories.Grocery:
+            case ProductCategories.Grocery:
                 productIdPrefix = "GROC";
                 break;
-            case ProductEnums.ProductCategories.Consumable:
+            case ProductCategories.Consumable:
                 productIdPrefix = "CONS";
                 break;
-            case ProductEnums.ProductCategories.Electronics:
+            case ProductCategories.Electronics:
                 productIdPrefix = "ELEC";
                 break;
-            case ProductEnums.ProductCategories.Furniture:
+            case ProductCategories.Furniture:
                 productIdPrefix = "FURN";
                 break;
-            case ProductEnums.ProductCategories.Miscellaneous:
+            case ProductCategories.Miscellaneous:
                 productIdPrefix = "MISC";
+                break;
+            default:
                 break;
         }
 

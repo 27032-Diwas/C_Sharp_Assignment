@@ -1,38 +1,40 @@
 ﻿using InventoryManager.Constants;
 using InventoryManager.EnumConstants;
 using InventoryManager.Helper;
-using InventoryManager.Repository;
+using InventoryManager.Models;
 using InventoryManager.Service;
 using InventoryManager.View;
 
 namespace InventoryManager.Controller;
 
 /// <summary>
-///  Get input and display output for add, view, update, delete, search, display product, get product details and get product id.
+///  Get inputs and display outputs for add, view, update, delete, search, display product, get product details and get product id.
 /// </summary>
-public class InventoryController
+public class InventoryController : IController
 {
-    private readonly InventoryService _inventoryService;
+    private readonly IService _inventoryService;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="InventoryController"/> class.
     /// </summary>
     /// <param name="inventoryService"> Service that manage logical operations. </param>
-    public InventoryController(InventoryService inventoryService)
+    public InventoryController(IService inventoryService)
     {
         this._inventoryService = inventoryService;
     }
 
     /// <summary>
-    /// Get user inputs and validate it.
+    /// Get user inputs and add product.
     /// </summary>
     public void AddProduct()
     {
-        ProductEnums.ProductCategories productCategory = DisplayEnum.GetMenuChoice<ProductEnums.ProductCategories>(MessageConstants.ProductCategories);
-        if (productCategory == ProductEnums.ProductCategories.Exit)
+        ProductCategories productCategory = DisplayEnum.GetMenuChoice<ProductCategories>(MessageConstants.ProductCategories);
+        if (productCategory == ProductCategories.Exit)
         {
             return;
         }
+
+        InventoryView.ClearConsole();
 
         string? userInput;
         do
@@ -99,30 +101,32 @@ public class InventoryController
     }
 
     /// <summary>
-    /// Get product id of product to remove and call service.
+    /// Gets product id and remove product.
     /// </summary>
     public void RemoveProduct()
     {
     }
 
     /// <summary>
-    /// Get new details and create an object and pass it to service.
+    /// Gets new details and create an object.
     /// </summary>
     public void UpdateProduct()
     {
     }
 
     /// <summary>
-    /// Get product list and call display product.
+    /// Display all products.
     /// </summary>
     public void ViewAllProducts()
     {
     }
 
     /// <summary>
-    /// Get search word from user and calls service.
+    /// Get search word from user and displays product that match.
     /// </summary>
-    public void SearchProducts()
+    /// <returns> List of product that matches the search word. </returns>
+    public List<Product> SearchProducts()
     {
+        return new List<Product>();
     }
 }

@@ -51,19 +51,14 @@ public static class MessageConstants
     public const string DeleteProduct = "DELETE PRODCUT";
 
     /// <summary>
-    /// Represents the message displayed when the user enters an invalid menu option.
+    /// Represents the header message for product categories.
     /// </summary>
-    public const string InvalidOption = "ENTER A VALID OPTION!!";
+    public const string ProductCategories = "\nPRODUCT CATEGORIES";
 
     /// <summary>
     /// Represents the message prompted to get name of the product.
     /// </summary>
     public const string GetProductName = "Enter name of the product";
-
-    /// <summary>
-    /// Represents the header message for product categories.
-    /// </summary>
-    public const string ProductCategories = "\nPRODUCT CATEGORIES";
 
     /// <summary>
     /// Represents the message prompted to get price of the product.
@@ -76,12 +71,22 @@ public static class MessageConstants
     public const string GetProductQuantity = "Enter quantity of the product";
 
     /// <summary>
+    /// Represents the message prompted to get user input to exit current process.
+    /// </summary>
+    public const string ExitProcess = "or Exit to quit process: ";
+
+    /// <summary>
     /// Represents the message displayed when a product is added successfully.
     /// </summary>
     public const string SuccessfulAdditionOfProduct = "PRODUCT ADDED SUCCESSFULLY !!\n";
 
     /// <summary>
-    /// Represents the message displayed when the user enter an invalid product name.
+    /// Represents the message displayed when the user does not enter anything.
+    /// </summary>
+    public const string InvalidString = "ENTER A VALUE!!";
+
+    /// <summary>
+    /// Represents the message displayed when the user enter an non number value.
     /// </summary>
     public const string InvalidDigit = "ENTER A NUMBER!!";
 
@@ -100,8 +105,8 @@ public static class MessageConstants
     /// </summary>
     public const string InvalidProductQuantity = "PRODUCT QUANTITY CAN NOT BE NEGATIVE!!";
 
-     /// <summary>
-    /// Represents the message prompted to get user input to exit current process.
+    /// <summary>
+    /// Represents the message displayed when the user enters an invalid option.
     /// </summary>
-    public const string ExitProcess = "or Exit/[0] to quit process: ";
+    public const string InvalidOption = "ENTER A VALID OPTION!!";
 }
