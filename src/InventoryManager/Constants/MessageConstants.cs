@@ -66,12 +66,6 @@ public static class MessageConstants
     public const string GetSearchWord = "Enter word to search";
 
     /// <summary>
-    /// Represent the header message for product categories.
-    /// Represents the header message for product categories.
-    /// </summary>
-    public const string ProductCategories = "\nPRODUCT CATEGORIES";
-
-    /// <summary>
     /// Represents the message prompted to get price of the product.
     /// </summary>
     public const string GetProductPrice = "Enter price of the product";
@@ -97,13 +91,12 @@ public static class MessageConstants
     public const string InvalidString = "ENTER A VALUE!!";
 
     /// <summary>
-    /// Represents the message displayed when the user enter an non number value.
     /// Represent the message displayed when product list is empty.
     /// </summary>
     public const string EmptyList = "NO PRODUCT FOUND!!\n";
 
     /// <summary>
-    /// Represents the message displayed when the user enter an invalid product name.
+    /// Represents the message displayed when the user enter a non numeric value.
     /// </summary>
     public const string InvalidDigit = "ENTER A NUMBER!!";
 
