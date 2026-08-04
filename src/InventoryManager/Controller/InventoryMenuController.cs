@@ -43,8 +43,7 @@ public class InventoryMenuController
                 case MainMenuEnum.ViewProducts:
                     break;
                 case MainMenuEnum.SearchProduct:
-                    break;
-                case MenuConstants.MainMenu.SearchProduct:
+                    InventoryView.DisplayMessage(MessageConstants.SearchProduct);
                     this._inventoryController.SearchProducts();
                     break;
                 case MainMenuEnum.RemoveProduct:

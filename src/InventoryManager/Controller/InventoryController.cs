@@ -124,13 +124,13 @@ public class InventoryController : IController
     /// <summary>
     /// Gets search word from user and displays the result of the search.
     /// </summary>
-    /// <returns> List of products that matches the search word. </returns>
-    public List<Product> SearchProducts()
+    /// <returns> List of product that matches the search word. </returns>
+    public List<Product>? SearchProducts()
     {
         string? userInput = InventoryView.GetStringInput(MessageConstants.GetSearchWord);
         if (userInput == null)
         {
-            return;
+            return null;
         }
 
         string searchWord = userInput;
@@ -139,9 +139,10 @@ public class InventoryController : IController
         if (!products.Any())
         {
             InventoryView.DisplayMessage(MessageConstants.EmptyList);
-            return;
+            return null;
         }
 
         InventoryView.DisplayProducts(products);
+        return products;
     }
 }
