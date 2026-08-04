@@ -66,11 +66,6 @@ public static class MessageConstants
     public const string GetSearchWord = "Enter word to search";
 
     /// <summary>
-    /// Represent the header message for product categories.
-    /// </summary>
-    public const string GetSearchWord = "Enter word to search";
-
-    /// <summary>
     /// Represents the message prompted to get price of the product.
     /// </summary>
     public const string GetProductPrice = "Enter price of the product";
