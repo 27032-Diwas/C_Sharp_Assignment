@@ -1,32 +1,35 @@
-﻿namespace InventoryManager.Controller;
+﻿using InventoryManager.Models;
+
+namespace InventoryManager.Controller;
 
 /// <summary>
-/// Interface for contoller class containing add, view, update, delete, search, display product, get product details and get product id.
+/// Interface for controller class containing add, view, update, delete, search.
 /// </summary>
-public interface IController
+internal interface IController
 {
     /// <summary>
-    /// Calls get product details and create object with the detials.
+    /// Gets user inputs and add product.
     /// </summary>
-    public void AddContact();
+    public void AddProduct();
 
     /// <summary>
-    /// Get product id of product to remove and call service.
+    /// Gets product id and remove product.
     /// </summary>
-    public void RemoveContact();
+    public void RemoveProduct();
 
     /// <summary>
-    /// Getnew details and create an object and pass it to service.
+    /// Gets new details and create an object.
     /// </summary>
-    public void UpdateContact();
+    public void UpdateProduct();
 
     /// <summary>
-    /// Get product list and call display product.
+    /// Display all products.
     /// </summary>
     public void ViewAllProducts();
 
     /// <summary>
-    /// Get search word from user and calls service.
+    /// Gets search word from user and displays the result of the search.
     /// </summary>
-    public void SearchProducts();
+    /// <returns> List of products that matches the search word. </returns>
+    public List<Product> SearchProducts();
 }
