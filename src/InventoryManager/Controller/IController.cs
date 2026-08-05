@@ -31,5 +31,5 @@ internal interface IController
     /// Gets search word from user and displays the result of the search.
     /// </summary>
     /// <returns> List of products that matches the search word. </returns>
-    public List<Product> SearchProducts();
+    public List<Product>? SearchProducts();
 }
