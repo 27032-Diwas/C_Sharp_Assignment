@@ -1,4 +1,4 @@
-﻿using ConsoleTables;
+using ConsoleTables;
 using InventoryManager.Constants;
 using InventoryManager.EnumConstants;
 using InventoryManager.Models;
