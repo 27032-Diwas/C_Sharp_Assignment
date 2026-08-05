@@ -39,4 +39,9 @@ public class ErrorMessages
     /// Represent the message displayed when product list is empty.
     /// </summary>
     public const string EmptyList = "NO PRODUCT FOUND!!\n";
+
+    /// <summary>
+    /// Represents the message displayed when the user enter an invalid serial number.
+    /// </summary>
+    public const string InvalidSerialNumber = "SERIAL NUMBER SHOULD BE WITHIN THE RANGE!!";
 }
