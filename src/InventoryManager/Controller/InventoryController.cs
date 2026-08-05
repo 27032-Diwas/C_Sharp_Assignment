@@ -17,14 +17,14 @@ public class InventoryController : IController
     /// <summary>
     /// Initializes a new instance of the <see cref="InventoryController"/> class.
     /// </summary>
-    /// <param name="inventoryService"> Service that manage logical operations. </param>
+    /// <param name="inventoryService"> Instance of inventory service </param>
     public InventoryController(IService inventoryService)
     {
         this._inventoryService = inventoryService;
     }
 
     /// <summary>
-    /// Get user inputs and add product.
+    /// Gets user inputs and add product.
     /// </summary>
     public void AddProduct()
     {
@@ -122,9 +122,9 @@ public class InventoryController : IController
     }
 
     /// <summary>
-    /// Get search word from user and displays product that match.
+    /// Gets search word from user and displays the result of the search.
     /// </summary>
-    /// <returns> List of product that matches the search word. </returns>
+    /// <returns> List of products that matches the search word. </returns>
     public List<Product> SearchProducts()
     {
         return new List<Product>();

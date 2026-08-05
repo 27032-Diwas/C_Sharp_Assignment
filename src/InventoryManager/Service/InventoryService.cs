@@ -17,7 +17,7 @@ public class InventoryService : IService
     /// <summary>
     /// Initializes a new instance of the <see cref="InventoryService"/> class.
     /// </summary>
-    /// <param name="inventoryRepository"> Repository that manage inventory data. </param>
+    /// <param name="inventoryRepository"> Instance of inventory repository. </param>
     public InventoryService(IRepository inventoryRepository)
     {
         this._inventoryRepository = inventoryRepository;
@@ -71,7 +71,7 @@ public class InventoryService : IService
     /// <summary>
     /// Removes product from product list.
     /// </summary>
-    /// <param name="productId"> Id of the product to be removed. </param>
+    /// <param name="productId"> Id of the product that needs to be removed. </param>
     /// <param name="message"> A message indicating the result of the product removal operation. </param>
     public void RemoveProduct(string productId, out string message)
     {
@@ -79,9 +79,9 @@ public class InventoryService : IService
     }
 
     /// <summary>
-    /// Return list of products that containing the search word.
+    /// Search product list for product thats contains search word.
     /// </summary>
-    /// <param name="searchWord"> Word that need to be searched. </param>
+    /// <param name="searchWord"> Word that needs to be searched. </param>
     /// <returns> List of products. </returns>
     public List<Product> SearchProducts(string searchWord)
     {
@@ -89,9 +89,9 @@ public class InventoryService : IService
     }
 
     /// <summary>
-    /// Update new value to existing list.
+    /// Updates new value to existing list.
     /// </summary>
-    /// <param name="product"> Object containing new details. </param>
+    /// <param name="product"> Instance of product. </param>
     /// /// <param name="productPrice"> Updated price of product. </param>
     /// <param name="productQuantity"> Updated quantity of the product. </param>
     /// <param name="message"> A message indicating the result of product updating operation. </param>

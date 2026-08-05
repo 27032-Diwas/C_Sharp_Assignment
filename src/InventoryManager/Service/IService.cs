@@ -9,7 +9,7 @@ namespace InventoryManager.Service;
 public interface IService
 {
     /// <summary>
-    /// Calls validateInputs to validate details and repository to add product into product list.
+    /// Adds a new product.
     /// </summary>
     /// <param name="productName"> Name of the product. </param>
     /// <param name="category"> Category of product. </param>
@@ -19,31 +19,31 @@ public interface IService
     public void AddProduct(string productName, ProductCategories category, decimal productPrice, int productQuantity, out string message);
 
     /// <summary>
-    /// Calls repository and passes productId to remove product from list.
+    /// Removes product from the list.
     /// </summary>
-    /// <param name="productId"> Id of the product to be removed. </param>
+    /// <param name="productId"> Id of the product that needs to be removed. </param>
     /// <param name="message"> Success or error message. </param>
     public void RemoveProduct(string productId, out string message);
 
     /// <summary>
-    /// Calls validation to validate details and repository to update product with new details.
+    /// Updates product with new data.
     /// </summary>
-    /// <param name="product"> Product object containing details. </param>
+    /// <param name="product"> Instance of updated product. </param>
     /// <param name="productPrice"> Updated price of product. </param>
     /// <param name="productQuantity"> Updated quantity of the product. </param>
     /// <param name="message"> Success or error message. </param>
     public void UpdateProduct(Product product, decimal productPrice, int productQuantity, out string message);
 
     /// <summary>
-    /// Calls the repository to get list of all products.
+    /// Gets all product from product list.
     /// </summary>
     /// <returns> List of all products. </returns>
     public List<Product> GetAllProducts();
 
     /// <summary>
-    /// Calls the repository to get products that match the search word.
+    /// Search product list for products that contains search word.
     /// </summary>
-    /// <param name="searchWord"> Word need to be searched. </param>
-    /// <returns> List of product that has search word. </returns>
+    /// <param name="searchWord"> Word to be searched. </param>
+    /// <returns> List of products that contains search word. </returns>
     public List<Product> SearchProducts(string searchWord);
 }

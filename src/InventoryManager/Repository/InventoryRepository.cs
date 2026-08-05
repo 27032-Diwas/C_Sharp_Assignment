@@ -3,7 +3,7 @@
 namespace InventoryManager.Repository;
 
 /// <summary>
-/// Preforms read and write operation in list (CRUD).
+/// Performs read and write operation in list (CRUD).
 /// </summary>
 public class InventoryRepository : IRepository
 {
@@ -12,7 +12,7 @@ public class InventoryRepository : IRepository
     /// <summary>
     /// Add product to the list.
     /// </summary>
-    /// <param name="product"> Object containing product details. </param>
+    /// <param name="product"> Instance of product. </param>
     public void AddProduct(Product product)
     {
         this._products.Add(product);
@@ -30,7 +30,7 @@ public class InventoryRepository : IRepository
     /// <summary>
     /// Removes product from the list.
     /// </summary>
-    /// <param name="productId"> Id of product that need to be removed. </param>
+    /// <param name="productId"> Id of product that needs to be removed. </param>
     public void RemoveProduct(string productId)
     {
     }
@@ -48,7 +48,7 @@ public class InventoryRepository : IRepository
     /// <summary>
     /// Update the details of product in the product list.
     /// </summary>
-    /// <param name="product"> Product object with new details to update. </param>
+    /// <param name="product"> Instance of updated product. </param>
     public void UpdateProduct(Product product)
     {
     }

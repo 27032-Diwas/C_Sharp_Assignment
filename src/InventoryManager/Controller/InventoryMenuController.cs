@@ -7,7 +7,7 @@ using InventoryManager.View;
 namespace InventoryManager.Controller;
 
 /// <summary>
-/// Contains menu and calls inventory controller based on user input.
+/// Contains menu and gets user choice.
 /// </summary>
 public class InventoryMenuController
 {
@@ -16,14 +16,14 @@ public class InventoryMenuController
     /// <summary>
     /// Initializes a new instance of the <see cref="InventoryMenuController"/> class.
     /// </summary>
-    /// <param name="inventoryController"> Controller that connect to service. </param>
+    /// <param name="inventoryController"> Instance of inventory controller. </param>
     public InventoryMenuController(InventoryController inventoryController)
     {
         this._inventoryController = inventoryController;
     }
 
     /// <summary>
-    /// Display the main menu and proceed to selected option.
+    /// Displays the main menu and proceed to selected option.
     /// </summary>
     public void GetMenuOption()
     {

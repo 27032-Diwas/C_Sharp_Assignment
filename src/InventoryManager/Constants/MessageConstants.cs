@@ -8,7 +8,7 @@ public static class MessageConstants
     /// <summary>
     /// Represents the prompt requesting the user to select one of the available options.
     /// </summary>
-    public const string SelectOption = "\nSelect one of the above options:";
+    public const string SelectOption = "Select one of the above options:";
 
     /// <summary>
     /// Represents the message displayed when the application process ends.
@@ -53,7 +53,7 @@ public static class MessageConstants
     /// <summary>
     /// Represents the header message for product categories.
     /// </summary>
-    public const string ProductCategories = "\nPRODUCT CATEGORIES";
+    public const string ProductCategories = "PRODUCT CATEGORIES";
 
     /// <summary>
     /// Represents the message prompted to get name of the product.
@@ -78,7 +78,7 @@ public static class MessageConstants
     /// <summary>
     /// Represents the message displayed when a product is added successfully.
     /// </summary>
-    public const string SuccessfulAdditionOfProduct = "PRODUCT ADDED SUCCESSFULLY !!\n";
+    public const string SuccessfulAdditionOfProduct = "PRODUCT ADDED SUCCESSFULLY !!";
 
     /// <summary>
     /// Represents the message displayed when the user does not enter anything.
@@ -86,7 +86,7 @@ public static class MessageConstants
     public const string InvalidString = "ENTER A VALUE!!";
 
     /// <summary>
-    /// Represents the message displayed when the user enter an non number value.
+    /// Represents the message displayed when the user enter an non numeric value.
     /// </summary>
     public const string InvalidDigit = "ENTER A NUMBER!!";
 

@@ -8,7 +8,7 @@ namespace InventoryManager.Controller;
 internal interface IController
 {
     /// <summary>
-    /// Get user inputs and add product.
+    /// Gets user inputs and add product.
     /// </summary>
     public void AddProduct();
 
@@ -28,8 +28,8 @@ internal interface IController
     public void ViewAllProducts();
 
     /// <summary>
-    /// Get search word from user and displays product that match.
+    /// Gets search word from user and displays the result of the search.
     /// </summary>
-    /// <returns> List of product that matches the search word. </returns>
+    /// <returns> List of products that matches the search word. </returns>
     public List<Product> SearchProducts();
 }
