@@ -1,4 +1,7 @@
-﻿using InventoryManager.Constants;
+using ConsoleTables;
+using InventoryManager.Constants;
+using InventoryManager.EnumConstants;
+using InventoryManager.Models;
 
 namespace InventoryManager.View;
 
@@ -122,5 +125,21 @@ public static class InventoryView
         }
         while (true);
         return integerInput;
+    }
+
+    /// <summary>
+    /// Displays list of product as a table.
+    /// </summary>
+    /// <param name="products"> List of products. </param>
+    public static void DisplayProducts(List<Product> products)
+    {
+        ConsoleTable contactTable = new ("S.No", "Product Id", "Product Name", "Product Price", "Product Quantity");
+        int i = 1;
+        foreach (Product product in products)
+        {
+            contactTable.AddRow(i++, product.ProductId, product.ProductName, product.ProductPrice, product.ProductQuantity);
+        }
+
+        contactTable.Write();
     }
 }

@@ -34,4 +34,9 @@ public class ErrorMessages
     /// Represents the message displayed when the user enters an invalid option.
     /// </summary>
     public const string InvalidOption = "ENTER A VALID OPTION!!";
+
+    /// <summary>
+    /// Represent the message displayed when product list is empty.
+    /// </summary>
+    public const string EmptyList = "NO PRODUCT FOUND!!\n";
 }
