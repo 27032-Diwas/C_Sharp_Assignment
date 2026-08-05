@@ -8,7 +8,7 @@ using InventoryManager.View;
 namespace InventoryManager.Controller;
 
 /// <summary>
-///  Get inputs and display outputs for add, view, update, delete, search, display product, get product details and get product id.
+///  Gets inputs and display outputs for add, view, update, delete, search, display product, get product details and get product id.
 /// </summary>
 public class InventoryController : IController
 {
@@ -132,7 +132,7 @@ public class InventoryController : IController
     /// <summary>
     /// Gets search word from user and displays the result of the search.
     /// </summary>
-    /// <returns> List of product that matches the search word. </returns>
+    /// <returns> List of products that matches the search word. </returns>
     public List<Product>? SearchProducts()
     {
         string? userInput = InventoryView.GetStringInput(UserPrompts.GetSearchWord);
@@ -167,14 +167,14 @@ public class InventoryController : IController
             string? choice;
             do
             {
-                choice = InventoryView.GetStringInput(MessageConstants.GetYesOrNo);
+                choice = InventoryView.GetStringInput(UserPrompts.GetYesOrNo);
                 if (choice is null || choice.ToUpper().Equals("N"))
                 {
                     return null;
                 }
                 else if (!choice.ToUpper().Equals("Y"))
                 {
-                    Console.WriteLine(MessageConstants.InvalidOption);
+                    Console.WriteLine(ErrorMessages.InvalidOption);
                     continue;
                 }
 
@@ -186,7 +186,7 @@ public class InventoryController : IController
 
         do
         {
-            serialNo = InventoryView.GetIntegerInput($"{MessageConstants.SelectSerialNumber} [ 1 - {products.Count} ]");
+            serialNo = InventoryView.GetIntegerInput($"{UserPrompts.SelectSerialNumber} [ 1 - {products.Count} ]");
             if (serialNo is null)
             {
                 return null;
@@ -194,7 +194,7 @@ public class InventoryController : IController
 
             if (serialNo > products.Count || serialNo < 1)
             {
-                InventoryView.DisplayMessage($"{MessageConstants.InvalidSerialNumber} [ 1 - {products.Count} ]");
+                InventoryView.DisplayMessage($"{ErrorMessages.InvalidSerialNumber} [ 1 - {products.Count} ]");
                 continue;
             }
 
