@@ -123,10 +123,18 @@ public class InventoryController : IController
     }
 
     /// <summary>
-    /// Display all products.
+    /// Displays all products.
     /// </summary>
     public void ViewAllProducts()
     {
+        List<Product> products = this._inventoryService.GetAllProducts();
+        if (!products.Any())
+        {
+            InventoryView.DisplayMessage(ErrorMessages.EmptyList);
+            return;
+        }
+
+        InventoryView.DisplayProducts(products);
     }
 
     /// <summary>
