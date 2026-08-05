@@ -34,15 +34,15 @@ public static class InventoryView
         string? userInput;
         do
         {
-            Console.WriteLine($"{prompt} {MessageConstants.ExitProcess}");
+            Console.WriteLine($"{prompt} {UserPrompts.ExitProcess}");
             userInput = Console.ReadLine();
             if (string.IsNullOrEmpty(userInput))
             {
-                Console.WriteLine(MessageConstants.InvalidString);
+                Console.WriteLine(ErrorMessages.InvalidString);
                 continue;
             }
 
-            if (userInput.ToUpper().Equals(MessageConstants.Exit))
+            if (userInput.ToUpper().Equals(HeaderMessages.Exit))
             {
                 return null;
             }
@@ -64,22 +64,22 @@ public static class InventoryView
         decimal decimalInput;
         do
         {
-            Console.WriteLine($"{prompt} {MessageConstants.ExitProcess}");
+            Console.WriteLine($"{prompt} {UserPrompts.ExitProcess}");
             string? userInput = Console.ReadLine();
             if (string.IsNullOrEmpty(userInput))
             {
-                Console.WriteLine(MessageConstants.InvalidDigit);
+                Console.WriteLine(ErrorMessages.InvalidDigit);
                 continue;
             }
 
-            if (userInput.ToUpper().Equals(MessageConstants.Exit))
+            if (userInput.ToUpper().Equals(HeaderMessages.Exit))
             {
                 return null;
             }
 
             if (!decimal.TryParse(userInput, out decimalInput))
             {
-                Console.WriteLine(MessageConstants.InvalidDigit);
+                Console.WriteLine(ErrorMessages.InvalidDigit);
                 continue;
             }
 
@@ -99,22 +99,22 @@ public static class InventoryView
         int integerInput;
         do
         {
-            Console.WriteLine($"{prompt} {MessageConstants.ExitProcess}");
+            Console.WriteLine($"{prompt} {UserPrompts.ExitProcess}");
             string? userInput = Console.ReadLine();
             if (string.IsNullOrEmpty(userInput))
             {
-                Console.WriteLine(MessageConstants.InvalidDigit);
+                Console.WriteLine(ErrorMessages.InvalidDigit);
                 continue;
             }
 
-            if (userInput.ToUpper().Equals(MessageConstants.Exit))
+            if (userInput.ToUpper().Equals(HeaderMessages.Exit))
             {
                 return null;
             }
 
             if (!int.TryParse(userInput, out integerInput))
             {
-                Console.WriteLine(MessageConstants.InvalidDigit);
+                Console.WriteLine(ErrorMessages.InvalidDigit);
                 continue;
             }
 

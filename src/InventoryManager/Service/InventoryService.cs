@@ -49,7 +49,7 @@ public class InventoryService : IService
             return;
         }
 
-        Product product = new (this.GenerateProductId(category), productName)
+        Product product = new (GenerateProductId(category), productName)
         {
             ProductPrice = productPrice,
             ProductQuantity = productQuantity,
@@ -100,7 +100,7 @@ public class InventoryService : IService
         message = string.Empty;
     }
 
-    private string GenerateProductId(ProductCategories category)
+    private static string GenerateProductId(ProductCategories category)
     {
         string productIdPrefix = "Misc";
         switch (category)

@@ -35,7 +35,7 @@ public class DisplayEnum
             Console.WriteLine(message);
             DisplayMenu(typeof(T));
 
-            Console.WriteLine(MessageConstants.SelectOption);
+            Console.WriteLine(UserPrompts.SelectOption);
             if (Enum.TryParse(Console.ReadLine(), true, out T choice) &&
                 Enum.IsDefined(typeof(T), choice))
             {
@@ -43,7 +43,7 @@ public class DisplayEnum
             }
 
             Console.Clear();
-            Console.WriteLine(MessageConstants.InvalidOption);
+            Console.WriteLine(ErrorMessages.InvalidOption);
         }
     }
 }
