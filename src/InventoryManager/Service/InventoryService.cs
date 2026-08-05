@@ -76,11 +76,11 @@ public class InventoryService : IService
     public void RemoveProduct(string productId, out string message)
     {
         this._inventoryRepository.RemoveProduct(productId);
-        message = MessageConstants.SuccessfulRemovalOfProduct;
+        message = SuccessMessages.SuccessfulRemovalOfProduct;
     }
 
     /// <summary>
-    /// Search product list for product thats contains search word.
+    /// Search product list for products that contains search word.
     /// </summary>
     /// <param name="searchWord"> Word that needs to be searched. </param>
     /// <returns> List of products. </returns>

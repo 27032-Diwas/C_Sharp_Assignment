@@ -46,13 +46,10 @@ public class InventoryMenuController
                     InventoryView.DisplayMessage(HeaderMessages.SearchProduct);
                     this._inventoryController.SearchProducts();
                     break;
-                case MenuConstants.MainMenu.SearchProduct:
-                    this._inventoryController.SearchProducts();
-                    break;
                 case MainMenuEnum.UpdateProduct:
                     break;
                 case MainMenuEnum.RemoveProduct:
-                    InventoryView.DisplayMessage(MessageConstants.DeleteProduct);
+                    InventoryView.DisplayMessage(HeaderMessages.DeleteProduct);
                     this._inventoryController.RemoveProduct();
                     break;
                 default:
