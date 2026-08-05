@@ -120,6 +120,54 @@ public class InventoryController : IController
     /// </summary>
     public void UpdateProduct()
     {
+        Product? product = this.GetProduct();
+        if (product is null)
+        {
+            return;
+        }
+
+        decimal? decimalInput;
+        do
+        {
+            decimalInput = InventoryView.GetDecimalInput(UserPrompts.GetProductPrice);
+            if (decimalInput == null)
+            {
+                return;
+            }
+
+            if (!Validation.IsProductPriceValid(decimalInput.Value))
+            {
+                InventoryView.DisplayMessage(ErrorMessages.InvalidProductPrice);
+                continue;
+            }
+
+            break;
+        }
+        while (true);
+        decimal productPrice = decimalInput.Value;
+
+        int? integerInput;
+        do
+        {
+            integerInput = InventoryView.GetIntegerInput(UserPrompts.GetProductQuantity);
+            if (integerInput == null)
+            {
+                return;
+            }
+
+            if (!Validation.IsProductPriceValid(integerInput.Value))
+            {
+                InventoryView.DisplayMessage(ErrorMessages.InvalidProductQuantity);
+                continue;
+            }
+
+            break;
+        }
+        while (true);
+        int productQuantity = integerInput.Value;
+
+        this._inventoryService.UpdateProduct(product, productPrice, productQuantity, out string message);
+        InventoryView.DisplayMessage(message);
     }
 
     /// <summary>
@@ -140,7 +188,7 @@ public class InventoryController : IController
     /// <summary>
     /// Gets search word from user and displays the result of the search.
     /// </summary>
-    /// <returns> List of products that matches the search word. </returns>
+    /// <returns> List of product that matches the search word. </returns>
     public List<Product>? SearchProducts()
     {
         string? userInput = InventoryView.GetStringInput(UserPrompts.GetSearchWord);

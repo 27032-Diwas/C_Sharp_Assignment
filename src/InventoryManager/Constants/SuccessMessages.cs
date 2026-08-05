@@ -16,6 +16,11 @@ public class SuccessMessages
     public const string SuccessfulAdditionOfProduct = "PRODUCT ADDED SUCCESSFULLY !!";
 
     /// <summary>
+    /// Represents the message displayed when a product is updated successfully.
+    /// </summary>
+    public const string SuccessfulUpdateOfProduct = "PRODUCT UPDATED SUCCESSFULLY !!";
+  
+    /// <summary>
     /// Represents the message displayed when a product is removed successfully.
     /// </summary>
     public const string SuccessfulRemovalOfProduct = "PRODUCT DELETED SUCCESSFULLY !!\n";
