@@ -35,17 +35,17 @@ public class InventoryService : IService
     {
         if (!Validation.IsProductNameValid(productName))
         {
-            message = MessageConstants.InvalidProductName;
+            message = ErrorMessages.InvalidProductName;
             return;
         }
         else if (!Validation.IsProductPriceValid(productPrice))
         {
-            message = MessageConstants.InvalidProductPrice;
+            message = ErrorMessages.InvalidProductPrice;
             return;
         }
         else if (!Validation.IsProductQuantityValid(productQuantity))
         {
-            message = MessageConstants.InvalidProductQuantity;
+            message = ErrorMessages.InvalidProductQuantity;
             return;
         }
 
@@ -56,7 +56,7 @@ public class InventoryService : IService
         };
 
         this._inventoryRepository.AddProduct(product);
-        message = MessageConstants.SuccessfulAdditionOfProduct;
+        message = SuccessMessages.SuccessfulAdditionOfProduct;
     }
 
     /// <summary>

@@ -28,7 +28,7 @@ public class InventoryController : IController
     /// </summary>
     public void AddProduct()
     {
-        ProductCategories productCategory = DisplayEnum.GetMenuChoice<ProductCategories>(MessageConstants.ProductCategories);
+        ProductCategories productCategory = DisplayEnum.GetMenuChoice<ProductCategories>(HeaderMessages.ProductCategories);
         if (productCategory == ProductCategories.Exit)
         {
             return;
@@ -39,7 +39,7 @@ public class InventoryController : IController
         string? userInput;
         do
         {
-            userInput = InventoryView.GetStringInput(MessageConstants.GetProductName);
+            userInput = InventoryView.GetStringInput(UserPrompts.GetProductName);
             if (userInput == null)
             {
                 return;
@@ -47,7 +47,7 @@ public class InventoryController : IController
 
             if (!Validation.IsProductNameValid(userInput))
             {
-                InventoryView.DisplayMessage(MessageConstants.InvalidProductName);
+                InventoryView.DisplayMessage(ErrorMessages.InvalidProductName);
                 continue;
             }
 
@@ -59,7 +59,7 @@ public class InventoryController : IController
         decimal? decimalInput;
         do
         {
-            decimalInput = InventoryView.GetDecimalInput(MessageConstants.GetProductPrice);
+            decimalInput = InventoryView.GetDecimalInput(UserPrompts.GetProductPrice);
             if (decimalInput == null)
             {
                 return;
@@ -67,7 +67,7 @@ public class InventoryController : IController
 
             if (!Validation.IsProductPriceValid(decimalInput.Value))
             {
-                InventoryView.DisplayMessage(MessageConstants.InvalidProductPrice);
+                InventoryView.DisplayMessage(ErrorMessages.InvalidProductPrice);
                 continue;
             }
 
@@ -79,7 +79,7 @@ public class InventoryController : IController
         int? integerInput;
         do
         {
-            integerInput = InventoryView.GetIntegerInput(MessageConstants.GetProductQuantity);
+            integerInput = InventoryView.GetIntegerInput(UserPrompts.GetProductQuantity);
             if (integerInput == null)
             {
                 return;
@@ -87,7 +87,7 @@ public class InventoryController : IController
 
             if (!Validation.IsProductPriceValid(integerInput.Value))
             {
-                InventoryView.DisplayMessage(MessageConstants.InvalidProductQuantity);
+                InventoryView.DisplayMessage(ErrorMessages.InvalidProductQuantity);
                 continue;
             }
 

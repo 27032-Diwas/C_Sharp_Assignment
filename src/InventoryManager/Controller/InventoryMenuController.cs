@@ -29,15 +29,15 @@ public class InventoryMenuController
     {
         while (true)
         {
-            MainMenuEnum choice = DisplayEnum.GetMenuChoice<MainMenuEnum>(MessageConstants.MainMenu);
+            MainMenuEnum choice = DisplayEnum.GetMenuChoice<MainMenuEnum>(HeaderMessages.MainMenu);
             InventoryView.ClearConsole();
             switch (choice)
             {
                 case MainMenuEnum.Exit:
-                    InventoryView.DisplayMessage(MessageConstants.ProcessEnded);
+                    InventoryView.DisplayMessage(SuccessMessages.ProcessEnded);
                     return;
                 case MainMenuEnum.AddProduct:
-                    InventoryView.DisplayMessage(MessageConstants.AddProduct);
+                    InventoryView.DisplayMessage(HeaderMessages.AddProduct);
                     this._inventoryController.AddProduct();
                     break;
                 case MainMenuEnum.ViewProducts:
@@ -49,7 +49,7 @@ public class InventoryMenuController
                 case MainMenuEnum.RemoveProduct:
                     break;
                 default:
-                    InventoryView.DisplayMessage(MessageConstants.InvalidOption);
+                    InventoryView.DisplayMessage(ErrorMessages.InvalidOption);
                     break;
             }
         }
