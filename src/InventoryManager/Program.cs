@@ -7,7 +7,6 @@ namespace InventoryManager;
 /// <summary>
 /// Entry point of the applications.
 /// </summary>
-/// 
 internal class Program
 {
     /// <summary>
