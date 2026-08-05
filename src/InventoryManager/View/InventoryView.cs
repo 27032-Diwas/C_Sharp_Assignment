@@ -133,7 +133,7 @@ public static class InventoryView
     /// <param name="products"> List of products. </param>
     public static void DisplayProducts(List<Product> products)
     {
-        ConsoleTable contactTable = new ConsoleTable("S.No", "Product Id", "Product Name", "Product Price", "Product Quantity");
+        ConsoleTable contactTable = new ("S.No", "Product Id", "Product Name", "Product Price", "Product Quantity");
         int i = 1;
         foreach (Product product in products)
         {

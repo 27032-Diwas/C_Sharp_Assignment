@@ -41,7 +41,7 @@ public class InventoryMenuController
                     this._inventoryController.AddProduct();
                     break;
                 case MainMenuEnum.ViewProducts:
-                    InventoryView.DisplayMessage(MessageConstants.ViewProducts);
+                    InventoryView.DisplayMessage(HeaderMessages.ViewProducts);
                     this._inventoryController.ViewAllProducts();
                     break;
                 case MainMenuEnum.UpdateProduct:
