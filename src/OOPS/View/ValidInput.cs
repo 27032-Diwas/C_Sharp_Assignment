@@ -39,7 +39,7 @@ public static class ValidInput
 
             if (isValidDimension)
             {
-                Console.WriteLine(MessageConstants.NegativeValue);
+                Console.WriteLine(MessageConstants.DimensionOutOfRange);
             }
         }
         while (isValidDimension);

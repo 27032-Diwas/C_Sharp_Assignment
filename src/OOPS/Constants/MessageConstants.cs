@@ -163,7 +163,7 @@ public static class MessageConstants
     /// <summary>
     /// Represents the message displayed when the account holder name is too short.
     /// </summary>
-    public const string NameTooShort = "NAME SHOULD CONTAIN AT LEAST 2 CHARACTERS AND CONTAINS ONE ALPHABETES!!!";
+    public const string NameTooShort = "Invalid name. Special characters such as @ # $ % & _ ! ? / and numbers are not allowed.";
 
     /// <summary>
     /// Represents the message displayed when the entered amount is negative.
@@ -174,6 +174,11 @@ public static class MessageConstants
     /// Represents the message displayed when an account is added successfully.
     /// </summary>
     public const string AccountAddedSuccessfully = "ACCOUNT ADDED SUCCESSFULLY!!!";
+
+    /// <summary>
+    /// Represents the message displayed when the entered dimension out of range.
+    /// </summary>
+    public static readonly string DimensionOutOfRange = $"DIMENSIONS SHOULD BE GREATER THAN ZERO AND LESS THAN {ShapeConfigurable.DimensionThreshold}!!!";
 
     /// <summary>
     /// Represents the message displayed when the account balance is less than the required minimum balance.

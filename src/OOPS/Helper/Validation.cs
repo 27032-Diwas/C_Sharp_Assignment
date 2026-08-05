@@ -35,7 +35,7 @@ public static class Validation
     /// <returns>
     /// True if the dimension is greater than zero; otherwise false.
     /// </returns>
-    public static bool IsValidDimension(double? dimension) => dimension > 0 && dimension < 100000;
+    public static bool IsValidDimension(double? dimension) => dimension > 0 && dimension < ShapeConfigurable.DimensionThreshold;
 
     /// <summary>
     /// Determines whether the specified MPIN is valid.
