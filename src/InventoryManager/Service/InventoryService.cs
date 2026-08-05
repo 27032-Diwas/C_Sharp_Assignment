@@ -96,12 +96,12 @@ public class InventoryService : IService
     {
         if (!Validation.IsProductPriceValid(productPrice))
         {
-            message = MessageConstants.InvalidProductPrice;
+            message = ErrorMessages.InvalidProductPrice;
             return;
         }
         else if (!Validation.IsProductQuantityValid(productQuantity))
         {
-            message = MessageConstants.InvalidProductQuantity;
+            message = ErrorMessages.InvalidProductQuantity;
             return;
         }
 
@@ -109,7 +109,7 @@ public class InventoryService : IService
         product.ProductQuantity = productQuantity;
 
         this._inventoryRepository.UpdateProduct(product);
-        message = MessageConstants.SuccessfulUpdateOfProduct;
+        message = SuccessMessages.SuccessfulUpdateOfProduct;
     }
 
     private static string GenerateProductId(ProductCategories category)
