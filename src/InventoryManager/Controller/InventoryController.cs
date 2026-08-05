@@ -121,7 +121,7 @@ public class InventoryController : IController
         decimal? decimalInput;
         do
         {
-            decimalInput = InventoryView.GetDecimalInput(MessageConstants.GetProductPrice);
+            decimalInput = InventoryView.GetDecimalInput(UserPrompts.GetProductPrice);
             if (decimalInput == null)
             {
                 return;
@@ -129,7 +129,7 @@ public class InventoryController : IController
 
             if (!Validation.IsProductPriceValid(decimalInput.Value))
             {
-                InventoryView.DisplayMessage(MessageConstants.InvalidProductPrice);
+                InventoryView.DisplayMessage(ErrorMessages.InvalidProductPrice);
                 continue;
             }
 
@@ -141,7 +141,7 @@ public class InventoryController : IController
         int? integerInput;
         do
         {
-            integerInput = InventoryView.GetIntegerInput(MessageConstants.GetProductQuantity);
+            integerInput = InventoryView.GetIntegerInput(UserPrompts.GetProductQuantity);
             if (integerInput == null)
             {
                 return;
@@ -149,7 +149,7 @@ public class InventoryController : IController
 
             if (!Validation.IsProductPriceValid(integerInput.Value))
             {
-                InventoryView.DisplayMessage(MessageConstants.InvalidProductQuantity);
+                InventoryView.DisplayMessage(ErrorMessages.InvalidProductQuantity);
                 continue;
             }
 
@@ -207,14 +207,14 @@ public class InventoryController : IController
             string? choice;
             do
             {
-                choice = InventoryView.GetStringInput(MessageConstants.GetYesOrNo);
+                choice = InventoryView.GetStringInput(UserPrompts.GetYesOrNo);
                 if (choice is null || choice.ToUpper().Equals("N"))
                 {
                     return null;
                 }
                 else if (!choice.ToUpper().Equals("Y"))
                 {
-                    Console.WriteLine(MessageConstants.InvalidOption);
+                    Console.WriteLine(ErrorMessages.InvalidOption);
                     continue;
                 }
 
@@ -226,7 +226,7 @@ public class InventoryController : IController
 
         do
         {
-            serialNo = InventoryView.GetIntegerInput($"{MessageConstants.SelectSerialNumber} [ 1 - {products.Count} ]");
+            serialNo = InventoryView.GetIntegerInput($"{UserPrompts.SelectSerialNumber} [ 1 - {products.Count} ]");
             if (serialNo is null)
             {
                 return null;
@@ -234,7 +234,7 @@ public class InventoryController : IController
 
             if (serialNo > products.Count || serialNo < 1)
             {
-                InventoryView.DisplayMessage($"{MessageConstants.InvalidSerialNumber} [ 1 - {products.Count} ]");
+                InventoryView.DisplayMessage($"{ErrorMessages.InvalidSerialNumber} [ 1 - {products.Count} ]");
                 continue;
             }
 
