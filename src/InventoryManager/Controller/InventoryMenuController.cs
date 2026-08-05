@@ -41,6 +41,8 @@ public class InventoryMenuController
                     this._inventoryController.AddProduct();
                     break;
                 case MainMenuEnum.ViewProducts:
+                    InventoryView.DisplayMessage(HeaderMessages.ViewProducts);
+                    this._inventoryController.ViewAllProducts();
                     break;
                 case MainMenuEnum.SearchProduct:
                     InventoryView.DisplayMessage(HeaderMessages.SearchProduct);
@@ -51,6 +53,8 @@ public class InventoryMenuController
                     this._inventoryController.UpdateProduct();
                     break;
                 case MainMenuEnum.RemoveProduct:
+                    InventoryView.DisplayMessage(HeaderMessages.DeleteProduct);
+                    this._inventoryController.RemoveProduct();
                     break;
                 default:
                     InventoryView.DisplayMessage(ErrorMessages.InvalidOption);
