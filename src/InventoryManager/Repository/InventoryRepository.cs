@@ -22,10 +22,7 @@ public class InventoryRepository : IRepository
     /// Gets all products from product list.
     /// </summary>
     /// <returns> List of all products. </returns>
-    public List<Product> GetAllProducts()
-    {
-        return new List<Product>();
-    }
+    public List<Product> GetAllProducts() => this._products.Select(product => product.Clone()).ToList();
 
     /// <summary>
     /// Removes product from the list.

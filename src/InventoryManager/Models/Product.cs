@@ -41,9 +41,9 @@ public class Product
     public int ProductQuantity { get; set; }
 
     /// <summary>
-    /// Clones the existing object.
+    /// Clones the existing instance.
     /// </summary>
-    /// <returns> Clone of the object. </returns>
+    /// <returns> Clone of the instance. </returns>
     public Product Clone() => new (this.ProductId, this.ProductName)
     {
         ProductPrice = this.ProductPrice,
