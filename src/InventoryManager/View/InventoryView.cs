@@ -128,7 +128,7 @@ public static class InventoryView
     }
 
     /// <summary>
-    /// Displays list of product as a table.
+    /// Displays list of products as a table.
     /// </summary>
     /// <param name="products"> List of products. </param>
     public static void DisplayProducts(List<Product> products)

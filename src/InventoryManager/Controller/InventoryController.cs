@@ -8,7 +8,7 @@ using InventoryManager.View;
 namespace InventoryManager.Controller;
 
 /// <summary>
-///  Get inputs and display outputs for add, view, update, delete, search, display product, get product details and get product id.
+///  Gets inputs and display outputs for add, view, update, delete, search, display product, get product details and get product id.
 /// </summary>
 public class InventoryController : IController
 {
@@ -105,6 +105,14 @@ public class InventoryController : IController
     /// </summary>
     public void RemoveProduct()
     {
+        Product? product = this.GetProduct();
+        if (product is null)
+        {
+            return;
+        }
+
+        this._inventoryService.RemoveProduct(product.ProductId, out string message);
+        InventoryView.DisplayMessage(message);
     }
 
     /// <summary>
@@ -152,5 +160,56 @@ public class InventoryController : IController
 
         InventoryView.DisplayProducts(products);
         return products;
+    }
+
+    private Product? GetProduct()
+    {
+        int? serialNo;
+        List<Product>? products = this.SearchProducts();
+        if (products is null)
+        {
+            return null;
+        }
+        else if (products.Count == 1)
+        {
+            string? choice;
+            do
+            {
+                choice = InventoryView.GetStringInput(UserPrompts.GetYesOrNo);
+                if (choice is null || choice.ToUpper().Equals("N"))
+                {
+                    return null;
+                }
+                else if (!choice.ToUpper().Equals("Y"))
+                {
+                    Console.WriteLine(ErrorMessages.InvalidOption);
+                    continue;
+                }
+
+                break;
+            }
+            while (true);
+            return products[0];
+        }
+
+        do
+        {
+            serialNo = InventoryView.GetIntegerInput($"{UserPrompts.SelectSerialNumber} [ 1 - {products.Count} ]");
+            if (serialNo is null)
+            {
+                return null;
+            }
+
+            if (serialNo > products.Count || serialNo < 1)
+            {
+                InventoryView.DisplayMessage($"{ErrorMessages.InvalidSerialNumber} [ 1 - {products.Count} ]");
+                continue;
+            }
+
+            break;
+        }
+        while (true);
+
+        return products[serialNo.Value - 1];
     }
 }

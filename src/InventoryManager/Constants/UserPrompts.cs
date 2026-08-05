@@ -34,4 +34,14 @@ public class UserPrompts
     /// Represents the message prompted to get word to search.
     /// </summary>
     public const string GetSearchWord = "Enter word to search";
+
+    /// <summary>
+    /// Represents the prompt requesting the user to enter the serial number.
+    /// </summary>
+    public const string SelectSerialNumber = "\nEnter a serial number";
+
+    /// <summary>
+    /// Represents the prompt requesting the user to select one of the available options.
+    /// </summary>
+    public const string GetYesOrNo = "\nDo you want to choose above option [Y/N]";
 }
