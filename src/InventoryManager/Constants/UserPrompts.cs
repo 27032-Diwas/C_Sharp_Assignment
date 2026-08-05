@@ -29,4 +29,9 @@ public class UserPrompts
     /// Represents the message prompted to get user input to exit current process.
     /// </summary>
     public const string ExitProcess = "or Exit to quit process: ";
+
+    /// <summary>
+    /// Represents the message prompted to get word to search.
+    /// </summary>
+    public const string GetSearchWord = "Enter word to search";
 }
