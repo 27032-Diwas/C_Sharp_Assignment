@@ -1,5 +1,5 @@
-﻿using OOPS.Constants;
-using OOPS.EnumConstants;
+﻿using System.Text.RegularExpressions;
+using OOPS.Constants;
 
 namespace OOPS.View;
 
@@ -9,14 +9,22 @@ namespace OOPS.View;
 public static class DisplayEnum
 {
     /// <summary>
-    /// Displays all values defined in the specified enumeration.
+    /// Displays all values defined in the specific enum values.
     /// </summary>
-    /// <param name="menuType"> The enumeration type to display. </param>
-    public static void DisplayMenu(Type menuType)
+    /// <typeparam name="T"> Type : enum </typeparam>
+    /// <param name="excluded"> Name of Enum </param>
+    public static void DisplayOptions<T>(params T[] excluded)
+        where T : Enum
     {
-        foreach (var value in Enum.GetValues(menuType))
+        foreach (T optionCategory in Enum.GetValues(typeof(T)))
         {
-            Console.WriteLine($"{Convert.ToInt32(value)}. {value}");
+            if (excluded.Contains(optionCategory))
+            {
+                continue;
+            }
+
+            string? displayName = Regex.Replace(optionCategory.ToString(), @"(?<!^)([A-Z])", " $1");
+            Console.WriteLine($"[{Convert.ToInt32(optionCategory)}] {displayName}");
         }
     }
 
@@ -34,10 +42,10 @@ public static class DisplayEnum
         while (true)
         {
             Console.WriteLine(message);
-            DisplayMenu(typeof(T));
-
+            DisplayOptions<T>();
             Console.WriteLine(MessageConstants.SelectOption);
-            if (Enum.TryParse(Console.ReadLine(), true, out T choice) &&
+            string input = string.Concat(Console.ReadLine()?.Where(c => !char.IsWhiteSpace(c)) ?? string.Empty);
+            if (Enum.TryParse(input, true, out T choice) &&
                 Enum.IsDefined(typeof(T), choice))
             {
                 return choice;

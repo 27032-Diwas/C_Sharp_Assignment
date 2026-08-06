@@ -26,7 +26,7 @@ public static class Validation
     /// <returns>
     /// True if the amount is greater than or equal to zero; otherwise false.
     /// </returns>
-    public static bool IsValidAmount(decimal? amount) => amount >= 0;
+    public static bool IsValidAmount(decimal? amount) => amount >= 0 && amount < BankConfigurable.AmountMaxThreshold;
 
     /// <summary>
     /// Determines whether the specified dimension value is valid.

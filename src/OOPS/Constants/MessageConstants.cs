@@ -166,14 +166,14 @@ public static class MessageConstants
     public const string NameTooShort = "Invalid name. Special characters such as @ # $ % & _ ! ? / and numbers are not allowed.";
 
     /// <summary>
-    /// Represents the message displayed when the entered amount is negative.
-    /// </summary>
-    public const string NegativeValue = "AMOUNT SHOULD NOT BE A NEGATIVE VALUE!!!";
-
-    /// <summary>
     /// Represents the message displayed when an account is added successfully.
     /// </summary>
     public const string AccountAddedSuccessfully = "ACCOUNT ADDED SUCCESSFULLY!!!";
+
+    /// <summary>
+    /// Represents the message displayed when the entered amount is negative.
+    /// </summary>
+    public static readonly string AmountOutOfRange = $"AMOUNT SHOULD BE GREATER THAN ZERO AND LESS THAN {BankConfigurable.AmountMaxThreshold}!!!";
 
     /// <summary>
     /// Represents the message displayed when the entered dimension out of range.

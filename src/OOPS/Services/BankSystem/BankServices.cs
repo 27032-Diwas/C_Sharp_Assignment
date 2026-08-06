@@ -44,7 +44,7 @@ public class BankServices
         }
         else if (!Validation.IsValidAmount(amount))
         {
-            return MessageConstants.NegativeValue;
+            return MessageConstants.AmountOutOfRange;
         }
         else if (!Validation.IsValidMpin(mpin))
         {

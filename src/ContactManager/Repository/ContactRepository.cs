@@ -124,11 +124,12 @@ public class ContactRepository
             ContactInfo contactCopy = new ()
             {
                 Id = contact.Id,
+                Name = contact.Name,
+                PhoneNumber = contact.PhoneNumber,
+                Email = contact.Email,
+                Notes = contact.Notes,
             };
-            contactCopy.Name = contact.Name;
-            contactCopy.PhoneNumber = contact.PhoneNumber;
-            contactCopy.Email = contact.Email;
-            contactCopy.Notes = contact.Notes;
+
             contactsCopy.Add(contactCopy);
         }
 

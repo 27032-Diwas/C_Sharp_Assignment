@@ -77,7 +77,7 @@ public static class ValidInput
 
             if (isValidAmount)
             {
-                Console.WriteLine(MessageConstants.NegativeValue);
+                Console.WriteLine(MessageConstants.AmountOutOfRange);
             }
         }
         while (isValidAmount);

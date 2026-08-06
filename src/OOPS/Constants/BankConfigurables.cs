@@ -14,4 +14,9 @@ public static class BankConfigurable
     /// Minimum threshold for checking account.
     /// </summary>
     public const decimal CheckingAccountMinimumThreshold = -50000;
+
+    /// <summary>
+    /// Max threshold for amount.
+    /// </summary>
+    public const decimal AmountMaxThreshold = 10000000;
 }
