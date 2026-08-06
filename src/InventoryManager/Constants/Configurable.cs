@@ -1,9 +1,9 @@
 ﻿namespace InventoryManager.Constants;
 
 /// <summary>
-/// Contains all configurables.
+/// Contains all configurable.
 /// </summary>
-public class Configurables
+public class Configurable
 {
     /// <summary>
     /// Represents the maximum price of product.

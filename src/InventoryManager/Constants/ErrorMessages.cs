@@ -38,10 +38,10 @@ public class ErrorMessages
     /// <summary>
     /// Represents the message displayed when the user enter an invalid product price.
     /// </summary>
-    public static readonly string InvalidProductPrice = $"PRODUCT PRICE SHOULD BE GREATER THAN ZERO && LESS THAN {Configurables.MaxPriceThreshold}!!";
+    public static readonly string InvalidProductPrice = $"PRODUCT PRICE SHOULD BE GREATER THAN ZERO && LESS THAN {Configurable.MaxPriceThreshold}!!";
 
     /// <summary>
     /// Represents the message displayed when the user enter an invalid product quantity.
     /// </summary>
-    public static readonly string InvalidProductQuantity = $"PRODUCT QUANTITY SHOULD BE GREATER THAN ZERO && LESS THAN {Configurables.MaxQuantityThreshold}!!";
+    public static readonly string InvalidProductQuantity = $"PRODUCT QUANTITY SHOULD BE GREATER THAN ZERO && LESS THAN {Configurable.MaxQuantityThreshold}!!";
 }

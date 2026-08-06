@@ -21,12 +21,12 @@ public static class Validation
     /// </summary>
     /// <param name="productPrice"> The product price to validate. </param>
     /// <returns> True if the product price is greater than or equal to zero; otherwise false. </returns>
-    public static bool IsProductPriceValid(decimal productPrice) => productPrice >= 0 && productPrice < Configurables.MaxPriceThreshold;
+    public static bool IsProductPriceValid(decimal productPrice) => productPrice >= 0 && productPrice < Configurable.MaxPriceThreshold;
 
     /// <summary>
     /// Determine whether the specified product quantity is valid.
     /// </summary>
     /// <param name="productQuantity"> The product quantity to validate.</param>
     /// <returns> True if the product quantity is greater than or equal to zero; otherwise false. </returns>
-    public static bool IsProductQuantityValid(int productQuantity) => productQuantity >= 0 && productQuantity < Configurables.MaxQuantityThreshold;
+    public static bool IsProductQuantityValid(int productQuantity) => productQuantity >= 0 && productQuantity < Configurable.MaxQuantityThreshold;
 }

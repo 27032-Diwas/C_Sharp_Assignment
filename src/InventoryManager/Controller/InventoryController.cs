@@ -8,7 +8,7 @@ using InventoryManager.View;
 namespace InventoryManager.Controller;
 
 /// <summary>
-///  Gets inputs and display outputs for add, view, update, delete, search and display product.
+///  Get inputs and display outputs for add, view, update, delete, search and display product.
 /// </summary>
 public class InventoryController : IController
 {
@@ -17,7 +17,7 @@ public class InventoryController : IController
     /// <summary>
     /// Initializes a new instance of the <see cref="InventoryController"/> class.
     /// </summary>
-    /// <param name="inventoryService"> Instance of inventory service </param>
+    /// <param name="inventoryService"> Instance of inventory service. </param>
     public InventoryController(IService inventoryService)
     {
         this._inventoryService = inventoryService;
