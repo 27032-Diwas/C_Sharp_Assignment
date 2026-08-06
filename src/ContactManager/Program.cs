@@ -19,8 +19,8 @@ internal class Program
     public static void Main()
     {
         ContactRepository contactRepository = new ();
-        ContactController contactController = new (contactRepository);
-        ConsoleOperations consoleOperations = new (contactController);
+        ContactController contactController = new ContactController(contactRepository);
+        ConsoleOperations consoleOperations = new ConsoleOperations(contactController);
 
         consoleOperations.MenuInfo();
     }
