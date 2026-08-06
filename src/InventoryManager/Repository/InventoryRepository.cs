@@ -47,11 +47,11 @@ public class InventoryRepository : IRepository
     /// <returns> List of products that match the search word. </returns>
     public List<Product> SearchProduct(string searchWord) => this._products
                                                             .Where(product =>
-                                                                product.ProductId.Contains(searchWord, StringComparison.OrdinalIgnoreCase) ||
-                                                                product.ProductName.Contains(searchWord, StringComparison.OrdinalIgnoreCase))
-                                                                .OrderBy(product => product.ProductId)
-                                                                .Select(product => product.Clone())
-                                                                .ToList();
+                                                            product.ProductId.Contains(searchWord, StringComparison.OrdinalIgnoreCase) ||
+                                                            product.ProductName.Contains(searchWord, StringComparison.OrdinalIgnoreCase))
+                                                            .OrderBy(product => product.ProductId)
+                                                            .Select(product => product.Clone())
+                                                            .ToList();
 
     /// <summary>
     /// Update the details of product in the product list.

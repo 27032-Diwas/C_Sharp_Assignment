@@ -71,8 +71,7 @@ public static class InventoryView
             string? userInput = Console.ReadLine();
             if (string.IsNullOrEmpty(userInput))
             {
-                Console.WriteLine(ErrorMessages.InvalidDigit);
-                continue;
+                return 0;
             }
 
             if (userInput.ToUpper().Equals(HeaderMessages.Exit))
@@ -106,8 +105,7 @@ public static class InventoryView
             string? userInput = Console.ReadLine();
             if (string.IsNullOrEmpty(userInput))
             {
-                Console.WriteLine(ErrorMessages.InvalidDigit);
-                continue;
+                return 0;
             }
 
             if (userInput.ToUpper().Equals(HeaderMessages.Exit))
@@ -141,5 +139,15 @@ public static class InventoryView
         }
 
         contactTable.Write();
+    }
+
+    /// <summary>
+    /// Waits for the user to press a key and then clears the console.
+    /// </summary>
+    public static void GetAnyKey()
+    {
+        Console.WriteLine($"\n{UserPrompts.GetAnyKey}");
+        Console.ReadKey();
+        Console.Clear();
     }
 }

@@ -1,4 +1,5 @@
-﻿using InventoryManager.Constants;
+﻿using System.Text.RegularExpressions;
+using InventoryManager.Constants;
 
 namespace InventoryManager.View;
 
@@ -8,14 +9,22 @@ namespace InventoryManager.View;
 public class DisplayEnum
 {
     /// <summary>
-    /// Displays all values defined in the specified enumeration.
+    /// Displays all values defined in the specific enum values.
     /// </summary>
-    /// <param name="menuType"> The enumeration type to display. </param>
-    public static void DisplayMenu(Type menuType)
+    /// <typeparam name="T"> Type : enum </typeparam>
+    /// <param name="excluded"> Name of Enum </param>
+    public static void DisplayOptions<T>(params T[] excluded)
+        where T : Enum
     {
-        foreach (var value in Enum.GetValues(menuType))
+        foreach (T optionCategory in Enum.GetValues(typeof(T)))
         {
-            Console.WriteLine($"{Convert.ToInt32(value)}. {value}");
+            if (excluded.Contains(optionCategory))
+            {
+                continue;
+            }
+
+            string? displayName = Regex.Replace(optionCategory.ToString(), @"(?<!^)([A-Z])", " $1");
+            Console.WriteLine($"[{Convert.ToInt32(optionCategory)}] {displayName}");
         }
     }
 
@@ -32,18 +41,18 @@ public class DisplayEnum
     {
         while (true)
         {
-            Console.WriteLine(message);
-            DisplayMenu(typeof(T));
-
-            Console.WriteLine(UserPrompts.SelectOption);
-            if (Enum.TryParse(Console.ReadLine(), true, out T choice) &&
+            Console.WriteLine($"{message}\n");
+            DisplayOptions<T>();
+            Console.WriteLine($"\n{UserPrompts.SelectOption}");
+            string input = string.Concat(Console.ReadLine()?.Where(c => !char.IsWhiteSpace(c)) ?? string.Empty);
+            if (Enum.TryParse(input, true, out T choice) &&
                 Enum.IsDefined(typeof(T), choice))
             {
                 return choice;
             }
 
             Console.Clear();
-            Console.WriteLine(ErrorMessages.InvalidOption);
+            Console.WriteLine($"{ErrorMessages.InvalidOption}\n");
         }
     }
 }

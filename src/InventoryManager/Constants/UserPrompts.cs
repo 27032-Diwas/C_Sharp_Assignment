@@ -38,10 +38,15 @@ public class UserPrompts
     /// <summary>
     /// Represents the prompt requesting the user to enter the serial number.
     /// </summary>
-    public const string SelectSerialNumber = "\nEnter a serial number";
+    public const string SelectSerialNumber = "Enter a serial number";
 
     /// <summary>
     /// Represents the prompt requesting the user to select one of the available options.
     /// </summary>
-    public const string GetYesOrNo = "\nDo you want to choose above product [Y/N]";
+    public const string GetYesOrNo = "Do you want to choose above product [Y/N]";
+
+    /// <summary>
+    /// Represents the prompt requesting the user to press any key to continue.
+    /// </summary>
+    public const string GetAnyKey = "PRESS ANY KEY TO CONTINUE!!";
 }

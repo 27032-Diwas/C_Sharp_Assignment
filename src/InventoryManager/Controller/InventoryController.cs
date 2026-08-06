@@ -36,16 +36,16 @@ public class InventoryController : IController
 
         InventoryView.ClearConsole();
 
-        string? userInput;
+        string? productName;
         do
         {
-            userInput = InventoryView.GetStringInput(UserPrompts.GetProductName);
-            if (userInput == null)
+            productName = InventoryView.GetStringInput(UserPrompts.GetProductName);
+            if (productName == null)
             {
                 return;
             }
 
-            if (!Validation.IsProductNameValid(userInput))
+            if (!Validation.IsProductNameValid(productName))
             {
                 InventoryView.DisplayMessage(ErrorMessages.InvalidProductName);
                 continue;
@@ -54,48 +54,20 @@ public class InventoryController : IController
             break;
         }
         while (true);
-        string productName = userInput;
 
-        decimal? decimalInput;
-        do
+        decimal? productPrice = this.GetProductPrice();
+        if (productPrice is null)
         {
-            decimalInput = InventoryView.GetDecimalInput(UserPrompts.GetProductPrice);
-            if (decimalInput == null)
-            {
-                return;
-            }
-
-            if (!Validation.IsProductPriceValid(decimalInput.Value))
-            {
-                InventoryView.DisplayMessage(ErrorMessages.InvalidProductPrice);
-                continue;
-            }
-
-            break;
+            return;
         }
-        while (true);
-        decimal productPrice = decimalInput.Value;
 
-        int? integerInput;
-        do
+        int? productQuantity = this.GetProductQuantity();
+        if (productQuantity is null)
         {
-            integerInput = InventoryView.GetIntegerInput(UserPrompts.GetProductQuantity);
-            if (integerInput == null)
-            {
-                return;
-            }
-
-            if (!Validation.IsProductPriceValid(integerInput.Value))
-            {
-                InventoryView.DisplayMessage(ErrorMessages.InvalidProductQuantity);
-                continue;
-            }
-
-            break;
+            return;
         }
-        while (true);
-        int productQuantity = integerInput.Value;
-        this._inventoryService.AddProduct(productName, productCategory, productPrice, productQuantity, out string message);
+
+        this._inventoryService.AddProduct(productName, productCategory, productPrice.Value, productQuantity.Value, out string message);
         InventoryView.ClearConsole();
         InventoryView.DisplayMessage(message);
     }
@@ -112,6 +84,7 @@ public class InventoryController : IController
         }
 
         this._inventoryService.RemoveProduct(product.ProductId, out string message);
+        InventoryView.ClearConsole();
         InventoryView.DisplayMessage(message);
     }
 
@@ -126,47 +99,20 @@ public class InventoryController : IController
             return;
         }
 
-        decimal? decimalInput;
-        do
+        decimal? productPrice = this.GetProductPrice();
+        if (productPrice is null)
         {
-            decimalInput = InventoryView.GetDecimalInput(UserPrompts.GetProductPrice);
-            if (decimalInput == null)
-            {
-                return;
-            }
-
-            if (!Validation.IsProductPriceValid(decimalInput.Value))
-            {
-                InventoryView.DisplayMessage(ErrorMessages.InvalidProductPrice);
-                continue;
-            }
-
-            break;
+            return;
         }
-        while (true);
-        decimal productPrice = decimalInput.Value;
 
-        int? integerInput;
-        do
+        int? productQuantity = this.GetProductQuantity();
+        if (productQuantity is null)
         {
-            integerInput = InventoryView.GetIntegerInput(UserPrompts.GetProductQuantity);
-            if (integerInput == null)
-            {
-                return;
-            }
-
-            if (!Validation.IsProductPriceValid(integerInput.Value))
-            {
-                InventoryView.DisplayMessage(ErrorMessages.InvalidProductQuantity);
-                continue;
-            }
-
-            break;
+            return;
         }
-        while (true);
-        int productQuantity = integerInput.Value;
 
-        this._inventoryService.UpdateProduct(product, productPrice, productQuantity, out string message);
+        this._inventoryService.UpdateProduct(product, productPrice.Value, productQuantity.Value, out string message);
+        InventoryView.ClearConsole();
         InventoryView.DisplayMessage(message);
     }
 
@@ -178,7 +124,7 @@ public class InventoryController : IController
         List<Product> products = this._inventoryService.GetAllProducts();
         if (!products.Any())
         {
-            InventoryView.DisplayMessage(ErrorMessages.EmptyList);
+            InventoryView.DisplayMessage($"{ErrorMessages.EmptyList}");
             return;
         }
 
@@ -202,7 +148,7 @@ public class InventoryController : IController
         List<Product> products = this._inventoryService.SearchProducts(searchWord);
         if (!products.Any())
         {
-            InventoryView.DisplayMessage(ErrorMessages.EmptyList);
+            InventoryView.DisplayMessage($"\n{ErrorMessages.EmptyList}");
             return null;
         }
 
@@ -210,6 +156,10 @@ public class InventoryController : IController
         return products;
     }
 
+    /// <summary>
+    /// Gets instance of product to update or delete.
+    /// </summary>
+    /// <returns> Instance of product. </returns>
     private Product? GetProduct()
     {
         int? serialNo;
@@ -228,7 +178,7 @@ public class InventoryController : IController
                 {
                     return null;
                 }
-                else if (!choice.ToUpper().Equals("Y"))
+                else if (!choice.ToUpper().Equals("Y") || !choice.ToUpper().Equals("YES"))
                 {
                     Console.WriteLine(ErrorMessages.InvalidOption);
                     continue;
@@ -257,7 +207,60 @@ public class InventoryController : IController
             break;
         }
         while (true);
-
         return products[serialNo.Value - 1];
+    }
+
+    /// <summary>
+    /// Gets price of the product.
+    /// </summary>
+    /// <returns> Price of the product. </returns>
+    private decimal? GetProductPrice()
+    {
+        decimal? decimalInput;
+        do
+        {
+            decimalInput = InventoryView.GetDecimalInput(UserPrompts.GetProductPrice);
+            if (decimalInput == null)
+            {
+                return null;
+            }
+
+            if (!Validation.IsProductPriceValid(decimalInput.Value))
+            {
+                InventoryView.DisplayMessage(ErrorMessages.InvalidProductPrice);
+                continue;
+            }
+
+            break;
+        }
+        while (true);
+        return decimalInput;
+    }
+
+    /// <summary>
+    /// Gets quantity of the product.
+    /// </summary>
+    /// <returns> Quantity of the product. </returns>
+    private int? GetProductQuantity()
+    {
+        int? integerInput;
+        do
+        {
+            integerInput = InventoryView.GetIntegerInput(UserPrompts.GetProductQuantity);
+            if (integerInput == null)
+            {
+                return null;
+            }
+
+            if (!Validation.IsProductPriceValid(integerInput.Value))
+            {
+                InventoryView.DisplayMessage(ErrorMessages.InvalidProductQuantity);
+                continue;
+            }
+
+            break;
+        }
+        while (true);
+        return integerInput;
     }
 }
