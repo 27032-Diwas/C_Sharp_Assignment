@@ -60,7 +60,7 @@ public class InventoryService : IService
     }
 
     /// <summary>
-    /// Returns list of all products from product list.
+    /// Gets list of all products from product list.
     /// </summary>
     /// <returns> List containing all products. </returns>
     public List<Product> GetAllProducts() => this._inventoryRepository.GetAllProducts();
@@ -110,6 +110,11 @@ public class InventoryService : IService
         message = SuccessMessages.SuccessfulUpdateOfProduct;
     }
 
+    /// <summary>
+    /// Generates product id based on category and count.
+    /// </summary>
+    /// <param name="category"> Category of the product. </param>
+    /// <returns> Id of the product. </returns>
     private static string GenerateProductId(ProductCategories category)
     {
         string productIdPrefix = "Misc";

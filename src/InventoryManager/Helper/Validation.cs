@@ -20,7 +20,7 @@ public static class Validation
     /// Determines whether the specified product price is valid.
     /// </summary>
     /// <param name="productPrice"> The product price to validate. </param>
-    /// <returns> True if the product price is greater than zero; otherwise false. </returns>
+    /// <returns> True if the product price is greater than or equal to zero; otherwise false. </returns>
     public static bool IsProductPriceValid(decimal productPrice) => productPrice >= 0 && productPrice < Configurables.MaxPriceThreshold;
 
     /// <summary>

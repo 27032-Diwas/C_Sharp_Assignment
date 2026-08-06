@@ -3,12 +3,12 @@
 namespace InventoryManager.Repository;
 
 /// <summary>
-/// Interface for repository containing add, view, update, delete and search methods.
+/// Interface for repository containing add, view, update, delete and search operations.
 /// </summary>
 public interface IRepository
 {
     /// <summary>
-    /// Add product to the product list.
+    /// Adds product to the product list.
     /// </summary>
     /// <param name="product"> Instance of product. </param>
     public void AddProduct(Product product);

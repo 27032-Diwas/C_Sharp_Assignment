@@ -8,7 +8,7 @@ using InventoryManager.View;
 namespace InventoryManager.Controller;
 
 /// <summary>
-///  Gets inputs and display outputs for add, view, update, delete, search, display product, get product details and get product id.
+///  Gets inputs and display outputs for add, view, update, delete, search and display product.
 /// </summary>
 public class InventoryController : IController
 {
@@ -29,7 +29,7 @@ public class InventoryController : IController
     public void AddProduct()
     {
         ProductCategories productCategory = DisplayEnum.GetMenuChoice<ProductCategories>(HeaderMessages.ProductCategories);
-        if (productCategory == ProductCategories.Exit)
+        if (productCategory is ProductCategories.Exit)
         {
             return;
         }
@@ -40,7 +40,7 @@ public class InventoryController : IController
         do
         {
             productName = InventoryView.GetStringInput(UserPrompts.GetProductName);
-            if (productName == null)
+            if (productName is null)
             {
                 return;
             }
@@ -55,13 +55,13 @@ public class InventoryController : IController
         }
         while (true);
 
-        decimal? productPrice = this.GetProductPrice();
+        decimal? productPrice = GetProductPrice();
         if (productPrice is null)
         {
             return;
         }
 
-        int? productQuantity = this.GetProductQuantity();
+        int? productQuantity = GetProductQuantity();
         if (productQuantity is null)
         {
             return;
@@ -99,13 +99,13 @@ public class InventoryController : IController
             return;
         }
 
-        decimal? productPrice = this.GetProductPrice();
+        decimal? productPrice = GetProductPrice();
         if (productPrice is null)
         {
             return;
         }
 
-        int? productQuantity = this.GetProductQuantity();
+        int? productQuantity = GetProductQuantity();
         if (productQuantity is null)
         {
             return;
@@ -138,7 +138,7 @@ public class InventoryController : IController
     public List<Product>? SearchProducts()
     {
         string? userInput = InventoryView.GetStringInput(UserPrompts.GetSearchWord);
-        if (userInput == null)
+        if (userInput is null)
         {
             return null;
         }
@@ -154,6 +154,60 @@ public class InventoryController : IController
 
         InventoryView.DisplayProducts(products);
         return products;
+    }
+
+    /// <summary>
+    /// Gets price of the product.
+    /// </summary>
+    /// <returns> Price of the product. </returns>
+    private static decimal? GetProductPrice()
+    {
+        decimal? decimalInput;
+        do
+        {
+            decimalInput = InventoryView.GetDecimalInput(UserPrompts.GetProductPrice);
+            if (decimalInput is null)
+            {
+                return null;
+            }
+
+            if (!Validation.IsProductPriceValid(decimalInput.Value))
+            {
+                InventoryView.DisplayMessage(ErrorMessages.InvalidProductPrice);
+                continue;
+            }
+
+            break;
+        }
+        while (true);
+        return decimalInput;
+    }
+
+    /// <summary>
+    /// Gets quantity of the product.
+    /// </summary>
+    /// <returns> Quantity of the product. </returns>
+    private static int? GetProductQuantity()
+    {
+        int? integerInput;
+        do
+        {
+            integerInput = InventoryView.GetIntegerInput(UserPrompts.GetProductQuantity);
+            if (integerInput is null)
+            {
+                return null;
+            }
+
+            if (!Validation.IsProductPriceValid(integerInput.Value))
+            {
+                InventoryView.DisplayMessage(ErrorMessages.InvalidProductQuantity);
+                continue;
+            }
+
+            break;
+        }
+        while (true);
+        return integerInput;
     }
 
     /// <summary>
@@ -174,7 +228,7 @@ public class InventoryController : IController
             do
             {
                 choice = InventoryView.GetStringInput(UserPrompts.GetYesOrNo);
-                if (choice is null || choice.ToUpper().Equals("N"))
+                if (choice is null || choice.ToUpper().Equals("N") || choice.ToUpper().Equals("NO"))
                 {
                     return null;
                 }
@@ -208,59 +262,5 @@ public class InventoryController : IController
         }
         while (true);
         return products[serialNo.Value - 1];
-    }
-
-    /// <summary>
-    /// Gets price of the product.
-    /// </summary>
-    /// <returns> Price of the product. </returns>
-    private decimal? GetProductPrice()
-    {
-        decimal? decimalInput;
-        do
-        {
-            decimalInput = InventoryView.GetDecimalInput(UserPrompts.GetProductPrice);
-            if (decimalInput == null)
-            {
-                return null;
-            }
-
-            if (!Validation.IsProductPriceValid(decimalInput.Value))
-            {
-                InventoryView.DisplayMessage(ErrorMessages.InvalidProductPrice);
-                continue;
-            }
-
-            break;
-        }
-        while (true);
-        return decimalInput;
-    }
-
-    /// <summary>
-    /// Gets quantity of the product.
-    /// </summary>
-    /// <returns> Quantity of the product. </returns>
-    private int? GetProductQuantity()
-    {
-        int? integerInput;
-        do
-        {
-            integerInput = InventoryView.GetIntegerInput(UserPrompts.GetProductQuantity);
-            if (integerInput == null)
-            {
-                return null;
-            }
-
-            if (!Validation.IsProductPriceValid(integerInput.Value))
-            {
-                InventoryView.DisplayMessage(ErrorMessages.InvalidProductQuantity);
-                continue;
-            }
-
-            break;
-        }
-        while (true);
-        return integerInput;
     }
 }

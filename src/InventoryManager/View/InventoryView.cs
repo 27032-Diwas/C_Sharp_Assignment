@@ -6,7 +6,7 @@ using InventoryManager.Models;
 namespace InventoryManager.View;
 
 /// <summary>
-/// Display messages to user and get input from user.
+/// Display messages to user and gets input from user.
 /// </summary>
 public static class InventoryView
 {
@@ -19,7 +19,7 @@ public static class InventoryView
     }
 
     /// <summary>
-    /// Display the string passed as a parameter.
+    /// Displays the string passed as a parameter.
     /// </summary>
     /// <param name="message"> Message that needs to be displayed. </param>
     public static void DisplayMessage(string message)
@@ -58,7 +58,7 @@ public static class InventoryView
     }
 
     /// <summary>
-    /// Gets input from user which is a number and not null or empty.
+    /// Gets input from user which is a valid number.
     /// </summary>
     /// <param name="prompt"> Message that needs to be displayed. </param>
     /// <returns> Null if user chooses to exit process; otherwise user input. </returns>
@@ -92,7 +92,7 @@ public static class InventoryView
     }
 
     /// <summary>
-    /// Gest input from user which is a number and not null or empty.
+    /// Gest input from user which is a valid integer.
     /// </summary>
     /// <param name="prompt"> Message that needs to be displayed. </param>
     /// <returns> Null if user chooses to exit process; otherwise user input. </returns>
