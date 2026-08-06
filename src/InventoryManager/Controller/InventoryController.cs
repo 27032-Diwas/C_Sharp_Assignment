@@ -178,7 +178,7 @@ public class InventoryController : IController
                 {
                     return null;
                 }
-                else if (!choice.ToUpper().Equals("Y") || !choice.ToUpper().Equals("YES"))
+                else if (!(choice.ToUpper().Equals("Y") || choice.ToUpper().Equals("YES")))
                 {
                     Console.WriteLine(ErrorMessages.InvalidOption);
                     continue;

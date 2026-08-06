@@ -6,9 +6,8 @@
 public static class RegexPatterns
 {
     /// <summary>
-    /// Product name should start with a letter or number.
-    /// Middle portion can be letter, number and symbols.
-    /// Product name should end with a letter or number.
+    /// Product name should be with in 1 - 50 letters.
+    /// Can contains space and symbols.
     /// </summary>
-    public const string ProductNameRegex = @"^(?=.*[A-Za-z])[A-Za-z0-9\s'-]{2,20}$";
+    public const string ProductNameRegex = @"^(?=.{1,50}$)(?=.*[A-Za-z])[A-Za-z0-9\s\-_&/().+#]*$";
 }

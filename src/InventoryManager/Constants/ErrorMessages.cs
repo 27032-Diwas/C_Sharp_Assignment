@@ -18,7 +18,7 @@ public class ErrorMessages
     /// <summary>
     /// Represents the message displayed when the user enter an invalid product name.
     /// </summary>
-    public const string InvalidProductName = "ENTER A VALID NAME!!";
+    public const string InvalidProductName = "Invalid Product Name!! Only letters, numbers, spaces, and allowed symbols are permitted.";
 
     /// <summary>
     /// Represents the message displayed when the user enters an invalid option.
