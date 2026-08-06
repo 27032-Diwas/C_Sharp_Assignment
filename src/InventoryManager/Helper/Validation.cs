@@ -12,7 +12,7 @@ public static class Validation
     /// Determines whether the specified product name is valid.
     /// </summary>
     /// <param name="productName"> The product name to validate. </param>
-    /// <returns> True if the name contains at least two characters and matches the required pattern; otherwise false. </returns>
+    /// <returns> True if the name matches the required pattern; otherwise false. </returns>
     public static bool IsProductNameValid(string productName) => !string.IsNullOrEmpty(productName)
                                                           && Regex.IsMatch(productName, RegexPatterns.ProductNameRegex);
 
