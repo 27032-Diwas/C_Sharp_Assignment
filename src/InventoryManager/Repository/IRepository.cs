@@ -16,8 +16,8 @@ public interface IRepository
     /// <summary>
     /// Removes product from the product list.
     /// </summary>
-    /// <param name="product"> Instance the product. </param>
-    public void RemoveProduct(Product product);
+    /// <param name="productId"> Id of the product. </param>
+    public void RemoveProduct(string productId);
 
     /// <summary>
     /// Update product in product list.

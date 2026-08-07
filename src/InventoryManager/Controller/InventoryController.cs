@@ -83,7 +83,7 @@ public class InventoryController : IController
             return;
         }
 
-        this._inventoryService.RemoveProduct(product, out string message);
+        this._inventoryService.RemoveProduct(product.ProductId, out string message);
         InventoryView.ClearConsole();
         InventoryView.DisplayMessage(message);
     }
@@ -234,7 +234,7 @@ public class InventoryController : IController
                 }
                 else if (!(choice.ToUpper().Equals("Y") || choice.ToUpper().Equals("YES")))
                 {
-                    Console.WriteLine(ErrorMessages.InvalidOption);
+                    InventoryView.DisplayMessage(ErrorMessages.InvalidOption);
                     continue;
                 }
 

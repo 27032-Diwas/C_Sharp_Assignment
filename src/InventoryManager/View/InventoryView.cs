@@ -39,7 +39,7 @@ public static class InventoryView
         {
             Console.WriteLine($"{prompt} {UserPrompts.ExitProcess}");
             userInput = Console.ReadLine();
-            if (string.IsNullOrEmpty(userInput))
+            if (string.IsNullOrWhiteSpace(userInput))
             {
                 Console.WriteLine(ErrorMessages.InvalidString);
                 continue;
@@ -62,7 +62,6 @@ public static class InventoryView
     /// <returns> Null if user chooses to exit process; otherwise user input. </returns>
     public static decimal? GetDecimalInput(string prompt)
     {
-        decimal decimalInput;
         do
         {
             Console.WriteLine($"{prompt} {UserPrompts.ExitProcess}");
@@ -78,7 +77,7 @@ public static class InventoryView
                 return null;
             }
 
-            if (!decimal.TryParse(userInput, out decimalInput))
+            if (!decimal.TryParse(userInput, out decimal decimalInput))
             {
                 Console.WriteLine(ErrorMessages.InvalidDigit);
                 continue;
@@ -96,7 +95,6 @@ public static class InventoryView
     /// <returns> Null if user chooses to exit process; otherwise user input. </returns>
     public static long? GetLongInput(string prompt)
     {
-        long longInput;
         do
         {
             Console.WriteLine($"{prompt} {UserPrompts.ExitProcess}");
@@ -112,7 +110,7 @@ public static class InventoryView
                 return null;
             }
 
-            if (!long.TryParse(userInput, out longInput))
+            if (!long.TryParse(userInput, out long longInput))
             {
                 Console.WriteLine(ErrorMessages.InvalidDigit);
                 continue;

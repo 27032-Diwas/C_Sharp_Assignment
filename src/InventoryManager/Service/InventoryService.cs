@@ -68,11 +68,11 @@ public class InventoryService : IService
     /// <summary>
     /// Removes product from product list.
     /// </summary>
-    /// <param name="product"> Instance of the product that needs to be removed. </param>
+    /// <param name="productId"> Id of the product that needs to be removed. </param>
     /// <param name="message"> A message indicating the result of the product removal operation. </param>
-    public void RemoveProduct(Product product, out string message)
+    public void RemoveProduct(string productId, out string message)
     {
-        this._inventoryRepository.RemoveProduct(product);
+        this._inventoryRepository.RemoveProduct(productId);
         message = SuccessMessages.SuccessfulRemovalOfProduct;
     }
 
@@ -87,7 +87,7 @@ public class InventoryService : IService
     /// Updates new value to existing list.
     /// </summary>
     /// <param name="product"> Instance of product. </param>
-    /// /// <param name="productPrice"> Updated price of product. </param>
+    /// <param name="productPrice"> Updated price of product. </param>
     /// <param name="productQuantity"> Updated quantity of the product. </param>
     /// <param name="message"> A message indicating the result of product updating operation. </param>
     public void UpdateProduct(Product product, decimal productPrice, long productQuantity, out string message)

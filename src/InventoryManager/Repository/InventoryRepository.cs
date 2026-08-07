@@ -7,7 +7,7 @@ namespace InventoryManager.Repository;
 /// </summary>
 public class InventoryRepository : IRepository
 {
-    private List<Product> _products = new ();
+    private readonly List<Product> _products = new ();
 
     /// <summary>
     /// Add product to the list.
@@ -22,13 +22,25 @@ public class InventoryRepository : IRepository
     /// Gets all products from product list.
     /// </summary>
     /// <returns> List of all products. </returns>
-    public List<Product> GetAllProducts() => new (this._products);
+    public List<Product> GetAllProducts() => this._products.OrderBy(product => product.ProductId)
+                                                           .Select(product => product.Clone())
+                                                           .ToList();
 
     /// <summary>
     /// Removes product from the list.
     /// </summary>
-    /// <param name="product"> Instance of product. </param>
-    public void RemoveProduct(Product product) => this._products.Remove(product);
+    /// <param name="productId"> Id of the product. </param>
+    public void RemoveProduct(string productId)
+    {
+        foreach (Product product in this._products)
+        {
+            if (product.ProductId.Equals(productId))
+            {
+                this._products.Remove(product);
+                break;
+            }
+        }
+    }
 
     /// <summary>
     /// Search product in list based on search word entered by user.

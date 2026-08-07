@@ -21,9 +21,9 @@ public interface IService
     /// <summary>
     /// Removes product from the list.
     /// </summary>
-    /// <param name="product"> Instance of the product that needs to be removed. </param>
+    /// <param name="productId"> Id of the product that needs to be removed. </param>
     /// <param name="message"> Success or error message. </param>
-    public void RemoveProduct(Product product, out string message);
+    public void RemoveProduct(string productId, out string message);
 
     /// <summary>
     /// Updates product with new data.
