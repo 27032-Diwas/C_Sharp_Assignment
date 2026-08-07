@@ -7,7 +7,19 @@ namespace InventoryManager.Repository;
 /// </summary>
 public class InventoryRepository : IRepository
 {
-    private readonly List<Product> _products = new ();
+    private readonly IRead _readRepository;
+    private readonly IWrite _writeRepository;
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="InventoryRepository"/> class.
+    /// </summary>
+    /// <param name="read"> Instance for read repository. </param>
+    /// <param name="write"> Instance for write repository. </param>
+    public InventoryRepository(IRead read, IWrite write)
+    {
+        this._readRepository = read;
+        this._writeRepository = write;
+    }
 
     /// <summary>
     /// Add product to the list.
@@ -15,14 +27,16 @@ public class InventoryRepository : IRepository
     /// <param name="product"> Instance of product. </param>
     public void AddProduct(Product product)
     {
-        this._products.Add(product);
+        List<Product> products = this._readRepository.ReadProducts();
+        products.Add(product);
+        this._writeRepository.WriteProducts(products);
     }
 
     /// <summary>
     /// Gets all products from product list.
     /// </summary>
     /// <returns> List of all products. </returns>
-    public List<Product> GetAllProducts() => this._products.Select(product => product.Clone()).ToList();
+    public List<Product> GetAllProducts() => this._readRepository.ReadProducts();
 
     /// <summary>
     /// Removes product from the list.
@@ -30,14 +44,17 @@ public class InventoryRepository : IRepository
     /// <param name="productId"> Id of product that needs to be removed. </param>
     public void RemoveProduct(string productId)
     {
-        foreach (Product product in this._products)
+        List<Product> products = this._readRepository.ReadProducts();
+        foreach (Product product in products)
         {
             if (productId.Equals(product.ProductId))
             {
-                this._products.Remove(product);
+                products.Remove(product);
                 break;
             }
         }
+
+        this._writeRepository.WriteProducts(products);
     }
 
     /// <summary>
@@ -45,7 +62,7 @@ public class InventoryRepository : IRepository
     /// </summary>
     /// <param name="searchWord"> Word to be searched in product list. </param>
     /// <returns> List of products that match the search word. </returns>
-    public List<Product> SearchProduct(string searchWord) => this._products
+    public List<Product> SearchProduct(string searchWord) => this._readRepository.ReadProducts()
                                                             .Where(product =>
                                                             product.ProductId.Contains(searchWord, StringComparison.OrdinalIgnoreCase) ||
                                                             product.ProductName.Contains(searchWord, StringComparison.OrdinalIgnoreCase))
@@ -59,7 +76,8 @@ public class InventoryRepository : IRepository
     /// <param name="updatedProduct"> Instance of updated product. </param>
     public void UpdateProduct(Product updatedProduct)
     {
-        foreach (Product product in this._products)
+        List<Product> products = this._readRepository.ReadProducts();
+        foreach (Product product in products)
         {
             if (product.ProductId.Equals(updatedProduct.ProductId))
             {
@@ -68,5 +86,7 @@ public class InventoryRepository : IRepository
                 break;
             }
         }
+
+        this._writeRepository.WriteProducts(products);
     }
 }

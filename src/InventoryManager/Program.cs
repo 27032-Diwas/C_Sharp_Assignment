@@ -14,7 +14,8 @@ internal class Program
     /// </summary>
     public static void Main()
     {
-        InventoryRepository inventoryRepository = new ();
+        InMemoryRepository repository = new ();
+        InventoryRepository inventoryRepository = new (repository, repository);
         InventoryService inventoryService = new (inventoryRepository);
         InventoryController inventoryController = new (inventoryService);
         InventoryMenuController inventoryMenuController = new (inventoryController);
