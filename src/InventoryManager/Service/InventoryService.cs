@@ -11,7 +11,7 @@ namespace InventoryManager.Service;
 /// </summary>
 public class InventoryService : IService
 {
-    private static Dictionary<string, int> _categoryCounters = new ();
+    private static readonly Dictionary<string, int> _categoryCounters = new ();
     private readonly IRepository _inventoryRepository;
 
     /// <summary>
