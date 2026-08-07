@@ -10,7 +10,7 @@ public class InMemoryRepository : IWrite, IRead
     private List<Product> _products = new ();
 
     /// <summary>
-    /// Gets all product from the list.
+    /// Read all products from the list.
     /// </summary>
     /// <returns> List of products. </returns>
     public List<Product> ReadProducts()
