@@ -43,5 +43,5 @@ public class ErrorMessages
     /// <summary>
     /// Represents the message displayed when the user enter an invalid product quantity.
     /// </summary>
-    public static readonly string InvalidProductQuantity = $"PRODUCT QUANTITY SHOULD BE GREATER THAN ZERO && LESS THAN {Configurable.MaxQuantityThreshold}!!";
+    public static readonly string InvalidProductQuantity = $"PRODUCT QUANTITY SHOULD BE GREATER THAN OR EQUALS TO ZERO && LESS THAN {Configurable.MaxQuantityThreshold}!!";
 }

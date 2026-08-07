@@ -31,7 +31,7 @@ public class InventoryService : IService
     /// <param name="productPrice"> Price of the product. </param>
     /// <param name="productQuantity"> Quantity of the product. </param>
     /// <param name="message"> A message indicating the result of the product addition operation. </param>
-    public void AddProduct(string productName, ProductCategories category, decimal productPrice, int productQuantity, out string message)
+    public void AddProduct(string productName, ProductCategories category, decimal productPrice, long productQuantity, out string message)
     {
         if (!Validation.IsProductNameValid(productName))
         {
@@ -68,11 +68,11 @@ public class InventoryService : IService
     /// <summary>
     /// Removes product from product list.
     /// </summary>
-    /// <param name="productId"> Id of the product that needs to be removed. </param>
+    /// <param name="product"> Instance of the product that needs to be removed. </param>
     /// <param name="message"> A message indicating the result of the product removal operation. </param>
-    public void RemoveProduct(string productId, out string message)
+    public void RemoveProduct(Product product, out string message)
     {
-        this._inventoryRepository.RemoveProduct(productId);
+        this._inventoryRepository.RemoveProduct(product);
         message = SuccessMessages.SuccessfulRemovalOfProduct;
     }
 
@@ -90,7 +90,7 @@ public class InventoryService : IService
     /// /// <param name="productPrice"> Updated price of product. </param>
     /// <param name="productQuantity"> Updated quantity of the product. </param>
     /// <param name="message"> A message indicating the result of product updating operation. </param>
-    public void UpdateProduct(Product product, decimal productPrice, int productQuantity, out string message)
+    public void UpdateProduct(Product product, decimal productPrice, long productQuantity, out string message)
     {
         if (!Validation.IsProductPriceValid(productPrice))
         {
@@ -117,7 +117,7 @@ public class InventoryService : IService
     /// <returns> Id of the product. </returns>
     private static string GenerateProductId(ProductCategories category)
     {
-        string productIdPrefix = "Misc";
+        string productIdPrefix = "MISC";
         switch (category)
         {
             case ProductCategories.Clothing:
@@ -150,6 +150,6 @@ public class InventoryService : IService
             _categoryCounters[productIdPrefix] = 0;
         }
 
-        return $"{productIdPrefix} - {++_categoryCounters[productIdPrefix]:D4}";
+        return $"{productIdPrefix}-{++_categoryCounters[productIdPrefix]:D4}";
     }
 }

@@ -38,7 +38,7 @@ public class Product
     /// Gets or sets.
     /// </summary>
     /// <value> Product quantity. </value>
-    public int ProductQuantity { get; set; }
+    public long ProductQuantity { get; set; }
 
     /// <summary>
     /// Clones the existing instance.

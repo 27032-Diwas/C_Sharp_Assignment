@@ -50,11 +50,9 @@ public static class InventoryView
                 return null;
             }
 
-            break;
+            return userInput.Trim();
         }
         while (true);
-
-        return userInput;
     }
 
     /// <summary>
@@ -71,7 +69,8 @@ public static class InventoryView
             string? userInput = Console.ReadLine();
             if (string.IsNullOrEmpty(userInput))
             {
-                return 0;
+                Console.WriteLine(ErrorMessages.InvalidDigit);
+                continue;
             }
 
             if (userInput.ToUpper().Equals(HeaderMessages.Exit))
@@ -85,27 +84,27 @@ public static class InventoryView
                 continue;
             }
 
-            break;
+            return decimalInput;
         }
         while (true);
-        return decimalInput;
     }
 
     /// <summary>
-    /// Gest input from user which is a valid integer.
+    /// Gest input from user which is a valid long value.
     /// </summary>
     /// <param name="prompt"> Message that needs to be displayed. </param>
     /// <returns> Null if user chooses to exit process; otherwise user input. </returns>
-    public static int? GetIntegerInput(string prompt)
+    public static long? GetLongInput(string prompt)
     {
-        int integerInput;
+        long longInput;
         do
         {
             Console.WriteLine($"{prompt} {UserPrompts.ExitProcess}");
             string? userInput = Console.ReadLine();
             if (string.IsNullOrEmpty(userInput))
             {
-                return 0;
+                Console.WriteLine(ErrorMessages.InvalidDigit);
+                continue;
             }
 
             if (userInput.ToUpper().Equals(HeaderMessages.Exit))
@@ -113,16 +112,15 @@ public static class InventoryView
                 return null;
             }
 
-            if (!int.TryParse(userInput, out integerInput))
+            if (!long.TryParse(userInput, out longInput))
             {
                 Console.WriteLine(ErrorMessages.InvalidDigit);
                 continue;
             }
 
-            break;
+            return longInput;
         }
         while (true);
-        return integerInput;
     }
 
     /// <summary>

@@ -61,7 +61,7 @@ public class InventoryController : IController
             return;
         }
 
-        int? productQuantity = GetProductQuantity();
+        long? productQuantity = GetProductQuantity();
         if (productQuantity is null)
         {
             return;
@@ -83,7 +83,7 @@ public class InventoryController : IController
             return;
         }
 
-        this._inventoryService.RemoveProduct(product.ProductId, out string message);
+        this._inventoryService.RemoveProduct(product, out string message);
         InventoryView.ClearConsole();
         InventoryView.DisplayMessage(message);
     }
@@ -105,7 +105,7 @@ public class InventoryController : IController
             return;
         }
 
-        int? productQuantity = GetProductQuantity();
+        long? productQuantity = GetProductQuantity();
         if (productQuantity is null)
         {
             return;
@@ -187,18 +187,18 @@ public class InventoryController : IController
     /// Gets quantity of the product.
     /// </summary>
     /// <returns> Quantity of the product. </returns>
-    private static int? GetProductQuantity()
+    private static long? GetProductQuantity()
     {
-        int? integerInput;
+        long? longInput;
         do
         {
-            integerInput = InventoryView.GetIntegerInput(UserPrompts.GetProductQuantity);
-            if (integerInput is null)
+            longInput = InventoryView.GetLongInput(UserPrompts.GetProductQuantity);
+            if (longInput is null)
             {
                 return null;
             }
 
-            if (!Validation.IsProductPriceValid(integerInput.Value))
+            if (!Validation.IsProductQuantityValid(longInput.Value))
             {
                 InventoryView.DisplayMessage(ErrorMessages.InvalidProductQuantity);
                 continue;
@@ -207,7 +207,7 @@ public class InventoryController : IController
             break;
         }
         while (true);
-        return integerInput;
+        return longInput;
     }
 
     /// <summary>
@@ -216,7 +216,7 @@ public class InventoryController : IController
     /// <returns> Instance of product. </returns>
     private Product? GetProduct()
     {
-        int? serialNo;
+        int index;
         List<Product>? products = this.SearchProducts();
         if (products is null)
         {
@@ -246,7 +246,7 @@ public class InventoryController : IController
 
         do
         {
-            serialNo = InventoryView.GetIntegerInput($"{UserPrompts.SelectSerialNumber} [ 1 - {products.Count} ]");
+            long? serialNo = InventoryView.GetLongInput($"{UserPrompts.SelectSerialNumber} [ 1 - {products.Count} ]");
             if (serialNo is null)
             {
                 return null;
@@ -258,9 +258,10 @@ public class InventoryController : IController
                 continue;
             }
 
+            index = (int)serialNo.Value;
             break;
         }
         while (true);
-        return products[serialNo.Value - 1];
+        return products[index - 1];
     }
 }

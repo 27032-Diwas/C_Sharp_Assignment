@@ -22,23 +22,13 @@ public class InventoryRepository : IRepository
     /// Gets all products from product list.
     /// </summary>
     /// <returns> List of all products. </returns>
-    public List<Product> GetAllProducts() => this._products;
+    public List<Product> GetAllProducts() => new (this._products);
 
     /// <summary>
     /// Removes product from the list.
     /// </summary>
-    /// <param name="productId"> Id of product that needs to be removed. </param>
-    public void RemoveProduct(string productId)
-    {
-        foreach (Product product in this._products)
-        {
-            if (productId.Equals(product.ProductId))
-            {
-                this._products.Remove(product);
-                break;
-            }
-        }
-    }
+    /// <param name="product"> Instance of product. </param>
+    public void RemoveProduct(Product product) => this._products.Remove(product);
 
     /// <summary>
     /// Search product in list based on search word entered by user.
