@@ -1,6 +1,5 @@
 using ConsoleTables;
 using InventoryManager.Constants;
-using InventoryManager.EnumConstants;
 using InventoryManager.Models;
 
 namespace InventoryManager.View;
@@ -35,7 +34,7 @@ public static class InventoryView
     public static string? GetStringInput(string prompt)
     {
         string? userInput;
-        do
+        while (true)
         {
             Console.WriteLine($"{prompt} {UserPrompts.ExitProcess}");
             userInput = Console.ReadLine();
@@ -52,7 +51,6 @@ public static class InventoryView
 
             return userInput.Trim();
         }
-        while (true);
     }
 
     /// <summary>
@@ -62,7 +60,7 @@ public static class InventoryView
     /// <returns> Null if user chooses to exit process; otherwise user input. </returns>
     public static decimal? GetDecimalInput(string prompt)
     {
-        do
+        while (true)
         {
             Console.WriteLine($"{prompt} {UserPrompts.ExitProcess}");
             string? userInput = Console.ReadLine();
@@ -85,7 +83,6 @@ public static class InventoryView
 
             return decimalInput;
         }
-        while (true);
     }
 
     /// <summary>
@@ -95,7 +92,7 @@ public static class InventoryView
     /// <returns> Null if user chooses to exit process; otherwise user input. </returns>
     public static long? GetLongInput(string prompt)
     {
-        do
+        while (true)
         {
             Console.WriteLine($"{prompt} {UserPrompts.ExitProcess}");
             string? userInput = Console.ReadLine();
@@ -118,7 +115,6 @@ public static class InventoryView
 
             return longInput;
         }
-        while (true);
     }
 
     /// <summary>
