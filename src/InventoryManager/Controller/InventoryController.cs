@@ -13,13 +13,16 @@ namespace InventoryManager.Controller;
 public class InventoryController : IController
 {
     private readonly IService _inventoryService;
+    private readonly IView _inventoryView;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="InventoryController"/> class.
     /// </summary>
     /// <param name="inventoryService"> Instance of inventory service. </param>
-    public InventoryController(IService inventoryService)
+    /// <param name="inventoryView"> Instance of inventory view. </param>
+    public InventoryController(IView inventoryView, IService inventoryService)
     {
+        this._inventoryView = inventoryView;
         this._inventoryService = inventoryService;
     }
 
@@ -28,36 +31,36 @@ public class InventoryController : IController
     /// </summary>
     public void AddProduct()
     {
-        ProductCategories productCategory = DisplayEnum.GetMenuChoice<ProductCategories>(HeaderMessages.ProductCategories);
+        ProductCategories productCategory = this._inventoryView.GetMenuChoice<ProductCategories>(HeaderMessages.ProductCategories);
         if (productCategory is ProductCategories.Exit)
         {
             return;
         }
 
-        InventoryView.ClearConsole();
+        this._inventoryView.ClearConsole();
 
-        string? productName = GetProductName();
+        string? productName = this.GetProductName();
 
         if (productName is null)
         {
             return;
         }
 
-        decimal? productPrice = GetProductPrice();
+        decimal? productPrice = this.GetProductPrice();
         if (productPrice is null)
         {
             return;
         }
 
-        long? productQuantity = GetProductQuantity();
+        long? productQuantity = this.GetProductQuantity();
         if (productQuantity is null)
         {
             return;
         }
 
         this._inventoryService.AddProduct(productName, productCategory, productPrice.Value, productQuantity.Value, out string message);
-        InventoryView.ClearConsole();
-        InventoryView.DisplayMessage(message);
+        this._inventoryView.ClearConsole();
+        this._inventoryView.DisplayMessage(message);
     }
 
     /// <summary>
@@ -72,8 +75,8 @@ public class InventoryController : IController
         }
 
         this._inventoryService.RemoveProduct(product.ProductId, out string message);
-        InventoryView.ClearConsole();
-        InventoryView.DisplayMessage(message);
+        this._inventoryView.ClearConsole();
+        this._inventoryView.DisplayMessage(message);
     }
 
     /// <summary>
@@ -87,21 +90,21 @@ public class InventoryController : IController
             return;
         }
 
-        decimal? productPrice = GetProductPrice();
+        decimal? productPrice = this.GetProductPrice();
         if (productPrice is null)
         {
             return;
         }
 
-        long? productQuantity = GetProductQuantity();
+        long? productQuantity = this.GetProductQuantity();
         if (productQuantity is null)
         {
             return;
         }
 
         this._inventoryService.UpdateProduct(product, productPrice.Value, productQuantity.Value, out string message);
-        InventoryView.ClearConsole();
-        InventoryView.DisplayMessage(message);
+        this._inventoryView.ClearConsole();
+        this._inventoryView.DisplayMessage(message);
     }
 
     /// <summary>
@@ -112,11 +115,11 @@ public class InventoryController : IController
         List<Product> products = this._inventoryService.GetAllProducts();
         if (!products.Any())
         {
-            InventoryView.DisplayMessage($"{ErrorMessages.EmptyList}");
+            this._inventoryView.DisplayMessage($"{ErrorMessages.EmptyList}");
             return;
         }
 
-        InventoryView.DisplayProducts(products);
+        this._inventoryView.DisplayProducts(products);
     }
 
     /// <summary>
@@ -125,7 +128,7 @@ public class InventoryController : IController
     /// <returns> List of product that matches the search word. </returns>
     public List<Product>? SearchProducts()
     {
-        string? userInput = InventoryView.GetStringInput(UserPrompts.GetSearchWord);
+        string? userInput = this._inventoryView.GetStringInput(UserPrompts.GetSearchWord);
         if (userInput is null)
         {
             return null;
@@ -136,11 +139,11 @@ public class InventoryController : IController
         List<Product> products = this._inventoryService.SearchProducts(searchWord);
         if (!products.Any())
         {
-            InventoryView.DisplayMessage($"\n{ErrorMessages.EmptyList}");
+            this._inventoryView.DisplayMessage($"\n{ErrorMessages.EmptyList}");
             return null;
         }
 
-        InventoryView.DisplayProducts(products);
+        this._inventoryView.DisplayProducts(products);
         return products;
     }
 
@@ -148,12 +151,12 @@ public class InventoryController : IController
     /// Gets name of the product.
     /// </summary>
     /// <returns> Name of the product. </returns>
-    private static string? GetProductName()
+    private string? GetProductName()
     {
         string? stringInput;
         while (true)
         {
-            stringInput = InventoryView.GetStringInput(UserPrompts.GetProductName);
+            stringInput = this._inventoryView.GetStringInput(UserPrompts.GetProductName);
             if (stringInput is null)
             {
                 return null;
@@ -161,7 +164,7 @@ public class InventoryController : IController
 
             if (!Validation.IsProductNameValid(stringInput))
             {
-                InventoryView.DisplayMessage(ErrorMessages.InvalidProductName);
+                this._inventoryView.DisplayMessage(ErrorMessages.InvalidProductName);
                 continue;
             }
 
@@ -175,12 +178,12 @@ public class InventoryController : IController
     /// Gets price of the product.
     /// </summary>
     /// <returns> Price of the product. </returns>
-    private static decimal? GetProductPrice()
+    private decimal? GetProductPrice()
     {
         decimal? decimalInput;
         while (true)
         {
-            decimalInput = InventoryView.GetDecimalInput(UserPrompts.GetProductPrice);
+            decimalInput = this._inventoryView.GetDecimalInput(UserPrompts.GetProductPrice);
             if (decimalInput is null)
             {
                 return null;
@@ -188,7 +191,7 @@ public class InventoryController : IController
 
             if (!Validation.IsProductPriceValid(decimalInput.Value))
             {
-                InventoryView.DisplayMessage(ErrorMessages.InvalidProductPrice);
+                this._inventoryView.DisplayMessage(ErrorMessages.InvalidProductPrice);
                 continue;
             }
 
@@ -202,12 +205,12 @@ public class InventoryController : IController
     /// Gets quantity of the product.
     /// </summary>
     /// <returns> Quantity of the product. </returns>
-    private static long? GetProductQuantity()
+    private long? GetProductQuantity()
     {
         long? longInput;
         while (true)
         {
-            longInput = InventoryView.GetLongInput(UserPrompts.GetProductQuantity);
+            longInput = this._inventoryView.GetLongInput(UserPrompts.GetProductQuantity);
             if (longInput is null)
             {
                 return null;
@@ -215,7 +218,7 @@ public class InventoryController : IController
 
             if (!Validation.IsProductQuantityValid(longInput.Value))
             {
-                InventoryView.DisplayMessage(ErrorMessages.InvalidProductQuantity);
+                this._inventoryView.DisplayMessage(ErrorMessages.InvalidProductQuantity);
                 continue;
             }
 
@@ -242,14 +245,14 @@ public class InventoryController : IController
             string? choice;
             while (true)
             {
-                choice = InventoryView.GetStringInput(UserPrompts.GetYesOrNo);
+                choice = this._inventoryView.GetStringInput(UserPrompts.GetYesOrNo);
                 if (choice is null || choice.ToUpper().Equals("N") || choice.ToUpper().Equals("NO"))
                 {
                     return null;
                 }
                 else if (!(choice.ToUpper().Equals("Y") || choice.ToUpper().Equals("YES")))
                 {
-                    InventoryView.DisplayMessage(ErrorMessages.InvalidOption);
+                    this._inventoryView.DisplayMessage(ErrorMessages.InvalidOption);
                     continue;
                 }
 
@@ -261,7 +264,7 @@ public class InventoryController : IController
 
         while (true)
         {
-            long? serialNo = InventoryView.GetLongInput($"{UserPrompts.SelectSerialNumber} [ 1 - {products.Count} ]");
+            long? serialNo = this._inventoryView.GetLongInput($"{UserPrompts.SelectSerialNumber} [ 1 - {products.Count} ]");
             if (serialNo is null)
             {
                 return null;
@@ -269,7 +272,7 @@ public class InventoryController : IController
 
             if (serialNo > products.Count || serialNo < 1)
             {
-                InventoryView.DisplayMessage($"{ErrorMessages.InvalidSerialNumber} [ 1 - {products.Count} ]");
+                this._inventoryView.DisplayMessage($"{ErrorMessages.InvalidSerialNumber} [ 1 - {products.Count} ]");
                 continue;
             }
 

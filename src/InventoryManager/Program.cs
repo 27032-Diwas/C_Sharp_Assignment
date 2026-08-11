@@ -1,6 +1,7 @@
 ﻿using InventoryManager.Controller;
 using InventoryManager.Repository;
 using InventoryManager.Service;
+using InventoryManager.View;
 
 namespace InventoryManager;
 
@@ -16,8 +17,9 @@ internal class Program
     {
         InventoryRepository inventoryRepository = new ();
         InventoryService inventoryService = new (inventoryRepository);
-        InventoryController inventoryController = new (inventoryService);
-        InventoryMenuController inventoryMenuController = new (inventoryController);
+        InventoryView inventoryView = new ();
+        InventoryController inventoryController = new (inventoryView, inventoryService);
+        InventoryMenuController inventoryMenuController = new (inventoryView, inventoryController);
         inventoryMenuController.GetMenuOption();
         Console.ReadKey();
     }

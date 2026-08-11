@@ -5,7 +5,7 @@ namespace InventoryManager.Controller;
 /// <summary>
 /// Interface for controller class containing add, view, update, delete, search.
 /// </summary>
-internal interface IController
+public interface IController
 {
     /// <summary>
     /// Gets user inputs and add product.

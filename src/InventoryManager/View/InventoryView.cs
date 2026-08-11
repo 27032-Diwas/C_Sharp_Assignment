@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using ConsoleTables;
 using InventoryManager.Constants;
 using InventoryManager.Models;
@@ -7,12 +8,12 @@ namespace InventoryManager.View;
 /// <summary>
 /// Display messages to user and gets input from user.
 /// </summary>
-public static class InventoryView
+public class InventoryView : IView
 {
     /// <summary>
     /// Clear console.
     /// </summary>
-    public static void ClearConsole()
+    public void ClearConsole()
     {
         Console.Clear();
     }
@@ -21,7 +22,7 @@ public static class InventoryView
     /// Displays the string passed as a parameter.
     /// </summary>
     /// <param name="message"> Message that needs to be displayed. </param>
-    public static void DisplayMessage(string message)
+    public void DisplayMessage(string message)
     {
         Console.WriteLine(message);
     }
@@ -31,7 +32,7 @@ public static class InventoryView
     /// </summary>
     /// <param name="prompt"> Represents message displayed to user to get input. </param>
     /// <returns> Null if user chooses to exit process; otherwise user input. </returns>
-    public static string? GetStringInput(string prompt)
+    public string? GetStringInput(string prompt)
     {
         string? userInput;
         while (true)
@@ -58,7 +59,7 @@ public static class InventoryView
     /// </summary>
     /// <param name="prompt"> Message that needs to be displayed. </param>
     /// <returns> Null if user chooses to exit process; otherwise user input. </returns>
-    public static decimal? GetDecimalInput(string prompt)
+    public decimal? GetDecimalInput(string prompt)
     {
         while (true)
         {
@@ -90,7 +91,7 @@ public static class InventoryView
     /// </summary>
     /// <param name="prompt"> Message that needs to be displayed. </param>
     /// <returns> Null if user chooses to exit process; otherwise user input. </returns>
-    public static long? GetLongInput(string prompt)
+    public long? GetLongInput(string prompt)
     {
         while (true)
         {
@@ -121,7 +122,7 @@ public static class InventoryView
     /// Displays list of products as a table.
     /// </summary>
     /// <param name="products"> List of products. </param>
-    public static void DisplayProducts(List<Product> products)
+    public void DisplayProducts(List<Product> products)
     {
         ConsoleTable contactTable = new ("S.No", "Product Id", "Product Name", "Product Price", "Product Quantity");
         int i = 1;
@@ -136,10 +137,58 @@ public static class InventoryView
     /// <summary>
     /// Waits for the user to press a key and then clears the console.
     /// </summary>
-    public static void GetAnyKey()
+    public void GetAnyKey()
     {
         Console.WriteLine($"\n{UserPrompts.GetAnyKey}");
         Console.ReadKey();
         Console.Clear();
+    }
+
+    /// <summary>
+    /// Gets a valid menu option selected by the user.
+    /// </summary>
+    /// <typeparam name="T"> The enumeration type. </typeparam>
+    /// <param name="message"> The message displayed before the menu options. </param>
+    /// <returns>
+    /// The selected enumeration value.
+    /// </returns>
+    public T GetMenuChoice<T>(string message)
+        where T : struct, Enum
+    {
+        while (true)
+        {
+            Console.WriteLine($"{message}\n");
+            DisplayOptions<T>();
+            Console.WriteLine($"\n{UserPrompts.SelectOption}");
+            string input = string.Concat(Console.ReadLine()?.Where(c => !char.IsWhiteSpace(c)) ?? string.Empty);
+            if (Enum.TryParse(input, true, out T choice) &&
+                Enum.IsDefined(typeof(T), choice))
+            {
+                return choice;
+            }
+
+            Console.Clear();
+            Console.WriteLine($"{ErrorMessages.InvalidOption}\n");
+        }
+    }
+
+    /// <summary>
+    /// Displays all values defined in the specific enum values.
+    /// </summary>
+    /// <typeparam name="T"> Type : enum </typeparam>
+    /// <param name="excluded"> Name of Enum </param>
+    private static void DisplayOptions<T>(params T[] excluded)
+        where T : Enum
+    {
+        foreach (T optionCategory in Enum.GetValues(typeof(T)))
+        {
+            if (excluded.Contains(optionCategory))
+            {
+                continue;
+            }
+
+            string? displayName = Regex.Replace(optionCategory.ToString(), @"(?<!^)([A-Z])", " $1");
+            Console.WriteLine($"[{Convert.ToInt32(optionCategory)}] {displayName}");
+        }
     }
 }

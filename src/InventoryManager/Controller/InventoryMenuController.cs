@@ -1,7 +1,5 @@
 ﻿using InventoryManager.Constants;
 using InventoryManager.EnumConstants;
-using InventoryManager.Repository;
-using InventoryManager.Service;
 using InventoryManager.View;
 
 namespace InventoryManager.Controller;
@@ -11,14 +9,17 @@ namespace InventoryManager.Controller;
 /// </summary>
 public class InventoryMenuController
 {
-    private readonly InventoryController _inventoryController;
+    private readonly IController _inventoryController;
+    private readonly IView _inventoryView;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="InventoryMenuController"/> class.
     /// </summary>
     /// <param name="inventoryController"> Instance of inventory controller. </param>
-    public InventoryMenuController(InventoryController inventoryController)
+    /// <param name="inventoryView"> Instance of inventory view. </param>
+    public InventoryMenuController(IView inventoryView, IController inventoryController)
     {
+        this._inventoryView = inventoryView;
         this._inventoryController = inventoryController;
     }
 
@@ -31,51 +32,51 @@ public class InventoryMenuController
         {
             try
             {
-                MainMenuEnum choice = DisplayEnum.GetMenuChoice<MainMenuEnum>(HeaderMessages.MainMenu);
-                InventoryView.ClearConsole();
+                MainMenuEnum choice = this._inventoryView.GetMenuChoice<MainMenuEnum>(HeaderMessages.MainMenu);
+                this._inventoryView.ClearConsole();
                 switch (choice)
                 {
                     case MainMenuEnum.Exit:
-                        InventoryView.DisplayMessage(SuccessMessages.ProcessEnded);
+                        this._inventoryView.DisplayMessage(SuccessMessages.ProcessEnded);
                         return;
                     case MainMenuEnum.AddProduct:
-                        InventoryView.DisplayMessage($"{HeaderMessages.AddProduct}\n");
+                        this._inventoryView.DisplayMessage($"{HeaderMessages.AddProduct}\n");
                         this._inventoryController.AddProduct();
                         break;
                     case MainMenuEnum.ViewProducts:
-                        InventoryView.DisplayMessage($"{HeaderMessages.ViewProducts}\n");
+                        this._inventoryView.DisplayMessage($"{HeaderMessages.ViewProducts}\n");
                         this._inventoryController.ViewAllProducts();
                         break;
                     case MainMenuEnum.SearchProduct:
-                        InventoryView.DisplayMessage($"{HeaderMessages.SearchProduct}\n");
+                        this._inventoryView.DisplayMessage($"{HeaderMessages.SearchProduct}\n");
                         this._inventoryController.SearchProducts();
                         break;
                     case MainMenuEnum.UpdateProduct:
-                        InventoryView.DisplayMessage($"{HeaderMessages.UpdateProduct}\n");
+                        this._inventoryView.DisplayMessage($"{HeaderMessages.UpdateProduct}\n");
                         this._inventoryController.UpdateProduct();
                         break;
                     case MainMenuEnum.RemoveProduct:
-                        InventoryView.DisplayMessage($"{HeaderMessages.DeleteProduct}\n");
+                        this._inventoryView.DisplayMessage($"{HeaderMessages.DeleteProduct}\n");
                         this._inventoryController.RemoveProduct();
                         break;
                     default:
-                        InventoryView.DisplayMessage($"{ErrorMessages.InvalidOption}\n");
+                        this._inventoryView.DisplayMessage($"{ErrorMessages.InvalidOption}\n");
                         break;
                 }
 
-                InventoryView.GetAnyKey();
+                this._inventoryView.GetAnyKey();
             }
             catch (ArgumentException ex)
             {
-                InventoryView.DisplayMessage($"Validation Error: {ex.Message}");
+                this._inventoryView.DisplayMessage($"Validation Error: {ex.Message}");
             }
             catch (InvalidOperationException ex)
             {
-                InventoryView.DisplayMessage($"Operation Error: {ex.Message}");
+                this._inventoryView.DisplayMessage($"Operation Error: {ex.Message}");
             }
             catch (Exception ex)
             {
-                InventoryView.DisplayMessage($"Unexpected Error: {ex.Message}");
+                this._inventoryView.DisplayMessage($"Unexpected Error: {ex.Message}");
             }
         }
     }
