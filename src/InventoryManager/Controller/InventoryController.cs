@@ -80,6 +80,22 @@ public class InventoryController : IController
     }
 
     /// <summary>
+    /// Removes all the products from the list.
+    /// </summary>
+    public void DeleteAllProduct()
+    {
+        List<Product> products = this._inventoryService.GetAllProducts();
+        if (!products.Any())
+        {
+            this._inventoryView.DisplayMessage($"{ErrorMessages.EmptyList}");
+            return;
+        }
+
+        this._inventoryService.DeleteAllProduct();
+        this._inventoryView.DisplayMessage(SuccessMessages.SuccessfulRemovalOfAllProduct);
+    }
+
+    /// <summary>
     /// Gets new details and create an object.
     /// </summary>
     public void UpdateProduct()

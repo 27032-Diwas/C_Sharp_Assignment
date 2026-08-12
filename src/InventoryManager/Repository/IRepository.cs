@@ -20,6 +20,11 @@ public interface IRepository
     public void RemoveProduct(string productId);
 
     /// <summary>
+    /// Removes all the products from the list.
+    /// </summary>
+    public void DeleteAllProduct();
+
+    /// <summary>
     /// Update product in product list.
     /// </summary>
     /// <param name="product"> Instance of updated product. </param>

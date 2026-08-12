@@ -24,4 +24,6 @@ public class SuccessMessages
     /// Represents the message displayed when a product is removed successfully.
     /// </summary>
     public const string SuccessfulRemovalOfProduct = "PRODUCT DELETED SUCCESSFULLY !!";
+
+    public const string SuccessfulRemovalOfAllProduct = "ALL PRODCUTS IN INVENTORY ARE CLEARED SUCCESSFULLY !!";
 }

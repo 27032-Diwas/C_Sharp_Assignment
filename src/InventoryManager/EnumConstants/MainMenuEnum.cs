@@ -34,4 +34,9 @@ public enum MainMenuEnum
     /// Represents the option to access the remove product method.
     /// </summary>
     RemoveProduct,
+
+    /// <summary>
+    /// Represents the option to access the remove all product method.
+    /// </summary>
+    RemoveAllProducts,
 }

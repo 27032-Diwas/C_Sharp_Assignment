@@ -41,6 +41,11 @@ public class HeaderMessages
     public const string DeleteProduct = "DELETE PRODUCT";
 
     /// <summary>
+    /// Represents the header message for delete all products.
+    /// </summary>
+    public const string DeleteAllProduct = "DELETE ALL PRODUCTS";
+
+    /// <summary>
     /// Represents the header message for product categories.
     /// </summary>
     public const string ProductCategories = "PRODUCT CATEGORIES";

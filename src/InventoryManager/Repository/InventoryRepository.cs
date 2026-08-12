@@ -43,6 +43,14 @@ public class InventoryRepository : IRepository
     }
 
     /// <summary>
+    /// Removes all the products from the list.
+    /// </summary>
+    public void DeleteAllProduct()
+    {
+        this._products.Clear();
+    }
+
+    /// <summary>
     /// Search product in list based on search word entered by user.
     /// </summary>
     /// <param name="searchWord"> Word to be searched in product list. </param>

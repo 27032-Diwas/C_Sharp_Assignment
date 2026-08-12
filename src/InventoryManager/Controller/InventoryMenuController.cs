@@ -59,6 +59,10 @@ public class InventoryMenuController
                         this._inventoryView.DisplayMessage($"{HeaderMessages.DeleteProduct}\n");
                         this._inventoryController.RemoveProduct();
                         break;
+                    case MainMenuEnum.RemoveAllProducts:
+                        this._inventoryView.DisplayMessage(HeaderMessages.DeleteAllProduct);
+                        this._inventoryController.DeleteAllProduct();
+                        break;
                     default:
                         this._inventoryView.DisplayMessage($"{ErrorMessages.InvalidOption}\n");
                         break;

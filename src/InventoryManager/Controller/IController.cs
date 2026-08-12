@@ -18,6 +18,11 @@ public interface IController
     public void RemoveProduct();
 
     /// <summary>
+    /// Removes all the products from the list.
+    /// </summary>
+    public void DeleteAllProduct();
+
+    /// <summary>
     /// Gets new details and create an object.
     /// </summary>
     public void UpdateProduct();

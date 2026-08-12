@@ -26,6 +26,10 @@ public interface IService
     public void RemoveProduct(string productId, out string message);
 
     /// <summary>
+    /// Removes all the products from the list.
+    /// </summary>
+    public void DeleteAllProduct();
+    /// <summary>
     /// Updates product with new data.
     /// </summary>
     /// <param name="product"> Instance of updated product. </param>

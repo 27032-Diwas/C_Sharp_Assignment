@@ -77,6 +77,14 @@ public class InventoryService : IService
     }
 
     /// <summary>
+    /// Removes all products from the list.
+    /// </summary>
+    public void DeleteAllProduct()
+    {
+        this._inventoryRepository.DeleteAllProduct();
+    }
+
+    /// <summary>
     /// Search product list for products that contains search word.
     /// </summary>
     /// <param name="searchWord"> Word that needs to be searched. </param>
@@ -117,29 +125,29 @@ public class InventoryService : IService
     /// <returns> Id of the product. </returns>
     private static string GenerateProductId(ProductCategories category)
     {
-        string productIdPrefix = "MISC";
+        string productIdPrefix = ProductIdPrefix.MiscellaneousPrefix;
         switch (category)
         {
             case ProductCategories.Clothing:
-                productIdPrefix = "CLTH";
+                productIdPrefix = ProductIdPrefix.ClothingPrefix;
                 break;
             case ProductCategories.Sports:
-                productIdPrefix = "SPRT";
+                productIdPrefix = ProductIdPrefix.SportsPrefix;
                 break;
             case ProductCategories.Grocery:
-                productIdPrefix = "GROC";
+                productIdPrefix = ProductIdPrefix.GroceryPrefix;
                 break;
             case ProductCategories.Consumable:
-                productIdPrefix = "CONS";
+                productIdPrefix = ProductIdPrefix.ConsumablePrefix;
                 break;
             case ProductCategories.Electronics:
-                productIdPrefix = "ELEC";
+                productIdPrefix = ProductIdPrefix.ElectronicsPrefix;
                 break;
             case ProductCategories.Furniture:
-                productIdPrefix = "FURN";
+                productIdPrefix = ProductIdPrefix.FurniturePrefix;
                 break;
             case ProductCategories.Miscellaneous:
-                productIdPrefix = "MISC";
+                productIdPrefix = ProductIdPrefix.MiscellaneousPrefix;
                 break;
             default:
                 break;
