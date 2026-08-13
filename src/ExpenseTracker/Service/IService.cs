@@ -14,7 +14,7 @@ public interface IService
     void AddTransaction(Transaction transaction);
 
     /// <summary>
-    /// Gets all transactions from the list. 
+    /// Gets all transactions from the list.
     /// </summary>
     /// <returns> List of transactions. </returns>
     List<Transaction> GetAllTransactions();
@@ -37,4 +37,10 @@ public interface IService
     /// </summary>
     /// <param name="transaction"> Instance of transaction containing updated values. </param>
     void EditTransaction(Transaction transaction);
+
+    /// <summary>
+    /// Gets summary of all transaction.
+    /// </summary>
+    /// <returns> Summary as string. </returns>
+    string GetSummary();
 }
