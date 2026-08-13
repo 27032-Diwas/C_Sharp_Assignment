@@ -14,22 +14,22 @@ public class Transaction
     public Guid TransactionId { get; set; }
 
     /// <summary>
-    /// Gets or sets amount.
-    /// </summary>
-    /// <value> Amount transferred in the transaction.</value>
-    public decimal Amount { get; set; }
-
-    /// <summary>
     /// Gets or sets date.
     /// </summary>
     /// <value> Date of transaction. </value>
     public DateTime Date { get; set; }
 
     /// <summary>
+    /// Gets or sets amount.
+    /// </summary>
+    /// <value> Amount transferred in the transaction.</value>
+    public decimal Amount { get; set; }
+
+    /// <summary>
     /// Gets or sets transaction category.
     /// </summary>
     /// <value> Transaction category. </value>
-    public Categories Category { get; set; }
+    public string Category { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets or sets transaction type.

@@ -1,4 +1,4 @@
-﻿using System.Transactions;
+﻿using ExpenseTracker.Models;
 
 namespace ExpenseTracker.Repository;
 
@@ -29,12 +29,12 @@ public interface IRepository
     /// <summary>
     /// Deletes the transaction from the list.
     /// </summary>
-    /// <param name="transaction"> Instance of transaction to delete. </param>
-    void DeleteTransaction(Transaction transaction);
+    /// <param name="transactionId"> Transaction id of transaction to delete. </param>
+    public void DeleteTransaction(Guid transactionId);
 
     /// <summary>
     /// Update the value of a transaction in transaction list.
     /// </summary>
-    /// <param name="transaction"> Instance of transaction containing edited values. </param>
-    void EditTransaction(Transaction transaction);
+    /// <param name="updatedTransaction"> Instance of transaction containing edited values. </param>
+    void EditTransaction(Transaction updatedTransaction);
 }

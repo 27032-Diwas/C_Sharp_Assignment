@@ -36,6 +36,11 @@ public class UserPrompts
     public const string GetDate = "Enter transaction date:";
 
     /// <summary>
+    /// Represents the prompt requesting the user to enter transaction category.
+    /// </summary>
+    public const string GetCategory = "Enter transaction category:";
+
+    /// <summary>
     /// Represents the prompt requesting the user to enter transaction description.
     /// </summary>
     public const string GetDescription = "Enter transaction description:";

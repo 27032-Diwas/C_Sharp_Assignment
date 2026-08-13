@@ -29,8 +29,8 @@ public interface IService
     /// <summary>
     /// Deletes the transaction from the transaction list.
     /// </summary>
-    /// <param name="transaction"> Instance of transaction to delete. </param>
-    void DeleteTransaction(Transaction transaction);
+    /// <param name="transactionId"> Transaction id of transaction to delete. </param>
+    void DeleteTransaction(Guid transactionId);
 
     /// <summary>
     /// Update the value of transaction in transaction list.

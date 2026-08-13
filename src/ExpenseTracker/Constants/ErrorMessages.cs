@@ -40,6 +40,12 @@ public class ErrorMessages
     /// </summary>
     public const string InvalidDate = "ENTER A VALID DATE";
 
+
+    /// <summary>
+    /// Represents the message displayed when user enter an invalid category.
+    /// </summary>
+    public const string InvalidCategory = "CATEGORY SHOULD BE LESS THAN 50 CHARACTERS.";
+
     /// <summary>
     /// Represents the message displayed when user enter an invalid description.
     /// </summary>
