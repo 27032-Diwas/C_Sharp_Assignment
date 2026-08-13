@@ -1,4 +1,4 @@
-﻿using InventoryManager.EnumConstants;
+﻿using InventoryManager.Enums;
 using InventoryManager.Models;
 
 namespace InventoryManager.Service;
@@ -29,6 +29,7 @@ public interface IService
     /// Removes all the products from the list.
     /// </summary>
     public void DeleteAllProduct();
+
     /// <summary>
     /// Updates product with new data.
     /// </summary>

@@ -1,5 +1,5 @@
 ﻿using InventoryManager.Constants;
-using InventoryManager.EnumConstants;
+using InventoryManager.Enums;
 using InventoryManager.Helper;
 using InventoryManager.Models;
 using InventoryManager.Service;

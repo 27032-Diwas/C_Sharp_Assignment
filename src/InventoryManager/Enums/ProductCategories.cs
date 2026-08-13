@@ -1,4 +1,4 @@
-﻿namespace InventoryManager.EnumConstants;
+﻿namespace InventoryManager.Enums;
 
 /// <summary>
 /// Contains all the product categories.
