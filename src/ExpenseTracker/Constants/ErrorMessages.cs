@@ -5,4 +5,43 @@
 /// </summary>
 public class ErrorMessages
 {
+    /// <summary>
+    /// Represents the message displayed when user enters an invalid option.
+    /// </summary>
+    public const string InvalidOption = "ENTER A VALID OPTION";
+
+    /// <summary>
+    /// Represents the message displayed when user enters a invalid string.
+    /// </summary>
+    public const string InvalidString = "ENTER A VALUE";
+
+    /// <summary>
+    /// Represents the message displayed when user enters an invalid number.
+    /// </summary>
+    public const string InvalidDigit = "ENTER A VALID NUMBER";
+
+    /// <summary>
+    /// Represents the message displayed when no transaction found in list.
+    /// </summary>
+    public const string EmptyList = "NO TRANSACTION FOUND";
+
+    /// <summary>
+    /// Represents the message displayed when no transaction match during search.
+    /// </summary>
+    public const string EmptySearchList = "NO MATCH FOUND";
+
+    /// <summary>
+    /// Represents the message displayed when user enters an invalid amount.
+    /// </summary>
+    public const string InvalidAmount = "AMOUNT SHOULD BE POSITIVE";
+
+    /// <summary>
+    /// Represents the message displayed when user enters an invalid date.
+    /// </summary>
+    public const string InvalidDate = "ENTER A VALID DATE";
+
+    /// <summary>
+    /// Represents the message displayed when user enter an invalid description.
+    /// </summary>
+    public const string InvalidDescription = "DESCRIPTION SHOULD BE LESS THAN 100 CHARACTERS.";
 }
