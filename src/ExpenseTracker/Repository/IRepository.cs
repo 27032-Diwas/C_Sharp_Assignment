@@ -16,7 +16,7 @@ public interface IRepository
     /// <summary>
     /// Gets all transactions from the list.
     /// </summary>
-    /// <returns> List of transaction. </returns>
+    /// <returns> List of transactions. </returns>
     List<Transaction> GetAllTransactions();
 
     /// <summary>
