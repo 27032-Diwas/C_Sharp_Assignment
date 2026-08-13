@@ -1,4 +1,4 @@
-﻿namespace ExpenseTracker.EnumConstants;
+﻿namespace ExpenseTracker.Enums;
 
 /// <summary>
 /// Contains expense categories.
