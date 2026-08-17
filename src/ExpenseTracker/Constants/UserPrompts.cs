@@ -43,7 +43,7 @@ public static class UserPrompts
     /// <summary>
     /// Represents the prompt requesting the user to enter transaction category.
     /// </summary>
-    public const string GetCategory = "Enter transaction category:";
+    public const string GetCategory = "Enter transaction category";
 
     /// <summary>
     /// Represents the prompt requesting the user to enter transaction description.

@@ -45,7 +45,6 @@ public static class ErrorMessages
     /// </summary>
     public const string InvalidCategory = "CATEGORY SHOULD BE LESS THAN 50 CHARACTERS AND ONLY CONTAIN ALPHABETS.";
 
-
     /// <summary>
     /// Represents the message displayed when user enter an invalid category.
     /// </summary>

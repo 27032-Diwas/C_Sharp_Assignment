@@ -123,8 +123,10 @@ public class TransactionService : IService
     private decimal CalculateIncome(List<Transaction> transactions) =>
             transactions.Where(transaction => transaction.TransactionType == TransactionTypes.Income)
             .Sum(transaction => transaction.Amount);
+    }
 
     private decimal CalculateExpense(List<Transaction> transactions) =>
             transactions.Where(transaction => transaction.TransactionType == TransactionTypes.Expense)
             .Sum(transaction => transaction.Amount);
+    }
 }

@@ -192,9 +192,25 @@ public class TransactionController : IController
             this._transactionView.DisplayMessage(ErrorMessages.EmptyList);
             return true;
         }
+        else if (transactions.Count == 1)
+        {
+            string? choice;
+            while (true)
+            {
+                choice = this._transactionView.GetStringInput(UserPrompts.GetYesOrNo);
+                if (choice is null || choice.ToUpper().Equals("N") || choice.ToUpper().Equals("NO"))
+                {
+                    this._transactionView.DisplayMessage($"\n{SuccessMessages.ProcessCancelled}");
+                    return null;
+                }
+                else if (!(choice.ToUpper().Equals("Y") || choice.ToUpper().Equals("YES")))
+                {
+                    this._transactionView.DisplayMessage(ErrorMessages.InvalidOption);
+                    continue;
+                }
 
         return false;
-    }
+            }
 
     /// <summary>
     /// Gets instance of transaction to update or delete.
@@ -213,6 +229,8 @@ public class TransactionController : IController
 
             return transactions[serialNo - 1];
         }
+
+        return transactions[index - 1];
     }
 
     /// <summary>
@@ -225,6 +243,9 @@ public class TransactionController : IController
         TransactionFields transactionField = this._transactionView.GetMenuChoice<TransactionFields>($"\n{HeaderMessages.EditableFields}", $"\n{UserPrompts.SelectOption} [ 1 - {Configurables.MaxEditableFieldRange} ] {UserPrompts.ExitProcess}");
         switch (transactionField)
         {
+            case TransactionFields.Back:
+                this._transactionView.DisplayMessage(SuccessMessages.ProcessCancelled);
+                return null;
             case TransactionFields.TransactionDate:
                 transaction.Date = this._transactionView.GetDate();
                 break;

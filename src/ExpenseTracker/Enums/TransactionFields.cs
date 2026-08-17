@@ -6,6 +6,11 @@
 public enum TransactionFields
 {
     /// <summary>
+    /// Represents the option to exit the process.
+    /// </summary>
+    Back,
+
+    /// <summary>
     /// Represents the transaction date.
     /// </summary>
     TransactionDate = 1,

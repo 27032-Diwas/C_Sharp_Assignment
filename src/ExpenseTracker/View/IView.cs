@@ -58,7 +58,7 @@ public interface IView
     /// Gets description from the user.
     /// </summary>
     /// <returns> Description as a string. </returns>
-    string GetDescription();
+    string? GetDescription();
 
     /// <summary>
     /// Gets category from the user.
@@ -70,7 +70,7 @@ public interface IView
     /// Gets amount from the user.
     /// </summary>
     /// <returns> Amount as decimal value. </returns>
-    decimal GetAmount();
+    decimal? GetAmount();
 
     /// <summary>
     /// Gets date from the user.

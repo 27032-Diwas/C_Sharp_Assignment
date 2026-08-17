@@ -29,8 +29,9 @@ public class TransactionRepository : IRepository
     public List<Transaction> SearchTransactions(string searchWord) => this._transactions.Where(transaction => transaction.Description.Contains(searchWord, StringComparison.OrdinalIgnoreCase)
                                                                       || transaction.Category.Contains(searchWord, StringComparison.OrdinalIgnoreCase)
                                                                       || transaction.Date.ToString().Contains(searchWord, StringComparison.OrdinalIgnoreCase))
-                                                                      .Select(transaction => transaction.Clone())
-                                                                      .ToList();
+                                 .Select(transaction => transaction.Clone())
+                                 .ToList();
+    }
 
     /// <summary>
     /// Deletes the transaction from the list.
@@ -40,7 +41,7 @@ public class TransactionRepository : IRepository
     {
         int index = this._transactions.FindIndex(t => t.TransactionId == transactionId);
         if (index >= 0)
-        {
+            {
             this._transactions.RemoveAt(index);
         }
     }
@@ -58,10 +59,13 @@ public class TransactionRepository : IRepository
     {
         Transaction transaction = this._transactions.First(existing => existing.TransactionId == updatedTransaction.TransactionId);
 
-        transaction.Date = updatedTransaction.Date;
-        transaction.Amount = updatedTransaction.Amount;
-        transaction.TransactionType = updatedTransaction.TransactionType;
-        transaction.Category = updatedTransaction.Category;
-        transaction.Description = updatedTransaction.Description;
+                transaction.Date = updatedTransaction.Date;
+                transaction.Amount = updatedTransaction.Amount;
+                transaction.TransactionType = updatedTransaction.TransactionType;
+                transaction.Category = updatedTransaction.Category;
+                transaction.Description = updatedTransaction.Description;
+                break;
+            }
+        }
     }
 }
