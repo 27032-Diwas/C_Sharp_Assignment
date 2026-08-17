@@ -122,7 +122,9 @@ public class TransactionService : IService
     public string GetSummary()
     {
         List<Transaction> transactions = this.GetAllTransactions();
-        return $"Total Expense: {this.CalculateExpense(transactions)}\nTotal Income: {this.CalculateIncome(transactions)}";
+        decimal totalIncome = this.CalculateIncome(transactions);
+        decimal totalExpense = this.CalculateExpense(transactions);
+        return $"Total Expense: {totalExpense}\nTotal Income: {totalIncome}\nNet Balance: {totalIncome - totalExpense}";
     }
 
     private decimal CalculateIncome(List<Transaction> transactions)
