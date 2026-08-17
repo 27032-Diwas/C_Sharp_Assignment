@@ -229,8 +229,6 @@ public class TransactionController : IController
 
             return transactions[serialNo - 1];
         }
-
-        return transactions[index - 1];
     }
 
     /// <summary>
