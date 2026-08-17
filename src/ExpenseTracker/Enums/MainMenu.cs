@@ -31,6 +31,11 @@ public enum MainMenu
     DeleteTransaction,
 
     /// <summary>
+    /// Represents the option to access delete all transactions method.
+    /// </summary>
+    DeleteAllTransactions,
+
+    /// <summary>
     /// Represents the option to access delete transaction method.
     /// </summary>
     EditTransaction,

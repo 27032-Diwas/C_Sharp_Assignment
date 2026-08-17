@@ -41,6 +41,11 @@ public class HeaderMessages
     public const string DeleteTransaction = "DELETE TRANSACTION";
 
     /// <summary>
+    /// Represents the header message for delete all transactions.
+    /// </summary>
+    public const string DeleteAllTransactions = "DELETE ALL TRANSACTIONS";
+
+    /// <summary>
     /// Represents the header message for summary.
     /// </summary>
     public const string Summary = "SUMMARY";

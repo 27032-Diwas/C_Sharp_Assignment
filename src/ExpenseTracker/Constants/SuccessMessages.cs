@@ -16,6 +16,11 @@ public class SuccessMessages
     public const string SuccessfulRemovalOfTransaction = "TRANSACTION DELETED SUCCESSFULLY!!";
 
     /// <summary>
+    /// Represents the string message displayed when all transactions are deleted successfully.
+    /// </summary>
+    public const string SuccessfulRemovalOfAllTransaction = "ALL TRANSACTIONS DELETED SUCCESSFULLY!!";
+
+    /// <summary>
     /// Represents the string message displayed when transaction updated successfully.
     /// </summary>
     public const string SuccessfullyUpdatedTheTransaction = "TRANSACTION UPDATED SUCCESSFULLY!!";

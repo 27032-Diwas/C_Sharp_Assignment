@@ -60,6 +60,10 @@ public class MainMenuController
                         this._transactionView.DisplayMessage($"{HeaderMessages.DeleteTransaction}\n");
                         this._transactionController.DeleteTransaction();
                         break;
+                    case MainMenu.DeleteAllTransactions:
+                        this._transactionView.DisplayMessage($"{HeaderMessages.DeleteAllTransactions}\n");
+                        this._transactionController.DeleteAllTransactions();
+                        break;
                     case MainMenu.Summary:
                         this._transactionView.DisplayMessage($"{HeaderMessages.Summary}\n");
                         this._transactionController.GetSummary();

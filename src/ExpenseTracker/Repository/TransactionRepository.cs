@@ -54,6 +54,14 @@ public class TransactionRepository : IRepository
     }
 
     /// <summary>
+    /// Deletes all transactions in the list.
+    /// </summary>
+    public void DeleteAllTransactions()
+    {
+        this._transactions.Clear();
+    }
+
+    /// <summary>
     /// Update the value of a transaction in transaction list.
     /// </summary>
     /// <param name="updatedTransaction"> Instance of transaction containing edited values. </param>

@@ -127,6 +127,15 @@ public class TransactionController : IController
     }
 
     /// <summary>
+    /// Deletes all transactions in the list.
+    /// </summary>
+    public void DeleteAllTransactions()
+    {
+        this._transactionService.DeleteAllTransactions();
+        this._transactionView.DisplaySuccessMessage(SuccessMessages.SuccessfulRemovalOfAllTransaction);
+    }
+
+    /// <summary>
     /// Update the value of transaction in transaction list.
     /// </summary>
     public void EditTransaction()

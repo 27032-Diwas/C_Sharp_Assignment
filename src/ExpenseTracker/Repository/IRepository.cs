@@ -30,7 +30,12 @@ public interface IRepository
     /// Deletes the transaction from the list.
     /// </summary>
     /// <param name="transactionId"> Transaction id of transaction to delete. </param>
-    public void DeleteTransaction(Guid transactionId);
+    void DeleteTransaction(Guid transactionId);
+
+    /// <summary>
+    /// Deletes all transactions in the list.
+    /// </summary>
+    void DeleteAllTransactions();
 
     /// <summary>
     /// Update the value of a transaction in transaction list.

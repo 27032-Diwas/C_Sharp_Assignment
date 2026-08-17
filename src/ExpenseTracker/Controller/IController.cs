@@ -29,6 +29,11 @@ public interface IController
     void DeleteTransaction();
 
     /// <summary>
+    /// Deletes all transactions in the list.
+    /// </summary>
+    void DeleteAllTransactions();
+
+    /// <summary>
     /// Update the value of transaction in transaction list.
     /// </summary>
     void EditTransaction();

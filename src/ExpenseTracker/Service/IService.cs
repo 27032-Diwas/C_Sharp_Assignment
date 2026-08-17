@@ -39,6 +39,11 @@ public interface IService
     void DeleteTransaction(Guid transactionId);
 
     /// <summary>
+    /// Deletes all transactions in the list.
+    /// </summary>
+    void DeleteAllTransactions();
+
+    /// <summary>
     /// Update the value of transaction in transaction list.
     /// </summary>
     /// <param name="transaction"> Instance of transaction containing updated values. </param>
