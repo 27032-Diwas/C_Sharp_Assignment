@@ -1,5 +1,5 @@
-﻿using ExpenseTracker.Constants;
-using ExpenseTracker.Models;
+﻿using System.Text.RegularExpressions;
+using ExpenseTracker.Constants;
 
 namespace ExpenseTracker.Helper;
 
@@ -13,19 +13,19 @@ public static class Validation
     /// </summary>
     /// <param name="amount"> Amount to validate. </param>
     /// <returns> True if amount is valid; otherwise false. </returns>
-    public static bool IsValidAmount(decimal amount) => amount > 0;
+    public static bool IsValidAmount(decimal amount) => amount > Configurable.MinimumAmountThreshold && amount < Configurable.MaxAmountThreshold;
 
     /// <summary>
     /// Determines whether the specified description is valid.
     /// </summary>
     /// <param name="description"> Description to validate. </param>
     /// <returns> True if description is valid; otherwise false. </returns>
-    public static bool IsValidDescription(string description) => description.Length < 100;
+    public static bool IsValidDescription(string description) => Regex.IsMatch(description, RegexPatterns.DescriptionPattern);
 
     /// <summary>
     /// Determines whether the specified category is valid.
     /// </summary>
     /// <param name="category"> Category to validate. </param>
     /// <returns> True if category is valid; otherwise false. </returns>
-    public static bool IsValidCategory(string category) => category.Length < 50;
+    public static bool IsValidCategory(string category) => Regex.IsMatch(category, RegexPatterns.CategoryPattern);
 }

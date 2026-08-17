@@ -46,13 +46,10 @@ public class TransactionRepository : IRepository
     /// <param name="transactionId"> Transaction id of transaction to delete. </param>
     public void DeleteTransaction(Guid transactionId)
     {
-        foreach (Transaction transaction in this._transactions)
+        int index = this._transactions.FindIndex(t => t.TransactionId == transactionId);
+        if (index >= 0)
         {
-            if (transaction.TransactionId.Equals(transactionId))
-            {
-                this._transactions.Remove(transaction);
-                break;
-            }
+            this._transactions.RemoveAt(index);
         }
     }
 

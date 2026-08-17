@@ -33,7 +33,7 @@ public class UserPrompts
     /// <summary>
     /// Represents the prompt requesting the user to enter transaction date.
     /// </summary>
-    public const string GetDate = "Enter transaction date [DD-MM-YYYY]";
+    public const string GetDate = "Enter transaction date [DD-MM-YYYY HH:MM:SS]";
 
     /// <summary>
     /// Represents the prompt requesting the user to enter transaction category.

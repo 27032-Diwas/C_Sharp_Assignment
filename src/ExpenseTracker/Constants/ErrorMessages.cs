@@ -33,7 +33,7 @@ public class ErrorMessages
     /// <summary>
     /// Represents the message displayed when user enters an invalid amount.
     /// </summary>
-    public const string InvalidAmount = "AMOUNT SHOULD BE POSITIVE";
+    public const string InvalidAmount = "AMOUNT SHOULD BE POSITIVE AND LESS THAN 100000000";
 
     /// <summary>
     /// Represents the message displayed when user enters an invalid date.
