@@ -75,7 +75,7 @@ public class TransactionService : IService
     /// </summary>
     /// <param name="searchWord"> Word to search in transaction list. </param>
     /// <returns> List of transactions containing search word. </returns>
-    public List<Transaction> SearchTransaction(string searchWord)
+    public List<Transaction> SearchTransactions(string searchWord)
     {
         return this._repository.SearchTransactions(searchWord.Trim());
     }
@@ -127,13 +127,13 @@ public class TransactionService : IService
 
     private decimal CalculateIncome(List<Transaction> transactions)
     {
-        return transactions.Where(transaction => transaction.TransactionType.Equals(TransactionTypes.Income))
+        return transactions.Where(transaction => transaction.TransactionType == TransactionTypes.Income)
             .Sum(transaction => transaction.Amount);
     }
 
     private decimal CalculateExpense(List<Transaction> transactions)
     {
-        return transactions.Where(transaction => transaction.TransactionType.Equals(TransactionTypes.Expense))
+        return transactions.Where(transaction => transaction.TransactionType == TransactionTypes.Expense)
             .Sum(transaction => transaction.Amount);
     }
 }

@@ -18,7 +18,7 @@ public class UserPrompts
     /// <summary>
     /// Represents the prompt requesting the user to select one of the available options.
     /// </summary>
-    public const string GetYesOrNo = "Do you want to choose above product [Y/N]";
+    public const string GetYesOrNo = "Do you want to choose above transaction [Y/N]";
 
     /// <summary>
     /// Represents the prompt requesting the user to press any key to continue.
@@ -48,7 +48,7 @@ public class UserPrompts
     /// <summary>
     /// Represents the message prompted to get word to search.
     /// </summary>
-    public const string GetSearchWord = "Enter word to search product";
+    public const string GetSearchWord = "Enter word to search transaction";
 
     /// <summary>
     /// Represents the prompt requesting the user to enter the serial number.

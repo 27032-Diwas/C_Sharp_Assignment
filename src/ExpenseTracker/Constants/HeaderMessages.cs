@@ -43,7 +43,7 @@ public class HeaderMessages
     /// <summary>
     /// Represents the header message for summary.
     /// </summary>
-    public const string Summary = "Summary";
+    public const string Summary = "SUMMARY";
 
     /// <summary>
     /// Represents the header message for transaction types.

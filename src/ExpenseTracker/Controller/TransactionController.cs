@@ -99,7 +99,7 @@ public class TransactionController : IController
             return null;
         }
 
-        List<Transaction> transactions = this._transactionService.SearchTransaction(searchWord);
+        List<Transaction> transactions = this._transactionService.SearchTransactions(searchWord);
         if (!transactions.Any())
         {
             this._transactionView.DisplayMessage($"\n{ErrorMessages.EmptyList}");
@@ -168,7 +168,6 @@ public class TransactionController : IController
     /// <returns> Instance of transaction. </returns>
     private Transaction? GetTransaction()
     {
-        int index;
         List<Transaction>? transactions = this.SearchTransaction();
         if (transactions is null)
         {
@@ -199,7 +198,7 @@ public class TransactionController : IController
 
         while (true)
         {
-            long? serialNo = this._transactionView.GetIntegerInput($"{UserPrompts.SelectSerialNumber} [ 1 - {transactions.Count} ]");
+            int? serialNo = this._transactionView.GetIntegerInput($"{UserPrompts.SelectSerialNumber} [ 1 - {transactions.Count} ]");
             if (serialNo is null)
             {
                 return null;
@@ -211,11 +210,8 @@ public class TransactionController : IController
                 continue;
             }
 
-            index = (int)serialNo.Value;
-            break;
+            return transactions[serialNo.Value - 1];
         }
-
-        return transactions[index - 1];
     }
 
     private Transaction? GetNewValues(Transaction transaction)

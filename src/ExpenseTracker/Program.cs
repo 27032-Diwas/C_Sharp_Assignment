@@ -6,7 +6,7 @@ using ExpenseTracker.View;
 namespace ExpenseTracker;
 
 /// <summary>
-/// Entry point of the applications.
+/// Entry point of the application.
 /// </summary>
 public class Program
 {

@@ -30,7 +30,7 @@ public interface IService
     /// </summary>
     /// <param name="searchWord"> Word to search in transaction list. </param>
     /// <returns> List of transactions containing search word. </returns>
-    List<Transaction> SearchTransaction(string searchWord);
+    List<Transaction> SearchTransactions(string searchWord);
 
     /// <summary>
     /// Deletes the transaction from the transaction list.

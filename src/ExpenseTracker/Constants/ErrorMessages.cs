@@ -11,7 +11,7 @@ public class ErrorMessages
     public const string InvalidOption = "ENTER A VALID OPTION";
 
     /// <summary>
-    /// Represents the message displayed when user enters a invalid string.
+    /// Represents the message displayed when user enters an invalid string.
     /// </summary>
     public const string InvalidString = "ENTER A VALUE";
 
@@ -23,7 +23,7 @@ public class ErrorMessages
     /// <summary>
     /// Represents the message displayed when no transaction found in list.
     /// </summary>
-    public const string EmptyList = "NO TRANSACTION FOUND";
+    public const string EmptyList = "NO TRANSACTIONS FOUND";
 
     /// <summary>
     /// Represents the message displayed when no transaction match during search.
@@ -53,5 +53,5 @@ public class ErrorMessages
     /// <summary>
     /// Represents the message displayed when the user enter an invalid serial number.
     /// </summary>
-    public const string InvalidSerialNumber = "SERIAL NUMBER SHOULD BE WITHIN THE RANGE!!";
+    public const string InvalidSerialNumber = "SERIAL NUMBER SHOULD BE WITHIN THE RANGE";
 }
