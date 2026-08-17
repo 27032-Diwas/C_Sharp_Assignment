@@ -1,4 +1,5 @@
-﻿using System.Transactions;
+﻿using ExpenseTracker.Enums;
+using ExpenseTracker.Models;
 
 namespace ExpenseTracker.Service;
 
@@ -10,8 +11,13 @@ public interface IService
     /// <summary>
     /// Adds transaction to transaction list.
     /// </summary>
-    /// <param name="transaction"> Instance of transaction to add. </param>
-    void AddTransaction(Transaction transaction);
+    /// <param name="date"> Date of transaction. </param>
+    /// <param name="amount"> Amount transferred in the transaction. </param>
+    /// <param name="category"> Transfer category. </param>
+    /// <param name="transactionType"> Type of transaction. </param>
+    /// <param name="description"> Transaction description. </param>
+    /// <returns> Success or failure message. </returns>
+    string AddTransaction(DateTime date, decimal amount, string category, TransactionTypes transactionType, string description);
 
     /// <summary>
     /// Gets all transactions from the list.
@@ -36,7 +42,8 @@ public interface IService
     /// Update the value of transaction in transaction list.
     /// </summary>
     /// <param name="transaction"> Instance of transaction containing updated values. </param>
-    void EditTransaction(Transaction transaction);
+    /// <returns> Success or failure message. </returns>
+    string EditTransaction(Transaction transaction);
 
     /// <summary>
     /// Gets summary of all transaction.

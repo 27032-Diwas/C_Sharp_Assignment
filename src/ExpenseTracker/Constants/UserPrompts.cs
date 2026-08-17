@@ -18,7 +18,7 @@ public class UserPrompts
     /// <summary>
     /// Represents the prompt requesting the user to select one of the available options.
     /// </summary>
-    public const string GetYesOrNo = "Do you want to choose above product [Y/N]:";
+    public const string GetYesOrNo = "Do you want to choose above product [Y/N]";
 
     /// <summary>
     /// Represents the prompt requesting the user to press any key to continue.
@@ -28,30 +28,30 @@ public class UserPrompts
     /// <summary>
     /// Represents the prompt requesting the user to enter transaction amount.
     /// </summary>
-    public const string GetAmount = "Enter transaction amount:";
+    public const string GetAmount = "Enter transaction amount";
 
     /// <summary>
     /// Represents the prompt requesting the user to enter transaction date.
     /// </summary>
-    public const string GetDate = "Enter transaction date:";
+    public const string GetDate = "Enter transaction date [DD-MM-YYYY]";
 
     /// <summary>
     /// Represents the prompt requesting the user to enter transaction category.
     /// </summary>
-    public const string GetCategory = "Enter transaction category:";
+    public const string GetCategory = "Enter transaction category";
 
     /// <summary>
     /// Represents the prompt requesting the user to enter transaction description.
     /// </summary>
-    public const string GetDescription = "Enter transaction description:";
+    public const string GetDescription = "Enter transaction description";
 
     /// <summary>
     /// Represents the message prompted to get word to search.
     /// </summary>
-    public const string GetSearchWord = "Enter word to search product:";
+    public const string GetSearchWord = "Enter word to search product";
 
     /// <summary>
     /// Represents the prompt requesting the user to enter the serial number.
     /// </summary>
-    public const string SelectSerialNumber = "Enter a serial number:";
+    public const string SelectSerialNumber = "Enter a serial number";
 }

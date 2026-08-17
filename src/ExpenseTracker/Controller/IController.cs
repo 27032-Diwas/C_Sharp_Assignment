@@ -1,4 +1,4 @@
-﻿using System.Transactions;
+﻿using ExpenseTracker.Models;
 
 namespace ExpenseTracker.Controller;
 
@@ -21,7 +21,7 @@ public interface IController
     /// Search transaction list for transaction containing search word.
     /// </summary>
     /// <returns> List of transactions containing search word. </returns>
-    List<Transaction> SearchTransaction();
+    List<Transaction>? SearchTransaction();
 
     /// <summary>
     /// Deletes the transaction from the transaction list.

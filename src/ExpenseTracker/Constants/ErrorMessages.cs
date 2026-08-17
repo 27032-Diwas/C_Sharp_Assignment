@@ -40,7 +40,6 @@ public class ErrorMessages
     /// </summary>
     public const string InvalidDate = "ENTER A VALID DATE";
 
-
     /// <summary>
     /// Represents the message displayed when user enter an invalid category.
     /// </summary>
@@ -50,4 +49,9 @@ public class ErrorMessages
     /// Represents the message displayed when user enter an invalid description.
     /// </summary>
     public const string InvalidDescription = "DESCRIPTION SHOULD BE LESS THAN 100 CHARACTERS.";
+
+    /// <summary>
+    /// Represents the message displayed when the user enter an invalid serial number.
+    /// </summary>
+    public const string InvalidSerialNumber = "SERIAL NUMBER SHOULD BE WITHIN THE RANGE!!";
 }

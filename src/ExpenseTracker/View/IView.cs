@@ -1,4 +1,4 @@
-﻿using System.Transactions;
+﻿using ExpenseTracker.Models;
 
 namespace ExpenseTracker.View;
 
@@ -15,13 +15,14 @@ public interface IView
     /// <returns>
     /// The selected enumeration value.
     /// </returns>
-    T GetMenuChoice<T>(string message);
+    T GetMenuChoice<T>(string message)
+        where T : struct, Enum;
 
     /// <summary>
     /// Displays the details in transaction.
     /// </summary>
-    /// <param name="transaction"> Transaction to display. </param>
-    void DisplayTransaction(Transaction transaction);
+    /// <param name="transactions"> List of transaction to display. </param>
+    void DisplayTransactions(List<Transaction> transactions);
 
     /// <summary>
     /// Displays summary as table.
@@ -56,17 +57,42 @@ public interface IView
     /// Gets description from the user.
     /// </summary>
     /// <returns> Description as a string. </returns>
-    string GetDescription();
+    string? GetDescription();
+
+    /// <summary>
+    /// Gets category from the user.
+    /// </summary>
+    /// <returns> Category as a string. </returns>
+    string? GetCategory();
 
     /// <summary>
     /// Gets amount from the user.
     /// </summary>
     /// <returns> Amount as decimal value. </returns>
-    decimal GetAmount();
+    decimal? GetAmount();
 
     /// <summary>
     /// Gets date from the user.
     /// </summary>
     /// <returns> Date as datetime value. </returns>
-    DateTime GetDate();
+    DateTime? GetDate();
+
+    /// <summary>
+    /// Waits for the user to press a key and then clears the console.
+    /// </summary>
+    void GetAnyKey();
+
+    /// <summary>
+    /// Gets input from user which is not null or empty.
+    /// </summary>
+    /// <param name="prompt"> Represents message displayed to user to get input. </param>
+    /// <returns> Null if user chooses to exit process; otherwise user input. </returns>
+    string? GetStringInput(string prompt);
+
+    /// <summary>
+    /// Gets input from user which is a valid number.
+    /// </summary>
+    /// <param name="prompt"> Message that needs to be displayed. </param>
+    /// <returns> Null if user chooses to exit process; otherwise user input. </returns>
+    int? GetIntegerInput(string prompt);
 }

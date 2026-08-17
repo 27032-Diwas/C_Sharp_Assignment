@@ -41,9 +41,19 @@ public class HeaderMessages
     public const string DeleteTransaction = "DELETE TRANSACTION";
 
     /// <summary>
+    /// Represents the header message for summary.
+    /// </summary>
+    public const string Summary = "Summary";
+
+    /// <summary>
     /// Represents the header message for transaction types.
     /// </summary>
     public const string TransactionTypes = "TRANSACTION TYPES";
+
+    /// <summary>
+    /// Represents the header message for editable fields.
+    /// </summary>
+    public const string EditableFields = "EDITABLE FIELDS";
 
     /// <summary>
     /// Represents the header message for categories.

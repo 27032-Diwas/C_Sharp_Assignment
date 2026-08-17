@@ -21,6 +21,11 @@ public enum MainMenu
     ViewTransactions,
 
     /// <summary>
+    /// Represents the option to access search transaction method.
+    /// </summary>
+    SearchTransaction,
+
+    /// <summary>
     /// Represents the option to access delete transaction method.
     /// </summary>
     DeleteTransaction,
@@ -29,4 +34,9 @@ public enum MainMenu
     /// Represents the option to access delete transaction method.
     /// </summary>
     EditTransaction,
+
+    /// <summary>
+    /// Represents the option to access summary method.
+    /// </summary>
+    Summary,
 }

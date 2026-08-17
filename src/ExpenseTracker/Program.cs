@@ -1,4 +1,9 @@
-﻿namespace Assignments;
+﻿using ExpenseTracker.Controller;
+using ExpenseTracker.Repository;
+using ExpenseTracker.Service;
+using ExpenseTracker.View;
+
+namespace ExpenseTracker;
 
 /// <summary>
 /// Entry point of the applications.
@@ -10,5 +15,11 @@ public class Program
     /// </summary>
     public static void Main()
     {
+        TransactionRepository transactionRepository = new ();
+        TransactionService transactionService = new (transactionRepository);
+        TransactionView transactionView = new ();
+        TransactionController transactionController = new (transactionView, transactionService);
+        MainMenuController mainMenuController = new (transactionView, transactionController);
+        mainMenuController.GetMenuOption();
     }
 }

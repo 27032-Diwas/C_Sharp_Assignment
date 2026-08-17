@@ -5,7 +5,7 @@ namespace ExpenseTracker.Repository;
 /// <summary>
 /// Performs read and write operations into the list (CRUD).
 /// </summary>
-public class Repository : IRepository
+public class TransactionRepository : IRepository
 {
     private readonly List<Transaction> _transactions = new ();
 
@@ -68,6 +68,7 @@ public class Repository : IRepository
             {
                 transaction.Date = updatedTransaction.Date;
                 transaction.Amount = updatedTransaction.Amount;
+                transaction.TransactionType = updatedTransaction.TransactionType;
                 transaction.Category = updatedTransaction.Category;
                 transaction.Description = updatedTransaction.Description;
                 break;
