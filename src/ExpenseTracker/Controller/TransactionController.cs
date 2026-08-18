@@ -122,7 +122,6 @@ public class TransactionController : IController
         }
 
         this._transactionService.DeleteTransaction(transactions.TransactionId);
-        this._transactionView.ClearConsole();
         this._transactionView.DisplaySuccessMessage(SuccessMessages.SuccessfulRemovalOfTransaction);
     }
 

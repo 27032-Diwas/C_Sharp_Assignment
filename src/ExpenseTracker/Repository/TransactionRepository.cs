@@ -7,7 +7,7 @@ namespace ExpenseTracker.Repository;
 /// </summary>
 public class TransactionRepository : IRepository
 {
-    private readonly List<Transaction> _transactions = new();
+    private readonly List<Transaction> _transactions = new ();
 
     /// <summary>
     /// Adds transaction to the transaction list.
@@ -19,7 +19,7 @@ public class TransactionRepository : IRepository
     /// Gets all transactions from the list.
     /// </summary>
     /// <returns> List of transactions. </returns>
-    public List<Transaction> GetAllTransactions() => this._transactions.Select(transaction => transaction.Clone()).ToList();
+    public List<Transaction> GetAllTransactions() => this._transactions.Select(transaction => transaction.Clone()).OrderBy(transaction => transaction.Date).ToList();
 
     /// <summary>
     /// Search transactions in list based on search word entered by user.
@@ -27,7 +27,8 @@ public class TransactionRepository : IRepository
     /// <param name="searchWord"> Word to search in the transaction list. </param>
     /// <returns> List of transactions that contains the search word. </returns>
     public List<Transaction> SearchTransactions(string searchWord) => this._transactions.Where(transaction => transaction.Description.Contains(searchWord, StringComparison.OrdinalIgnoreCase)
-                                                                      || transaction.Category.Contains(searchWord, StringComparison.OrdinalIgnoreCase))
+                                                                      || transaction.Category.Contains(searchWord, StringComparison.OrdinalIgnoreCase)
+                                                                      || transaction.Date.ToString().Contains(searchWord, StringComparison.OrdinalIgnoreCase))
                                                                       .Select(transaction => transaction.Clone())
                                                                       .ToList();
 
