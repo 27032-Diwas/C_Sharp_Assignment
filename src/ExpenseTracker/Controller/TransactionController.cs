@@ -131,6 +131,23 @@ public class TransactionController : IController
     /// </summary>
     public void DeleteAllTransactions()
     {
+        while (true)
+        {
+            string? choice = this._transactionView.GetStringInput(UserPrompts.GetConformation);
+            if (choice is null || choice.Equals("N", StringComparison.OrdinalIgnoreCase))
+            {
+                this._transactionView.DisplayMessage($"\n{SuccessMessages.ProcessCancelled}");
+                return;
+            }
+            else if (!choice.Equals("Y", StringComparison.OrdinalIgnoreCase))
+            {
+                this._transactionView.DisplayErrorMessage(ErrorMessages.InvalidOption);
+                continue;
+            }
+
+            break;
+        }
+
         this._transactionService.DeleteAllTransactions();
         this._transactionView.DisplaySuccessMessage(SuccessMessages.SuccessfulRemovalOfAllTransaction);
     }
@@ -190,9 +207,9 @@ public class TransactionController : IController
                     this._transactionView.DisplayMessage($"\n{SuccessMessages.ProcessCancelled}");
                     return null;
                 }
-                else if (!(choice.Equals("Y", StringComparison.OrdinalIgnoreCase) || choice.Equals("YES", StringComparison.OrdinalIgnoreCase)))
+                else if (!choice.Equals("Y", StringComparison.OrdinalIgnoreCase))
                 {
-                    this._transactionView.DisplayMessage(ErrorMessages.InvalidOption);
+                    this._transactionView.DisplayErrorMessage(ErrorMessages.InvalidOption);
                     continue;
                 }
 

@@ -50,7 +50,8 @@ public class TransactionView : IView
         int i = 1;
         foreach (Transaction transaction in transactions)
         {
-            contactTable.AddRow(i++, transaction.Date, transaction.Amount, transaction.Category, transaction.TransactionType, transaction.Description);
+            DateOnly dateOnly = DateOnly.FromDateTime(transaction.Date);
+            contactTable.AddRow(i++, dateOnly, transaction.Amount, transaction.Category, transaction.TransactionType, transaction.Description);
         }
 
         contactTable.Write();

@@ -21,6 +21,11 @@ public static class UserPrompts
     public const string GetYesOrNo = "Do you want to choose above transaction [Y/N]";
 
     /// <summary>
+    /// Represents the prompt requesting the user to enter yes or no to delete all transaction.
+    /// </summary>
+    public const string GetConformation = "Do you want to delete all transactions [Y/N]";
+
+    /// <summary>
     /// Represents the prompt requesting the user to press any key to continue.
     /// </summary>
     public const string GetAnyKey = "PRESS ANY KEY TO CONTINUE!!";
@@ -33,7 +38,7 @@ public static class UserPrompts
     /// <summary>
     /// Represents the prompt requesting the user to enter transaction date.
     /// </summary>
-    public const string GetDate = "Enter transaction date [DD-MM-YYYY HH:MM:SS]";
+    public const string GetDate = "Enter transaction date [DD-MM-YYYY]";
 
     /// <summary>
     /// Represents the prompt requesting the user to enter transaction category.
