@@ -7,7 +7,7 @@ namespace ExpenseTracker.Repository;
 /// </summary>
 public class TransactionRepository : IRepository
 {
-    private readonly List<Transaction> _transactions = new();
+    private readonly List<Transaction> _transactions = new ();
 
     /// <summary>
     /// Adds transaction to the transaction list.
@@ -29,9 +29,8 @@ public class TransactionRepository : IRepository
     public List<Transaction> SearchTransactions(string searchWord) => this._transactions.Where(transaction => transaction.Description.Contains(searchWord, StringComparison.OrdinalIgnoreCase)
                                                                       || transaction.Category.Contains(searchWord, StringComparison.OrdinalIgnoreCase)
                                                                       || transaction.Date.ToString().Contains(searchWord, StringComparison.OrdinalIgnoreCase))
-                                 .Select(transaction => transaction.Clone())
-                                 .ToList();
-    }
+                                                                      .Select(transaction => transaction.Clone())
+                                                                      .ToList();
 
     /// <summary>
     /// Deletes the transaction from the list.
