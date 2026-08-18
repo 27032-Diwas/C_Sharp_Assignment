@@ -198,12 +198,12 @@ public class TransactionController : IController
             while (true)
             {
                 choice = this._transactionView.GetStringInput(UserPrompts.GetYesOrNo);
-                if (choice is null || choice.ToUpper().Equals("N") || choice.ToUpper().Equals("NO"))
+                if (choice is null || choice.Equals("N", StringComparison.OrdinalIgnoreCase))
                 {
                     this._transactionView.DisplayMessage($"\n{SuccessMessages.ProcessCancelled}");
                     return null;
                 }
-                else if (!(choice.ToUpper().Equals("Y") || choice.ToUpper().Equals("YES")))
+                else if (!(choice.Equals("Y", StringComparison.OrdinalIgnoreCase) || choice.Equals("YES", StringComparison.OrdinalIgnoreCase)))
                 {
                     this._transactionView.DisplayMessage(ErrorMessages.InvalidOption);
                     continue;

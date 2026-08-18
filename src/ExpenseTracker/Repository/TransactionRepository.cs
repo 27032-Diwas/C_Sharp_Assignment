@@ -7,7 +7,7 @@ namespace ExpenseTracker.Repository;
 /// </summary>
 public class TransactionRepository : IRepository
 {
-    private readonly List<Transaction> _transactions = new ();
+    private readonly List<Transaction> _transactions = new();
 
     /// <summary>
     /// Adds transaction to the transaction list.

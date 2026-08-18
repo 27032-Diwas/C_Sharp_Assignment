@@ -85,10 +85,7 @@ public class TransactionService : IService
     /// <summary>
     /// Deletes all transactions in the list.
     /// </summary>
-    public void DeleteAllTransactions()
-    {
-        this._repository.DeleteAllTransactions();
-    }
+    public void DeleteAllTransactions() => this._repository.DeleteAllTransactions();
 
     /// <summary>
     /// Update the value of transaction in transaction list.
@@ -131,10 +128,8 @@ public class TransactionService : IService
     private decimal CalculateIncome(List<Transaction> transactions) =>
             transactions.Where(transaction => transaction.TransactionType == TransactionTypes.Income)
             .Sum(transaction => transaction.Amount);
-    }
 
     private decimal CalculateExpense(List<Transaction> transactions) =>
             transactions.Where(transaction => transaction.TransactionType == TransactionTypes.Expense)
             .Sum(transaction => transaction.Amount);
-    }
 }
