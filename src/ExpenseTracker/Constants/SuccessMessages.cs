@@ -3,7 +3,7 @@
 /// <summary>
 /// Contains all success messages.
 /// </summary>
-public class SuccessMessages
+public static class SuccessMessages
 {
     /// <summary>
     /// Represents the string message displayed when transaction added successfully.

@@ -17,10 +17,7 @@ public class TransactionService : IService
     /// Initializes a new instance of the <see cref="TransactionService"/> class.
     /// </summary>
     /// <param name="repository"> Instance of repository. </param>
-    public TransactionService(IRepository repository)
-    {
-        this._repository = repository;
-    }
+    public TransactionService(IRepository repository) => this._repository = repository;
 
     /// <summary>
     /// Adds transaction to transaction list.
@@ -65,37 +62,25 @@ public class TransactionService : IService
     /// Gets all transactions from the list.
     /// </summary>
     /// <returns> List of transactions. </returns>
-    public List<Transaction> GetAllTransactions()
-    {
-        return this._repository.GetAllTransactions();
-    }
+    public List<Transaction> GetAllTransactions() => this._repository.GetAllTransactions();
 
     /// <summary>
     /// Search transaction list for transaction containing search word.
     /// </summary>
     /// <param name="searchWord"> Word to search in transaction list. </param>
     /// <returns> List of transactions containing search word. </returns>
-    public List<Transaction> SearchTransactions(string searchWord)
-    {
-        return this._repository.SearchTransactions(searchWord.Trim());
-    }
+    public List<Transaction> SearchTransactions(string searchWord) => this._repository.SearchTransactions(searchWord.Trim());
 
     /// <summary>
     /// Deletes the transaction from the transaction list.
     /// </summary>
     /// <param name="transactionId"> Transaction id of transaction to delete. </param>
-    public void DeleteTransaction(Guid transactionId)
-    {
-        this._repository.DeleteTransaction(transactionId);
-    }
+    public void DeleteTransaction(Guid transactionId) => this._repository.DeleteTransaction(transactionId);
 
     /// <summary>
     /// Deletes all transactions in the list.
     /// </summary>
-    public void DeleteAllTransactions()
-    {
-        this._repository.DeleteAllTransactions();
-    }
+    public void DeleteAllTransactions() => this._repository.DeleteAllTransactions();
 
     /// <summary>
     /// Update the value of transaction in transaction list.
@@ -135,15 +120,11 @@ public class TransactionService : IService
         return $"Total Expense: {totalExpense}\nTotal Income: {totalIncome}\nNet Balance: {totalIncome - totalExpense}";
     }
 
-    private decimal CalculateIncome(List<Transaction> transactions)
-    {
-        return transactions.Where(transaction => transaction.TransactionType == TransactionTypes.Income)
+    private decimal CalculateIncome(List<Transaction> transactions) =>
+            transactions.Where(transaction => transaction.TransactionType == TransactionTypes.Income)
             .Sum(transaction => transaction.Amount);
-    }
 
-    private decimal CalculateExpense(List<Transaction> transactions)
-    {
-        return transactions.Where(transaction => transaction.TransactionType == TransactionTypes.Expense)
+    private decimal CalculateExpense(List<Transaction> transactions) =>
+            transactions.Where(transaction => transaction.TransactionType == TransactionTypes.Expense)
             .Sum(transaction => transaction.Amount);
-    }
 }

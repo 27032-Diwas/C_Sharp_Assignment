@@ -60,19 +60,13 @@ public class TransactionView : IView
     /// Displays summary as table.
     /// </summary>
     /// <param name="summary"> Summary to be displayed. </param>
-    public void DisplaySummary(string summary)
-    {
-        Console.WriteLine(summary);
-    }
+    public void DisplaySummary(string summary) => Console.WriteLine(summary);
 
     /// <summary>
     /// Display the string passed as a parameter.
     /// </summary>
     /// <param name="message"> Message that need to be displayed. </param>
-    public void DisplayMessage(string message)
-    {
-        Console.WriteLine(message);
-    }
+    public void DisplayMessage(string message) => Console.WriteLine(message);
 
     /// <summary>
     /// Display the string passed as a parameter in red color.
@@ -101,10 +95,7 @@ public class TransactionView : IView
     /// <summary>
     /// Clears console.
     /// </summary>
-    public void ClearConsole()
-    {
-        Console.Clear();
-    }
+    public void ClearConsole() => Console.Clear();
 
     /// <summary>
     /// Gets description from the user.
@@ -261,7 +252,7 @@ public class TransactionView : IView
             string? userInput = Console.ReadLine();
             if (string.IsNullOrEmpty(userInput))
             {
-                this.DisplayErrorMessage(ErrorMessages.InvalidDigit);
+                this.DisplayErrorMessage(ErrorMessages.InvalidNumber);
                 continue;
             }
 
@@ -272,7 +263,7 @@ public class TransactionView : IView
 
             if (!int.TryParse(userInput, out int integerInput))
             {
-                this.DisplayErrorMessage(ErrorMessages.InvalidDigit);
+                this.DisplayErrorMessage(ErrorMessages.InvalidNumber);
                 continue;
             }
 
@@ -313,7 +304,7 @@ public class TransactionView : IView
             string? userInput = Console.ReadLine();
             if (string.IsNullOrEmpty(userInput))
             {
-                this.DisplayErrorMessage(ErrorMessages.InvalidDigit);
+                this.DisplayErrorMessage(ErrorMessages.InvalidNumber);
                 continue;
             }
 
@@ -324,7 +315,7 @@ public class TransactionView : IView
 
             if (!decimal.TryParse(userInput, out decimal decimalInput))
             {
-                this.DisplayErrorMessage(ErrorMessages.InvalidDigit);
+                this.DisplayErrorMessage(ErrorMessages.InvalidNumber);
                 continue;
             }
 

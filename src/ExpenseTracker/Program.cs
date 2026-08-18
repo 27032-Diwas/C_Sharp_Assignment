@@ -15,10 +15,10 @@ public class Program
     /// </summary>
     public static void Main()
     {
-        TransactionRepository transactionRepository = new ();
-        TransactionService transactionService = new (transactionRepository);
-        TransactionView transactionView = new ();
-        TransactionController transactionController = new (transactionView, transactionService);
+        IRepository transactionRepository = new TransactionRepository();
+        IService transactionService = new TransactionService(transactionRepository);
+        IView transactionView = new TransactionView();
+        IController transactionController = new TransactionController(transactionView, transactionService);
         MainMenuController mainMenuController = new (transactionView, transactionController);
         mainMenuController.GetMenuOption();
     }

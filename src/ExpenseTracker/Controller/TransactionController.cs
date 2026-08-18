@@ -146,7 +146,7 @@ public class TransactionController : IController
             return;
         }
 
-        transaction = this.GetNewValues(transaction);
+        transaction = this.GetNewValue(transaction);
         if (transaction is null)
         {
             return;
@@ -166,10 +166,7 @@ public class TransactionController : IController
     /// <summary>
     /// Gets summary of all transaction.
     /// </summary>
-    public void GetSummary()
-    {
-        this._transactionView.DisplaySummary(this._transactionService.GetSummary());
-    }
+    public void GetSummary() => this._transactionView.DisplaySummary(this._transactionService.GetSummary());
 
     /// <summary>
     /// Gets instance of transaction to update or delete.
@@ -188,12 +185,12 @@ public class TransactionController : IController
             while (true)
             {
                 choice = this._transactionView.GetStringInput(UserPrompts.GetYesOrNo);
-                if (choice is null || choice.ToUpper().Equals("N") || choice.ToUpper().Equals("NO"))
+                if (choice is null || choice.Equals("N", StringComparison.OrdinalIgnoreCase))
                 {
                     this._transactionView.DisplayMessage($"\n{SuccessMessages.ProcessCancelled}");
                     return null;
                 }
-                else if (!(choice.ToUpper().Equals("Y") || choice.ToUpper().Equals("YES")))
+                else if (!(choice.Equals("Y", StringComparison.OrdinalIgnoreCase) || choice.Equals("YES", StringComparison.OrdinalIgnoreCase)))
                 {
                     this._transactionView.DisplayMessage(ErrorMessages.InvalidOption);
                     continue;
@@ -223,9 +220,14 @@ public class TransactionController : IController
         }
     }
 
-    private Transaction? GetNewValues(Transaction transaction)
+    /// <summary>
+    /// Gets new value for transaction to update.
+    /// </summary>
+    /// <param name="transaction"> Instance of transaction. </param>
+    /// <returns> Instance of new transaction with updated value. </returns>
+    private Transaction? GetNewValue(Transaction transaction)
     {
-        TransactionFields transactionField = this._transactionView.GetMenuChoice<TransactionFields>(HeaderMessages.EditableFields);
+        TransactionFields transactionField = this._transactionView.GetMenuChoice<TransactionFields>($"\n{HeaderMessages.EditableFields}");
         switch (transactionField)
         {
             case TransactionFields.Back:

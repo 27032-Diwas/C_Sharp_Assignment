@@ -3,7 +3,7 @@
 /// <summary>
 /// Contains all message prompts.
 /// </summary>
-public class UserPrompts
+public static class UserPrompts
 {
     /// <summary>
     /// Represents the prompt requesting the user to select one of the available options.

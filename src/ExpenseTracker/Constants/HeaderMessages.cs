@@ -3,7 +3,7 @@
 /// <summary>
 /// Contains all header messages.
 /// </summary>
-public class HeaderMessages
+public static class HeaderMessages
 {
     /// <summary>
     /// Represents the header message for main menu.
@@ -23,7 +23,7 @@ public class HeaderMessages
     /// <summary>
     /// Represents the header message for view transaction.
     /// </summary>
-    public const string ViewTransaction = "VIEW TRANSACTION";
+    public const string ViewTransaction = "VIEW TRANSACTIONS";
 
     /// <summary>
     /// Represents the header message for search transaction.

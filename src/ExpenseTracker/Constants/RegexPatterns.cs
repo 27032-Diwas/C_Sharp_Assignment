@@ -3,7 +3,7 @@
 /// <summary>
 /// Contains all regex patterns.
 /// </summary>
-public class RegexPatterns
+public static class RegexPatterns
 {
     /// <summary>
     /// Allows letters, numbers, spaces, hyphens, ampersands, and underscores

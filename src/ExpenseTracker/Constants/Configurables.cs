@@ -1,9 +1,9 @@
 ﻿namespace ExpenseTracker.Constants;
 
 /// <summary>
-/// Contains configurable related to expense tracker.
+/// Contains configurables related to expense tracker.
 /// </summary>
-public class Configurable
+public static class Configurables
 {
     /// <summary>
     /// Represents the maximum amount per transaction.
