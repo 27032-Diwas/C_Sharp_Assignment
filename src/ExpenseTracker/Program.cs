@@ -15,7 +15,8 @@ public class Program
     /// </summary>
     public static void Main()
     {
-        IRepository transactionRepository = new TransactionRepository();
+        JsonRepository jsonRepository = new ();
+        IRepository transactionRepository = new TransactionRepository("Transaction.json", jsonRepository);
         IService transactionService = new TransactionService(transactionRepository);
         IView transactionView = new TransactionView();
         IController transactionController = new TransactionController(transactionView, transactionService);
