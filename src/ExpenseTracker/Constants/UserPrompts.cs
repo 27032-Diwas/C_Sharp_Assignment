@@ -8,7 +8,7 @@ public static class UserPrompts
     /// <summary>
     /// Represents the prompt requesting the user to select one of the available options.
     /// </summary>
-    public const string SelectOption = "Select one of the above options:";
+    public const string SelectOption = "Select one of the above options";
 
     /// <summary>
     /// Represents the message prompted to get user input to exit current process.

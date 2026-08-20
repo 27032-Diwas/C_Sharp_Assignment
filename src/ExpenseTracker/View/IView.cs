@@ -12,10 +12,11 @@ public interface IView
     /// </summary>
     /// <typeparam name="T"> The enumeration type. </typeparam>
     /// <param name="message"> The message displayed before the menu options. </param>
+    /// <param name="prompt"> The message displayed to get option from user. </param>
     /// <returns>
     /// The selected enumeration value.
     /// </returns>
-    T GetMenuChoice<T>(string message)
+    T GetMenuChoice<T>(string message, string prompt)
         where T : struct, Enum;
 
     /// <summary>
@@ -57,25 +58,25 @@ public interface IView
     /// Gets description from the user.
     /// </summary>
     /// <returns> Description as a string. </returns>
-    string? GetDescription();
+    string GetDescription();
 
     /// <summary>
     /// Gets category from the user.
     /// </summary>
     /// <returns> Category as a string. </returns>
-    string? GetCategory();
+    string GetCategory();
 
     /// <summary>
     /// Gets amount from the user.
     /// </summary>
     /// <returns> Amount as decimal value. </returns>
-    decimal? GetAmount();
+    decimal GetAmount();
 
     /// <summary>
     /// Gets date from the user.
     /// </summary>
     /// <returns> Date as datetime value. </returns>
-    DateTime? GetDate();
+    DateTime GetDate();
 
     /// <summary>
     /// Waits for the user to press a key and then clears the console.
@@ -87,12 +88,12 @@ public interface IView
     /// </summary>
     /// <param name="prompt"> Represents message displayed to user to get input. </param>
     /// <returns> Null if user chooses to exit process; otherwise user input. </returns>
-    string? GetStringInput(string prompt);
+    string GetStringInput(string prompt);
 
     /// <summary>
     /// Gets input from user which is a valid number.
     /// </summary>
     /// <param name="prompt"> Message that needs to be displayed. </param>
     /// <returns> Null if user chooses to exit process; otherwise user input. </returns>
-    int? GetIntegerInput(string prompt);
+    int GetIntegerInput(string prompt);
 }

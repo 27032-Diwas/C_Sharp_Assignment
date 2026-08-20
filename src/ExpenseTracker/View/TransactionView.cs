@@ -17,18 +17,24 @@ public class TransactionView : IView
     /// </summary>
     /// <typeparam name="T"> The enumeration type. </typeparam>
     /// <param name="message"> The message displayed before the menu options. </param>
+    /// <param name="prompt"> The message displayed to get option from user. </param>
     /// <returns>
     /// The selected enumeration value.
     /// </returns>
-    public T GetMenuChoice<T>(string message)
+    public T GetMenuChoice<T>(string message, string prompt)
         where T : struct, Enum
     {
         while (true)
         {
             Console.WriteLine($"{message}\n");
             DisplayOptions<T>();
-            Console.WriteLine($"\n{UserPrompts.SelectOption}");
+            Console.WriteLine(prompt);
             string input = string.Concat(Console.ReadLine()?.Where(c => !char.IsWhiteSpace(c)) ?? string.Empty);
+            if (input.Equals(HeaderMessages.Exit, StringComparison.OrdinalIgnoreCase))
+            {
+                throw new OperationCanceledException();
+            }
+
             if (Enum.TryParse(input, true, out T choice) &&
                 Enum.IsDefined(typeof(T), choice))
             {
@@ -36,7 +42,7 @@ public class TransactionView : IView
             }
 
             Console.Clear();
-            this.DisplayErrorMessage($"{ErrorMessages.InvalidOption}\n");
+            this.DisplayErrorMessage($"{ErrorMessages.InvalidOption}");
         }
     }
 
@@ -102,15 +108,11 @@ public class TransactionView : IView
     /// Gets description from the user.
     /// </summary>
     /// <returns> Description as a string. </returns>
-    public string? GetDescription()
+    public string GetDescription()
     {
         while (true)
         {
-            string? description = this.GetStringInput(UserPrompts.GetDescription);
-            if (description is null)
-            {
-                return null;
-            }
+            string description = this.GetStringInput(UserPrompts.GetDescription);
 
             if (!Validation.IsValidDescription(description))
             {
@@ -126,15 +128,11 @@ public class TransactionView : IView
     /// Gets category from the user.
     /// </summary>
     /// <returns> Category as a string. </returns>
-    public string? GetCategory()
+    public string GetCategory()
     {
         while (true)
         {
-            string? category = this.GetStringInput(UserPrompts.GetCategory);
-            if (category is null)
-            {
-                return null;
-            }
+            string category = this.GetStringInput(UserPrompts.GetCategory);
 
             if (!Validation.IsValidCategory(category))
             {
@@ -150,17 +148,13 @@ public class TransactionView : IView
     /// Gets amount from the user.
     /// </summary>
     /// <returns> Amount as decimal value. </returns>
-    public decimal? GetAmount()
+    public decimal GetAmount()
     {
         while (true)
         {
-            decimal? amount = this.GetDecimalInput(UserPrompts.GetAmount);
-            if (amount is null)
-            {
-                return null;
-            }
+            decimal amount = this.GetDecimalInput(UserPrompts.GetAmount);
 
-            if (!Validation.IsValidAmount(amount.Value))
+            if (!Validation.IsValidAmount(amount))
             {
                 this.DisplayErrorMessage(ErrorMessages.InvalidAmount);
                 continue;
@@ -174,7 +168,7 @@ public class TransactionView : IView
     /// Gets date from the user.
     /// </summary>
     /// <returns> Date as datetime value. </returns>
-    public DateTime? GetDate()
+    public DateTime GetDate()
     {
         string[] formats = { "dd-MM-yyyy", "dd-MM-yy", "yyyy-MM-dd", "yyyy-MM-dd HH:mm:ss" };
 
@@ -188,9 +182,9 @@ public class TransactionView : IView
                 continue;
             }
 
-            if (userInput.ToUpper().Equals(HeaderMessages.Exit))
+            if (userInput.Equals(HeaderMessages.Exit, StringComparison.OrdinalIgnoreCase))
             {
-                return null;
+                throw new OperationCanceledException();
             }
 
             if (!DateTime.TryParseExact(userInput, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime date))
@@ -218,7 +212,7 @@ public class TransactionView : IView
     /// </summary>
     /// <param name="prompt"> Represents message displayed to user to get input. </param>
     /// <returns> Null if user chooses to exit process; otherwise user input. </returns>
-    public string? GetStringInput(string prompt)
+    public string GetStringInput(string prompt)
     {
         string? userInput;
         while (true)
@@ -231,9 +225,9 @@ public class TransactionView : IView
                 continue;
             }
 
-            if (userInput.ToUpper().Equals(HeaderMessages.Exit))
+            if (userInput.Equals(HeaderMessages.Exit, StringComparison.OrdinalIgnoreCase))
             {
-                return null;
+                throw new OperationCanceledException();
             }
 
             return userInput.Trim();
@@ -245,7 +239,7 @@ public class TransactionView : IView
     /// </summary>
     /// <param name="prompt"> Message that needs to be displayed. </param>
     /// <returns> Null if user chooses to exit process; otherwise user input. </returns>
-    public int? GetIntegerInput(string prompt)
+    public int GetIntegerInput(string prompt)
     {
         while (true)
         {
@@ -257,9 +251,9 @@ public class TransactionView : IView
                 continue;
             }
 
-            if (userInput.ToUpper().Equals(HeaderMessages.Exit))
+            if (userInput.Equals(HeaderMessages.Exit, StringComparison.OrdinalIgnoreCase))
             {
-                return null;
+                throw new OperationCanceledException();
             }
 
             if (!int.TryParse(userInput, out int integerInput))
@@ -297,7 +291,7 @@ public class TransactionView : IView
     /// </summary>
     /// <param name="prompt"> Message that needs to be displayed. </param>
     /// <returns> Null if user chooses to exit process; otherwise user input. </returns>
-    private decimal? GetDecimalInput(string prompt)
+    private decimal GetDecimalInput(string prompt)
     {
         while (true)
         {
@@ -309,9 +303,9 @@ public class TransactionView : IView
                 continue;
             }
 
-            if (userInput.ToUpper().Equals(HeaderMessages.Exit))
+            if (userInput.Equals(HeaderMessages.Exit, StringComparison.OrdinalIgnoreCase))
             {
-                return null;
+                throw new OperationCanceledException();
             }
 
             if (!decimal.TryParse(userInput, out decimal decimalInput))

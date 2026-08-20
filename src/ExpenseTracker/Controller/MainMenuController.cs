@@ -32,7 +32,7 @@ public class MainMenuController
         {
             try
             {
-                MainMenu choice = this._transactionView.GetMenuChoice<MainMenu>(HeaderMessages.MainMenu);
+                MainMenu choice = this._transactionView.GetMenuChoice<MainMenu>(HeaderMessages.MainMenu, $"\n{UserPrompts.SelectOption}:");
                 this._transactionView.ClearConsole();
                 switch (choice)
                 {
@@ -75,13 +75,10 @@ public class MainMenuController
 
                 this._transactionView.GetAnyKey();
             }
-            catch (ArgumentException ex)
+            catch (OperationCanceledException)
             {
-                this._transactionView.DisplayMessage($"Validation Error: {ex.Message}");
-            }
-            catch (InvalidOperationException ex)
-            {
-                this._transactionView.DisplayMessage($"Operation Error: {ex.Message}");
+                this._transactionView.DisplayMessage(SuccessMessages.ProcessCancelled);
+                this._transactionView.GetAnyKey();
             }
             catch (Exception ex)
             {

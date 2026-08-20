@@ -6,17 +6,12 @@
 public enum TransactionTypes
 {
     /// <summary>
-    /// Represents the option to exit the process.
-    /// </summary>
-    Back,
-
-    /// <summary>
     /// Represents the income transaction.
     /// </summary>
-    Income,
+    Income = 1,
 
     /// <summary>
     /// Represents the expense transaction.
     /// </summary>
-    Expense,
+    Expense = 2,
 }

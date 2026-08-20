@@ -30,38 +30,18 @@ public class TransactionController : IController
     /// </summary>
     public void AddTransaction()
     {
-        TransactionTypes transactionType = this._transactionView.GetMenuChoice<TransactionTypes>(HeaderMessages.TransactionTypes);
-        if (transactionType is TransactionTypes.Back)
-        {
-            return;
-        }
+        TransactionTypes transactionType = this._transactionView.GetMenuChoice<TransactionTypes>(HeaderMessages.TransactionTypes, $"\n{UserPrompts.SelectOption} {UserPrompts.ExitProcess}");
 
         this._transactionView.ClearConsole();
-        DateTime? date = this._transactionView.GetDate();
-        if (date is null)
-        {
-            return;
-        }
+        DateTime date = this._transactionView.GetDate();
 
-        decimal? amount = this._transactionView.GetAmount();
-        if (amount is null)
-        {
-            return;
-        }
+        decimal amount = this._transactionView.GetAmount();
 
-        string? category = this._transactionView.GetCategory();
-        if (category is null)
-        {
-            return;
-        }
+        string category = this._transactionView.GetCategory();
 
-        string? description = this._transactionView.GetDescription();
-        if (description is null)
-        {
-            return;
-        }
+        string description = this._transactionView.GetDescription();
 
-        string message = this._transactionService.AddTransaction(date.Value, amount.Value, category, transactionType, description);
+        string message = this._transactionService.AddTransaction(date, amount, category, transactionType, description);
         if (message.Equals(SuccessMessages.SuccessfulAdditionOfTransaction))
         {
             this._transactionView.DisplaySuccessMessage(message);
@@ -91,19 +71,15 @@ public class TransactionController : IController
     /// Search transaction list for transaction containing search word.
     /// </summary>
     /// <returns> List of transactions containing search word. </returns>
-    public List<Transaction>? SearchTransaction()
+    public List<Transaction> SearchTransaction()
     {
-        string? searchWord = this._transactionView.GetStringInput(UserPrompts.GetSearchWord);
-        if (searchWord is null)
-        {
-            return null;
-        }
+        string searchWord = this._transactionView.GetStringInput(UserPrompts.GetSearchWord);
 
         List<Transaction> transactions = this._transactionService.SearchTransactions(searchWord);
         if (!transactions.Any())
         {
             this._transactionView.DisplayMessage($"\n{ErrorMessages.EmptyList}");
-            return null;
+            return transactions;
         }
 
         this._transactionView.DisplayTransactions(transactions);
@@ -115,13 +91,24 @@ public class TransactionController : IController
     /// </summary>
     public void DeleteTransaction()
     {
-        Transaction? transactions = this.GetTransaction();
-        if (transactions is null)
+        List<Transaction> transactions = this.SearchTransaction();
+        if (!transactions.Any())
         {
             return;
         }
 
-        this._transactionService.DeleteTransaction(transactions.TransactionId);
+        Transaction transaction = transactions[0];
+        if (transactions.Count() > 1)
+        {
+            transaction = this.GetTransaction(transactions);
+        }
+
+        if (!this.GetConfirmation(UserPrompts.GetYesOrNo))
+        {
+            throw new OperationCanceledException();
+        }
+
+        this._transactionService.DeleteTransaction(transaction.TransactionId);
         this._transactionView.DisplaySuccessMessage(SuccessMessages.SuccessfulRemovalOfTransaction);
     }
 
@@ -130,21 +117,9 @@ public class TransactionController : IController
     /// </summary>
     public void DeleteAllTransactions()
     {
-        while (true)
+        if (!this.GetConfirmation(UserPrompts.GetConformation))
         {
-            string? choice = this._transactionView.GetStringInput(UserPrompts.GetConformation);
-            if (choice is null || choice.Equals("N", StringComparison.OrdinalIgnoreCase))
-            {
-                this._transactionView.DisplayMessage($"\n{SuccessMessages.ProcessCancelled}");
-                return;
-            }
-            else if (!choice.Equals("Y", StringComparison.OrdinalIgnoreCase))
-            {
-                this._transactionView.DisplayErrorMessage(ErrorMessages.InvalidOption);
-                continue;
-            }
-
-            break;
+            throw new OperationCanceledException();
         }
 
         this._transactionService.DeleteAllTransactions();
@@ -156,17 +131,24 @@ public class TransactionController : IController
     /// </summary>
     public void EditTransaction()
     {
-        Transaction? transaction = this.GetTransaction();
-        if (transaction is null)
+        List<Transaction>? transactions = this.SearchTransaction();
+        if (!transactions.Any())
         {
             return;
         }
 
-        transaction = this.GetNewValue(transaction);
-        if (transaction is null)
+        Transaction transaction = transactions[0];
+        if (transactions.Count() > 1)
         {
-            return;
+            transaction = this.GetTransaction(transactions);
         }
+
+        if (!this.GetConfirmation(UserPrompts.GetYesOrNo))
+        {
+            throw new OperationCanceledException();
+        }
+
+        transaction = this.GetNewValue(transaction);
 
         string message = this._transactionService.EditTransaction(transaction);
         if (message.Equals(SuccessMessages.SuccessfullyUpdatedTheTransaction))
@@ -188,51 +170,18 @@ public class TransactionController : IController
     /// Gets instance of transaction to update or delete.
     /// </summary>
     /// <returns> Instance of transaction. </returns>
-    private Transaction? GetTransaction()
+    private Transaction GetTransaction(List<Transaction> transactions)
     {
-        List<Transaction>? transactions = this.SearchTransaction();
-        if (transactions is null)
-        {
-            return null;
-        }
-        else if (transactions.Count == 1)
-        {
-            string? choice;
-            while (true)
-            {
-                choice = this._transactionView.GetStringInput(UserPrompts.GetYesOrNo);
-                if (choice is null || choice.Equals("N", StringComparison.OrdinalIgnoreCase))
-                {
-                    this._transactionView.DisplayMessage($"\n{SuccessMessages.ProcessCancelled}");
-                    return null;
-                }
-                else if (!choice.Equals("Y", StringComparison.OrdinalIgnoreCase))
-                {
-                    this._transactionView.DisplayErrorMessage(ErrorMessages.InvalidOption);
-                    continue;
-                }
-
-                break;
-            }
-
-            return transactions[0];
-        }
-
         while (true)
         {
-            int? serialNo = this._transactionView.GetIntegerInput($"{UserPrompts.SelectSerialNumber} [ 1 - {transactions.Count} ]");
-            if (serialNo is null)
-            {
-                return null;
-            }
-
+            int serialNo = this._transactionView.GetIntegerInput($"{UserPrompts.SelectSerialNumber} [ 1 - {transactions.Count} ]");
             if (serialNo > transactions.Count || serialNo < 1)
             {
                 this._transactionView.DisplayErrorMessage($"{ErrorMessages.InvalidSerialNumber} [ 1 - {transactions.Count} ]");
                 continue;
             }
 
-            return transactions[serialNo.Value - 1];
+            return transactions[serialNo - 1];
         }
     }
 
@@ -241,58 +190,25 @@ public class TransactionController : IController
     /// </summary>
     /// <param name="transaction"> Instance of transaction. </param>
     /// <returns> Instance of new transaction with updated value. </returns>
-    private Transaction? GetNewValue(Transaction transaction)
+    private Transaction GetNewValue(Transaction transaction)
     {
-        TransactionFields transactionField = this._transactionView.GetMenuChoice<TransactionFields>($"\n{HeaderMessages.EditableFields}");
+        TransactionFields transactionField = this._transactionView.GetMenuChoice<TransactionFields>($"\n{HeaderMessages.EditableFields}", $"\n{UserPrompts.SelectOption} {UserPrompts.ExitProcess}");
         switch (transactionField)
         {
-            case TransactionFields.Back:
-                this._transactionView.DisplayMessage(SuccessMessages.ProcessCancelled);
-                return null;
             case TransactionFields.TransactionDate:
-                DateTime? date = this._transactionView.GetDate();
-                if (date is null)
-                {
-                    return null;
-                }
-
-                transaction.Date = date.Value;
+                transaction.Date = this._transactionView.GetDate();
                 break;
             case TransactionFields.TransactionAmount:
-                decimal? amount = this._transactionView.GetAmount();
-                if (amount is null)
-                {
-                    return null;
-                }
-
-                transaction.Amount = amount.Value;
+                transaction.Amount = this._transactionView.GetAmount();
                 break;
             case TransactionFields.TransactionCategory:
-                string? category = this._transactionView.GetCategory();
-                if (category is null)
-                {
-                    return null;
-                }
-
-                transaction.Category = category;
+                transaction.Category = this._transactionView.GetCategory();
                 break;
             case TransactionFields.TransactionType:
-                TransactionTypes transactionType = this._transactionView.GetMenuChoice<TransactionTypes>(HeaderMessages.TransactionTypes);
-                if (transactionType is TransactionTypes.Back)
-                {
-                    return null;
-                }
-
-                transaction.TransactionType = transactionType;
+                transaction.TransactionType = this._transactionView.GetMenuChoice<TransactionTypes>(HeaderMessages.TransactionTypes, $"\n{UserPrompts.SelectOption} {UserPrompts.ExitProcess}");
                 break;
             case TransactionFields.TransactionDescription:
-                string? description = this._transactionView.GetDescription();
-                if (description is null)
-                {
-                    return null;
-                }
-
-                transaction.Description = description;
+                transaction.Description = this._transactionView.GetDescription();
                 break;
             default:
                 this._transactionView.DisplayErrorMessage(ErrorMessages.InvalidOption);
@@ -300,5 +216,25 @@ public class TransactionController : IController
         }
 
         return transaction;
+    }
+
+    private bool GetConfirmation(string message)
+    {
+        string? choice;
+        while (true)
+        {
+            choice = this._transactionView.GetStringInput(message);
+            if (choice.Equals("N", StringComparison.OrdinalIgnoreCase))
+            {
+                return false;
+            }
+            else if (!choice.Equals("Y", StringComparison.OrdinalIgnoreCase))
+            {
+                this._transactionView.DisplayErrorMessage(ErrorMessages.InvalidOption);
+                continue;
+            }
+
+            return true;
+        }
     }
 }
