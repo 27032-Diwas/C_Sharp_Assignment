@@ -42,6 +42,7 @@ public class TransactionView : IView
             }
 
             Console.Clear();
+            Console.WriteLine("\x1b[3J");
             this.DisplayErrorMessage($"{ErrorMessages.InvalidOption}");
         }
     }
@@ -102,7 +103,11 @@ public class TransactionView : IView
     /// <summary>
     /// Clears console.
     /// </summary>
-    public void ClearConsole() => Console.Clear();
+    public void ClearConsole()
+    {
+        Console.Clear();
+        Console.WriteLine("\x1b[3J");
+    }
 
     /// <summary>
     /// Gets description from the user.
@@ -217,6 +222,7 @@ public class TransactionView : IView
         Console.WriteLine($"\n{UserPrompts.GetAnyKey}");
         Console.ReadKey();
         Console.Clear();
+        Console.WriteLine("\x1b[3J");
     }
 
     /// <summary>

@@ -13,7 +13,7 @@ public static class Validation
     /// </summary>
     /// <param name="amount"> Amount to validate. </param>
     /// <returns> True if amount is valid; otherwise false. </returns>
-    public static bool IsValidAmount(decimal amount) => amount > Configurables.MinimumAmountThreshold && amount < Configurables.MaxAmountThreshold;
+    public static bool IsValidAmount(decimal amount) => amount >= Configurables.MinimumAmountThreshold && amount <= Configurables.MaxAmountThreshold;
 
     /// <summary>
     /// Determines whether the specified description is valid.

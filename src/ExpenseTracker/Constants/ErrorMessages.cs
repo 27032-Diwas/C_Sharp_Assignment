@@ -63,5 +63,5 @@ public static class ErrorMessages
     /// <summary>
     /// Represents the message displayed when user enters an invalid amount.
     /// </summary>
-    public static readonly string InvalidAmount = $"AMOUNT SHOULD BE POSITIVE AND LESS THAN {Configurables.MaxAmountThreshold}";
+    public static readonly string InvalidAmount = $"AMOUNT SHOULD BE POSITIVE AND LESS THAN OR EQUAL TO {Configurables.MaxAmountThreshold}";
 }

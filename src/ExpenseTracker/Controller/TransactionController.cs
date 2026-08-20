@@ -69,6 +69,11 @@ public class TransactionController : IController
     /// <returns> List of transactions containing search word. </returns>
     public List<Transaction> SearchTransaction()
     {
+        if (this.IsEmptyList())
+        {
+            return new List<Transaction>();
+        }
+
         string searchWord = this._transactionView.GetStringInput(UserPrompts.GetSearchWord);
 
         List<Transaction> transactions = this._transactionService.SearchTransactions(searchWord);
@@ -113,6 +118,11 @@ public class TransactionController : IController
     /// </summary>
     public void DeleteAllTransactions()
     {
+        if (this.IsEmptyList())
+        {
+            return;
+        }
+
         if (!this.GetConfirmation(UserPrompts.GetConformation))
         {
             throw new OperationCanceledException();
@@ -160,7 +170,31 @@ public class TransactionController : IController
     /// <summary>
     /// Gets summary of all transaction.
     /// </summary>
-    public void GetSummary() => this._transactionView.DisplaySummary(this._transactionService.GetSummary());
+    public void GetSummary()
+    {
+        if (this.IsEmptyList())
+        {
+            return;
+        }
+
+        this._transactionView.DisplaySummary(this._transactionService.GetSummary());
+    }
+
+    /// <summary>
+    /// Check whether list contain any transaction or not.
+    /// </summary>
+    /// <returns> True if list is empty; otherwise false. </returns>
+    private bool IsEmptyList()
+    {
+        List<Transaction> transactions = this._transactionService.GetAllTransactions();
+        if (!transactions.Any())
+        {
+            this._transactionView.DisplayMessage(ErrorMessages.EmptyList);
+            return true;
+        }
+
+        return false;
+    }
 
     /// <summary>
     /// Gets instance of transaction to update or delete.
