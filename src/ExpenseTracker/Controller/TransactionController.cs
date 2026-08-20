@@ -34,13 +34,9 @@ public class TransactionController : IController
 
         this._transactionView.ClearConsole();
         DateTime date = this._transactionView.GetDate();
-
         decimal amount = this._transactionView.GetAmount();
-
         string category = this._transactionView.GetCategory();
-
         string description = this._transactionView.GetDescription();
-
         string message = this._transactionService.AddTransaction(date, amount, category, transactionType, description);
         if (message.Equals(SuccessMessages.SuccessfulAdditionOfTransaction))
         {
@@ -218,6 +214,11 @@ public class TransactionController : IController
         return transaction;
     }
 
+    /// <summary>
+    /// Gets input from user to confirm transaction selection.
+    /// </summary>
+    /// <param name="message"> Message displayed to user to get input. </param>
+    /// <returns> True if user confirm; otherwise false. </returns>
     private bool GetConfirmation(string message)
     {
         string? choice;
