@@ -28,4 +28,11 @@ public static class Validation
     /// <param name="category"> Category to validate. </param>
     /// <returns> True if category is valid; otherwise false. </returns>
     public static bool IsValidCategory(string category) => Regex.IsMatch(category, RegexPatterns.CategoryPattern);
+
+    /// <summary>
+    /// Determines whether the specified date is valid.
+    /// </summary>
+    /// <param name="date"> Date to validate. </param>
+    /// <returns> True if date is valid; otherwise false. </returns>
+    public static bool IsValidDate(DateTime date) => date < DateTime.Now;
 }

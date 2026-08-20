@@ -32,7 +32,7 @@ public class MainMenuController
         {
             try
             {
-                MainMenu choice = this._transactionView.GetMenuChoice<MainMenu>(HeaderMessages.MainMenu, $"\n{UserPrompts.SelectOption}:");
+                MainMenu choice = this._transactionView.GetMenuChoice<MainMenu>(HeaderMessages.MainMenu, $"\n{UserPrompts.SelectOption} [ 0 - {Configurables.MaxMenuRange} ]:");
                 this._transactionView.ClearConsole();
                 switch (choice)
                 {

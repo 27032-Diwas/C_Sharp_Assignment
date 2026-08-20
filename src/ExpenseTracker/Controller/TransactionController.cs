@@ -30,7 +30,7 @@ public class TransactionController : IController
     /// </summary>
     public void AddTransaction()
     {
-        TransactionTypes transactionType = this._transactionView.GetMenuChoice<TransactionTypes>(HeaderMessages.TransactionTypes, $"\n{UserPrompts.SelectOption} {UserPrompts.ExitProcess}");
+        TransactionTypes transactionType = this._transactionView.GetMenuChoice<TransactionTypes>(HeaderMessages.TransactionTypes, $"\n{UserPrompts.SelectOption} [ 1 - 2 ] {UserPrompts.ExitProcess}");
 
         this._transactionView.ClearConsole();
         DateTime date = this._transactionView.GetDate();
@@ -188,7 +188,7 @@ public class TransactionController : IController
     /// <returns> Instance of new transaction with updated value. </returns>
     private Transaction GetNewValue(Transaction transaction)
     {
-        TransactionFields transactionField = this._transactionView.GetMenuChoice<TransactionFields>($"\n{HeaderMessages.EditableFields}", $"\n{UserPrompts.SelectOption} {UserPrompts.ExitProcess}");
+        TransactionFields transactionField = this._transactionView.GetMenuChoice<TransactionFields>($"\n{HeaderMessages.EditableFields}", $"\n{UserPrompts.SelectOption} [ 1 - {Configurables.MaxEditableFieldRange} ] {UserPrompts.ExitProcess}");
         switch (transactionField)
         {
             case TransactionFields.TransactionDate:
@@ -201,7 +201,7 @@ public class TransactionController : IController
                 transaction.Category = this._transactionView.GetCategory();
                 break;
             case TransactionFields.TransactionType:
-                transaction.TransactionType = this._transactionView.GetMenuChoice<TransactionTypes>(HeaderMessages.TransactionTypes, $"\n{UserPrompts.SelectOption} {UserPrompts.ExitProcess}");
+                transaction.TransactionType = this._transactionView.GetMenuChoice<TransactionTypes>(HeaderMessages.TransactionTypes, $"\n{UserPrompts.SelectOption} [ 1 - 2 ] {UserPrompts.ExitProcess}");
                 break;
             case TransactionFields.TransactionDescription:
                 transaction.Description = this._transactionView.GetDescription();

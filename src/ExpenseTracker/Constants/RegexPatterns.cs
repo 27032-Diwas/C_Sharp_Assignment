@@ -15,5 +15,5 @@ public static class RegexPatterns
     /// Allows letters, numbers, spaces, hyphens, ampersands, and underscores
     /// Max 100 character.
     /// </summary>
-    public const string DescriptionPattern = @"^[A-Za-z]{1,100}$";
+    public const string DescriptionPattern = @"^[A-Za-z]{0,100}$";
 }

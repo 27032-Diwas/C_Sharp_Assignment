@@ -110,9 +110,16 @@ public class TransactionView : IView
     /// <returns> Description as a string. </returns>
     public string GetDescription()
     {
+        string? description;
         while (true)
         {
-            string description = this.GetStringInput(UserPrompts.GetDescription);
+            Console.WriteLine($"{UserPrompts.GetDescription} {UserPrompts.ExitProcess}");
+            description = Console.ReadLine();
+
+            if (description is null)
+            {
+                description = string.Empty;
+            }
 
             if (!Validation.IsValidDescription(description))
             {
@@ -178,7 +185,7 @@ public class TransactionView : IView
             string? userInput = Console.ReadLine();
             if (string.IsNullOrWhiteSpace(userInput))
             {
-                this.DisplayErrorMessage(ErrorMessages.InvalidString);
+                this.DisplayErrorMessage(ErrorMessages.EmptyDate);
                 continue;
             }
 
@@ -191,6 +198,11 @@ public class TransactionView : IView
             {
                 this.DisplayErrorMessage(ErrorMessages.InvalidDate);
                 continue;
+            }
+
+            if (!Validation.IsValidDate(date))
+            {
+                this.DisplayErrorMessage(ErrorMessages.FutureDate);
             }
 
             return date;

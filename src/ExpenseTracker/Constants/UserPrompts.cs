@@ -31,11 +31,6 @@ public static class UserPrompts
     public const string GetAnyKey = "PRESS ANY KEY TO CONTINUE!!";
 
     /// <summary>
-    /// Represents the prompt requesting the user to enter transaction amount.
-    /// </summary>
-    public const string GetAmount = "Enter transaction amount";
-
-    /// <summary>
     /// Represents the prompt requesting the user to enter transaction date.
     /// </summary>
     public const string GetDate = "Enter transaction date [DD-MM-YYYY]";
@@ -59,4 +54,9 @@ public static class UserPrompts
     /// Represents the prompt requesting the user to enter the serial number.
     /// </summary>
     public const string SelectSerialNumber = "Enter a serial number";
+
+    /// <summary>
+    /// Represents the prompt requesting the user to enter transaction amount.
+    /// </summary>
+    public static readonly string GetAmount = $"Enter transaction amount [ {Configurables.MinimumAmountThreshold} - {Configurables.MaxAmountThreshold} ]";
 }
