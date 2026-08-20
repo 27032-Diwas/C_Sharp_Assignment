@@ -118,6 +118,11 @@ public class TransactionController : IController
     /// </summary>
     public void DeleteAllTransactions()
     {
+        if (this.IsEmptyList())
+        {
+            return;
+        }
+
         if (!this.GetConfirmation(UserPrompts.GetConformation))
         {
             throw new OperationCanceledException();
