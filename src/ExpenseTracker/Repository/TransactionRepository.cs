@@ -7,13 +7,38 @@ namespace ExpenseTracker.Repository;
 /// </summary>
 public class TransactionRepository : IRepository
 {
-    private readonly List<Transaction> _transactions = new ();
+    private readonly List<Transaction> _transactions;
+    private readonly JsonRepository _jsonFileManager;
+    private readonly string _filePath;
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="TransactionRepository"/> class.
+    /// </summary>
+    /// <param name="path"> File path. </param>
+    /// <param name="fileManager"> Json file manager instance. </param>
+    public TransactionRepository(string path, JsonRepository fileManager)
+    {
+        this._filePath = path;
+        this._jsonFileManager = fileManager;
+        if (!File.Exists(this._filePath))
+        {
+            File.WriteAllText(this._filePath, string.Empty);
+            this._transactions = new List<Transaction>();
+            return;
+        }
+
+        this._transactions = this._jsonFileManager.LoadAll(this._filePath);
+    }
 
     /// <summary>
     /// Adds transaction to the transaction list.
     /// </summary>
     /// <param name="transaction"> Instance of the transaction. </param>
-    public void AddTransaction(Transaction transaction) => this._transactions.Add(transaction);
+    public void AddTransaction(Transaction transaction)
+    {
+        this._transactions.Add(transaction);
+        this._jsonFileManager.WriteAll(this._filePath, this._transactions);
+    }
 
     /// <summary>
     /// Gets all transactions from the list.
@@ -43,12 +68,18 @@ public class TransactionRepository : IRepository
         {
             this._transactions.RemoveAt(index);
         }
+
+        this._jsonFileManager.WriteAll(this._filePath, this._transactions);
     }
 
     /// <summary>
     /// Deletes all transactions in the list.
     /// </summary>
-    public void DeleteAllTransactions() => this._transactions.Clear();
+    public void DeleteAllTransactions()
+    {
+        this._transactions.Clear();
+        this._jsonFileManager.WriteAll(this._filePath, this._transactions);
+    }
 
     /// <summary>
     /// Update the value of a transaction in transaction list.
@@ -63,5 +94,7 @@ public class TransactionRepository : IRepository
         transaction.TransactionType = updatedTransaction.TransactionType;
         transaction.Category = updatedTransaction.Category;
         transaction.Description = updatedTransaction.Description;
+
+        this._jsonFileManager.WriteAll(this._filePath, this._transactions);
     }
 }
