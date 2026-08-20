@@ -118,21 +118,9 @@ public class TransactionController : IController
     /// </summary>
     public void DeleteAllTransactions()
     {
-        while (true)
+        if (!this.GetConfirmation(UserPrompts.GetConformation))
         {
-            string? choice = this._transactionView.GetStringInput(UserPrompts.GetConformation);
-            if (choice is null || choice.Equals("N", StringComparison.OrdinalIgnoreCase))
-            {
-                this._transactionView.DisplayMessage($"\n{SuccessMessages.ProcessCancelled}");
-                return;
-            }
-            else if (!choice.Equals("Y", StringComparison.OrdinalIgnoreCase))
-            {
-                this._transactionView.DisplayErrorMessage(ErrorMessages.InvalidOption);
-                continue;
-            }
-
-            break;
+            throw new OperationCanceledException();
         }
 
         this._transactionService.DeleteAllTransactions();
@@ -248,9 +236,6 @@ public class TransactionController : IController
         TransactionFields transactionField = this._transactionView.GetMenuChoice<TransactionFields>($"\n{HeaderMessages.EditableFields}", $"\n{UserPrompts.SelectOption} [ 1 - {Configurables.MaxEditableFieldRange} ] {UserPrompts.ExitProcess}");
         switch (transactionField)
         {
-            case TransactionFields.Back:
-                this._transactionView.DisplayMessage(SuccessMessages.ProcessCancelled);
-                return null;
             case TransactionFields.TransactionDate:
                 transaction.Date = this._transactionView.GetDate();
                 break;
