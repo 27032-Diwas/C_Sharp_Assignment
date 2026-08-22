@@ -28,7 +28,7 @@ public static class ErrorMessages
     /// <summary>
     /// Represents the message displayed when user enters index out of range.
     /// </summary>
-    public const string InvalidIndex = "Index should be between 0 and 5";
+    public const string InvalidIndex = "Index out of range";
 
     /// <summary>
     /// Represents the message displayed when user enters invalid age.
