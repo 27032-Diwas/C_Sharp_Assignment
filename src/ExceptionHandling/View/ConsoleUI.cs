@@ -48,33 +48,6 @@ public class ConsoleUI
     }
 
     /// <summary>
-    /// Gets input from user which is not null or empty.
-    /// </summary>
-    /// <param name="prompt"> Represents message displayed to user to get input. </param>
-    /// <returns> Null if user chooses to exit process; otherwise user input. </returns>
-    public string GetStringInput(string prompt)
-    {
-        string? userInput;
-        while (true)
-        {
-            Console.WriteLine($"{prompt} {UserPrompts.ExitProcess}");
-            userInput = Console.ReadLine();
-            if (string.IsNullOrWhiteSpace(userInput))
-            {
-                this.DisplayErrorMessage(ErrorMessages.InvalidString);
-                continue;
-            }
-
-            if (userInput.Equals(HeaderMessages.Exit, StringComparison.OrdinalIgnoreCase))
-            {
-                throw new OperationCanceledException();
-            }
-
-            return userInput.Trim();
-        }
-    }
-
-    /// <summary>
     /// Gets input from user which is a valid number.
     /// </summary>
     /// <param name="prompt"> Message that needs to be displayed. </param>

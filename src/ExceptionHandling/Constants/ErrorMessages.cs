@@ -18,7 +18,7 @@ public static class ErrorMessages
     /// <summary>
     /// Represents the message displayed when user enters denominator as zero.
     /// </summary>
-    public const string DivideByZero = "Denomination can't be zero.";
+    public const string DivideByZero = "Denominator can't be zero.";
 
     /// <summary>
     /// Represents the message displayed when user enters an invalid string.

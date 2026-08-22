@@ -38,7 +38,7 @@ public class Tasks
         }
         finally
         {
-            this._consoleUI.DisplaySuccessMessage(SuccessMessages.Task1);
+            this._consoleUI.DisplaySuccessMessage(SuccessMessages.Finally);
         }
     }
 
@@ -59,15 +59,22 @@ public class Tasks
             this._consoleUI.ClearConsole();
             int index = this._consoleUI.GetIntegerInput(UserPrompts.GetIndex);
 
-            this._consoleUI.DisplayMessage($"{array[index]}");
+            try
+            {
+                this._consoleUI.DisplayMessage($"{array[index]}");
+            }
+            catch (IndexOutOfRangeException)
+            {
+                throw new IndexOutOfRangeException(ErrorMessages.InvalidIndex);
+            }
         }
-        catch (IndexOutOfRangeException)
+        catch (IndexOutOfRangeException e)
         {
-            this._consoleUI.DisplayErrorMessage(ErrorMessages.InvalidIndex);
+            this._consoleUI.DisplayErrorMessage(e.Message);
         }
         finally
         {
-            this._consoleUI.DisplaySuccessMessage(SuccessMessages.Task2);
+            this._consoleUI.DisplaySuccessMessage(SuccessMessages.Finally);
         }
     }
 
@@ -83,10 +90,12 @@ public class Tasks
             for (int i = 0; i < length; i++)
             {
                 int age = this._consoleUI.GetIntegerInput(UserPrompts.GetAge);
-                if (age < 0)
+                if (age <= 0)
                 {
                     throw new InvalidUserInputException(ErrorMessages.InvalidAge);
                 }
+
+                array[i] = age;
             }
 
             this._consoleUI.ClearConsole();
@@ -104,7 +113,7 @@ public class Tasks
         }
         finally
         {
-            this._consoleUI.DisplaySuccessMessage(SuccessMessages.Task3);
+            this._consoleUI.DisplaySuccessMessage(SuccessMessages.Finally);
         }
     }
 
@@ -122,10 +131,12 @@ public class Tasks
             for (int i = 0; i < length; i++)
             {
                 int age = this._consoleUI.GetIntegerInput(UserPrompts.GetAge);
-                if (age < 0)
+                if (age <= 0)
                 {
                     throw new InvalidUserInputException(ErrorMessages.InvalidAge);
                 }
+
+                array[i] = age;
             }
 
             this._consoleUI.ClearConsole();
@@ -133,13 +144,10 @@ public class Tasks
 
             this._consoleUI.DisplayMessage($"{array[index]}");
         }
-        catch (IndexOutOfRangeException)
-        {
-            this._consoleUI.DisplayErrorMessage(ErrorMessages.InvalidIndex);
-        }
         finally
         {
-            this._consoleUI.DisplaySuccessMessage(SuccessMessages.Task4);
+            this._consoleUI.DisplaySuccessMessage(SuccessMessages.Finally);
+            AppDomain.CurrentDomain.UnhandledException -= this.UnhandledException;
         }
     }
 
@@ -155,10 +163,12 @@ public class Tasks
             for (int i = 0; i < length; i++)
             {
                 int age = this._consoleUI.GetIntegerInput(UserPrompts.GetAge);
-                if (age < 0)
+                if (age <= 0)
                 {
                     throw new InvalidUserInputException(ErrorMessages.InvalidAge);
                 }
+
+                array[i] = age;
             }
 
             this._consoleUI.ClearConsole();
@@ -178,7 +188,7 @@ public class Tasks
         }
         finally
         {
-            this._consoleUI.DisplaySuccessMessage(SuccessMessages.Task5);
+            this._consoleUI.DisplaySuccessMessage(SuccessMessages.Finally);
         }
     }
 
