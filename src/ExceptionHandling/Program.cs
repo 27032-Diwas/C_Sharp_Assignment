@@ -45,6 +45,22 @@ public class Program
                         consoleUI.DisplayMessage(HeaderMessages.DivideByZeroException);
                         tasks.Task1();
                         break;
+                    case MainMenu.IndexOutOfRange:
+                        consoleUI.DisplayMessage(HeaderMessages.IndexOutOfRange);
+                        tasks.Task2();
+                        break;
+                    case MainMenu.CustomException:
+                        consoleUI.DisplayMessage(HeaderMessages.CustomException);
+                        tasks.Task3();
+                        break;
+                    case MainMenu.UnhandledException:
+                        consoleUI.DisplayMessage(HeaderMessages.UnhandledException);
+                        tasks.Task4();
+                        break;
+                    case MainMenu.ExceptionStackTrace:
+                        consoleUI.DisplayMessage(HeaderMessages.StackTrace);
+                        tasks.Task5();
+                        break;
                     default:
                         consoleUI.DisplayMessage($"{ErrorMessages.InvalidOption}\n");
                         break;
@@ -56,10 +72,6 @@ public class Program
             {
                 consoleUI.DisplayMessage(SuccessMessages.ProcessCancelled);
                 consoleUI.GetAnyKey();
-            }
-            catch (Exception ex)
-            {
-                consoleUI.DisplayMessage($"Unexpected Error: {ex.Message}");
             }
         }
     }

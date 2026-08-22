@@ -24,4 +24,19 @@ public static class ErrorMessages
     /// Represents the message displayed when user enters an invalid string.
     /// </summary>
     public const string InvalidString = "ENTER A VALUE";
+
+    /// <summary>
+    /// Represents the message displayed when user enters index out of range.
+    /// </summary>
+    public const string InvalidIndex = "Index should be between 0 and 5";
+
+    /// <summary>
+    /// Represents the message displayed when user enters invalid age.
+    /// </summary>
+    public const string InvalidAge = "Age should be a positive value";
+
+    /// <summary>
+    /// Represents the message displayed when unhandled exception occur.
+    /// </summary>
+    public const string InvalidMessage = "Something went wrong, Try Again.";
 }
