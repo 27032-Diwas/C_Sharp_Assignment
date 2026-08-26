@@ -8,7 +8,7 @@ namespace ExpenseTracker.Repository;
 public class TransactionRepository : IRepository
 {
     private readonly List<Transaction> _transactions;
-    private readonly JsonRepository _jsonFileManager;
+    private readonly IFileRepository _jsonFileManager;
     private readonly string _filePath;
 
     /// <summary>
@@ -16,7 +16,7 @@ public class TransactionRepository : IRepository
     /// </summary>
     /// <param name="path"> File path. </param>
     /// <param name="fileManager"> Json file manager instance. </param>
-    public TransactionRepository(string path, JsonRepository fileManager)
+    public TransactionRepository(string path, IFileRepository fileManager)
     {
         this._filePath = path;
         this._jsonFileManager = fileManager;
