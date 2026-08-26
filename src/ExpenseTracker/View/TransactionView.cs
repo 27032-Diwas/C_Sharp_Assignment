@@ -208,6 +208,7 @@ public class TransactionView : IView
             if (!Validation.IsValidDate(date))
             {
                 this.DisplayErrorMessage(ErrorMessages.FutureDate);
+                continue;
             }
 
             return date;
