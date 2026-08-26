@@ -7,7 +7,7 @@ namespace ExpenseTracker.Repository;
 /// <summary>
 /// Writes and reads data in json file.
 /// </summary>
-public class JsonRepository
+public class JsonRepository : IFileRepository
 {
     private readonly JsonSerializerOptions _options;
 
@@ -26,8 +26,8 @@ public class JsonRepository
     /// <summary>
     /// Writes all the transactions into the file.
     /// </summary>
-    /// <param name="filePath"> The path of the file where the transaction are stored. </param>
-    /// <param name="list"> List of the transaction that are to be added. </param>
+    /// <param name="filePath"> The path of the file where the transactions are stored. </param>
+    /// <param name="list"> List of the transactions that are to be added. </param>
     public void WriteAll(string filePath, List<Transaction> list)
     {
         string json = JsonSerializer.Serialize(list, this._options);
