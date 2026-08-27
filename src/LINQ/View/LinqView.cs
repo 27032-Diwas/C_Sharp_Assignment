@@ -33,11 +33,11 @@ public class LinqView
     /// <param name="products"> List of products. </param>
     public void Display(List<Product> products)
     {
-        ConsoleTable table = new ConsoleTable("Product Name");
+        ConsoleTable table = new ConsoleTable("Product Name", "Product Price");
 
         foreach (Product product in products)
         {
-            table.AddRow(product.ProductName);
+            table.AddRow(product.ProductName, product.ProductPrice);
         }
 
         table.Write();

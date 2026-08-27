@@ -44,7 +44,7 @@ public class Program
                     task4.GetTask4Products();
                     break;
                 case MainMenu.Task5:
-                    task5.run();
+                    task5.Run();
                     break;
             }
 
