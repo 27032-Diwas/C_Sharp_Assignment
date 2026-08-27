@@ -1,5 +1,4 @@
 ﻿using LINQ.Models;
-using System.Collections.Generic;
 
 namespace LINQ.Repository;
 
@@ -8,7 +7,7 @@ namespace LINQ.Repository;
 /// </summary>
 public class ProductRepository
 {
-    private readonly List<Product> _products = new List<Product>
+    private readonly List<Product> _products = new ()
     {
         new (1, "iPhone 15", 999m, "Electronics"),
         new (2, "Samsung Galaxy S24", 899m, "Electronics"),

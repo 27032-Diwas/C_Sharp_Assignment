@@ -1,8 +1,6 @@
-﻿using ConsoleTables;
+﻿using System.Text.RegularExpressions;
+using ConsoleTables;
 using LINQ.Models;
-using Microsoft.VisualBasic;
-using System.Collections.Concurrent;
-using System.Text.RegularExpressions;
 
 namespace LINQ.View;
 
@@ -17,11 +15,11 @@ public class LinqView
     /// <param name="filteredProductSort"> List of products. </param>
     public void Display(List<(string ProductName, decimal ProductPrice)> filteredProductSort)
     {
-        ConsoleTable table = new ConsoleTable("Product Name", "Product Price");
+        ConsoleTable table = new ("Product Name", "Product Price");
 
-        foreach ((string ProductName, decimal ProductPrice) product in filteredProductSort)
+        foreach ((string productName, decimal productPrice) in filteredProductSort)
         {
-            table.AddRow(product.ProductName, product.ProductPrice);
+            table.AddRow(productName, productPrice);
         }
 
         table.Write();
@@ -33,7 +31,7 @@ public class LinqView
     /// <param name="products"> List of products. </param>
     public void Display(List<Product> products)
     {
-        ConsoleTable table = new ConsoleTable("Product Name", "Product Price");
+        ConsoleTable table = new ("Product Name", "Product Price");
 
         foreach (Product product in products)
         {
@@ -49,7 +47,7 @@ public class LinqView
     /// <param name="products"> List of products. </param>
     public void Display(IEnumerable<Product> products)
     {
-        ConsoleTable table = new ConsoleTable("Product Name");
+        ConsoleTable table = new ("Product Name");
 
         foreach (Product product in products)
         {
@@ -65,11 +63,11 @@ public class LinqView
     /// <param name="groupedProducts"> List of products. </param>
     public void Display(List<(string Category, int Count, Product MaxPricedProduct)> groupedProducts)
     {
-        ConsoleTable table = new ConsoleTable("Product Category", "Product Count", "Expensive Product");
+        ConsoleTable table = new ("Product Category", "Product Count", "Expensive Product");
 
-        foreach ((string Category, int Count, Product MaxPricedProduct) product in groupedProducts)
+        foreach ((string category, int count, Product maxPricedProduct) in groupedProducts)
         {
-            table.AddRow(product.Category, product.Count, product.MaxPricedProduct);
+            table.AddRow(category, count, maxPricedProduct);
         }
 
         table.Write();
@@ -81,11 +79,11 @@ public class LinqView
     /// <param name="groupedProducts"> List of products. </param>
     public void Display(List<(string ProductName, decimal ProductPrice, string SupplierName)> groupedProducts)
     {
-        ConsoleTable table = new ConsoleTable("Product Name", "Product Price", "Supplier Name");
+        ConsoleTable table = new ("Product Name", "Product Price", "Supplier Name");
 
-        foreach ((string ProductName, decimal ProductPrice, string SupplierName) product in groupedProducts)
+        foreach ((string productName, decimal productPrice, string supplierName) in groupedProducts)
         {
-            table.AddRow(product.ProductName, product.ProductPrice, product.SupplierName);
+            table.AddRow(productName, productPrice, supplierName);
         }
 
         table.Write();
@@ -97,11 +95,11 @@ public class LinqView
     /// <param name="pairs"> List of pairs. </param>
     public void Display(List<(int number1, int number2)> pairs)
     {
-        ConsoleTable table = new ConsoleTable("Number1", "Number2");
+        ConsoleTable table = new ("Number1", "Number2");
 
-        foreach ((int number1, int number2) pair in pairs)
+        foreach ((int number1, int number2) in pairs)
         {
-            table.AddRow(pair.number1, pair.number2);
+            table.AddRow(number1, number2);
         }
 
         table.Write();

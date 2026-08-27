@@ -9,9 +9,9 @@ namespace LINQ.Service;
 /// </summary>
 public class Task5
 {
-    private readonly ProductRepository _repository = new();
-    private readonly SupplierRepository _supplierRepository = new();
-    private readonly LinqView _linqView = new();
+    private readonly ProductRepository _repository = new ();
+    private readonly SupplierRepository _supplierRepository = new ();
+    private readonly LinqView _linqView = new ();
 
     /// <summary>
     /// Runs all the query.

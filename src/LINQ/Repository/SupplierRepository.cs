@@ -7,7 +7,7 @@ namespace LINQ.Repository;
 /// </summary>
 public class SupplierRepository
 {
-    private readonly List<Supplier> _suppliers = new List<Supplier>
+    private readonly List<Supplier> _suppliers = new ()
     {
         new (1, "Apple Inc.", 1),
         new (2, "Samsung Electronics", 2),

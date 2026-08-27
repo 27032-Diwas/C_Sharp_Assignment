@@ -2,7 +2,7 @@
 using LINQ.Service;
 using LINQ.View;
 
-namespace Assignments;
+namespace LINQ;
 
 /// <summary>
 /// Entry point of the application.
@@ -15,11 +15,11 @@ public class Program
     public static void Main()
     {
         LinqView view = new ();
-        Task1 task1 = new Task1();
-        Task2 task2 = new Task2();
-        Task3 task3 = new Task3();
-        Task4 task4 = new Task4();
-        Task5 task5 = new Task5();
+        Task1 task1 = new ();
+        Task2 task2 = new ();
+        Task3 task3 = new ();
+        Task4 task4 = new ();
+        Task5 task5 = new ();
 
         while (true)
         {
