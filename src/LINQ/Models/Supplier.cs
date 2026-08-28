@@ -31,7 +31,7 @@ public class Supplier
     public string SupplierName { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets or init product it.
+    /// Gets or init product ID.
     /// </summary>
     /// <value> ID of the product. </value>
     public int ProductID { get; init; }

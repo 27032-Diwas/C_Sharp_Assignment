@@ -36,5 +36,5 @@ public class SupplierRepository
     /// Gets all suppliers from the list.
     /// </summary>
     /// <returns> List of all suppliers. </returns>
-    public List<Supplier> GetAllSuppliers() => this._suppliers;
+    public List<Supplier> GetAllSuppliers() => this._suppliers.Select(supplier => supplier.Clone()).ToList();
 }

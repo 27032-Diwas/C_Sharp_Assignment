@@ -22,7 +22,7 @@ public class Product
 
     /// <summary>
     /// Gets or init product ID.
-    /// </summary
+    /// </summary>
     /// <value> ID of the product. </value>
     public int ProductID { get; init; }
 

@@ -8,9 +8,9 @@ namespace LINQ.Service;
 /// </summary>
 public class Task3
 {
-    private readonly ProductRepository _repository = new ();
-    private readonly SupplierRepository _supplierRepository = new ();
-    private readonly LinqView _linqView = new ();
+    private readonly ProductRepository _repository = new();
+    private readonly SupplierRepository _supplierRepository = new();
+    private readonly LinqView _linqView = new();
 
     /// <summary>
     /// Gets all distinct number.
@@ -34,7 +34,9 @@ public class Task3
                 (first, index) => numbers
                 .Skip(index + 1)
                 .Where(second => first + second == target)
-                .Select(second => (first, second)))
+                .Select(second => (
+                        Math.Min(first, second),
+                        Math.Max(first, second))))
             .Distinct()
             .ToList();
 

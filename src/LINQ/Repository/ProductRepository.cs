@@ -49,5 +49,5 @@ public class ProductRepository
     /// Gets all product from the list.
     /// </summary>
     /// <returns> List of all products. </returns>
-    public List<Product> GetAllProducts() => this._products;
+    public List<Product> GetAllProducts() => this._products.Select(product => product.Clone()).ToList();
 }
