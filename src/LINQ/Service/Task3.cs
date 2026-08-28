@@ -8,9 +8,7 @@ namespace LINQ.Service;
 /// </summary>
 public class Task3
 {
-    private readonly ProductRepository _repository = new();
-    private readonly SupplierRepository _supplierRepository = new();
-    private readonly LinqView _linqView = new();
+    private readonly LinqView _linqView = new ();
 
     /// <summary>
     /// Gets all distinct number.

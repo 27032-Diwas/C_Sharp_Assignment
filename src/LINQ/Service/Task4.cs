@@ -11,7 +11,6 @@ namespace LINQ.Service;
 public class Task4
 {
     private readonly ProductRepository _repository = new ();
-    private readonly SupplierRepository _supplierRepository = new ();
     private readonly LinqView _linqView = new ();
 
     /// <summary>
