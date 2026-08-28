@@ -34,7 +34,7 @@ public class QueryBuilder<T>
     /// <typeparam name="TKey"> Key of the instance. </typeparam>
     /// <param name="sort"> Sort query. </param>
     /// <returns> Instance of query builder with filter query. </returns>
-    public QueryBuilder<T> Sort<TKey>(Func<T, TKey> sort)
+    public QueryBuilder<T> SortBy<TKey>(Func<T, TKey> sort)
     {
         this._query = this._query.OrderBy(sort);
         return this;
@@ -46,7 +46,7 @@ public class QueryBuilder<T>
     /// <typeparam name="TKey"> Key of the instance. </typeparam>
     /// <param name="sort"> Sort query. </param>
     /// <returns> Instance of query builder with filter query. </returns>
-    public QueryBuilder<T> SortDescending<TKey>(Func<T, TKey> sort)
+    public QueryBuilder<T> SortByDescending<TKey>(Func<T, TKey> sort)
     {
         this._query = this._query.OrderByDescending(sort);
         return this;

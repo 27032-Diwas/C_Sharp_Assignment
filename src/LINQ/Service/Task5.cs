@@ -24,7 +24,7 @@ public class Task5
         this._linqView.DisplayMessage("Filter product by product price greater than 500 and sort by price");
         IEnumerable<Product> filteredProduct = new QueryBuilder<Product>(products)
             .Filter(product => product.ProductPrice > 500)
-            .Sort(product => product.ProductPrice)
+            .SortBy(product => product.ProductPrice)
             .Execute();
         this._linqView.Display(filteredProduct.ToList());
 
@@ -33,14 +33,14 @@ public class Task5
             new QueryBuilder<Product>(products)
                 .Filter(product => product.Category == "Books")
                 .Filter(product => product.ProductPrice > 50)
-                .SortDescending(product => product.ProductName)
+                .SortByDescending(product => product.ProductName)
                 .Execute();
         this._linqView.Display(expensiveBooks.ToList());
 
         this._linqView.DisplayMessage("Sort product by product name");
         IEnumerable<Product> sortedByName =
             new QueryBuilder<Product>(products)
-                .Sort(product => product.ProductName)
+                .SortBy(product => product.ProductName)
                 .Execute();
         this._linqView.Display(sortedByName.ToList());
 
