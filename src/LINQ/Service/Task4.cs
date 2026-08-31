@@ -42,6 +42,7 @@ public class Task4
             .Where(product => product.Category == "Books")
             .OrderBy(product => product.ProductPrice);
 
+        this._linqView.DisplayMessage($"{books.Count()}");
         this._linqView.Display(books);
         stopwatch2.Stop();
 
@@ -55,6 +56,7 @@ public class Task4
             .OrderBy(product => product.ProductPrice)
             .ToList();
 
+        this._linqView.DisplayMessage($"{bookList.Count()}");
         this._linqView.Display(bookList);
 
         stopwatch3.Stop();
