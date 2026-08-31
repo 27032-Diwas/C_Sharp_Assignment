@@ -21,6 +21,15 @@ public class Program
         IView transactionView = new TransactionView();
         IController transactionController = new TransactionController(transactionView, transactionService);
         MainMenuController mainMenuController = new (transactionView, transactionController);
+
+        AppDomain.CurrentDomain.ProcessExit += (_, _) => transactionController.SaveData();
+        Console.CancelKeyPress += (_, eventArgs) =>
+        {
+            transactionController.SaveData();
+            eventArgs.Cancel = false;
+            Environment.Exit(0);
+        };
+
         mainMenuController.GetMenuOption();
     }
 }
