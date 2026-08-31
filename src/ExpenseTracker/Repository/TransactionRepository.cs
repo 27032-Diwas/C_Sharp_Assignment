@@ -22,8 +22,8 @@ public class TransactionRepository : IRepository
         this._jsonFileManager = fileManager;
         if (!File.Exists(this._filePath))
         {
-            File.WriteAllText(this._filePath, string.Empty);
             this._transactions = new List<Transaction>();
+            File.WriteAllText(this._filePath, string.Empty);
             return;
         }
 
@@ -37,7 +37,6 @@ public class TransactionRepository : IRepository
     public void AddTransaction(Transaction transaction)
     {
         this._transactions.Add(transaction);
-        this._jsonFileManager.WriteAll(this._filePath, this._transactions);
     }
 
     /// <summary>
@@ -68,8 +67,6 @@ public class TransactionRepository : IRepository
         {
             this._transactions.RemoveAt(index);
         }
-
-        this._jsonFileManager.WriteAll(this._filePath, this._transactions);
     }
 
     /// <summary>
@@ -78,7 +75,6 @@ public class TransactionRepository : IRepository
     public void DeleteAllTransactions()
     {
         this._transactions.Clear();
-        this._jsonFileManager.WriteAll(this._filePath, this._transactions);
     }
 
     /// <summary>
@@ -94,7 +90,13 @@ public class TransactionRepository : IRepository
         transaction.TransactionType = updatedTransaction.TransactionType;
         transaction.Category = updatedTransaction.Category;
         transaction.Description = updatedTransaction.Description;
+    }
 
+    /// <summary>
+    /// Saves the file.
+    /// </summary>
+    public void SaveFile()
+    {
         this._jsonFileManager.WriteAll(this._filePath, this._transactions);
     }
 }
