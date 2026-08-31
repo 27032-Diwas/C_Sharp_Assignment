@@ -181,6 +181,14 @@ public class TransactionController : IController
     }
 
     /// <summary>
+    /// Saves the data.
+    /// </summary>
+    public void SaveData()
+    {
+        this._transactionService.SaveData();
+    }
+
+    /// <summary>
     /// Check whether list contain any transaction or not.
     /// </summary>
     /// <returns> True if list is empty; otherwise false. </returns>

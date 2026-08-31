@@ -55,4 +55,9 @@ public interface IService
     /// </summary>
     /// <returns> Summary as string. </returns>
     string GetSummary();
+
+    /// <summary>
+    /// Saves the data.
+    /// </summary>
+    void SaveData();
 }
