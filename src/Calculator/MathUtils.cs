@@ -44,5 +44,5 @@ public class MathUtils
         }
 
         return (decimal)number1 / number2;
-    }0
+    }
 }
