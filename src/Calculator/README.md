@@ -1,70 +1,72 @@
-﻿# Understanding the .NET Platform
+﻿# .NET Fundamentals and Calculator Application
 
-A C# console application that explores the fundamentals of the .NET platform through exploration and a practical implementation using a simple calculator application.
-
----
-
-## Overview
-
-This assignment consists of:
-
-- Exploration questions covering core .NET concepts.
-- A practical exercise using a `MathUtils` class.
+This project demonstrates an understanding of core .NET concepts along with a practical implementation of a calculator application developed using C#.
 
 ---
 
-## Exploration Topics
+## Project Summary
 
-The following .NET concepts were researched and documented:
+The assignment is divided into two sections:
 
-1. .NET Platform and its purpose
-2. Key components of .NET
-3. CLR and CTS
+- Research and documentation of fundamental .NET concepts.
+- Development of a calculator application utilizing a reusable utility class.
+
+---
+
+## Topics Covered
+
+The following concepts were explored and documented as part of the learning process:
+
+1. Introduction to the .NET ecosystem
+2. Architecture and components of .NET
+3. Common Language Runtime (CLR) and Common Type System (CTS)
 4. Global Assembly Cache (GAC)
-5. Value Types and Reference Types
-6. Garbage Collection
-7. Globalization and Localization
-8. CIL and JIT Compilation
+5. Differences between Value Types and Reference Types
+6. Garbage Collection mechanism
+7. Globalization and Localization support in .NET
+8. Common Intermediate Language (CIL) and Just-In-Time (JIT) Compilation
 
 ---
 
-## Practical Exercise
+## Calculator Implementation
 
-Implemented a `MathUtils` class containing methods to:
+A dedicated `MathUtils` class was created to handle arithmetic operations, including:
 
-- Add two integers
-- Subtract two integers
-- Multiply two integers
-- Divide two integers
+- Addition
+- Subtraction
+- Multiplication
+- Division
 
-The application:
+The console application allows users to:
 
-- Accepts two integer inputs from the user.
-- Performs arithmetic operations.
-- Displays the results.
+- Enter two integer values.
+- Execute arithmetic operations using the utility class.
+- View the calculated results in the console.
 
 ---
 
-## Features
+## Key Features
 
-### MathUtils
+### Arithmetic Operations
+
+The application supports:
 
 - Add
 - Subtract
 - Multiply
 - Divide
 
-### Input Validation
+### Validation and Error Handling
 
-- Ensures only valid integer values are accepted.
-- Prevents invalid user input from causing runtime errors.
+- Validates user input to ensure integers are entered.
+- Prevents application failures caused by invalid input.
+- Handles division-by-zero cases appropriately.
 
-### User Interaction
+### User Experience
 
-- Supports multiple calculations in a single execution.
-- Handles division-by-zero scenarios gracefully.
-
----
+- Provides a menu-driven interface.
+- Allows users to perform multiple calculations during a single session.
+- Displays clear success and error messages.
 
 ## Project Structure
 
