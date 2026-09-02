@@ -36,22 +36,21 @@ public class CalculatorController
                 switch (choice)
                 {
                     case MainMenu.Exit:
-                        this._calculatorView.DisplaySuccessMessage(SuccessMessages.ProcessEnded);
                         return;
                     case MainMenu.Addition:
-                        this._calculatorView.DisplayMessage(MainMenu.Addition.ToString());
+                        this._calculatorView.DisplayMessage($"{MainMenu.Addition}\n");
                         this.Addition();
                         break;
                     case MainMenu.Subtraction:
-                        this._calculatorView.DisplayMessage(MainMenu.Subtraction.ToString());
+                        this._calculatorView.DisplayMessage($"{MainMenu.Subtraction}\n");
                         this.Subtraction();
                         break;
                     case MainMenu.Multiplication:
-                        this._calculatorView.DisplayMessage(MainMenu.Multiplication.ToString());
+                        this._calculatorView.DisplayMessage($"{MainMenu.Multiplication}\n");
                         this.Multiplication();
                         break;
                     case MainMenu.Division:
-                        this._calculatorView.DisplayMessage(MainMenu.Division.ToString());
+                        this._calculatorView.DisplayMessage($"{MainMenu.Division}\n");
                         this.Division();
                         break;
                 }

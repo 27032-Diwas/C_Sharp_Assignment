@@ -26,7 +26,7 @@ public class CalculatorView
                 continue;
             }
 
-            if (input.Equals("Exit"))
+            if (input.Equals(UserPrompts.Exit, StringComparison.OrdinalIgnoreCase))
             {
                 throw new OperationCanceledException();
             }

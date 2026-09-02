@@ -16,12 +16,12 @@ public static class ErrorMessages
     public const string InvalidString = "ENTER A VALUE";
 
     /// <summary>
-    /// Represents the message displayed when user enters an invalid number.
-    /// </summary>
-    public const string InvalidNumber = "ENTER A VALID NUMBER";
-
-    /// <summary>
     /// Represents the message displayed when user enters second number as zero.
     /// </summary>
     public const string DivideByZero = "Second number can't be zero";
+
+    /// <summary>
+    /// Represents the message displayed when user enters an invalid number.
+    /// </summary>
+    public static readonly string InvalidNumber = $"ENTER A VALID NUMBER [ {int.MinValue} to {int.MaxValue} ]";
 }

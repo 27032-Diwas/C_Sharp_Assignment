@@ -43,6 +43,6 @@ public class MathUtils
             throw new DivideByZeroException();
         }
 
-        return number1 / number2;
-    }
+        return (decimal)number1 / number2;
+    }0
 }
