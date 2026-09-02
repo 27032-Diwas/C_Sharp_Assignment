@@ -1,12 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Calculator.Constants;
 
-namespace Calculator.Constants
+/// <summary>
+/// Contains all error messages.
+/// </summary>
+public static class ErrorMessages
 {
-    internal class ErrorMessages
-    {
-    }
+    /// <summary>
+    /// Represents the message displayed when user enters an invalid option.
+    /// </summary>
+    public const string InvalidOption = "ENTER A VALID OPTION";
+
+    /// <summary>
+    /// Represents the message displayed when user enters an invalid string.
+    /// </summary>
+    public const string InvalidString = "ENTER A VALUE";
+
+    /// <summary>
+    /// Represents the message displayed when user enters an invalid number.
+    /// </summary>
+    public const string InvalidNumber = "ENTER A VALID NUMBER";
+
+    /// <summary>
+    /// Represents the message displayed when user enters second number as zero.
+    /// </summary>
+    public const string DivideByZero = "Second number can't be zero";
 }
