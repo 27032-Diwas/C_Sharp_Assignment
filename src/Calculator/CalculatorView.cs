@@ -51,7 +51,7 @@ public class CalculatorView
     }
 
     /// <summary>
-    /// Display the string passed as a parameter in red color.
+    /// Displays the string passed as a parameter in red color.
     /// </summary>
     /// <param name="errorMessage"> Error message that need to be displayed. </param>
     public void DisplayErrorMessage(string errorMessage)

@@ -1,7 +1,7 @@
 ﻿namespace Calculator;
 
 /// <summary>
-/// Entry point of the application
+/// Entry point of the application.
 /// </summary>
 public class Program
 {
