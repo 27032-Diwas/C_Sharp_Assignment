@@ -32,9 +32,8 @@ public class JsonRepository : IFileRepository
     public void WriteAll(string filePath, List<Transaction> list)
     {
         string json = JsonSerializer.Serialize(list, this._options);
-        string encodedJson = Convert.ToBase64String(Encoding.UTF8.GetBytes(json));
         using StreamWriter writer = new (filePath);
-        writer.Write(encodedJson);
+        writer.Write(json);
     }
 
     /// <summary>
@@ -48,8 +47,7 @@ public class JsonRepository : IFileRepository
         try
         {
             using StreamReader reader = new (filePath);
-            string encodedJson = reader.ReadToEnd();
-            string json = Encoding.UTF8.GetString(Convert.FromBase64String(encodedJson));
+            string json = reader.ReadToEnd();
             return JsonSerializer.Deserialize<List<Transaction>>(json, this._options) ?? new List<Transaction>();
         }
         catch (JsonException ex)
