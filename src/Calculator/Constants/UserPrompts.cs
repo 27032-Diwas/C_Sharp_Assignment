@@ -13,12 +13,7 @@ public static class UserPrompts
     /// <summary>
     /// Represents the prompt requesting the user to press any key to continue.
     /// </summary>
-    public const string GetAnyKey = "PRESS ANY KEY TO CONTINUE!!";
-
-    /// <summary>
-    /// Represents the message to exit application.
-    /// </summary>
-    public const string Exit = "EXIT";
+    public const string GetAnyKey = "PRESS ANY KEY TO CONTINUE";
 
     /// <summary>
     /// Represents the prompt requesting the user to enter first number.

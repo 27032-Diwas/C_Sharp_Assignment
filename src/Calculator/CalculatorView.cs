@@ -26,7 +26,7 @@ public class CalculatorView
                 continue;
             }
 
-            if (input.Equals(UserPrompts.Exit, StringComparison.OrdinalIgnoreCase))
+            if (input.Equals("Exit", StringComparison.OrdinalIgnoreCase))
             {
                 throw new OperationCanceledException();
             }
@@ -98,7 +98,7 @@ public class CalculatorView
             DisplayOptions<T>();
             Console.WriteLine(prompt);
             string input = string.Concat(Console.ReadLine()?.Where(c => !char.IsWhiteSpace(c)) ?? string.Empty);
-            if (input.Equals(UserPrompts.Exit, StringComparison.OrdinalIgnoreCase))
+            if (input.Equals("Exit", StringComparison.OrdinalIgnoreCase))
             {
                 throw new OperationCanceledException();
             }
