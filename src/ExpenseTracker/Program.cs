@@ -16,7 +16,7 @@ public class Program
     public static void Main()
     {
         IFileRepository jsonRepository = new JsonRepository();
-        IRepository transactionRepository = new TransactionRepository("Transaction.json", jsonRepository);
+        IRepository transactionRepository = new TransactionRepository("Data/Transaction.json", jsonRepository);
         IService transactionService = new TransactionService(transactionRepository);
         IView transactionView = new TransactionView();
         IController transactionController = new TransactionController(transactionView, transactionService);
