@@ -1,4 +1,5 @@
-﻿using ExpenseTracker.Models;
+﻿using System.IO.Abstractions;
+using ExpenseTracker.Models;
 
 namespace ExpenseTracker.Repository;
 
@@ -8,19 +9,22 @@ namespace ExpenseTracker.Repository;
 public class TransactionRepository : IRepository
 {
     private readonly List<Transaction> _transactions;
+    private readonly IFileSystem _fileSystem;
     private readonly IFileRepository _jsonFileManager;
     private readonly string _filePath;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="TransactionRepository"/> class.
     /// </summary>
+    /// <param name="fileSystem"> Instance of file system. </param>
     /// <param name="path"> File path. </param>
     /// <param name="fileManager"> Json file manager instance. </param>
-    public TransactionRepository(string path, IFileRepository fileManager)
+    public TransactionRepository(IFileSystem fileSystem, string path, IFileRepository fileManager)
     {
         this._filePath = path;
         this._jsonFileManager = fileManager;
-        if (!File.Exists(this._filePath))
+        this._fileSystem = fileSystem;
+        if (!this._fileSystem.File.Exists(this._filePath))
         {
             string? directory = Path.GetDirectoryName(this._filePath);
             if (!string.IsNullOrWhiteSpace(directory) && !Directory.Exists(directory))
