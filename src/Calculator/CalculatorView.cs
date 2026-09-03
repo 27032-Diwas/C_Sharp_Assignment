@@ -98,11 +98,6 @@ public class CalculatorView
             DisplayOptions<T>();
             Console.WriteLine(prompt);
             string input = string.Concat(Console.ReadLine()?.Where(c => !char.IsWhiteSpace(c)) ?? string.Empty);
-            if (input.Equals("Exit", StringComparison.OrdinalIgnoreCase))
-            {
-                throw new OperationCanceledException();
-            }
-
             if (Enum.TryParse(input, true, out T choice) &&
                 Enum.IsDefined(typeof(T), choice))
             {
