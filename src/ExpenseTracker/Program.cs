@@ -40,6 +40,7 @@ public class Program
         catch (JsonException ex)
         {
             Console.WriteLine(ex.Message);
+            Console.ReadKey();
         }
     }
 }
