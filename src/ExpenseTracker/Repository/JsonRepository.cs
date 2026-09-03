@@ -42,7 +42,7 @@ public class JsonRepository : IFileRepository
     /// </summary>
     /// <param name="filePath"> Path of the file. </param>
     /// <returns> List of transactions that are stored in the file. </returns>
-    /// <
+    /// <exception cref="JsonException"> Exception thrown when file is not read properly. </exception>
     public List<Transaction> LoadAll(string filePath)
     {
         try
