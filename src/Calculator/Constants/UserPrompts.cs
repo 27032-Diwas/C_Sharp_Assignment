@@ -16,6 +16,11 @@ public static class UserPrompts
     public const string GetAnyKey = "PRESS ANY KEY TO CONTINUE";
 
     /// <summary>
+    /// Represents the prompt requesting the user to enter exit to quit the process.
+    /// </summary>
+    public const string GetExit = "Type 'Exit' at any time to quit the process.";
+
+    /// <summary>
     /// Represents the prompt requesting the user to enter first number.
     /// </summary>
     public const string GetFirstNumber = "Enter first number:";

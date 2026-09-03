@@ -33,6 +33,7 @@ public class CalculatorController
             {
                 MainMenu choice = this._calculatorView.GetMenuChoice<MainMenu>("Main Menu", $"\n{UserPrompts.SelectOption} [ 0 - 4 ]:");
                 this._calculatorView.ClearConsole();
+                this._calculatorView.DisplayMessage($"{UserPrompts.GetExit}\n");
                 switch (choice)
                 {
                     case MainMenu.Exit:
