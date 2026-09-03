@@ -22,8 +22,13 @@ public class TransactionRepository : IRepository
         this._jsonFileManager = fileManager;
         if (!File.Exists(this._filePath))
         {
+            string? directory = Path.GetDirectoryName(this._filePath);
+            if (!string.IsNullOrWhiteSpace(directory) && !Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
+
             this._transactions = new List<Transaction>();
-            File.WriteAllText(this._filePath, string.Empty);
             return;
         }
 
