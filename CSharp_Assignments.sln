@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryManager", "src\Inv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpenseTracker", "src\ExpenseTracker\ExpenseTracker.csproj", "{DCEE8B48-B8A6-45E8-B6DA-11133C5F41F7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValueAndReferenceTypes", "src\MemoryManagement\ValueAndReferenceTypes\ValueAndReferenceTypes.csproj", "{A54A58D5-BBBB-4025-BC00-D996CB9619E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{DCEE8B48-B8A6-45E8-B6DA-11133C5F41F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCEE8B48-B8A6-45E8-B6DA-11133C5F41F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCEE8B48-B8A6-45E8-B6DA-11133C5F41F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A54A58D5-BBBB-4025-BC00-D996CB9619E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A54A58D5-BBBB-4025-BC00-D996CB9619E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A54A58D5-BBBB-4025-BC00-D996CB9619E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A54A58D5-BBBB-4025-BC00-D996CB9619E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,6 +58,7 @@ Global
 		{DF9D4585-6AC5-46E0-A4CF-664B4B9A457E} = {DCAA095E-2796-41FA-A1D0-1134E29309E7}
 		{50FFB469-C98C-4ECB-8D4C-7206F59599AF} = {DCAA095E-2796-41FA-A1D0-1134E29309E7}
 		{DCEE8B48-B8A6-45E8-B6DA-11133C5F41F7} = {DCAA095E-2796-41FA-A1D0-1134E29309E7}
+		{A54A58D5-BBBB-4025-BC00-D996CB9619E8} = {DCAA095E-2796-41FA-A1D0-1134E29309E7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D4CECB66-8E11-49D9-AA1E-464EE0231450}
