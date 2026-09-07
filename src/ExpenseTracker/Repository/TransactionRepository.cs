@@ -1,4 +1,5 @@
 ﻿using System.IO.Abstractions;
+using System.Runtime.CompilerServices;
 using ExpenseTracker.Models;
 
 namespace ExpenseTracker.Repository;
@@ -30,6 +31,10 @@ public class TransactionRepository : IRepository
             if (!string.IsNullOrWhiteSpace(directory) && !Directory.Exists(directory))
             {
                 Directory.CreateDirectory(directory);
+            }
+
+            using (this._fileSystem.File.Create(this._filePath))
+            {
             }
 
             this._transactions = new List<Transaction>();

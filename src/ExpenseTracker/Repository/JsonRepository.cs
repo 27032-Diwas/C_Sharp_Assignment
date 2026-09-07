@@ -54,7 +54,7 @@ public class JsonRepository : IFileRepository
         }
         catch (JsonException ex)
         {
-            throw new JsonException("Failed in loading file, Try again.", ex);
+            throw new JsonException($"Failed in loading file, Try again.{ex.Message}", ex);
         }
     }
 }
