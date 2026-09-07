@@ -1,7 +1,7 @@
 ﻿namespace IDisposableDemo;
 
 /// <summary>
-/// Writes content into file and dispose the file.
+/// Writes content into the file and dispose the file.
 /// </summary>
 public class FileOperation : IDisposable
 {

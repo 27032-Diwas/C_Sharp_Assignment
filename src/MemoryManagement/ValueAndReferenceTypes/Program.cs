@@ -61,7 +61,7 @@ public class Program
     }
 
     /// <summary>
-    /// Creates large local variable and calculate sum.
+    /// Creates large number local variable and calculate sum.
     /// </summary>
     public static void CalculateLargeQuantity()
     {
