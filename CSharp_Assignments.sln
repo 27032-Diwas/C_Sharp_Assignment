@@ -23,6 +23,20 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValueAndReferenceTypes", "s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IDisposableDemo", "src\MemoryManagement\IDisposableDemo\IDisposableDemo.csproj", "{9E1D2E58-17FD-4E99-B1CD-B9A3F4FCA2E1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GarbageCollection", "src\MemoryManagement\GarbageCollection\GarbageCollection.csproj", "{15545D87-07E1-4761-BBBF-1AD4D652C07D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MemoryManagement", "MemoryManagement", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{5152F84A-B453-4B0B-BF7E-384DF5054A04}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{9BEF9941-9F2A-4DF8-A695-EFB3EA28066C}"
+	ProjectSection(SolutionItems) = preProject
+		src\MemoryManagement\Docs\Assets\Task1.png = src\MemoryManagement\Docs\Assets\Task1.png
+		src\MemoryManagement\Docs\Assets\Task2.png = src\MemoryManagement\Docs\Assets\Task2.png
+		src\MemoryManagement\Docs\Assets\Task3.png = src\MemoryManagement\Docs\Assets\Task3.png
+		src\MemoryManagement\Docs\Assets\Task4.png = src\MemoryManagement\Docs\Assets\Task4.png
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +67,10 @@ Global
 		{9E1D2E58-17FD-4E99-B1CD-B9A3F4FCA2E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E1D2E58-17FD-4E99-B1CD-B9A3F4FCA2E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E1D2E58-17FD-4E99-B1CD-B9A3F4FCA2E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15545D87-07E1-4761-BBBF-1AD4D652C07D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15545D87-07E1-4761-BBBF-1AD4D652C07D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15545D87-07E1-4761-BBBF-1AD4D652C07D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15545D87-07E1-4761-BBBF-1AD4D652C07D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,8 +82,12 @@ Global
 		{DF9D4585-6AC5-46E0-A4CF-664B4B9A457E} = {DCAA095E-2796-41FA-A1D0-1134E29309E7}
 		{50FFB469-C98C-4ECB-8D4C-7206F59599AF} = {DCAA095E-2796-41FA-A1D0-1134E29309E7}
 		{DCEE8B48-B8A6-45E8-B6DA-11133C5F41F7} = {DCAA095E-2796-41FA-A1D0-1134E29309E7}
-		{A54A58D5-BBBB-4025-BC00-D996CB9619E8} = {DCAA095E-2796-41FA-A1D0-1134E29309E7}
-		{9E1D2E58-17FD-4E99-B1CD-B9A3F4FCA2E1} = {DCAA095E-2796-41FA-A1D0-1134E29309E7}
+		{A54A58D5-BBBB-4025-BC00-D996CB9619E8} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{9E1D2E58-17FD-4E99-B1CD-B9A3F4FCA2E1} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{15545D87-07E1-4761-BBBF-1AD4D652C07D} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{02EA681E-C7D8-13C7-8484-4AC65E1B71E8} = {DCAA095E-2796-41FA-A1D0-1134E29309E7}
+		{5152F84A-B453-4B0B-BF7E-384DF5054A04} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{9BEF9941-9F2A-4DF8-A695-EFB3EA28066C} = {5152F84A-B453-4B0B-BF7E-384DF5054A04}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D4CECB66-8E11-49D9-AA1E-464EE0231450}
