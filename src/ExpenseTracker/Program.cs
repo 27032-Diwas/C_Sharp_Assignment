@@ -19,8 +19,8 @@ public class Program
     {
         try
         {
-            IFileRepository jsonRepository = new JsonRepository();
             IFileSystem fileSystem = new FileSystem();
+            IFileRepository jsonRepository = new JsonRepository(fileSystem);
             IRepository transactionRepository = new TransactionRepository(fileSystem, "Data/Transaction.json", jsonRepository);
             IService transactionService = new TransactionService(transactionRepository);
             IView transactionView = new TransactionView();

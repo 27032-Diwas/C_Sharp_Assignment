@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.IO.Abstractions;
+using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using ExpenseTracker.Models;
@@ -11,12 +12,15 @@ namespace ExpenseTracker.Repository;
 public class JsonRepository : IFileRepository
 {
     private readonly JsonSerializerOptions _options;
+    private readonly IFileSystem _fileSystem;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="JsonRepository"/> class.
     /// </summary>
-    public JsonRepository()
+    /// <param name="fileSystem"> Instance of file system. </param>
+    public JsonRepository(IFileSystem fileSystem)
     {
+        this._fileSystem = fileSystem;
         this._options = new JsonSerializerOptions
         {
             WriteIndented = true,
@@ -31,9 +35,8 @@ public class JsonRepository : IFileRepository
     /// <param name="list"> List of the transactions that are to be added. </param>
     public void WriteAll(string filePath, List<Transaction> list)
     {
-        string json = JsonSerializer.Serialize(list, this._options);
-        using StreamWriter writer = new (filePath);
-        writer.Write(json);
+        using Stream stream = this._fileSystem.File.Open(filePath, FileMode.Open, FileAccess.Write);
+        JsonSerializer.Serialize(stream, list, this._options);
     }
 
     /// <summary>
@@ -46,9 +49,8 @@ public class JsonRepository : IFileRepository
     {
         try
         {
-            using StreamReader reader = new (filePath);
-            string json = reader.ReadToEnd();
-            return JsonSerializer.Deserialize<List<Transaction>>(json, this._options) ?? new List<Transaction>();
+            using Stream stream = this._fileSystem.File.Open(filePath, FileMode.Open, FileAccess.Read);
+            return JsonSerializer.Deserialize<List<Transaction>>(stream, this._options) ?? new List<Transaction>();
         }
         catch (JsonException ex)
         {
