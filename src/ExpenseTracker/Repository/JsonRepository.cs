@@ -1,6 +1,8 @@
 ﻿using System.IO.Abstractions;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using ExpenseTracker.Constants;
+using ExpenseTracker.Exceptions;
 using ExpenseTracker.Models;
 
 namespace ExpenseTracker.Repository;
@@ -41,7 +43,23 @@ public class JsonRepository : IFileRepository
         }
         catch (JsonException ex)
         {
-            throw new JsonException($"Failed in loading file, Try again.{ex.Message}", ex);
+            throw new DataBaseException(ErrorMessages.FailureInFileOperations, ex);
+        }
+        catch (NotSupportedException ex)
+        {
+            throw new DataBaseException(ErrorMessages.FailureInFileOperations, ex);
+        }
+        catch (IOException ex)
+        {
+            throw new DataBaseException(ErrorMessages.FailureInFileOperations, ex);
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            throw new DataBaseException(ErrorMessages.FailureInFileOperations, ex);
+        }
+        catch (ArgumentNullException ex)
+        {
+            throw new DataBaseException(ErrorMessages.FailureInFileOperations, ex);
         }
     }
 
@@ -60,7 +78,23 @@ public class JsonRepository : IFileRepository
         }
         catch (JsonException ex)
         {
-            throw new JsonException($"Failed in loading file, Try again.{ex.Message}", ex);
+            throw new DataBaseException(ErrorMessages.FailureInFileOperations, ex);
+        }
+        catch (NotSupportedException ex)
+        {
+            throw new DataBaseException(ErrorMessages.FailureInFileOperations, ex);
+        }
+        catch (IOException ex)
+        {
+            throw new DataBaseException(ErrorMessages.FailureInFileOperations, ex);
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            throw new DataBaseException(ErrorMessages.FailureInFileOperations, ex);
+        }
+        catch (ArgumentNullException ex)
+        {
+            throw new DataBaseException(ErrorMessages.FailureInFileOperations, ex);
         }
     }
 }
