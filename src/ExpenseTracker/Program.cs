@@ -1,6 +1,7 @@
 ﻿using System.IO.Abstractions;
 using System.Text.Json;
 using ExpenseTracker.Controller;
+using ExpenseTracker.Exceptions;
 using ExpenseTracker.Repository;
 using ExpenseTracker.Service;
 using ExpenseTracker.View;
@@ -37,7 +38,12 @@ public class Program
 
             mainMenuController.GetMenuOption();
         }
-        catch (JsonException ex)
+        catch (DataBaseException ex)
+        {
+            Console.WriteLine(ex.Message);
+            Console.ReadKey();
+        }
+        catch (Exception ex)
         {
             Console.WriteLine(ex.Message);
             Console.ReadKey();
