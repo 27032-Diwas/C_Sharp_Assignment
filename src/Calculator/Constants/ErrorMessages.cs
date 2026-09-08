@@ -21,6 +21,11 @@ public static class ErrorMessages
     public const string DivideByZero = "Second number can't be zero";
 
     /// <summary>
+    /// Represents the message displayed when the process is cancelled.
+    /// </summary>
+    public const string ProcessCancelled = "PROCESS CANCELLED!!";
+
+    /// <summary>
     /// Represents the message displayed when user enters an invalid number.
     /// </summary>
     public static readonly string InvalidNumber = $"ENTER A VALID NUMBER [ {int.MinValue} to {int.MaxValue} ]";

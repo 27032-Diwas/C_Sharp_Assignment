@@ -60,7 +60,7 @@ public class CalculatorController
             }
             catch (OperationCanceledException)
             {
-                this._calculatorView.DisplaySuccessMessage(SuccessMessages.ProcessCancelled);
+                this._calculatorView.DisplaySuccessMessage(ErrorMessages.ProcessCancelled);
             }
         }
     }
