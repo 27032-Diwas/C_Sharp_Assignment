@@ -99,7 +99,7 @@ public class TransactionController : IController
         }
 
         Transaction transaction = transactions[0];
-        if (transactions.Count() > 1)
+        if (transactions.Count > 1)
         {
             transaction = this.GetTransaction(transactions);
         }
@@ -144,7 +144,7 @@ public class TransactionController : IController
         }
 
         Transaction transaction = transactions[0];
-        if (transactions.Count() > 1)
+        if (transactions.Count > 1)
         {
             transaction = this.GetTransaction(transactions);
         }
@@ -200,25 +200,9 @@ public class TransactionController : IController
             this._transactionView.DisplayMessage(ErrorMessages.EmptyList);
             return true;
         }
-        else if (transactions.Count == 1)
-        {
-            string? choice;
-            while (true)
-            {
-                choice = this._transactionView.GetStringInput(UserPrompts.GetYesOrNo);
-                if (choice is null || choice.Equals("N", StringComparison.OrdinalIgnoreCase))
-                {
-                    this._transactionView.DisplayMessage($"\n{SuccessMessages.ProcessCancelled}");
-                    return null;
-                }
-                else if (!choice.Equals("Y", StringComparison.OrdinalIgnoreCase))
-                {
-                    this._transactionView.DisplayErrorMessage(ErrorMessages.InvalidOption);
-                    continue;
-                }
 
         return false;
-            }
+    }
 
     /// <summary>
     /// Gets instance of transaction to update or delete.
