@@ -1,5 +1,6 @@
 ﻿using System.IO.Abstractions;
 using System.Text.Json;
+using ExpenseTracker.Constants;
 using ExpenseTracker.Controller;
 using ExpenseTracker.Exceptions;
 using ExpenseTracker.Repository;
@@ -22,7 +23,7 @@ public class Program
         {
             IFileSystem fileSystem = new FileSystem();
             IFileRepository jsonRepository = new JsonRepository(fileSystem);
-            IRepository transactionRepository = new TransactionRepository(fileSystem, "Data/Transaction.json", jsonRepository);
+            IRepository transactionRepository = new TransactionRepository(fileSystem, Configurables.FilePath, jsonRepository);
             IService transactionService = new TransactionService(transactionRepository);
             IView transactionView = new TransactionView();
             IController transactionController = new TransactionController(transactionView, transactionService);
