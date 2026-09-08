@@ -34,8 +34,15 @@ public class JsonRepository : IFileRepository
     /// <param name="list"> List of the transactions that are to be added. </param>
     public void WriteAll(string filePath, List<Transaction> list)
     {
-        using Stream stream = this._fileSystem.File.Open(filePath, FileMode.Open, FileAccess.Write);
-        JsonSerializer.Serialize(stream, list, this._options);
+        try
+        {
+            using Stream stream = this._fileSystem.File.Open(filePath, FileMode.Open, FileAccess.Write);
+            JsonSerializer.Serialize(stream, list, this._options);
+        }
+        catch (JsonException ex)
+        {
+            throw new JsonException($"Failed in loading file, Try again.{ex.Message}", ex);
+        }
     }
 
     /// <summary>
