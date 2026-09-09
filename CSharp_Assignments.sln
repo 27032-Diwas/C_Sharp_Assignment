@@ -36,6 +36,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{9BEF99
 		src\MemoryManagement\Docs\Assets\Task3.png = src\MemoryManagement\Docs\Assets\Task3.png
 		src\MemoryManagement\Docs\Assets\Task4.png = src\MemoryManagement\Docs\Assets\Task4.png
 	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator", "src\Calculator\Calculator.csproj", "{3608468F-B8B1-4E27-8DE0-76BA7D22B183}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +72,10 @@ Global
 		{15545D87-07E1-4761-BBBF-1AD4D652C07D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15545D87-07E1-4761-BBBF-1AD4D652C07D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15545D87-07E1-4761-BBBF-1AD4D652C07D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3608468F-B8B1-4E27-8DE0-76BA7D22B183}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3608468F-B8B1-4E27-8DE0-76BA7D22B183}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3608468F-B8B1-4E27-8DE0-76BA7D22B183}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3608468F-B8B1-4E27-8DE0-76BA7D22B183}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -88,6 +93,7 @@ Global
 		{02EA681E-C7D8-13C7-8484-4AC65E1B71E8} = {DCAA095E-2796-41FA-A1D0-1134E29309E7}
 		{5152F84A-B453-4B0B-BF7E-384DF5054A04} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{9BEF9941-9F2A-4DF8-A695-EFB3EA28066C} = {5152F84A-B453-4B0B-BF7E-384DF5054A04}
+		{3608468F-B8B1-4E27-8DE0-76BA7D22B183} = {DCAA095E-2796-41FA-A1D0-1134E29309E7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D4CECB66-8E11-49D9-AA1E-464EE0231450}
