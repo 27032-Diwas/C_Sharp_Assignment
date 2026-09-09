@@ -1,7 +1,7 @@
 ﻿namespace GarbageCollection;
 
 /// <summary>
-/// Represent a student.
+/// Represents a student.
 /// </summary>
 public class Student
 {

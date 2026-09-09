@@ -1,7 +1,7 @@
 ﻿namespace ValueAndReferenceTypes;
 
 /// <summary>
-/// Contains properties related to students.
+/// Contains properties related to student.
 /// </summary>
 public class Student
 {

@@ -6,7 +6,7 @@
 public class Program
 {
     /// <summary>
-    /// Starts and run the program.
+    /// Starts and runs the program.
     /// </summary>
     public static void Main()
     {
@@ -24,7 +24,7 @@ public class Program
     }
 
     /// <summary>
-    /// Create large number of student.
+    /// Creates large number of students.
     /// </summary>
     /// <returns> List of students. </returns>
     public static List<Student> CreateStudent()

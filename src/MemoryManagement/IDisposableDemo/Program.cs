@@ -35,10 +35,17 @@ public class Program
     /// </summary>
     public static void InitialWrite()
     {
-        FileOperation fileOperation = new ("File.txt");
-        fileOperation.Write("Initial write operation.");
-        fileOperation.Dispose();
-        Read();
+        try
+        {
+            FileOperation fileOperation = new ("File.txt");
+            fileOperation.Write("Initial write operation.");
+            fileOperation.Dispose();
+            Read();
+        }
+        catch (IOException)
+        {
+            Console.WriteLine("File is not disposed properly.");
+        }
     }
 
     /// <summary>
