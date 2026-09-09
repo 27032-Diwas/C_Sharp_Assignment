@@ -61,6 +61,10 @@ public class JsonRepository : IFileRepository
         {
             throw new DataBaseException(ErrorMessages.FailureInFileOperations, ex);
         }
+        catch (Exception ex)
+        {
+            throw new DataBaseException(ErrorMessages.FailureInFileOperations, ex);
+        }
     }
 
     /// <summary>
@@ -93,6 +97,10 @@ public class JsonRepository : IFileRepository
             throw new DataBaseException(ErrorMessages.FailureInFileOperations, ex);
         }
         catch (ArgumentNullException ex)
+        {
+            throw new DataBaseException(ErrorMessages.FailureInFileOperations, ex);
+        }
+        catch (Exception ex)
         {
             throw new DataBaseException(ErrorMessages.FailureInFileOperations, ex);
         }
