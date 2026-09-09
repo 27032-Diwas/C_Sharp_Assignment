@@ -12,11 +12,11 @@ public class Program
     {
         List<Student> students = CreateStudent();
 
-        Console.WriteLine("Large number of object created successfully");
+        Console.WriteLine("Large number of objects created successfully");
 
         students = null!;
 
-        Console.WriteLine("Large number of object destroyed successfully");
+        Console.WriteLine("Large number of objects destroyed successfully");
 
         GC.Collect();
 
