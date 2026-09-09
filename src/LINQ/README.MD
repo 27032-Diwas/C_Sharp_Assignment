@@ -218,7 +218,7 @@ Use deferred execution and avoid unnecessary enumerations.
 
 ---
 
-# Task 5: Query Builder (Bonus Challenge)
+# Task 5: Query Builder
 
 ## Objective
 
