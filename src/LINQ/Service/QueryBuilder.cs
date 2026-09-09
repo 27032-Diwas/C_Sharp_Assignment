@@ -24,6 +24,11 @@ public class QueryBuilder<T>
     /// <returns> Instance of query builder with filter query. </returns>
     public QueryBuilder<T> Filter(Func<T, bool> filter)
     {
+        if (filter is null)
+        {
+            throw new ArgumentNullException(nameof(filter));
+        }
+
         this._query = this._query.Where(filter);
         return this;
     }
@@ -36,6 +41,11 @@ public class QueryBuilder<T>
     /// <returns> Instance of query builder with filter query. </returns>
     public QueryBuilder<T> SortBy<TKey>(Func<T, TKey> sort)
     {
+        if (sort is null)
+        {
+            throw new ArgumentNullException(nameof(sort));
+        }
+
         this._query = this._query.OrderBy(sort);
         return this;
     }
@@ -48,6 +58,11 @@ public class QueryBuilder<T>
     /// <returns> Instance of query builder with filter query. </returns>
     public QueryBuilder<T> SortByDescending<TKey>(Func<T, TKey> sort)
     {
+        if (sort is null)
+        {
+            throw new ArgumentNullException(nameof(sort));
+        }
+
         this._query = this._query.OrderByDescending(sort);
         return this;
     }
@@ -69,6 +84,26 @@ public class QueryBuilder<T>
             Func<TInner, TKey> innerKeySelector,
             Func<T, TInner, TResult> resultSelector)
     {
+        if (inner is null)
+        {
+            throw new ArgumentNullException(nameof(inner));
+        }
+
+        if (outerKeySelector is null)
+        {
+            throw new ArgumentNullException(nameof(outerKeySelector));
+        }
+
+        if (innerKeySelector is null)
+        {
+            throw new ArgumentNullException(nameof(innerKeySelector));
+        }
+
+        if (resultSelector is null)
+        {
+            throw new ArgumentNullException(nameof(resultSelector));
+        }
+
         return new QueryBuilder<TResult>(this._query.Join(inner, outerKeySelector, innerKeySelector, resultSelector));
     }
 
