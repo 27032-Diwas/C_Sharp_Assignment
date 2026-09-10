@@ -1,0 +1,41 @@
+﻿namespace GarbageCollection;
+
+/// <summary>
+/// Entry point of the application.
+/// </summary>
+public class Program
+{
+    /// <summary>
+    /// Starts and runs the program.
+    /// </summary>
+    public static void Main()
+    {
+        List<Student> students = CreateStudent();
+
+        Console.WriteLine("Large number of objects created successfully");
+
+        students = null!;
+
+        Console.WriteLine("Large number of objects destroyed successfully");
+
+        GC.Collect();
+
+        Console.ReadKey();
+    }
+
+    /// <summary>
+    /// Creates large number of students.
+    /// </summary>
+    /// <returns> List of students. </returns>
+    public static List<Student> CreateStudent()
+    {
+        List<Student> students = new ();
+
+        for (int i = 0; i < 10000000; i++)
+        {
+            students.Add(new Student());
+        }
+
+        return students;
+    }
+}
