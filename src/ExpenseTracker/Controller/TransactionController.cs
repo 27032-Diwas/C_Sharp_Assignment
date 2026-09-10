@@ -99,7 +99,7 @@ public class TransactionController : IController
         }
 
         Transaction transaction = transactions[0];
-        if (transactions.Count() > 1)
+        if (transactions.Count > 1)
         {
             transaction = this.GetTransaction(transactions);
         }
@@ -144,7 +144,7 @@ public class TransactionController : IController
         }
 
         Transaction transaction = transactions[0];
-        if (transactions.Count() > 1)
+        if (transactions.Count > 1)
         {
             transaction = this.GetTransaction(transactions);
         }
@@ -178,6 +178,14 @@ public class TransactionController : IController
         }
 
         this._transactionView.DisplaySummary(this._transactionService.GetSummary());
+    }
+
+    /// <summary>
+    /// Saves the data.
+    /// </summary>
+    public void SaveData()
+    {
+        this._transactionService.SaveData();
     }
 
     /// <summary>

@@ -1,4 +1,6 @@
-﻿using ExpenseTracker.Models;
+﻿using System.IO.Abstractions;
+using System.Runtime.CompilerServices;
+using ExpenseTracker.Models;
 
 namespace ExpenseTracker.Repository;
 
@@ -7,13 +9,49 @@ namespace ExpenseTracker.Repository;
 /// </summary>
 public class TransactionRepository : IRepository
 {
-    private readonly List<Transaction> _transactions = new ();
+    private readonly List<Transaction> _transactions;
+    private readonly IFileSystem _fileSystem;
+    private readonly IFileRepository _jsonFileManager;
+    private readonly string _filePath;
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="TransactionRepository"/> class.
+    /// </summary>
+    /// <param name="fileSystem"> Instance of file system. </param>
+    /// <param name="path"> File path. </param>
+    /// <param name="fileManager"> Json file manager instance. </param>
+    public TransactionRepository(IFileSystem fileSystem, string path, IFileRepository fileManager)
+    {
+        this._filePath = path;
+        this._jsonFileManager = fileManager;
+        this._fileSystem = fileSystem;
+        if (!this._fileSystem.File.Exists(this._filePath))
+        {
+            string? directory = Path.GetDirectoryName(this._filePath);
+            if (!string.IsNullOrWhiteSpace(directory) && !Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
+
+            using (this._fileSystem.File.Create(this._filePath))
+            {
+            }
+
+            this._transactions = new List<Transaction>();
+            return;
+        }
+
+        this._transactions = this._jsonFileManager.LoadAll(this._filePath);
+    }
 
     /// <summary>
     /// Adds transaction to the transaction list.
     /// </summary>
     /// <param name="transaction"> Instance of the transaction. </param>
-    public void AddTransaction(Transaction transaction) => this._transactions.Add(transaction);
+    public void AddTransaction(Transaction transaction)
+    {
+        this._transactions.Add(transaction);
+    }
 
     /// <summary>
     /// Gets all transactions from the list.
@@ -40,7 +78,7 @@ public class TransactionRepository : IRepository
     {
         int index = this._transactions.FindIndex(t => t.TransactionId == transactionId);
         if (index >= 0)
-        {
+            {
             this._transactions.RemoveAt(index);
         }
     }
@@ -48,7 +86,10 @@ public class TransactionRepository : IRepository
     /// <summary>
     /// Deletes all transactions in the list.
     /// </summary>
-    public void DeleteAllTransactions() => this._transactions.Clear();
+    public void DeleteAllTransactions()
+    {
+        this._transactions.Clear();
+    }
 
     /// <summary>
     /// Update the value of a transaction in transaction list.
@@ -63,5 +104,13 @@ public class TransactionRepository : IRepository
         transaction.TransactionType = updatedTransaction.TransactionType;
         transaction.Category = updatedTransaction.Category;
         transaction.Description = updatedTransaction.Description;
+    }
+
+    /// <summary>
+    /// Saves the file.
+    /// </summary>
+    public void SaveFile()
+    {
+        this._jsonFileManager.WriteAll(this._filePath, this._transactions);
     }
 }

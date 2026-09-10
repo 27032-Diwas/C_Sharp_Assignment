@@ -42,4 +42,9 @@ public interface IRepository
     /// </summary>
     /// <param name="updatedTransaction"> Instance of transaction containing edited values. </param>
     void EditTransaction(Transaction updatedTransaction);
+
+    /// <summary>
+    /// Saves the file.
+    /// </summary>
+    void SaveFile();
 }
