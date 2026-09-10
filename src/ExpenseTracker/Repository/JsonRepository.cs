@@ -34,6 +34,11 @@ public class JsonRepository : IFileRepository
     /// </summary>
     /// <param name="filePath"> The path of the file where the transactions are stored. </param>
     /// <param name="list"> List of the transactions that are to be added. </param>
+    /// /// <exception cref="DataBaseException">
+    /// Thrown when a file operation fails due to invalid JSON content,
+    /// unsupported operations, I/O errors, unauthorized access,
+    /// null arguments, or any unexpected runtime exception.
+    /// </exception>
     public void WriteAll(string filePath, List<Transaction> list)
     {
         try
@@ -72,7 +77,11 @@ public class JsonRepository : IFileRepository
     /// </summary>
     /// <param name="filePath"> Path of the file. </param>
     /// <returns> List of transactions that are stored in the file. </returns>
-    /// <exception cref="JsonException"> Exception thrown when file is not read properly. </exception>
+    /// /// <exception cref="DataBaseException">
+    /// Thrown when a file operation fails due to invalid JSON content,
+    /// unsupported operations, I/O errors, unauthorized access,
+    /// null arguments, or any unexpected runtime exception.
+    /// </exception>
     public List<Transaction> LoadAll(string filePath)
     {
         try
