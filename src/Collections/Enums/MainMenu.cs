@@ -29,15 +29,4 @@ public enum MainMenu
     /// Represents the option to access dictionary task.
     /// </summary>
     Dictionary,
-
-    /// <summary>
-    /// Represents the option to access generic task.
-    /// </summary>
-    Generic,
-
-    /// <summary>
-    /// Represents the option to access IEnumerable task.
-    /// </summary>
-    IEnumerable,
-
 }

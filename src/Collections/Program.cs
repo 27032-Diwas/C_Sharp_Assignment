@@ -17,9 +17,19 @@ public class Program
         try
         {
             IView view = new CollectionView();
-            Task1 task1 = new ();
-            Task1Controller task1Controller = new Task1Controller(view, task1);
-            MainMenuController mainMenuController = new MainMenuController(view, task1Controller);
+            Task1<string> task1 = new ();
+            Task1Controller task1Controller = new (view, task1);
+
+            Task2<char> task2 = new ();
+            Task2Controller task2Controller = new (view, task2);
+
+            Task3<string> task3 = new ();
+            Task3Controller task3Controller = new (view, task3);
+
+            Task4<string, double> task4 = new ();
+            Task4Controller task4Controller = new (view, task4);
+
+            MainMenuController mainMenuController = new (view, task1Controller, task2Controller, task3Controller, task4Controller);
 
             mainMenuController.GetMenuOption();
         }

@@ -120,6 +120,38 @@ public class CollectionView : IView
     }
 
     /// <summary>
+    /// Gets double input from user.
+    /// </summary>
+    /// <param name="prompt"> Message displayed to user to get input. </param>
+    /// <returns> Double input. </returns>
+    public double GetDoubleInput(string prompt)
+    {
+        while (true)
+        {
+            Console.WriteLine(prompt);
+            string? input = Console.ReadLine();
+            if (string.IsNullOrEmpty(input))
+            {
+                Console.WriteLine(ErrorMessages.EmptyString);
+                continue;
+            }
+
+            if (input.Equals(Configurables.QuitCommand, StringComparison.OrdinalIgnoreCase))
+            {
+                throw new OperationCanceledException();
+            }
+
+            if (!double.TryParse(input, out double value))
+            {
+                Console.WriteLine(ErrorMessages.InvalidDouble);
+                continue;
+            }
+
+            return value;
+        }
+    }
+
+    /// <summary>
     /// Displays all values defined in the specific enum values.
     /// </summary>
     /// <typeparam name="T"> Type : enum </typeparam>

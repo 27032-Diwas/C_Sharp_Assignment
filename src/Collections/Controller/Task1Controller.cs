@@ -6,26 +6,26 @@ using Collections.View;
 namespace Collections.Controller;
 
 /// <summary>
-/// Coordinates between view and service
+/// Coordinates between view and service.
 /// </summary>
 public class Task1Controller
 {
     private readonly IView _view;
-    private readonly Task1 _task1;
+    private readonly Task1<string> _task1;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="Task1Controller"/> class.
     /// </summary>
     /// <param name="view"> Instance of view. </param>
-    /// <param name="task1"> Instance of task1 service. </param>
-    public Task1Controller(IView view, Task1 task1)
+    /// <param name="task1"> Instance of task 1 service. </param>
+    public Task1Controller(IView view, Task1<string> task1)
     {
         this._view = view;
         this._task1 = task1;
     }
 
     /// <summary>
-    /// Gets task1 menu option.
+    /// Gets task 1 menu option.
     /// </summary>
     public void Task1MenuOption()
     {

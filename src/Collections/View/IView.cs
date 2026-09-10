@@ -5,7 +5,6 @@
 /// </summary>
 public interface IView
 {
-
     /// <summary>
     /// Gets a valid menu option selected by the user.
     /// </summary>
@@ -52,4 +51,11 @@ public interface IView
     /// <param name="prompt"> Message displayed to user to get input. </param>
     /// <returns> String input. </returns>
     public string GetStringInput(string prompt);
+
+    /// <summary>
+    /// Gets double input from user.
+    /// </summary>
+    /// <param name="prompt"> Message displayed to user to get input. </param>
+    /// <returns> Double input. </returns>
+    public double GetDoubleInput(string prompt);
 }

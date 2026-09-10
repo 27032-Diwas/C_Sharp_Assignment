@@ -3,22 +3,23 @@
 /// <summary>
 /// Contains operations such as add, view and remove books.
 /// </summary>
-public class Task1
+/// <typeparam name="T"> Type of item to be in list (string for books). </typeparam>
+public class Task1<T>
 {
-    private List<string> _books = new ();
+    private readonly List<T> _books = new ();
 
     /// <summary>
     /// Adds book to the list.
     /// </summary>
     /// <param name="book"> Name of the book. </param>
-    public void AddBook(string book) => this._books.Add(book);
+    public void AddBook(T book) => this._books.Add(book);
 
     /// <summary>
     /// Removes book from the list.
     /// </summary>
     /// <param name="book"> Name of the book. </param>
     /// <returns> True if book is removed successfully otherwise false. </returns>
-    public bool RemoveBook(string book)
+    public bool RemoveBook(T book)
     {
         if (this.IsBookExist(book))
         {
@@ -34,11 +35,11 @@ public class Task1
     /// </summary>
     /// <param name="book"> Name of the book. </param>
     /// <returns> True if book exist; otherwise false. </returns>
-    public bool IsBookExist(string book) => this._books.Contains(book);
+    public bool IsBookExist(T book) => this._books.Contains(book);
 
     /// <summary>
     /// Gets all book from the list.
     /// </summary>
     /// <returns> List of books. </returns>
-    public List<string> GetAllBooks() => this._books;
+    public List<T> GetAllBooks() => this._books;
 }
