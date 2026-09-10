@@ -5,7 +5,7 @@
 /// </summary>
 public class Task1
 {
-    private List<string> _books = new();
+    private List<string> _books = new ();
 
     /// <summary>
     /// Adds book to the list.
