@@ -28,7 +28,8 @@ public static class SuccessMessages
     /// <summary>
     /// Represents the messages displayed when person removed successfully.
     /// </summary>
-    public const string SuccessfulRemovalOfPerson = "Person in front Remove Successfully";
+    public const string SuccessfulRemovalOfPerson = "Person in front Removed" +
+        " Successfully";
 
     /// <summary>
     /// Represents the message displayed when student added successfully.
