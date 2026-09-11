@@ -11,9 +11,9 @@ public static class UserPrompts
     public const string SelectOption = "Select one of the above option:";
 
     /// <summary>
-    /// Represents the prompt requesting user to enter book name.
+    /// Represents the prompt requesting user to enter book title.
     /// </summary>
-    public const string GetBook = "Enter book name:";
+    public const string GetBook = "Enter book title:";
 
     /// <summary>
     /// Represents the prompt requesting user to enter person name.
@@ -33,7 +33,7 @@ public static class UserPrompts
     /// <summary>
     /// Represents the prompt requesting user to enter a word.
     /// </summary>
-    public const string GetWord = "Enter a word to reverse:";
+    public const string GetWord = "Enter a word to reversal:";
 
     /// <summary>
     /// Represents the prompt requesting user to count of number user want to add.

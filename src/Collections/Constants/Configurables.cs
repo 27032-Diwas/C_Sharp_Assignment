@@ -8,7 +8,7 @@ namespace Collections.Constants;
 public static class Configurables
 {
     /// <summary>
-    /// Represent the quit command.
+    /// Represents the quit command.
     /// </summary>
     public const string QuitCommand = "Quit";
 

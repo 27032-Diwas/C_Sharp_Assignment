@@ -45,7 +45,7 @@ public class MainMenuController
         {
             try
             {
-                MainMenu choice = this._view.GetMenuChoice<MainMenu>(Configurables.MainMenuHeader, $"\n{UserPrompts.SelectOption} [ 0 - 5 ]:");
+                MainMenu choice = this._view.GetMenuChoice<MainMenu>(Configurables.MainMenuHeader, $"\n{UserPrompts.SelectOption} [ 0 - {Enum.GetValues<MainMenu>().Length - 1} ]:");
                 this._view.ClearConsole();
                 switch (choice)
                 {

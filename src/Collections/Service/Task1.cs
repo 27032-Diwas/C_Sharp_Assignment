@@ -17,7 +17,7 @@ public class Task1<T>
     /// <summary>
     /// Removes book from the list.
     /// </summary>
-    /// <param name="book"> Name of the book. </param>
+    /// <param name="book"> Title of the book. </param>
     /// <returns> True if book is removed successfully otherwise false. </returns>
     public bool RemoveBook(T book)
     {
@@ -33,7 +33,7 @@ public class Task1<T>
     /// <summary>
     /// Checks if book exist in list or not.
     /// </summary>
-    /// <param name="book"> Name of the book. </param>
+    /// <param name="book"> Title of the book. </param>
     /// <returns> True if book exist; otherwise false. </returns>
     public bool IsBookExist(T book) => this._books.Contains(book);
 
