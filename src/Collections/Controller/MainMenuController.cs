@@ -41,7 +41,7 @@ public class MainMenuController
         {
             try
             {
-                MainMenu choice = this._view.GetMenuChoice<MainMenu>("Main Menu", $"\n{UserPrompts.SelectOption} [ 0 - 4 ]:");
+                MainMenu choice = this._view.GetMenuChoice<MainMenu>(Configurables.MainMenuHeader, $"\n{UserPrompts.SelectOption} [ 0 - 4 ]:");
                 this._view.ClearConsole();
                 switch (choice)
                 {
@@ -50,7 +50,6 @@ public class MainMenuController
                         this._view.GetAnyKey();
                         return;
                     case MainMenu.List:
-                        this._view.DisplayMessage(MainMenu.List.ToString());
                         this._task1Controller.Task1MenuOption();
                         break;
                     case MainMenu.Stack:
@@ -58,11 +57,9 @@ public class MainMenuController
                         this._task2Controller.ReverseWord();
                         break;
                     case MainMenu.Queue:
-                        this._view.DisplayMessage(MainMenu.Queue.ToString());
                         this._task3Controller.Task3MenuOption();
                         break;
                     case MainMenu.Dictionary:
-                        this._view.DisplayMessage(MainMenu.Dictionary.ToString());
                         this._task4Controller.Task4MenuOption();
                         break;
                     default:

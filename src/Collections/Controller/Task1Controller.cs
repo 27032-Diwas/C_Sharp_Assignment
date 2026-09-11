@@ -33,7 +33,7 @@ public class Task1Controller
         {
             try
             {
-                Task1Menu choice = this._view.GetMenuChoice<Task1Menu>("Task 1", $"\n{UserPrompts.SelectOption} [ 0 - 4 ]:");
+                Task1Menu choice = this._view.GetMenuChoice<Task1Menu>(MainMenu.List.ToString(), $"\n{UserPrompts.SelectOption} [ 0 - 4 ]:");
                 this._view.ClearConsole();
                 switch (choice)
                 {
