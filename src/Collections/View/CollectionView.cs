@@ -143,7 +143,39 @@ public class CollectionView : IView
 
             if (!double.TryParse(input, out double value))
             {
-                this.DisplayErrorMessage(ErrorMessages.InvalidDouble);
+                this.DisplayErrorMessage(ErrorMessages.InvalidNumber);
+                continue;
+            }
+
+            return value;
+        }
+    }
+
+    /// <summary>
+    /// Gets integer input from user.
+    /// </summary>
+    /// <param name="prompt"> Message displayed to user to get input. </param>
+    /// <returns> Integer input. </returns>
+    public int GetIntegerInput(string prompt)
+    {
+        while (true)
+        {
+            Console.WriteLine(prompt);
+            string? input = Console.ReadLine();
+            if (string.IsNullOrEmpty(input))
+            {
+                Console.WriteLine(ErrorMessages.EmptyString);
+                continue;
+            }
+
+            if (input.Equals(Configurables.QuitCommand, StringComparison.OrdinalIgnoreCase))
+            {
+                throw new OperationCanceledException();
+            }
+
+            if (!int.TryParse(input, out int value))
+            {
+                this.DisplayErrorMessage(ErrorMessages.InvalidNumber);
                 continue;
             }
 

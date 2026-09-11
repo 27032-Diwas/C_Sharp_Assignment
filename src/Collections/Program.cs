@@ -29,7 +29,10 @@ public class Program
             Task4<string, double> task4 = new ();
             Task4Controller task4Controller = new (view, task4);
 
-            MainMenuController mainMenuController = new (view, task1Controller, task2Controller, task3Controller, task4Controller);
+            Task6 task6 = new ();
+            Task6Controller task6Controller = new (view, task6);
+
+            MainMenuController mainMenuController = new (view, task1Controller, task2Controller, task3Controller, task4Controller, task6Controller);
 
             mainMenuController.GetMenuOption();
         }

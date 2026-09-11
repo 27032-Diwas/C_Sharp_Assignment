@@ -23,7 +23,7 @@ public static class ErrorMessages
     /// <summary>
     /// Represents the message displayed when user doesn't enter a number.
     /// </summary>
-    public const string InvalidDouble = "Value should be a number";
+    public const string InvalidNumber = "Value should be a number";
 
     /// <summary>
     /// Represents the message displayed when book is not in list.
@@ -49,6 +49,11 @@ public static class ErrorMessages
     /// Represents the message displayed when dictionary is empty.
     /// </summary>
     public const string EmptyDictionary = "No student in dictionary";
+
+    /// <summary>
+    /// Represents the message displayed when count is not positive.
+    /// </summary>
+    public const string InvalidCount = "Count should be greater than zero";
 
     /// <summary>
     /// Represents the message displayed when user exit the application.

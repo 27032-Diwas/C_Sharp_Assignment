@@ -36,6 +36,16 @@ public static class UserPrompts
     public const string GetWord = "Enter a word to reverse:";
 
     /// <summary>
+    /// Represents the prompt requesting user to count of number user want to add.
+    /// </summary>
+    public const string GetNumberCount = "Enter count to number you want to add:";
+
+    /// <summary>
+    /// Represents the prompt requesting user to enter a number.
+    /// </summary>
+    public const string GetNumber = "Enter a number:";
+
+    /// <summary>
     /// Represents the prompt requesting the user to press any key to continue.
     /// </summary>
     public const string GetAnyKey = "PRESS ANY KEY TO CONTINUE!!";

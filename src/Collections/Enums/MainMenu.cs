@@ -29,4 +29,9 @@ public enum MainMenu
     /// Represents the option to access dictionary task.
     /// </summary>
     Dictionary,
+
+    /// <summary>
+    /// Represents the option to access sum of numbers task.
+    /// </summary>
+    SumOfNumbers,
 }

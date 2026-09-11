@@ -58,4 +58,11 @@ public interface IView
     /// <param name="prompt"> Message displayed to user to get input. </param>
     /// <returns> Double input. </returns>
     public double GetDoubleInput(string prompt);
+
+    /// <summary>
+    /// Gets integer input from user.
+    /// </summary>
+    /// <param name="prompt"> Message displayed to user to get input. </param>
+    /// <returns> Integer input. </returns>
+    public int GetIntegerInput(string prompt);
 }

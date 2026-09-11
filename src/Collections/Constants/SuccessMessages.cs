@@ -28,8 +28,7 @@ public static class SuccessMessages
     /// <summary>
     /// Represents the messages displayed when person removed successfully.
     /// </summary>
-    public const string SuccessfulRemovalOfPerson = "Person in front Removed" +
-        " Successfully";
+    public const string SuccessfulRemovalOfPerson = "Person in front Removed Successfully";
 
     /// <summary>
     /// Represents the message displayed when student added successfully.
@@ -37,7 +36,12 @@ public static class SuccessMessages
     public const string SuccessfulAdditionOfStudent = "Student Added Successfully";
 
     /// <summary>
-    /// Represents the messages displayed when student removed successfully.
+    /// Represents the message displayed when student removed successfully.
     /// </summary>
     public const string SuccessfulRemovalOfStudent = "Student Remove Successfully";
+
+    /// <summary>
+    /// Represents the message to display sum of numbers.
+    /// </summary>
+    public const string SumOfNumbers = "Sum of numbers is";
 }
