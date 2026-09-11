@@ -12,13 +12,6 @@ public class Task6
     /// <returns> The total sum of all numbers. </returns>
     public int SumOfElements(IEnumerable<int> numbers)
     {
-        int sum = 0;
-
-        foreach (int number in numbers)
-        {
-            sum += number;
-        }
-
-        return sum;
+        return numbers.Sum();
     }
 }
