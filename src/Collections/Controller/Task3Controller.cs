@@ -74,7 +74,7 @@ public class Task3Controller
     private void AddPerson()
     {
         string person = this._view.GetStringInput(UserPrompts.GetPersonName);
-        this._task3.AddPerson(person);
+        this._task3.AddItem(person);
         this._view.DisplaySuccessMessage(SuccessMessages.SuccessfulAdditionOfPerson);
     }
 
@@ -83,7 +83,7 @@ public class Task3Controller
     /// </summary>
     private void RemovePerson()
     {
-        if (this._task3.RemovePerson())
+        if (this._task3.RemoveItem())
         {
             this._view.DisplaySuccessMessage(SuccessMessages.SuccessfulRemovalOfPerson);
             return;

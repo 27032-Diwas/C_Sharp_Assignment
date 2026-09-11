@@ -10,8 +10,5 @@ public class Task6
     /// </summary>
     /// <param name="numbers"> The collection of numbers to sum. </param>
     /// <returns> The total sum of all numbers. </returns>
-    public int SumOfElements(IEnumerable<int> numbers)
-    {
-        return numbers.Sum();
-    }
+    public int SumOfElements(IEnumerable<int> numbers) => numbers.Sum();
 }

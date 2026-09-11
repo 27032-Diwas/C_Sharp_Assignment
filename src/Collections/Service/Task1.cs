@@ -1,45 +1,36 @@
 ﻿namespace Collections.Service;
 
 /// <summary>
-/// Contains operations such as add, view and remove books.
+/// Contains operations such as add, view and remove items.
 /// </summary>
 /// <typeparam name="T"> Type of item to be in list (string for books). </typeparam>
 public class Task1<T>
 {
-    private readonly List<T> _books = new ();
+    private readonly List<T> _items = new ();
 
     /// <summary>
-    /// Adds book to the list.
+    /// Adds item to the list.
     /// </summary>
-    /// <param name="book"> Name of the book. </param>
-    public void AddBook(T book) => this._books.Add(book);
+    /// <param name="item"> Name of the item. </param>
+    public void AddItem(T item) => this._items.Add(item);
 
     /// <summary>
-    /// Removes book from the list.
+    /// Removes item from the list.
     /// </summary>
-    /// <param name="book"> Title of the book. </param>
-    /// <returns> True if book is removed successfully otherwise false. </returns>
-    public bool RemoveBook(T book)
-    {
-        if (this.IsBookExist(book))
-        {
-            this._books.Remove(book);
-            return true;
-        }
-
-        return false;
-    }
+    /// <param name="item"> Name of the item. </param>
+    /// <returns> True if item is removed successfully otherwise false. </returns>
+    public bool RemoveItem(T item) => this._items.Remove(item);
 
     /// <summary>
-    /// Checks if book exist in list or not.
+    /// Checks if item exist in list or not.
     /// </summary>
-    /// <param name="book"> Title of the book. </param>
-    /// <returns> True if book exist; otherwise false. </returns>
-    public bool IsBookExist(T book) => this._books.Contains(book);
+    /// <param name="item"> Name of the item. </param>
+    /// <returns> True if item exist; otherwise false. </returns>
+    public bool IsItemExist(T item) => this._items.Contains(item);
 
     /// <summary>
-    /// Gets all books from the list.
+    /// Gets all items from the list.
     /// </summary>
-    /// <returns> List of books. </returns>
-    public List<T> GetAllBooks() => this._books;
+    /// <returns> List of items. </returns>
+    public IReadOnlyList<T> GetAllItems() => this._items;
 }

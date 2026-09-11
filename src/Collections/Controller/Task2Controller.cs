@@ -29,7 +29,7 @@ public class Task2Controller
     public void ReverseWord()
     {
         this.GetWord();
-        this._view.DisplayMessage(this._task2.GetReversedWord());
+        this._view.DisplayMessage(this._task2.GetReversedStack());
         this._view.GetAnyKey();
     }
 
@@ -39,6 +39,6 @@ public class Task2Controller
     private void GetWord()
     {
         this._view.DisplayMessage($"\n{UserPrompts.GetExitCommand}\n");
-        this._task2.AddCharacter(this._view.GetStringInput(UserPrompts.GetWord));
+        this._task2.AddItem(this._view.GetStringInput(UserPrompts.GetWord));
     }
 }

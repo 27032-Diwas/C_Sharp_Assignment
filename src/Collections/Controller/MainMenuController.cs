@@ -67,7 +67,7 @@ public class MainMenuController
                         this._task4Controller.Task4MenuOption();
                         break;
                     case MainMenu.SumOfNumbers:
-                        this._view.DisplayMessage(Regex.Replace(MainMenu.SumOfNumbers.ToString(), @"(?<!^)([A-Z])", " $1"));
+                        this._view.DisplayMessage(Regex.Replace(MainMenu.SumOfNumbers.ToString(), Configurables.PascalCaseRegex, " $1"));
                         this._task6Controller.SumOfNumbers();
                         break;
                     default:

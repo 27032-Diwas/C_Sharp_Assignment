@@ -1,42 +1,42 @@
 ﻿namespace Collections.Service;
 
 /// <summary>
-/// Contain operation to add, remove and view students.
+/// Contain operation to add, remove and view dictionary.
 /// </summary>
 /// <typeparam name="TKey"> Type of key in dictionary (string for student names). </typeparam>
 /// <typeparam name="TValue"> Type of value in dictionary (double for marks). </typeparam>
 public class Task4<TKey, TValue>
     where TKey : notnull
 {
-    private readonly Dictionary<TKey, TValue> _students = new ();
+    private readonly Dictionary<TKey, TValue> _items = new ();
 
     /// <summary>
-    /// Adds student to dictionary.
+    /// Adds item key and their value to dictionary.
     /// </summary>
-    /// <param name="name"> Name of the student. </param>
-    /// <param name="mark"> Mark of the student. </param>
-    /// <returns> True if student does not exist in dictionary; otherwise false. </returns>
-    public bool AddStudent(TKey name, TValue mark)
+    /// <param name="key"> Key of the item. </param>
+    /// <param name="false"> Value of the item. </param>
+    /// <returns> True if item does not exist in dictionary; otherwise false. </returns>
+    public bool AddItem(TKey key, TValue @false)
     {
-        if (this._students.ContainsKey(name))
+        if (this._items.ContainsKey(key))
         {
             return false;
         }
 
-        this._students.Add(name, mark);
+        this._items.Add(key, @false);
         return true;
     }
 
     /// <summary>
-    /// Removes student from the list.
+    /// Removes item from the dictionary.
     /// </summary>
-    /// <param name="name"> Name of student. </param>
-    /// <returns> True if student does not exist in dictionary; otherwise false. </returns>
-    public bool RemoveStudent(TKey name)
+    /// <param name="key"> Key of item. </param>
+    /// <returns> True if item does not exist in dictionary; otherwise false. </returns>
+    public bool RemoveItem(TKey key)
     {
-        if (this._students.ContainsKey(name))
+        if (this._items.ContainsKey(key))
         {
-            this._students.Remove(name);
+            this._items.Remove(key);
             return true;
         }
 
@@ -44,8 +44,8 @@ public class Task4<TKey, TValue>
     }
 
     /// <summary>
-    /// Gets students.
+    /// Gets items.
     /// </summary>
-    /// <returns> Students as dictionary. </returns>
-    public IReadOnlyDictionary<TKey, TValue> GetStudents() => this._students;
+    /// <returns> items as dictionary. </returns>
+    public IReadOnlyDictionary<TKey, TValue> GetStudentsInfo() => this._items;
 }

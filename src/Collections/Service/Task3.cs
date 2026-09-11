@@ -9,18 +9,18 @@ public class Task3<T>
     private readonly Queue<T> _queue = new ();
 
     /// <summary>
-    /// Adds person to the queue.
+    /// Adds item to the queue.
     /// </summary>
-    /// <param name="person"> Person to add in queue. </param>
-    public void AddPerson(T person) => this._queue.Enqueue(person);
+    /// <param name="item"> Item to add in queue. </param>
+    public void AddItem(T item) => this._queue.Enqueue(item);
 
     /// <summary>
-    /// Removes front person in the queue.
+    /// Removes front item in the queue.
     /// </summary>
-    /// <returns> True if person exist in queue ;otherwise false. </returns>
-    public bool RemovePerson()
+    /// <returns> True if item exist in queue ;otherwise false. </returns>
+    public bool RemoveItem()
     {
-        if (!this._queue.Any())
+        if (this._queue.Count == 0)
         {
             return false;
         }
@@ -32,6 +32,6 @@ public class Task3<T>
     /// <summary>
     /// Gets queue.
     /// </summary>
-    /// <returns> Queue of person. </returns>
+    /// <returns> Queue of items. </returns>
     public Queue<T> GetQueue() => this._queue;
 }

@@ -1,4 +1,5 @@
-﻿using Collections.Controller;
+﻿using Collections.Constants;
+using Collections.Controller;
 using Collections.Service;
 using Collections.View;
 
@@ -38,7 +39,7 @@ public class Program
         }
         catch (Exception)
         {
-            Console.WriteLine("Something went wrong, Try again!!");
+            Console.WriteLine(ErrorMessages.ExceptionMessage);
         }
     }
 }

@@ -43,5 +43,5 @@ public static class SuccessMessages
     /// <summary>
     /// Represents the message to display sum of numbers.
     /// </summary>
-    public const string SumOfNumbers = "Sum of numbers is";
+    public const string SumOfNumbers = "Sum of numbers is [List, Queue, Array]";
 }

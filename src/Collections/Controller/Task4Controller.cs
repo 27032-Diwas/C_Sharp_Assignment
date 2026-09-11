@@ -70,13 +70,13 @@ public class Task4Controller
     }
 
     /// <summary>
-    /// Adds student to the list.
+    /// Adds student and their mark to the dictionary.
     /// </summary>
     private void AddStudent()
     {
         string studentName = this._view.GetStringInput(UserPrompts.GetStudentName);
         double studentMark = this._view.GetDoubleInput(UserPrompts.GetStudentMark);
-        if (this._task4.AddStudent(studentName, studentMark))
+        if (this._task4.AddItem(studentName, studentMark))
         {
             this._view.DisplaySuccessMessage(SuccessMessages.SuccessfulAdditionOfStudent);
             return;
@@ -86,13 +86,13 @@ public class Task4Controller
     }
 
     /// <summary>
-    /// Removes student from the list.
+    /// Removes student from the dictionary.
     /// </summary>
     private void RemoveStudent()
     {
         string studentName = this._view.GetStringInput(UserPrompts.GetStudentName);
 
-        if (this._task4.RemoveStudent(studentName))
+        if (this._task4.RemoveItem(studentName))
         {
             this._view.DisplaySuccessMessage(SuccessMessages.SuccessfulRemovalOfStudent);
             return;
@@ -106,7 +106,7 @@ public class Task4Controller
     /// </summary>
     private void DisplayStudents()
     {
-        IReadOnlyDictionary<string, double> students = this._task4.GetStudents();
+        IReadOnlyDictionary<string, double> students = this._task4.GetStudentsInfo();
 
         if (!students.Any())
         {

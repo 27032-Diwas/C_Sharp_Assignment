@@ -37,8 +37,7 @@ public class CollectionView : IView
                 return choice;
             }
 
-            Console.Clear();
-            Console.WriteLine("\x1b[3J");
+            this.ClearConsole();
             this.DisplayErrorMessage($"{ErrorMessages.InvalidOption}");
         }
     }
@@ -128,18 +127,7 @@ public class CollectionView : IView
     {
         while (true)
         {
-            Console.WriteLine(prompt);
-            string? input = Console.ReadLine();
-            if (string.IsNullOrEmpty(input))
-            {
-                Console.WriteLine(ErrorMessages.EmptyString);
-                continue;
-            }
-
-            if (input.Equals(Configurables.QuitCommand, StringComparison.OrdinalIgnoreCase))
-            {
-                throw new OperationCanceledException();
-            }
+            string input = this.GetStringInput(prompt);
 
             if (!double.TryParse(input, out double value))
             {
@@ -160,18 +148,7 @@ public class CollectionView : IView
     {
         while (true)
         {
-            Console.WriteLine(prompt);
-            string? input = Console.ReadLine();
-            if (string.IsNullOrEmpty(input))
-            {
-                Console.WriteLine(ErrorMessages.EmptyString);
-                continue;
-            }
-
-            if (input.Equals(Configurables.QuitCommand, StringComparison.OrdinalIgnoreCase))
-            {
-                throw new OperationCanceledException();
-            }
+            string input = this.GetStringInput(prompt);
 
             if (!int.TryParse(input, out int value))
             {
@@ -188,12 +165,16 @@ public class CollectionView : IView
     /// </summary>
     /// <typeparam name="T"> Type : enum </typeparam>
     private static void DisplayOptions<T>()
-        where T : Enum
+            where T : struct, Enum
     {
-        foreach (T optionCategory in Enum.GetValues(typeof(T)))
+        foreach (T option in Enum.GetValues<T>())
         {
-            string? displayName = Regex.Replace(optionCategory.ToString(), @"(?<!^)([A-Z])", " $1");
-            Console.WriteLine($"[{Convert.ToInt32(optionCategory)}] {displayName}");
+            string displayName = Regex.Replace(
+                option.ToString(),
+                Configurables.PascalCaseRegex,
+                " $1");
+
+            Console.WriteLine($"[{Convert.ToInt32(option)}] {displayName}");
         }
     }
 }

@@ -28,11 +28,13 @@ public class Task6Controller
     /// </summary>
     public void SumOfNumbers()
     {
-        List<int> numbers = this.GetNumbers();
+        IEnumerable<int> numbers = this.GetNumbers();
 
-        int sum = this._task6.SumOfElements(numbers);
+        int sumList = this._task6.SumOfElements(numbers.ToList());
+        int sumQueue = this._task6.SumOfElements(numbers.AsQueryable());
+        int sumArray = this._task6.SumOfElements(numbers.ToArray());
 
-        this._view.DisplayMessage($"{SuccessMessages.SumOfNumbers} {sum}");
+        this._view.DisplayMessage($"{SuccessMessages.SumOfNumbers} {sumList}, {sumQueue}, {sumArray}");
 
         this._view.GetAnyKey();
     }
@@ -41,7 +43,7 @@ public class Task6Controller
     /// Gets numbers from the user.
     /// </summary>
     /// <returns>A list of numbers entered by the user.</returns>
-    private List<int> GetNumbers()
+    private IEnumerable<int> GetNumbers()
     {
         int count;
 
@@ -57,10 +59,15 @@ public class Task6Controller
         while (count <= 0);
 
         List<int> numbers = new (count);
+        Queue<int> queue = new (count);
+        int[] array = new int[count];
 
         for (int i = 0; i < count; i++)
         {
-            numbers.Add(this._view.GetIntegerInput(UserPrompts.GetNumber));
+            int number = this._view.GetIntegerInput(UserPrompts.GetNumber);
+            numbers.Add(number);
+            queue.Enqueue(number);
+            array[i] = number;
         }
 
         return numbers;

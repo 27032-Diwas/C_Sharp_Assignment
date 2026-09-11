@@ -49,7 +49,7 @@ public class Task1Controller
                         break;
                     case Task1Menu.CheckBook:
                         this._view.DisplayMessage($"{UserPrompts.GetExitCommand}\n");
-                        this.IsBookExist();
+                        this.CheckBookExist();
                         break;
                     case Task1Menu.ViewAllBooks:
                         this.DisplayBooks();
@@ -79,7 +79,7 @@ public class Task1Controller
     private void AddBook()
     {
         string book = this._view.GetStringInput(UserPrompts.GetBook);
-        this._task1.AddBook(book);
+        this._task1.AddItem(book);
         this._view.DisplaySuccessMessage(SuccessMessages.SuccessfulAdditionOfBook);
     }
 
@@ -90,23 +90,23 @@ public class Task1Controller
     {
         string book = this._view.GetStringInput(UserPrompts.GetBook);
 
-        if (this._task1.RemoveBook(book))
+        if (!this._task1.RemoveItem(book))
         {
-            this._view.DisplaySuccessMessage(SuccessMessages.SuccessfulRemovalOfBook);
+            this._view.DisplayErrorMessage(ErrorMessages.BookNotFound);
             return;
         }
 
-        this._view.DisplayErrorMessage(ErrorMessages.BookNotFound);
+        this._view.DisplaySuccessMessage(SuccessMessages.SuccessfulRemovalOfBook);
     }
 
     /// <summary>
     /// Checks for book in list.
     /// </summary>
-    private void IsBookExist()
+    private void CheckBookExist()
     {
         string book = this._view.GetStringInput(UserPrompts.GetBook);
 
-        if (this._task1.IsBookExist(book))
+        if (this._task1.IsItemExist(book))
         {
             this._view.DisplaySuccessMessage(SuccessMessages.BookExist);
             return;
@@ -120,7 +120,7 @@ public class Task1Controller
     /// </summary>
     private void DisplayBooks()
     {
-        List<string> books = this._task1.GetAllBooks();
+        IReadOnlyList<string> books = this._task1.GetAllItems();
 
         if (!books.Any())
         {
