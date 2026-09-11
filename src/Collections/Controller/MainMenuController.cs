@@ -1,7 +1,7 @@
-﻿using Collections.Constants;
+﻿using System.Text.RegularExpressions;
+using Collections.Constants;
 using Collections.Enums;
 using Collections.View;
-using System.Text.RegularExpressions;
 
 namespace Collections.Controller;
 
