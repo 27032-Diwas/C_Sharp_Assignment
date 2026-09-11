@@ -106,7 +106,7 @@ public class CollectionView : IView
             string? input = Console.ReadLine();
             if (string.IsNullOrEmpty(input))
             {
-                Console.WriteLine(ErrorMessages.EmptyString);
+                this.DisplayErrorMessage(ErrorMessages.EmptyString);
                 continue;
             }
 
@@ -143,7 +143,7 @@ public class CollectionView : IView
 
             if (!double.TryParse(input, out double value))
             {
-                Console.WriteLine(ErrorMessages.InvalidDouble);
+                this.DisplayErrorMessage(ErrorMessages.InvalidDouble);
                 continue;
             }
 
@@ -155,17 +155,11 @@ public class CollectionView : IView
     /// Displays all values defined in the specific enum values.
     /// </summary>
     /// <typeparam name="T"> Type : enum </typeparam>
-    /// <param name="excluded"> Name of Enum </param>
-    private static void DisplayOptions<T>(params T[] excluded)
+    private static void DisplayOptions<T>()
         where T : Enum
     {
         foreach (T optionCategory in Enum.GetValues(typeof(T)))
         {
-            if (excluded.Contains(optionCategory))
-            {
-                continue;
-            }
-
             string? displayName = Regex.Replace(optionCategory.ToString(), @"(?<!^)([A-Z])", " $1");
             Console.WriteLine($"[{Convert.ToInt32(optionCategory)}] {displayName}");
         }

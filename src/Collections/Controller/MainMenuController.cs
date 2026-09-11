@@ -41,7 +41,7 @@ public class MainMenuController
         {
             try
             {
-                MainMenu choice = this._view.GetMenuChoice<MainMenu>("Main Menu", $"\n{UserPrompts.SelectOption} [ 0 - 3 ]:");
+                MainMenu choice = this._view.GetMenuChoice<MainMenu>("Main Menu", $"\n{UserPrompts.SelectOption} [ 0 - 4 ]:");
                 this._view.ClearConsole();
                 switch (choice)
                 {
@@ -72,12 +72,12 @@ public class MainMenuController
             }
             catch (OperationCanceledException)
             {
-                this._view.DisplayMessage(ErrorMessages.ProcessCancelled);
+                this._view.DisplaySuccessMessage(ErrorMessages.ProcessCancelled);
                 this._view.GetAnyKey();
             }
             catch (Exception)
             {
-                this._view.DisplayMessage("Something went wrong, Try again!!");
+                this._view.DisplayErrorMessage(ErrorMessages.ExceptionMessage);
             }
         }
     }

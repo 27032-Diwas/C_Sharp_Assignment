@@ -40,12 +40,15 @@ public class Task1Controller
                     case Task1Menu.Back:
                         return;
                     case Task1Menu.AddBook:
+                        this._view.DisplayMessage($"{UserPrompts.GetExitCommand}\n");
                         this.AddBook();
                         break;
                     case Task1Menu.RemoveBook:
+                        this._view.DisplayMessage($"{UserPrompts.GetExitCommand}\n");
                         this.RemoveBook();
                         break;
                     case Task1Menu.CheckBook:
+                        this._view.DisplayMessage($"{UserPrompts.GetExitCommand}\n");
                         this.IsBookExist();
                         break;
                     case Task1Menu.ViewAllBooks:
@@ -60,12 +63,12 @@ public class Task1Controller
             }
             catch (OperationCanceledException)
             {
-                this._view.DisplayMessage(ErrorMessages.ProcessCancelled);
+                this._view.DisplaySuccessMessage(ErrorMessages.ProcessCancelled);
                 this._view.GetAnyKey();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                this._view.DisplayMessage($"Unexpected Error: {ex.Message}");
+                this._view.DisplayErrorMessage(ErrorMessages.ExceptionMessage);
             }
         }
     }
@@ -124,9 +127,10 @@ public class Task1Controller
             Console.WriteLine(ErrorMessages.EmptyBookList);
         }
 
-        foreach (string book in books)
+        for (int i = 0; i < books.Count; i++)
         {
-            this._view.DisplayMessage(book);
+            string book = books[i];
+            this._view.DisplayMessage($"{i + 1} : {book}");
         }
     }
 }

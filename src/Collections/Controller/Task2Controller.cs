@@ -39,6 +39,7 @@ public class Task2Controller
     /// </summary>
     private void GetWord()
     {
+        this._view.DisplayMessage($"\n{UserPrompts.GetExitCommand}\n");
         this._task2.AddCharacter(this._view.GetStringInput(UserPrompts.GetWord));
     }
 }

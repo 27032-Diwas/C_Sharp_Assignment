@@ -40,9 +40,11 @@ public class Task4Controller
                     case Task4Menu.Back:
                         return;
                     case Task4Menu.AddStudent:
+                        this._view.DisplayMessage($"{UserPrompts.GetExitCommand}\n");
                         this.AddStudent();
                         break;
                     case Task4Menu.RemoveStudent:
+                        this._view.DisplayMessage($"{UserPrompts.GetExitCommand}\n");
                         this.RemoveStudent();
                         break;
                     case Task4Menu.ViewStudents:
@@ -57,12 +59,12 @@ public class Task4Controller
             }
             catch (OperationCanceledException)
             {
-                this._view.DisplayMessage(ErrorMessages.ProcessCancelled);
+                this._view.DisplaySuccessMessage(ErrorMessages.ProcessCancelled);
                 this._view.GetAnyKey();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                this._view.DisplayMessage($"Unexpected Error: {ex.Message}");
+                this._view.DisplayErrorMessage(ErrorMessages.ExceptionMessage);
             }
         }
     }

@@ -39,4 +39,9 @@ public static class UserPrompts
     /// Represents the prompt requesting the user to press any key to continue.
     /// </summary>
     public const string GetAnyKey = "PRESS ANY KEY TO CONTINUE!!";
+
+    /// <summary>
+    /// Represents the prompt requesting the user to enter quit to exit the process.
+    /// </summary>
+    public const string GetExitCommand = "Enter 'QUIT' anywhere to exit the process.";
 }

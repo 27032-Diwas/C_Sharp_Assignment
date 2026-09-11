@@ -38,7 +38,7 @@ public class Task1<T>
     public bool IsBookExist(T book) => this._books.Contains(book);
 
     /// <summary>
-    /// Gets all book from the list.
+    /// Gets all books from the list.
     /// </summary>
     /// <returns> List of books. </returns>
     public List<T> GetAllBooks() => this._books;

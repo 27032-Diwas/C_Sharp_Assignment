@@ -54,4 +54,9 @@ public static class ErrorMessages
     /// Represents the message displayed when user exit the application.
     /// </summary>
     public const string ApplicationClosed = "Thankyou for using the application";
+
+    /// <summary>
+    /// Represents the message displayed when an unhandled exception hit.
+    /// </summary>
+    public const string ExceptionMessage = "Something went wrong, Try again";
 }

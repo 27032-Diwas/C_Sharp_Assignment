@@ -40,6 +40,7 @@ public class Task3Controller
                     case Task3Menu.Back:
                         return;
                     case Task3Menu.AddPerson:
+                        this._view.DisplayMessage($"{UserPrompts.GetExitCommand}\n");
                         this.AddPerson();
                         break;
                     case Task3Menu.RemovePerson:
@@ -57,12 +58,12 @@ public class Task3Controller
             }
             catch (OperationCanceledException)
             {
-                this._view.DisplayMessage(ErrorMessages.ProcessCancelled);
+                this._view.DisplaySuccessMessage(ErrorMessages.ProcessCancelled);
                 this._view.GetAnyKey();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                this._view.DisplayMessage($"Unexpected Error: {ex.Message}");
+                this._view.DisplayErrorMessage(ErrorMessages.ExceptionMessage);
             }
         }
     }
@@ -103,9 +104,10 @@ public class Task3Controller
             Console.WriteLine(ErrorMessages.EmptyQueue);
         }
 
+        int i = 1;
         foreach (string person in queue)
         {
-            this._view.DisplayMessage(person);
+            this._view.DisplayMessage($"{i++} : {person}");
         }
     }
 }
