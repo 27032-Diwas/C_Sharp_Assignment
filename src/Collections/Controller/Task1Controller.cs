@@ -124,7 +124,8 @@ public class Task1Controller
 
         if (!books.Any())
         {
-            Console.WriteLine(ErrorMessages.EmptyBookList);
+            this._view.DisplayErrorMessage(ErrorMessages.EmptyBookList);
+            return;
         }
 
         for (int i = 0; i < books.Count; i++)

@@ -36,6 +36,11 @@ public static class ErrorMessages
     public const string StudentNotFound = "Student not found";
 
     /// <summary>
+    /// Represents the message displayed when student already exists.
+    /// </summary>
+    public const string DuplicateStudent = "Student already exists";
+
+    /// <summary>
     /// Represents the message displayed when no book exist in list.
     /// </summary>
     public const string EmptyBookList = "No books in list";

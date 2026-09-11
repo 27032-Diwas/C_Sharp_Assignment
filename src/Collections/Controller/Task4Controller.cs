@@ -76,8 +76,13 @@ public class Task4Controller
     {
         string studentName = this._view.GetStringInput(UserPrompts.GetStudentName);
         double studentMark = this._view.GetDoubleInput(UserPrompts.GetStudentMark);
-        this._task4.AddStudent(studentName, studentMark);
-        this._view.DisplaySuccessMessage(SuccessMessages.SuccessfulAdditionOfStudent);
+        if (this._task4.AddStudent(studentName, studentMark))
+        {
+            this._view.DisplaySuccessMessage(SuccessMessages.SuccessfulAdditionOfStudent);
+            return;
+        }
+
+        this._view.DisplayErrorMessage(ErrorMessages.DuplicateStudent);
     }
 
     /// <summary>
@@ -105,7 +110,7 @@ public class Task4Controller
 
         if (!students.Any())
         {
-            Console.WriteLine(ErrorMessages.EmptyDictionary);
+            this._view.DisplayErrorMessage(ErrorMessages.EmptyDictionary);
             return;
         }
 

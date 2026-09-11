@@ -3,8 +3,8 @@
 /// <summary>
 /// Contain operation to add, remove and view students.
 /// </summary>
-/// <typeparam name="TKey"> Type of key in dictionary (string). </typeparam>
-/// <typeparam name="TValue"> Type of value in dictionary (double). </typeparam>
+/// <typeparam name="TKey"> Type of key in dictionary (string for student names). </typeparam>
+/// <typeparam name="TValue"> Type of value in dictionary (double for marks). </typeparam>
 public class Task4<TKey, TValue>
     where TKey : notnull
 {

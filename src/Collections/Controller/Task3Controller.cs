@@ -101,7 +101,8 @@ public class Task3Controller
 
         if (!queue.Any())
         {
-            Console.WriteLine(ErrorMessages.EmptyQueue);
+            this._view.DisplayErrorMessage(ErrorMessages.EmptyQueue);
+            return;
         }
 
         int i = 1;

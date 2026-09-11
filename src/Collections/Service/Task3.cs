@@ -1,6 +1,4 @@
-﻿using System.Reflection.Metadata.Ecma335;
-
-namespace Collections.Service;
+﻿namespace Collections.Service;
 
 /// <summary>
 /// Contains operation to add, remove and view queue.

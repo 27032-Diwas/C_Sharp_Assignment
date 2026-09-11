@@ -13,7 +13,7 @@ public static class SuccessMessages
     /// <summary>
     /// Represents the messages displayed when book removed successfully.
     /// </summary>
-    public const string SuccessfulRemovalOfBook = "Book Remove Successfully";
+    public const string SuccessfulRemovalOfBook = "Book Removed Successfully";
 
     /// <summary>
     /// Represents the message displayed when book found in list.
@@ -38,7 +38,7 @@ public static class SuccessMessages
     /// <summary>
     /// Represents the message displayed when student removed successfully.
     /// </summary>
-    public const string SuccessfulRemovalOfStudent = "Student Remove Successfully";
+    public const string SuccessfulRemovalOfStudent = "Student Removed Successfully";
 
     /// <summary>
     /// Represents the message to display sum of numbers.
