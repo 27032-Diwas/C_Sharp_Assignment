@@ -22,21 +22,18 @@ public class Program
 /// </summary>
 internal class MemoryEater
 {
-    private readonly int[] _buffer = new int[1000];
-
     /// <summary>
-    /// Reuses the same buffer in each iteration.
+    /// Allocates memory and adds it to a list.
     /// </summary>
     public void Allocate()
     {
+        List<int[]> memAlloc = new ();
+        int[] list = new int[1000];
         while (true)
         {
-            // A small example showing the buffer reuse.
-            for (int i = 0; i < this._buffer.Length; i++)
-            {
-                this._buffer[i] = i;
-            }
+            memAlloc.Add(list);
 
+            // Assume memAlloc variable is used within the loop.
             Thread.Sleep(10);
         }
     }
