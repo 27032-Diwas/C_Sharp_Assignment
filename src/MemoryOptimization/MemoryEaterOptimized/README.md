@@ -261,7 +261,3 @@ As a result:
 The original implementation continuously created new arrays and stored them in a growing list, leading to unbounded memory growth. Using Visual Studio Diagnostic Tools, the issue was identified as object retention caused by persistent references inside the collection.
 
 The optimized implementation reused a single array instance, significantly reducing allocations and stabilizing memory consumption. This exercise demonstrates how proper memory management techniques, combined with profiling tools, can greatly improve the efficiency and reliability of C# applications.
-
-### Key Takeaway
-
-Effective memory management is not just about writing correct code; it is about ensuring that objects are allocated, used, and released efficiently. Memory profiling tools such as Visual Studio Diagnostic Tools play a crucial role in identifying bottlenecks and validating optimization efforts.
