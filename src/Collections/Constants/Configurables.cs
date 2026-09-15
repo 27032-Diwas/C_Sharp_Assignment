@@ -11,6 +11,7 @@ public static class Configurables
     /// Represents the pascal case regex pattern.
     /// </summary>
     public const string PascalCaseRegex = @"(?<!^)([A-Z])";
+
     /// <summary>
     /// Represents the quit command.
     /// </summary>
