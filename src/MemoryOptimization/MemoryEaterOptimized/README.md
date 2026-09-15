@@ -194,6 +194,7 @@ From the optimized application's Diagnostic Tools screenshot:
 - No continuous upward growth trend.
 - GC activity remained minimal.
 - Memory remained relatively constant throughout execution.
+- Adding same reference to list increase the memory but at a negligible size. 
 
 ### Why Did Memory Usage Improve?
 
