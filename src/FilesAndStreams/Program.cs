@@ -1,4 +1,6 @@
-﻿using FilesAndStreams;
+﻿using ConsoleTables;
+using FilesAndStreams;
+using System.Net.Http.Headers;
 
 namespace Assignments;
 
@@ -13,6 +15,15 @@ public class Program
     public static void Main()
     {
         Task1 task1 = new Task1();
-        task1.Run("Data.txt");
+        List<long> times = task1.Run();
+        Task2 task2 = new Task2();
+        List<long> asyncTimes = task2.RunAsync().Result;
+
+        ConsoleTable table = new ("Type of Execution", "Create File", "File stream", "Buffer stream", "Process data", "Write processed data");
+        table.AddRow("Sync", times[0], times[1], times[2], times[3], times[4]);
+        table.AddRow("Async", asyncTimes[0], asyncTimes[1], asyncTimes[2], asyncTimes[3], asyncTimes[4]);
+
+        table.Write();
+        Console.ReadKey();
     }
 }
