@@ -6,14 +6,14 @@ using System.Text;
 namespace FilesAndStreams;
 
 /// <summary>
-/// Task2.
+/// Contains implementation for task 2.
 /// </summary>
 public class Task2
 {
     private IFileSystem _fileSystem = new System.IO.Abstractions.FileSystem();
 
     /// <summary>
-    /// Executes task1.
+    /// Executes task 1 asynchronously.
     /// </summary>
     /// <returns> List of times. </returns>
     public async Task<List<long>> RunAsync()
