@@ -1,239 +1,163 @@
-﻿using System.Diagnostics;
-using System.IO.Abstractions;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Text;
 
 namespace FilesAndStreams;
 
 /// <summary>
-/// Implements task 1.
+/// Implements task1.
 /// </summary>
 public class Task1
 {
-    private IFileSystem _fileSystem = new System.IO.Abstractions.FileSystem();
+    private const int BufferSize = 1024 * 1024;
 
     /// <summary>
-    /// Executes task1.
+    /// Runs the application
     /// </summary>
-    /// <param name="filePath"> Path of the file. </param>
-    /// <returns> List of times. </returns>
+    /// <returns> List of time. </returns>
     public List<long> Run()
     {
-        List<long> times = new List<long>();
-        Console.WriteLine("Creating File\n");
+        Console.WriteLine("============== SYNCHRONOUS VERSION ==============");
 
-        Stopwatch stopwatch = Stopwatch.StartNew();
-        stopwatch.Start();
-        this.GenerateFile("SyncFile1.txt", 1000000);
-        this.GenerateFile("SyncFile2.txt", 1000000);
-        this.GenerateFile("SyncFile3.txt", 1000000);
-        stopwatch.Stop();
-        times.Add(stopwatch.ElapsedMilliseconds);
+        List<long> times = new ();
+        Stopwatch stopWatch = new ();
 
-        Console.WriteLine($"\nTime taken to create three files {stopwatch.ElapsedMilliseconds}");
-        Console.WriteLine("\nPress any key to continue");
-        Console.ReadKey();
+        stopWatch.Start();
+        this.GenerateFile("file1.txt", 3000000);
+        this.GenerateFile("file2.txt", 3000000);
+        this.GenerateFile("file3.txt", 3000000);
+        stopWatch.Stop();
 
-        Console.WriteLine("------------------------------------------------------------------------------------------------");
-        Console.WriteLine("\nReading with FileStream\n");
-        stopwatch.Restart();
-        long timeTakenWithFileStream1 = this.ReadWithFileStream("SyncFile1.txt");
-        long timeTakenWithFileStream2 = this.ReadWithFileStream("SyncFile2.txt");
-        long timeTakenWithFileStream3 = this.ReadWithFileStream("SyncFile3.txt");
-        stopwatch.Stop();
-        times.Add(stopwatch.ElapsedMilliseconds);
+        times.Add(stopWatch.ElapsedMilliseconds);
+        Console.WriteLine($"\n3 File Creation Time : {stopWatch.ElapsedMilliseconds} ms\n");
 
-        Console.WriteLine($"Time taken to read with file stream 1: {timeTakenWithFileStream1}");
-        Console.WriteLine($"Time taken to read with file stream 2: {timeTakenWithFileStream2}");
-        Console.WriteLine($"Time taken to read with file stream 3: {timeTakenWithFileStream3}");
+        stopWatch.Restart();
+        long read1 = this.ReadWithFileStream("file1.txt");
+        long read2 = this.ReadWithFileStream("file2.txt");
+        long read3 = this.ReadWithFileStream("file3.txt");
+        stopWatch.Stop();
 
-        Console.WriteLine($"\nTime taken to read three files {stopwatch.ElapsedMilliseconds}");
+        times.Add(stopWatch.ElapsedMilliseconds);
+        Console.WriteLine($"File1 Read : {read1} ms");
+        Console.WriteLine($"File2 Read : {read2} ms");
+        Console.WriteLine($"File3 Read : {read3} ms");
+        Console.WriteLine($"\nTotal FileStream Read : {stopWatch.ElapsedMilliseconds} ms\n");
 
-        Console.WriteLine("------------------------------------------------------------------------------------------------");
-        Console.WriteLine("\nReading with Buffered Stream\n");
-        stopwatch.Restart();
-        long timeTakenWithBufferedStream1 = this.ReadWithBufferStream("SyncFile1.txt");
-        long timeTakenWithBufferedStream2 = this.ReadWithBufferStream("SyncFile2.txt");
-        long timeTakenWithBufferedStream3 = this.ReadWithBufferStream("SyncFile3.txt");
-        stopwatch.Stop();
-        times.Add(stopwatch.ElapsedMilliseconds);
+        stopWatch.Restart();
+        long buffer1 = this.ReadWithBufferedStream("file1.txt");
+        long buffer2 = this.ReadWithBufferedStream("file2.txt");
+        long buffer3 = this.ReadWithBufferedStream("file3.txt");
+        stopWatch.Stop();
 
-        Console.WriteLine($"Time taken to read with buffered stream 1: {timeTakenWithBufferedStream1}");
-        Console.WriteLine($"Time taken to read with buffered stream 2: {timeTakenWithBufferedStream2}");
-        Console.WriteLine($"Time taken to read with buffered stream 3: {timeTakenWithBufferedStream3}");
+        times.Add(stopWatch.ElapsedMilliseconds);
+        Console.WriteLine($"File1 Buffered Read : {buffer1} ms");
+        Console.WriteLine($"File2 Buffered Read : {buffer2} ms");
+        Console.WriteLine($"File3 Buffered Read : {buffer3} ms");
+        Console.WriteLine($"\nTotal Buffered Read : {stopWatch.ElapsedMilliseconds} ms");
 
-        Console.WriteLine($"\nTime take to read three files using buffer {stopwatch.ElapsedMilliseconds}\n");
+        stopWatch.Restart();
+        this.ProcessData("file1.txt", "processed1.txt");
+        this.ProcessData("file2.txt", "processed2.txt");
+        this.ProcessData("file3.txt", "processed3.txt");
+        stopWatch.Stop();
 
-        Console.WriteLine("------------------------------------------------------------------------------------------------");
+        times.Add(stopWatch.ElapsedMilliseconds);
+        Console.WriteLine($"\nProcessing Time : {stopWatch.ElapsedMilliseconds} ms");
 
-        Console.WriteLine($"Buffer stream 1 is {timeTakenWithFileStream1 - timeTakenWithBufferedStream1} ms faster");
-        Console.WriteLine($"Buffer stream 2 is {timeTakenWithFileStream2 - timeTakenWithBufferedStream2} ms faster");
-        Console.WriteLine($"Buffer stream 3 is {timeTakenWithFileStream3 - timeTakenWithBufferedStream3} ms faster");
+        stopWatch.Restart();
+        this.WriteProcessedData("processed1.txt", "output1.txt");
+        this.WriteProcessedData("processed2.txt", "output2.txt");
+        this.WriteProcessedData("processed3.txt", "output3.txt");
+        stopWatch.Stop();
 
-        Console.WriteLine("\nPress any key to continue");
-        Console.ReadKey();
+        times.Add(stopWatch.ElapsedMilliseconds);
+        Console.WriteLine($"\nWrite Time : {stopWatch.ElapsedMilliseconds} ms\n");
 
-        Console.WriteLine("------------------------------------------------------------------------------------------------");
-        stopwatch.Restart();
-        string data1 = this.ProcessData("SyncFile1.txt");
-        string data2 = this.ProcessData("SyncFile2.txt");
-        string data3 = this.ProcessData("SyncFile3.txt");
-        stopwatch.Stop();
-        times.Add(stopwatch.ElapsedMilliseconds);
-
-        Console.WriteLine($"\nTime taken to process three files {stopwatch.ElapsedMilliseconds}");
-
-        Console.WriteLine("------------------------------------------------------------------------------------------------");
-        stopwatch.Restart();
-        this.WriteProcessedData("SyncData1.txt", data1);
-        this.WriteProcessedData("SyncData2.txt", data2);
-        this.WriteProcessedData("SyncData3.txt", data3);
-        stopwatch.Stop();
-        times.Add(stopwatch.ElapsedMilliseconds);
-
-        Console.WriteLine($"\nTime taken to write three files {stopwatch.ElapsedMilliseconds}");
-        Console.WriteLine("\nPress any key to continue");
-        Console.ReadKey();
         return times;
     }
 
-    private async Task GenerateFile(string path, int numberOfValues)
+    private void GenerateFile(string path, int recordCount)
     {
-        if (this._fileSystem.File.Exists(path))
+        if (File.Exists(path))
         {
-            Console.WriteLine("File already exists");
             return;
         }
 
-        const int FlushThreshold = 1024 * 1024; // 1 MB
-
-        string line =
-            "Implement a method that uses FileStream to read data from a large text file (at least 1GB in size, create your own file of size 1GB, and Use File write techniques to create it, the data can be text data downloaded from Site or numerical data such as Weather Data)." +
-            Environment.NewLine;
-
-        StringBuilder buffer = new(FlushThreshold);
-
-        await using FileStream fileStream = new(
-            path,
-            FileMode.Create,
-            FileAccess.Write,
-            FileShare.None,
-            bufferSize: 1024 * 1024,
-            useAsync: true);
-
-        await using StreamWriter writer = new(fileStream);
-
-        for (int i = 0; i < numberOfValues; i++)
+        using FileStream fileStream = new (path, FileMode.Create, FileAccess.Write);
+        using StreamWriter writer = new (fileStream);
+        string line = "weather,data,24.5,humidity,70,pressure,1013";
+        StringBuilder block = new ();
+        for (int i = 0; i < 10000; i++)
         {
-            buffer.Append(line);
-
-            if (buffer.Length >= FlushThreshold)
-            {
-                writer.Write(buffer.ToString());
-                buffer.Clear();
-            }
+            block.AppendLine(line);
         }
 
-        if (buffer.Length > 0)
+        string largeBlock = block.ToString();
+        for (int i = 0; i < recordCount / 10000; i++)
         {
-            writer.Write(buffer.ToString());
+            writer.Write(largeBlock);
         }
-
-        writer.Flush();
     }
 
     private long ReadWithFileStream(string path)
     {
-        using (FileStream stream = new (path, FileMode.Open, FileAccess.Read))
+        Stopwatch stopWatch = Stopwatch.StartNew();
+        using FileStream fileStream = new (path, FileMode.Open, FileAccess.Read);
+        byte[] buffer = new byte[BufferSize];
+        while (fileStream.Read(buffer, 0, buffer.Length) > 0)
         {
-            byte[] buffer = new byte[1024 * 1024];
-            int bytesRead;
-            long totalBytesRead = 0;
-
-            Stopwatch stopwatch = new ();
-            stopwatch.Start();
-
-            while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) > 0)
-            {
-                totalBytesRead += bytesRead;
-            }
-
-            stopwatch.Stop();
-
-            return stopwatch.ElapsedMilliseconds;
         }
+
+        stopWatch.Stop();
+
+        return stopWatch.ElapsedMilliseconds;
     }
 
-    private long ReadWithBufferStream(string path)
+    private long ReadWithBufferedStream(string path)
     {
-        using (FileStream stream = new FileStream(path, FileMode.Open, FileAccess.Read))
+        Stopwatch stopWatch = Stopwatch.StartNew();
+        byte[] buffer = new byte[BufferSize];
+        using FileStream fileStream = new (path, FileMode.Open, FileAccess.Read);
+        using BufferedStream bs = new (fileStream, BufferSize * 16);
+        while (bs.Read(buffer, 0, buffer.Length) > 0)
         {
-            using (BufferedStream bufferedStream = new (stream, 1024 * 1024 * 32))
-            {
-                byte[] bytes = new byte[1024 * 1024];
-                int bytesRead;
-                long totalBytesRead = 0;
-
-                Stopwatch stopWatch = new ();
-                stopWatch.Start();
-
-                while ((bytesRead = bufferedStream.Read(bytes, 0, bytes.Length)) > 0)
-                {
-                    totalBytesRead += bytesRead;
-                }
-
-                stopWatch.Stop();
-
-                return stopWatch.ElapsedMilliseconds;
-            }
         }
+
+        stopWatch.Stop();
+
+        return stopWatch.ElapsedMilliseconds;
     }
 
-    private string ProcessData(string path)
+    private string ProcessData(string inputPath, string outputPath)
     {
-        Console.WriteLine("\nProcessing Data....");
-        StringBuilder processedString = new StringBuilder();
-        using (FileStream stream = new (path, FileMode.Open, FileAccess.Read))
+        using FileStream input = new (inputPath, FileMode.Open, FileAccess.Read);
+        using FileStream output = new (outputPath, FileMode.Create, FileAccess.Write);
+        using StreamReader reader = new (input);
+        using StreamWriter writer = new (output);
+        char[] buffer = new char[BufferSize];
+        int charsRead;
+        while ((charsRead = reader.Read(buffer, 0, buffer.Length)) > 0)
         {
-            using (StreamReader reader = new (stream))
-            {
-                Stopwatch stopwatch = new ();
-                stopwatch.Start();
+            string upper = new string(buffer, 0, charsRead).ToUpperInvariant();
 
-                char[] buffer = new char[1024 * 1024];
-                int charRead;
-
-                while ((charRead = reader.Read(buffer, 0, buffer.Length)) > 0)
-                {
-                   processedString.Append(new string(buffer, 0, charRead));
-                }
-
-                stopwatch.Stop();
-
-                Console.WriteLine("Processing Ended");
-                Console.WriteLine($"Time taken to process: {stopwatch.ElapsedMilliseconds}");
-            }
+            writer.Write(upper);
         }
 
-        return processedString.ToString();
+        return outputPath;
     }
 
-    private void WriteProcessedData(string path, string processedData)
+    private void WriteProcessedData(string sourceFile, string destinationFile)
     {
-        Console.WriteLine("\nCopying data....");
-
-        using (MemoryStream stream = new MemoryStream())
+        using MemoryStream memoryStream = new ();
+        using (FileStream source = new (sourceFile, FileMode.Open, FileAccess.Read))
         {
-            byte[] encodedData = Encoding.UTF8.GetBytes(processedData);
-            stream.Write(encodedData, 0, encodedData.Length);
-
-            stream.Position = 0;
-
-            using FileStream fileStream = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write);
-            stream.CopyTo(fileStream);
+            source.CopyTo(memoryStream);
         }
 
-        Console.WriteLine("Data copied to new file.");
+        memoryStream.Position = 0;
+        using FileStream destination = new (destinationFile, FileMode.Create, FileAccess.Write);
+        memoryStream.CopyTo(destination);
     }
 }
