@@ -14,13 +14,13 @@ public class Program
     /// </summary>
     public static void Main()
     {
-        Task1 task1 = new();
+        Task1 task1 = new ();
         List<long> times = task1.Run();
 
         Console.WriteLine("PRESS ANY KEY TO CONTINUE");
         Console.ReadKey();
 
-        Task2 task2 = new();
+        Task2 task2 = new ();
         List<long> asyncTimes = task2.RunAsync().Result;
 
         ConsoleTable table = new ("Type of Execution", "Create File", "File stream", "Buffer stream", "Process data", "Write processed data", "Total");
