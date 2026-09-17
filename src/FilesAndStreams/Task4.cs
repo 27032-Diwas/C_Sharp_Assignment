@@ -3,27 +3,30 @@
 namespace FilesAndStreams;
 
 /// <summary>
-/// Task 4.
+/// Contain implementation for logger.
 /// </summary>
 public class Task4
 {
-    private static string _logFilePath = "log.txt";
+    private static readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
+    private static readonly string _logFilePath = "log.txt";
 
     /// <summary>
-    /// Logs the error.
+    /// Logs the error details in the file.
     /// </summary>
-    /// <param name="errorMessage"> Error Message. </param>
-    public static void LogError(string errorMessage)
+    /// <param name="errorMessage"> The message to be logged. </param>
+    /// <returns> A task. </returns>
+    public static async Task LogError(string errorMessage)
     {
-        using (MemoryStream memoryStream = new ())
-        {
-            byte[] errorBytes = Encoding.UTF8.GetBytes(errorMessage);
-            memoryStream.Write(errorBytes, 0, errorBytes.Length); 
+        string logMessage = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} - ERROR - {errorMessage}\n";
 
-            using (FileStream fileStream = new (_logFilePath, FileMode.Append))
-            {
-                memoryStream.WriteTo(fileStream);
-            }
+        await _semaphore.WaitAsync();
+        try
+        {
+            await File.AppendAllTextAsync(_logFilePath, logMessage);
+        }
+        finally
+        {
+            _semaphore.Release();
         }
     }
 }
