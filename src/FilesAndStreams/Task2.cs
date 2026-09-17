@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.IO.Abstractions;
 using System.Text;
@@ -18,18 +19,21 @@ public class Task2
     /// <returns> List of times. </returns>
     public async Task<List<long>> RunAsync()
     {
+        Console.WriteLine("=================================================================================================");
         List<long> times = new ();
-        Console.WriteLine("Creating File");
+        Console.WriteLine("Creating File\n");
 
         Stopwatch stopwatch = new Stopwatch();
         stopwatch.Start();
-        await Task.WhenAll(this.GenerateFile("file1.txt", 1000000), this.GenerateFile("file2.txt", 1000000), this.GenerateFile("file3.txt", 1000000));
+        await Task.WhenAll(this.GenerateFile("file1.txt", 4000000), this.GenerateFile("file2.txt", 4000000), this.GenerateFile("file3.txt", 4000000));
         stopwatch.Stop();
         times.Add(stopwatch.ElapsedMilliseconds);
-        Console.WriteLine("Press any key to continue");
+        Console.WriteLine($"\nTime taken to create three files {stopwatch.ElapsedMilliseconds}");
+        Console.WriteLine("\nPress any key to continue");
         Console.ReadKey();
+        Console.WriteLine("------------------------------------------------------------------------------------------------");
 
-        Console.WriteLine("\nReading with FileStream");
+        Console.WriteLine("\nReading with FileStream\n");
 
         stopwatch.Restart();
         Task<long> task1 = this.ReadWithFileStream("file1.txt");
@@ -46,8 +50,10 @@ public class Task2
         Console.WriteLine("Time taken to read with file stream 1: " + timeTakenWithFileStream1);
         Console.WriteLine("Time taken to read with file stream 2: " + timeTakenWithFileStream2);
         Console.WriteLine("Time taken to read with file stream 3: " + timeTakenWithFileStream3);
+        Console.WriteLine($"\nTime taken to read three files {stopwatch.ElapsedMilliseconds}");
+        Console.WriteLine("------------------------------------------------------------------------------------------------");
 
-        Console.WriteLine("Reading with Buffered Stream");
+        Console.WriteLine("\nReading with Buffered Stream\n");
 
         stopwatch.Restart();
         Task<long> buffer1 = this.ReadWithBufferStream("file1.txt");
@@ -64,9 +70,11 @@ public class Task2
         Console.WriteLine("Time taken to read with buffered stream 1: " + timeTakenWithBufferStream1);
         Console.WriteLine("Time taken to read with buffered stream 2: " + timeTakenWithBufferStream2);
         Console.WriteLine("Time taken to read with buffered stream 3: " + timeTakenWithBufferStream3);
+        Console.WriteLine($"\nTime take to read three files using buffer {stopwatch.ElapsedMilliseconds}\n");
 
-        Console.WriteLine("Press any key to continue");
+        Console.WriteLine("\nPress any key to continue");
         Console.ReadKey();
+        Console.WriteLine("------------------------------------------------------------------------------------------------");
 
         stopwatch.Restart();
         Task<string> data1 = this.ProcessData("file1.txt");
@@ -76,14 +84,19 @@ public class Task2
         await Task.WhenAll(data1, data2, data3);
         stopwatch.Stop();
         times.Add(stopwatch.ElapsedMilliseconds);
+        Console.WriteLine($"\nTime taken to process three files {stopwatch.ElapsedMilliseconds}");
+        Console.WriteLine("\nPress any key to continue");
+        Console.ReadKey();
 
+        Console.WriteLine("------------------------------------------------------------------------------------------------");
         stopwatch.Restart();
         await Task.WhenAll(this.WriteProcessedData("data1.txt", data1.Result), this.WriteProcessedData("data2.txt", data2.Result), this.WriteProcessedData("data3.txt", data3.Result));
         stopwatch.Stop();
         times.Add(stopwatch.ElapsedMilliseconds);
-
-        Console.WriteLine("Press any key to continue");
+        Console.WriteLine($"\nTime taken to write three files {stopwatch.ElapsedMilliseconds}");
+        Console.WriteLine("\nPress any key to continue");
         Console.ReadKey();
+        Console.WriteLine("=================================================================================================");
 
         return times;
     }
@@ -92,24 +105,52 @@ public class Task2
     {
         if (this._fileSystem.File.Exists(path))
         {
-            Console.WriteLine("File Already exists");
+            Console.WriteLine("File already exists");
             return;
         }
 
-        using (StreamWriter writer = new (path))
+        const int FlushThreshold = 1024 * 1024; // 1 MB
+
+        string line =
+            "Implement a method that uses FileStream to read data from a large text file (at least 1GB in size, create your own file of size 1GB, and Use File write techniques to create it, the data can be text data downloaded from Site or numerical data such as Weather Data)." +
+            Environment.NewLine;
+
+        StringBuilder buffer = new (FlushThreshold);
+
+        await using FileStream fileStream = new(
+            path,
+            FileMode.Create,
+            FileAccess.Write,
+            FileShare.None,
+            bufferSize: 1024 * 1024,
+            useAsync: true);
+
+        await using StreamWriter writer = new (fileStream);
+
+        for (int i = 0; i < numberOfValues; i++)
         {
-            for (int i = 0; i < numberOfValues; i++)
+            buffer.Append(line);
+
+            if (buffer.Length >= FlushThreshold)
             {
-                await writer.WriteLineAsync("Implement a method that uses FileStream to read data from a large text file (at least 1GB in size, create your own file of size 1GB, and Use File write techniques to create it, the data can be text data downloaded from Site or numerical data such as Weather Data).  ");
+                await writer.WriteAsync(buffer.ToString());
+                buffer.Clear();
             }
         }
+
+        if (buffer.Length > 0)
+        {
+            await writer.WriteAsync(buffer.ToString());
+        }
+
+        await writer.FlushAsync();
     }
 
     private async Task<long> ReadWithFileStream(string path)
     {
         using (FileStream stream = new (path, FileMode.Open, FileAccess.Read))
         {
-            byte[] buffer = new byte[4 * 1024];
+            byte[] buffer = new byte[1024 * 1024];
             int bytesRead;
             long totalBytesRead = 0;
 
@@ -122,7 +163,6 @@ public class Task2
             }
 
             stopwatch.Stop();
-            Console.WriteLine(Thread.CurrentThread.ManagedThreadId);
 
             return stopwatch.ElapsedMilliseconds;
         }
@@ -132,9 +172,9 @@ public class Task2
     {
         using (FileStream stream = new FileStream(path, FileMode.Open, FileAccess.Read))
         {
-            using (BufferedStream bufferedStream = new (stream, 32 * 1024))
+            using (BufferedStream bufferedStream = new (stream, 1024 * 1024 * 32))
             {
-                byte[] bytes = new byte[4 * 1024];
+                byte[] bytes = new byte[1024 * 1024];
                 int bytesRead;
                 long totalBytesRead = 0;
 
@@ -156,22 +196,20 @@ public class Task2
     private async Task<string> ProcessData(string path)
     {
         Console.WriteLine("\nProcessing Data....");
-        string processedString = string.Empty;
-        using (FileStream stream = new (path, FileMode.Open, FileAccess.Read))
+        StringBuilder processedString = new StringBuilder();
+        using (FileStream stream = new(path, FileMode.Open, FileAccess.Read))
         {
-            using (StreamReader reader = new (stream))
+            using (StreamReader reader = new(stream))
             {
-                Stopwatch stopwatch = new ();
+                Stopwatch stopwatch = new();
                 stopwatch.Start();
 
-                char[] buffer = new char[64 * 1024];
+                char[] buffer = new char[1024 * 1024];
                 int charRead;
 
                 while ((charRead = await reader.ReadAsync(buffer, 0, buffer.Length)) > 0)
                 {
-                    string chuck = new string(buffer, 0, buffer.Length);
-
-                    processedString = chuck.ToUpper();
+                    processedString.Append(new string(buffer, 0, charRead));
                 }
 
                 stopwatch.Stop();
@@ -181,7 +219,7 @@ public class Task2
             }
         }
 
-        return processedString.ToUpper();
+        return processedString.ToString();
     }
 
     private async Task WriteProcessedData(string path, string processedData)
