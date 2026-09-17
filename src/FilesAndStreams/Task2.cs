@@ -122,6 +122,7 @@ public class Task2
             }
 
             stopwatch.Stop();
+            Console.WriteLine(Thread.CurrentThread.ManagedThreadId);
 
             return stopwatch.ElapsedMilliseconds;
         }
