@@ -42,4 +42,9 @@ public interface IController
     /// Gets summary of all transaction.
     /// </summary>
     void GetSummary();
+
+    /// <summary>
+    /// Saves the data.
+    /// </summary>
+    void SaveData();
 }

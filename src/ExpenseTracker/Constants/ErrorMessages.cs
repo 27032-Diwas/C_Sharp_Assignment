@@ -61,6 +61,11 @@ public static class ErrorMessages
     public const string FutureDate = "DATE SHOULD NOT BE IN FUTURE";
 
     /// <summary>
+    /// Represents the message displayed when file operations fails.
+    /// </summary>
+    public const string FailureInFileOperations = "Failed in loading file, Try again";
+
+    /// <summary>
     /// Represents the message displayed when user enters an invalid amount.
     /// </summary>
     public static readonly string InvalidAmount = $"AMOUNT SHOULD BE POSITIVE AND LESS THAN OR EQUAL TO {Configurables.MaxAmountThreshold}";

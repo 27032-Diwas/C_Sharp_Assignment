@@ -38,6 +38,7 @@ public class MainMenuController
                 {
                     case MainMenu.Exit:
                         this._transactionView.DisplayMessage(SuccessMessages.ProcessEnded);
+                        this._transactionController.SaveData();
                         this._transactionView.GetAnyKey();
                         return;
                     case MainMenu.AddTransaction:

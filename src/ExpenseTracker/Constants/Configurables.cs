@@ -18,6 +18,11 @@ public static class Configurables
     public const decimal MinimumAmountThreshold = 0.0001m;
 
     /// <summary>
+    /// Represents the file path.
+    /// </summary>
+    public const string FilePath = "Data/Transaction.json";
+
+    /// <summary>
     /// Represents the max menu range.
     /// </summary>
     public static readonly int MaxMenuRange = Convert.ToInt32(MainMenu.Summary);

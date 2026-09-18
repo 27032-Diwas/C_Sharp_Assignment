@@ -1,4 +1,8 @@
-﻿using ExpenseTracker.Controller;
+﻿using System.IO.Abstractions;
+using System.Text.Json;
+using ExpenseTracker.Constants;
+using ExpenseTracker.Controller;
+using ExpenseTracker.Exceptions;
 using ExpenseTracker.Repository;
 using ExpenseTracker.Service;
 using ExpenseTracker.View;
@@ -15,11 +19,35 @@ public class Program
     /// </summary>
     public static void Main()
     {
-        IRepository transactionRepository = new TransactionRepository();
-        IService transactionService = new TransactionService(transactionRepository);
-        IView transactionView = new TransactionView();
-        IController transactionController = new TransactionController(transactionView, transactionService);
-        MainMenuController mainMenuController = new (transactionView, transactionController);
-        mainMenuController.GetMenuOption();
+        try
+        {
+            IFileSystem fileSystem = new FileSystem();
+            IFileRepository jsonRepository = new JsonRepository(fileSystem);
+            IRepository transactionRepository = new TransactionRepository(fileSystem, Configurables.FilePath, jsonRepository);
+            IService transactionService = new TransactionService(transactionRepository);
+            IView transactionView = new TransactionView();
+            IController transactionController = new TransactionController(transactionView, transactionService);
+            MainMenuController mainMenuController = new (transactionView, transactionController);
+
+            AppDomain.CurrentDomain.ProcessExit += (_, _) => transactionController.SaveData();
+            Console.CancelKeyPress += (_, eventArgs) =>
+            {
+                transactionController.SaveData();
+                eventArgs.Cancel = false;
+                Environment.Exit(0);
+            };
+
+            mainMenuController.GetMenuOption();
+        }
+        catch (DataBaseException ex)
+        {
+            Console.WriteLine(ex.Message);
+            Console.ReadKey();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            Console.ReadKey();
+        }
     }
 }

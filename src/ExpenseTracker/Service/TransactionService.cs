@@ -120,6 +120,14 @@ public class TransactionService : IService
         return $"Total Income: {totalIncome}\nTotal Expense: {totalExpense}\nNet Balance: {totalIncome - totalExpense}";
     }
 
+    /// <summary>
+    /// Saves the data.
+    /// </summary>
+    public void SaveData()
+    {
+        this._repository.SaveFile();
+    }
+
     private decimal CalculateIncome(List<Transaction> transactions) =>
             transactions.Where(transaction => transaction.TransactionType == TransactionTypes.Income)
             .Sum(transaction => transaction.Amount);
