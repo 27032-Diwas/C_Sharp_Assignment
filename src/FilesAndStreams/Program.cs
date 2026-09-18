@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
 using ConsoleTables;
-using FilesAndStreams;
 
 namespace FilesAndStreams;
 

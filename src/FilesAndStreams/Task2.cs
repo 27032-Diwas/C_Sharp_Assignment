@@ -4,7 +4,7 @@ using System.Text;
 namespace FilesAndStreams;
 
 /// <summary>
-/// Implements task2
+/// Contains implemention for task2.
 /// </summary>
 public class Task2
 {

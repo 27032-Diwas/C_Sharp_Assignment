@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
+﻿using System.Diagnostics;
 using System.Text;
 
 namespace FilesAndStreams;
 
 /// <summary>
-/// Implements task1.
+/// Contains implemention for task1.
 /// </summary>
 public class Task1
 {
     private const int BufferSize = 1024 * 1024;
 
     /// <summary>
-    /// Runs the application
+    /// Runs the application.
     /// </summary>
     /// <returns> List of time. </returns>
     public List<long> Run()
