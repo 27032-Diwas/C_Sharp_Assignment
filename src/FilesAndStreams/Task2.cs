@@ -1,7 +1,11 @@
-﻿using System.Diagnostics;
-using System.Text;
+﻿// <copyright file="Task2.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace FilesAndStreams;
+
+using System.Diagnostics;
+using System.Text;
 
 /// <summary>
 /// Contains implementation for task2.

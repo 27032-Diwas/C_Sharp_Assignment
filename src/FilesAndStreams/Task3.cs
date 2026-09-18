@@ -1,6 +1,10 @@
-﻿using System.Text;
+﻿// <copyright file="Task3.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace FilesAndStreams;
+
+using System.Text;
 
 /// <summary>
 /// Contains implementation for task 3.

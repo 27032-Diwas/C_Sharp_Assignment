@@ -1,7 +1,11 @@
-﻿using System.Diagnostics;
-using ConsoleTables;
+﻿// <copyright file="Program.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace FilesAndStreams;
+
+using System.Diagnostics;
+using ConsoleTables;
 
 /// <summary>
 /// Entry point to the application.
