@@ -4,7 +4,7 @@ using System.Text;
 namespace FilesAndStreams;
 
 /// <summary>
-/// Contains implemention for task2.
+/// Contains implementation for task2.
 /// </summary>
 public class Task2
 {
@@ -107,7 +107,7 @@ public class Task2
         Stopwatch stopWatch = Stopwatch.StartNew();
         byte[] buffer = new byte[BufferSize];
         using FileStream fileStream = new (path, FileMode.Open, FileAccess.Read, FileShare.Read, BufferSize, true);
-        while (await fileStream.ReadAsync(buffer, 0, buffer.Length) > 0)
+        while (await fileStream.ReadAsync(buffer) > 0)
         {
         }
 
@@ -121,8 +121,8 @@ public class Task2
         Stopwatch stopWatch = Stopwatch.StartNew();
         byte[] buffer = new byte[BufferSize];
         using FileStream fileStream = new (path, FileMode.Open, FileAccess.Read, FileShare.Read, BufferSize, true);
-        using BufferedStream bs = new (fileStream, BufferSize * 16);
-        while (await bs.ReadAsync(buffer, 0, buffer.Length) > 0)
+        using BufferedStream bufferSteram = new (fileStream, BufferSize * 16);
+        while (await bufferSteram.ReadAsync(buffer) > 0)
         {
         }
 

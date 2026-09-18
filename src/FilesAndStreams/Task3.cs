@@ -20,10 +20,8 @@ public static class Task3
             byte[] buffer = Encoding.UTF8.GetBytes(data);
             memoryStream.Write(buffer, 0, buffer.Length);
 
-            using (FileStream fileStream = new (path, FileMode.Create))
-            {
-                memoryStream.WriteTo(fileStream);
-            }
+            using FileStream fileStream = new (path, FileMode.Create);
+            memoryStream.WriteTo(fileStream);
         }
 
         using (FileStream fileStream = new (path, FileMode.Open))
@@ -47,19 +45,17 @@ public static class Task3
         string data = "This is some test data";
         string filePath = "file5.txt";
 
-        using (MemoryStream memoryStream = new MemoryStream())
+        using (MemoryStream memoryStream = new ())
         {
             byte[] buffer = Encoding.ASCII.GetBytes(data);
             memoryStream.Write(buffer, 0, buffer.Length);
 
-            using (FileStream fileStream = new FileStream(filePath, FileMode.Create))
-            {
-                byte[] writeBuffer = memoryStream.ToArray();
-                fileStream.Write(writeBuffer, 0, writeBuffer.Length);
-            }
+            using FileStream fileStream = new (filePath, FileMode.Create);
+            byte[] writeBuffer = memoryStream.ToArray();
+            fileStream.Write(writeBuffer, 0, writeBuffer.Length);
         }
 
-        using (FileStream fileStream = new FileStream(filePath, FileMode.Open))
+        using (FileStream fileStream = new (filePath, FileMode.Open))
         {
             byte[] buffer = new byte[1024];
             int bytesRead;
