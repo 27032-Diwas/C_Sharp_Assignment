@@ -121,8 +121,8 @@ public class Task2
         Stopwatch stopWatch = Stopwatch.StartNew();
         byte[] buffer = new byte[BufferSize];
         using FileStream fileStream = new (path, FileMode.Open, FileAccess.Read, FileShare.Read, BufferSize, true);
-        using BufferedStream bufferSteram = new (fileStream, BufferSize * 16);
-        while (await bufferSteram.ReadAsync(buffer) > 0)
+        using BufferedStream bufferStream = new (fileStream, BufferSize * 16);
+        while (await bufferStream.ReadAsync(buffer) > 0)
         {
         }
 
