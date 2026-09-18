@@ -88,8 +88,8 @@ public class Task2
             return;
         }
 
-        using FileStream fs = new (path, FileMode.Create, FileAccess.Write, FileShare.None, BufferSize, true);
-        await using StreamWriter writer = new (fs);
+        using FileStream fileStream = new (path, FileMode.Create, FileAccess.Write, FileShare.None, BufferSize, true);
+        await using StreamWriter writer = new (fileStream);
         string line = "weather,data,24.5,humidity,70,pressure,1013";
         StringBuilder block = new ();
         for (int i = 0; i < 10000; i++)
