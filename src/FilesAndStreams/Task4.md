@@ -292,6 +292,11 @@ UserSpecific.log
 - Better scalability
 
 ---
+## Output
+
+![Task4](Docs/Assets/Task4.png)
+
+---
 
 # Learning Outcomes
 

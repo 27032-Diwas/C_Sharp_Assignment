@@ -168,6 +168,9 @@ Console.WriteLine(chunk);
 - Modern C# Syntax
 
 ---
+## Output
+
+![Task3](Docs/Assets/Task3.png)
 
 ## Learning Outcomes
 
