@@ -8,20 +8,30 @@ namespace FilesAndStreams;
 /// </summary>
 public class Task4
 {
-    private static readonly string _logFilePath = "log.txt";
+    private static readonly object _lockObject = new ();
 
     /// <summary>
-    /// Logs the error details in the file.
+    /// Logs the error into the file.
     /// </summary>
-    /// <param name="errorMessage"> The message to be logged. </param>
-    public static void LogError(string errorMessage)
+    /// <param name="userId"> Id of user. </param>
+    /// <param name="errorMessage"> Error message to log. </param>
+    public static void LogError(
+        string userId,
+        string errorMessage)
     {
-        string logMessage = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} - ERROR - {errorMessage}\n";
+        string filePath = $"Logs\\{userId}.txt";
 
-        byte[] bytes = Encoding.UTF8.GetBytes($"{logMessage}{Environment.NewLine}");
-        lock (_logFilePath)
+        string logMessage =
+            $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} - ERROR - {errorMessage}";
+
+        byte[] bytes =
+            Encoding.UTF8.GetBytes(logMessage + Environment.NewLine);
+
+        lock (_lockObject)
         {
-            using FileStream fileStream = new FileStream(_logFilePath, FileMode.Append, FileAccess.Write);
+            using FileStream fileStream =
+                new FileStream(filePath, FileMode.Append, FileAccess.Write);
+
             fileStream.Write(bytes, 0, bytes.Length);
         }
     }

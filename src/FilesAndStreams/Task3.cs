@@ -16,21 +16,17 @@ public static class Task3
         string path = "file4.txt";
         string data = "This is some test data";
 
-        // Writing to file using MemoryStream
         using (MemoryStream memoryStream = new ())
         {
             byte[] buffer = Encoding.UTF8.GetBytes(data);
             memoryStream.Write(buffer, 0, buffer.Length);
 
-            // Write from MemoryStream to file
             using (FileStream fileStream = new (path, FileMode.Create))
             {
-                byte[] writeBuffer = memoryStream.ToArray();
-                fileStream.Write(writeBuffer, 0, writeBuffer.Length);
+                memoryStream.WriteTo(fileStream);
             }
         }
 
-        // Reading from file using FileStream
         using (FileStream fileStream = new (path, FileMode.Open))
         {
             byte[] buffer = new byte[1024];

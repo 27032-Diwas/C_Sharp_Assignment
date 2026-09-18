@@ -1,8 +1,8 @@
-﻿using ConsoleTables;
+﻿using System.Diagnostics;
+using ConsoleTables;
 using FilesAndStreams;
-using System.Diagnostics;
 
-namespace Assignments;
+namespace FilesAndStreams;
 
 /// <summary>
 /// Entry point to the application.
@@ -37,26 +37,32 @@ public class Program
         Console.WriteLine("============== Task 3 ==============");
 
         Stopwatch stopwatch = Stopwatch.StartNew();
-        Task3.Run();
-        stopwatch.Stop();
-        Console.WriteLine($"Optimizer Code: {stopwatch.ElapsedMilliseconds}");
-        stopwatch.Restart();
         Task3.RunOriginalCode();
         stopwatch.Stop();
-        Console.WriteLine($"Original code: {stopwatch.ElapsedMilliseconds}");
-        Console.WriteLine("PRESS ANY KEY TO CONTINUE");
+        Console.WriteLine($"\nOriginal code execution time: {stopwatch.ElapsedMilliseconds} ms\n");
+        stopwatch.Restart();
+        Task3.Run();
+        stopwatch.Stop();
+        Console.WriteLine($"\nOptimizer Code execution time: {stopwatch.ElapsedMilliseconds} ms");
+        Console.WriteLine("\nPRESS ANY KEY TO CONTINUE");
         Console.ReadKey();
         Console.Clear();
 
         Console.WriteLine("============== LOGGING ==============");
         Console.WriteLine("Task 4 - Analyze and Resolve Performance Issues with Logging System");
-        FileInfo fileInfo = new FileInfo("log.txt");
+        if (!File.Exists("Logs\\User1.txt"))
+        {
+            File.Create("Logs\\User1.txt");
+        }
+
+        FileInfo fileInfo = new ("Logs\\User1.txt");
         long sizeInBytes = fileInfo.Length;
         Console.WriteLine($"\nFile size in bytes before logging: {sizeInBytes} B");
         stopwatch.Restart();
         Parallel.For(0, 50, index =>
         {
-            Task4.LogError($"{index}Error message");
+            Task4.LogError("User1", $"Error message");
+            Task4.LogError("User2", $"Error message");
         });
 
         stopwatch.Stop();
