@@ -26,6 +26,9 @@ public class Program
         LambdaExpression lambdaExpression = new ();
         lambdaExpression.Demonstrate();
 
+        Delegates delegates = new ();
+        delegates.Demonstrate();
+
         Console.ReadKey();
     }
 }
