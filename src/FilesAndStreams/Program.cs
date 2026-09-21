@@ -55,7 +55,7 @@ public class Program
         Console.WriteLine("Task 4 - Analyze and Resolve Performance Issues with Logging System");
         if (!File.Exists("Logs\\User1.txt"))
         {
-            File.Create("Logs\\User1.txt");
+            using FileStream stream = File.Create("Logs\\User1.txt");
         }
 
         FileInfo fileInfo = new ("Logs\\User1.txt");
