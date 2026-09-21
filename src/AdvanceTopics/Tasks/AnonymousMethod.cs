@@ -6,7 +6,7 @@
 public class AnonymousMethod
 {
     /// <summary>
-    /// Demonstrate the task.
+    /// Demonstrates the task.
     /// </summary>
     public void Demonstrate()
     {
@@ -14,16 +14,7 @@ public class AnonymousMethod
 
         Array.Sort(numbers, delegate(int number1, int number2)
         {
-            if (number1 > number2)
-            {
-                return 1;
-            }
-            else if (number1 < number2)
-            {
-                return -1;
-            }
-
-            return 0;
+            return number1.CompareTo(number2);
         });
 
         Console.Write($"Number in order: ");

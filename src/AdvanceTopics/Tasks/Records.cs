@@ -1,12 +1,12 @@
 ﻿namespace AdvanceTopics.Tasks;
 
 /// <summary>
-/// Demonstrate record usage.
+/// Demonstration of record usage.
 /// </summary>
 public class Records
 {
     /// <summary>
-    /// Demonstrate the task.
+    /// Demonstrates the task.
     /// </summary>
     public void Demonstrate()
     {

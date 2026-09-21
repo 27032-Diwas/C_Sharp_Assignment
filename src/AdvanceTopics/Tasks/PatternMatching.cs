@@ -6,7 +6,7 @@
 public class PatternMatching
 {
     /// <summary>
-    /// Demonstrate pattern matching.
+    /// Demonstrates pattern matching.
     /// </summary>
     public void Demonstrate()
     {

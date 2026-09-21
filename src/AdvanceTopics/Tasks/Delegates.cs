@@ -3,12 +3,12 @@
 namespace AdvanceTopics.Tasks;
 
 /// <summary>
-/// Demonstrate sorting with help of delegate.
+/// Demonstrates sorting with help of delegate.
 /// </summary>
 public class Delegates
 {
     /// <summary>
-    /// Delegate take two product as parameter and return integer.
+    /// Delegate that take two product as parameter and return integer.
     /// </summary>
     /// <param name="product1"> Instance of product 1. </param>
     /// <param name="product2"> Instance of product 2.</param>
@@ -16,7 +16,7 @@ public class Delegates
     public delegate int SortDelegate(Product product1, Product product2);
 
     /// <summary>
-    /// Demonstrate the task.
+    /// Demonstrates the task.
     /// </summary>
     public void Demonstrate()
     {
@@ -42,7 +42,7 @@ public class Delegates
     }
 
     /// <summary>
-    /// Sort the products based on field.
+    /// Sorts the products based on field.
     /// </summary>
     /// <param name="sortBy"> Delegate that contains sort method. </param>
     /// <param name="products"> List of product. </param>

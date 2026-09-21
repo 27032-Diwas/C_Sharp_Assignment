@@ -6,7 +6,7 @@
 public class VarAndDynamic
 {
     /// <summary>
-    /// Demonstrate the difference between var and dynamic keyword.
+    /// Demonstrates the difference between var and dynamic keyword.
     /// </summary>
     public void Demonstrate()
     {
