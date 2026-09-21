@@ -24,7 +24,7 @@ public class EventsAndDelegate
     public void Execute()
     {
         this._notifier.OnAction += this.Display;
-        this._notifier.TriggerOnAction("Demonstration of events and delegate.");
+        this._notifier.TriggerOnAction("Demonstration of events and delegate\n");
         this._notifier.OnAction -= this.Display;
     }
 
