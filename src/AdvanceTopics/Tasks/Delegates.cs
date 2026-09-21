@@ -1,5 +1,4 @@
 ﻿using ConsoleTables;
-using System.Runtime.CompilerServices;
 
 namespace AdvanceTopics.Tasks;
 

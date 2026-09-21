@@ -5,8 +5,6 @@
 /// </summary>
 public class Records
 {
-    private record Book(string title, string author, string isbn);
-
     /// <summary>
     /// Demonstrate the task.
     /// </summary>
