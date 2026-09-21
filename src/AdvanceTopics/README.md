@@ -73,10 +73,7 @@ The null conditional operator prevents exceptions when no subscribers exist.
 
 ## Output
 
-```text
-Demonstration of events and delegate
-AdvanceTopics.Notifier
-```
+![Event](Docs/Assets/Task1.png)
 
 ## Learning Outcomes
 
@@ -146,11 +143,7 @@ This is allowed because the runtime determines the actual type.
 
 ## Output
 
-```text
-Type of var at beginning is System.Int32
-Type of dynamic at beginning is System.Int32
-Type of dynamic after changing value is System.String
-```
+![Event](Docs/Assets/Task2.png)
 
 ---
 
@@ -223,9 +216,7 @@ Sorted Array:
 
 ## Output
 
-```text
-Number in order: 1 2 3 5 6 7 8
-```
+![Event](Docs/Assets/Task3.png)
 
 ---
 
@@ -278,10 +269,7 @@ Result:
 
 ## Output
 
-```text
-Even numbers : 2 4 6 8 10
-Square number: 4 16 36 64 100
-```
+![Event](Docs/Assets/Task4.png)
 
 ---
 
@@ -417,35 +405,7 @@ The appropriate comparison method is supplied through the delegate.
 
 ## Output
 
-### Sorted by Name
-
-```text
-Bus
-Cake
-IceCream
-Milk
-Red
-```
-
-### Sorted by Category
-
-```text
-Red
-Milk
-Cake
-IceCream
-Bus
-```
-
-### Sorted by Price
-
-```text
-Milk
-Red
-Cake
-IceCream
-Bus
-```
+![Event](Docs/Assets/Task5.png)
 
 ---
 
@@ -562,10 +522,7 @@ var (title, author, isbn) = book;
 
 ## Output
 
-```text
-book1 == book3 : True
-book1.Equals(book3) : True
-```
+![Event](Docs/Assets/Task6.png)
 
 ---
 
@@ -681,23 +638,7 @@ Handles unknown shape types.
 
 ## Example Output
 
-```text
-Shape Type : Circle
-Radius     : 5
-Area       : 78.54
-
-Shape Type : Rectangle
-Width      : 10
-Height     : 4
-Area       : 40.00
-
-Shape Type : Triangle
-Base       : 8
-Height     : 6
-Area       : 24.00
-
-Shape is null.
-```
+![Event](Docs/Assets/Task7.png)
 
 ---
 
