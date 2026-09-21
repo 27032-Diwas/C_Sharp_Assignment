@@ -26,9 +26,9 @@ public class Task2
 
         Stopwatch stopWatch = Stopwatch.StartNew();
         await Task.WhenAll(
-            this.GenerateFileAsync("AsyncFile1.txt", 3000000),
-            this.GenerateFileAsync("AsyncFile2.txt", 3000000),
-            this.GenerateFileAsync("AsyncFile3.txt", 3000000));
+            this.GenerateFileAsync("AsyncFile1.txt", 30000000),
+            this.GenerateFileAsync("AsyncFile2.txt", 30000000),
+            this.GenerateFileAsync("AsyncFile3.txt", 30000000));
         stopWatch.Stop();
 
         times.Add(stopWatch.ElapsedMilliseconds);

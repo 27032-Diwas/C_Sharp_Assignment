@@ -26,9 +26,9 @@ public class Task1
         Stopwatch stopWatch = new ();
 
         stopWatch.Start();
-        this.GenerateFile("file1.txt", 3000000);
-        this.GenerateFile("file2.txt", 3000000);
-        this.GenerateFile("file3.txt", 3000000);
+        this.GenerateFile("file1.txt", 30000000);
+        this.GenerateFile("file2.txt", 30000000);
+        this.GenerateFile("file3.txt", 30000000);
         stopWatch.Stop();
 
         times.Add(stopWatch.ElapsedMilliseconds);
