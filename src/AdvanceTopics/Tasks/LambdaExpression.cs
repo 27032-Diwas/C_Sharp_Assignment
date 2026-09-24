@@ -12,9 +12,9 @@ public class LambdaExpression
     {
         List<int> numbers = new () { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
-        List<int> evenNumbers = numbers.Where(number => number % 2 == 0).ToList();
+        List<int> evenNumbers = numbers.Where(number => number % 2 != 0).ToList();
 
-        Console.Write("Even numbers :");
+        Console.Write("Odd numbers :");
         foreach (int number in evenNumbers)
         {
             Console.Write(number + " ");

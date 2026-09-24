@@ -48,8 +48,9 @@ public class Records
 
         Book updatedBook = book1 with
         {
-            title = "The Pragmatic Programmer - 20th Anniversary Edition",
-            author = "Me"
+            #pragma warning disable SA1101
+            Title = "The Pragmatic Programmer - 20th Anniversary Edition",
+            Author = "Me",
         };
 
         Console.WriteLine("Original Book\n");
