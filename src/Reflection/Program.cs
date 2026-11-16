@@ -1,4 +1,6 @@
-﻿namespace Assignments;
+﻿using Reflection;
+
+namespace Assignments;
 
 /// <summary>
 /// Entry point to the application.
@@ -10,7 +12,6 @@ public class Program
     /// </summary>
     public static void Main()
     {
-        Console.WriteLine("PRESS ANY KEY TO CONTINUE");
-        Console.ReadKey();
+        TaskManager.Run();
     }
 }
