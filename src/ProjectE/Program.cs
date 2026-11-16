@@ -14,6 +14,7 @@ public class Program
     {
         ConsoleWriter consoleWriter = new ();
         consoleWriter.WriteColored("PROJECT E (WILL BE BUILD AFTER PROJECT C-DISPLAY APP)", ConsoleColor.White);
-        consoleWriter.WriteColored("Displaying message from project E", ConsoleColor.Green);
+        consoleWriter.WriteColored("\nDisplaying message from project E", ConsoleColor.Green);
+        Console.ReadKey();
     }
 }
