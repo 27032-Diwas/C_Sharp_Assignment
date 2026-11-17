@@ -12,7 +12,7 @@ public class Program
     /// </summary>
     public static void Main()
     {
-        Terminator terminator = new Terminator();
+        Terminator terminator = new ();
         terminator.Terminate();
     }
 }
