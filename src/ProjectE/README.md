@@ -19,7 +19,7 @@ This assignment demonstrates a multi-project .NET solution where multiple projec
 - **Project E** - Project E
 
 ---
-
+ 
 ## Project Dependencies
 
 The projects have the following dependency relationships:
